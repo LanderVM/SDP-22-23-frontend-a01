@@ -2,15 +2,14 @@ import Header from "../components/Header"
 import NavBar from "../components/NavBar"
 import ProductsList from "../components/products/productsList"
 
-export default function HomePage() {
+export default function ProductsPage() {
+
     return (
         <div>
-            <Header/>
-            <NavBar/>
-            <div>Welcome to our home page!</div>
-            
+            <Header />
+            <NavBar />
+            <ProductsList />
         </div>
-        
     )
 
 }

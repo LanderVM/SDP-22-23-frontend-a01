@@ -7,9 +7,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 const header = {
     padding: "10px",
     backgroundColor: "red",
-    color: "white",
-    display: "flex",
-    alginItems: "center",   
 }
 
 function Header() {
@@ -20,11 +17,16 @@ function Header() {
     } = useAuth0()
       
     return (
-        <div style={header}>
-            <img src="images/LogoDelaware.png" alt="logo" width="50px"/>
+        <div style={header} className='containter'>
+            <div className='d-flex align-items-center' >
+                <div>
+                    <img src="/images/LogoDelaware.png" alt="logo" width='75px' height='75px'/>
+                </div>       
+                <div style={{marginLeft: 'auto'}}>
+                    <AuthenticationButton />
+                </div>
+            </div>
             
-            {isAuthenticated ? <Link to={"/profile/" + user.email}><img src="images/menu.png" alt="logo" width="50px"/></Link> : <></>}
-            <AuthenticationButton />
         </div>
     )
 }

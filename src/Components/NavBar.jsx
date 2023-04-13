@@ -14,7 +14,7 @@ export default function NavBar() {
     return (
         <div style={navBar}>
             <Link to="/home" style={{color: "white", fontSize: "20px"}}>Home</Link>
-            <Link to="/test" style={{color: "white", fontSize: "20px"}}>Not found</Link>
+            <Link to="/products" style={{color: "white", fontSize: "20px"}}>Catalogue</Link>
         </div>
     )
 }
