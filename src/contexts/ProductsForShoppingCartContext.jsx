@@ -21,12 +21,38 @@ export default function ProductsForShoppingCartProvider ({children}) {
   },[productsFromContext]);
 
   const increaseProduct = useCallback ((productId)=>{
-
-  },[]);
+    const products = productsFromContext.filter(el=>el.id!==productId);
+    let product = {};
+    let array = [];
+    productsFromContext.forEach(el=>{
+      if (el.id===productId) {
+        product = {
+          id: el.id,
+          amount: el.amount+1,
+        }
+        array = [...products,product];
+        setProducts(array);
+        
+      }
+    })
+  },[productsFromContext]);
 
   const decreaseProduct = useCallback ((productId)=>{
-
-  },[]);
+    const products = productsFromContext.filter(el=>el.id!==productId);
+    let product = {};
+    let array = [];
+    productsFromContext.forEach(el=>{
+      if (el.id===productId) {
+        product = {
+          id: el.id,
+          amount: el.amount-1,
+        }
+        array = [...products,product];
+        setProducts(array);
+        
+      }
+    })
+  },[productsFromContext]);
 
   const value = useMemo(()=>({productsFromContext,resetShoppingCartContext,addProductToShoppingCartContext,
     removeProductFromShoppingCartContext,increaseProduct,decreaseProduct}),
