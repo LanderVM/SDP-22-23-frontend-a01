@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AuthenticationButton from "./authentication/AuthenticationButton"
 import { useAuth0 } from '@auth0/auth0-react';
 import NavBar from './NavBar';
+import ShoppingCartIcon from './ShoppingCartIcon';
 
 const header = {
     padding: "10px",
@@ -22,7 +23,10 @@ function Header() {
             <div className='d-flex align-items-center' >
                 <div>
                     <img src="/images/LogoDelaware.png" alt="logo" width='75px' height='75px'/>
-                </div>       
+                </div> 
+                <div style={{marginLeft: 'auto',backgroundColor:'white'}}>
+                    <ShoppingCartIcon/>
+                </div>      
                 <div style={{marginLeft: 'auto'}}>
                     <AuthenticationButton />
                 </div>

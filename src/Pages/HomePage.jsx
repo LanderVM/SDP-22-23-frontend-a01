@@ -20,7 +20,7 @@ export default function HomePage() {
             Warning: for most functionalities, you need to be logged in!
             </div>
             <div className="container">
-                <div class="row">
+                <div className="row">
                     <div className="col" >
                         <img src="../../public/images/productsHomePage.png" alt="resembles products"/>
                         <div>

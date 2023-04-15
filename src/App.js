@@ -5,6 +5,7 @@ import PageNotFound from "./pages/PageNotFound";
 import ProductsPage from "./pages/ProductsPage";
 import ProfilePage from "./pages/ProfilePage";
 import ScrollToTop from "./pages/ScrollToTop";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 import { SingleProductPage } from "./pages/SingleProductPage"
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/product/:id" element={<SingleProductPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/shoppingCart" element={<ShoppingCartPage/>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
     </>
