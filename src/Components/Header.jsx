@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import AuthenticationButton from "./authentication/AuthenticationButton"
 import { useAuth0 } from '@auth0/auth0-react';
+import NavBar from './NavBar';
 
 const header = {
     padding: "10px",
@@ -26,7 +27,7 @@ function Header() {
                     <AuthenticationButton />
                 </div>
             </div>
-            
+            <NavBar />
         </div>
     )
 }

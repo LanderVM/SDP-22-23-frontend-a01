@@ -1,5 +1,4 @@
-import NavBar from '../components/NavBar';
-import Header from '../components/Header';
+
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function ProfilePage() {
@@ -14,8 +13,6 @@ export default function ProfilePage() {
 
     return (
         <div>
-            <Header />
-            <NavBar />
             <div>Name: {user.email}</div>
         </div>
     )

@@ -1,7 +1,6 @@
 import { useParams } from 'react-router';
-import NavBar from '../components/NavBar';
-import Header from '../components/Header';
-import SingleProduct from '../components/products/singleProduct'
+
+import SingleProduct from '../Components/products/singleProduct'
 
 
 export const SingleProductPage = () => {
@@ -9,8 +8,7 @@ export const SingleProductPage = () => {
     
     return (
         <div>
-            <Header />
-            <NavBar />
+            
             <SingleProduct id={id} />
         </div>
     )

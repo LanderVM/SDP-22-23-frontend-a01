@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Header from "./Components/Header";
 import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import ProductsPage from "./pages/ProductsPage";
@@ -7,6 +8,8 @@ import { SingleProductPage } from "./pages/SingleProductPage"
 
 function App() {
   return (
+    <>
+    <Header />
     <Routes>
       <Route index element={<HomePage />} /> 
       <Route path="/home" element={<HomePage />} />
@@ -15,6 +18,7 @@ function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
+    </>
   );
 }
 
