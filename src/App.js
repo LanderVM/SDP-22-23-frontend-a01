@@ -4,12 +4,14 @@ import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import ProductsPage from "./pages/ProductsPage";
 import ProfilePage from "./pages/ProfilePage";
+import ScrollToTop from "./pages/ScrollToTop";
 import { SingleProductPage } from "./pages/SingleProductPage"
 
 function App() {
   return (
     <>
     <Header />
+    <ScrollToTop/>
     <Routes>
       <Route index element={<HomePage />} /> 
       <Route path="/home" element={<HomePage />} />
