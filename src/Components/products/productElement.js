@@ -10,7 +10,7 @@ export default function ProductElement({product_id, name, price, stock, descript
     return (
         <span className="col card-body container" >
             <div className="row">
-                <img src={photo} alt="product image" className="p-2 rounded-2"></img>
+                <img src={photo} alt="product" className="p-2 rounded-2"></img>
                 <div>
                     <h4 className="col">{name}</h4>
                     <div className="col">Price: {price}$</div>

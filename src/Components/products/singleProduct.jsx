@@ -6,7 +6,7 @@ import Error from "../Error";
 
 function SingleProductE({ product }) {
 
-    if (!product || product == null) {
+    if (!product) {
         return (
             <div>
                 something went wrong

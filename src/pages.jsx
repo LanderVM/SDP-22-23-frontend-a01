@@ -3,6 +3,8 @@ import {HomeWelcome} from "./Components/Home/HomeWelcome";
 import PageNotFoundAlert from "./Components/PageNotFoundAlert";
 import ProductsList from "./Components/products/productsList";
 import {useAuth0} from '@auth0/auth0-react';
+import { useParams } from 'react-router';
+import SingleProduct from "./Components/products/singleProduct";
 
 export const HomePage = () => {
     return (
@@ -32,15 +34,22 @@ export const ProductsPage = () => {
 export const ProfilePage = () => {
     const {user, isAuthenticated} = useAuth0();
 
-    if (!isAuthenticated)
-        return (
-            <main>
-            </main>
-        );
+    return (
+        <main>
+            {isAuthenticated ?
+                <div>Name: {user.email}</div>
+                : <div></div>
+            }
+        </main>
+    );
+};
+
+export const ProductOverviewPage = () => {
+    const { id } = useParams();
 
     return (
         <main>
-            <div>Name: {user.email}</div>
+            <SingleProduct id={id}/>
         </main>
-    )
-}
+    );
+};
