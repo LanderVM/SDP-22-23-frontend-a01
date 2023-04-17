@@ -1,7 +1,7 @@
 import { useLocation } from "react-router";
 
 
-export default function PageNotFound() {
+export default function PageNotFoundAlert() {
 
     const {pathName} = useLocation;
 
