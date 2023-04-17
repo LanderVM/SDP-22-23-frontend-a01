@@ -1,10 +1,9 @@
-import { memo } from 'react';
-import { Link } from 'react-router-dom';
 
 import AuthenticationButton from "./authentication/AuthenticationButton"
 import { useAuth0 } from '@auth0/auth0-react';
 import NavBar from './NavBar';
 import ShoppingCartIcon from './ShoppingCartIcon';
+import { memo } from 'react';
 
 const header = {
     padding: "10px",

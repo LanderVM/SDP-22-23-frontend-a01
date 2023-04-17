@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header";
-import HomePage from "./pages/HomePage";
-import PageNotFound from "./pages/PageNotFound";
-import ProductsPage from "./pages/ProductsPage";
-import ProfilePage from "./pages/ProfilePage";
-import ScrollToTop from "./pages/ScrollToTop";
-import ShoppingCartPage from "./pages/ShoppingCartPage";
-import { SingleProductPage } from "./pages/SingleProductPage"
+import HomePage from "./Pages/HomePage";
+import PageNotFound from "./Pages/PageNotFound";
+import ProductsPage from "./Pages/ProductsPage";
+import ProfilePage from "./Pages/ProfilePage";
+import ScrollToTop from "./Pages/ScrollToTop";
+import ShoppingCartPage from "./Pages/ShoppingCartPage";
+import { SingleProductPage } from "./Pages/SingleProductPage"
 
 function App() {
   return (

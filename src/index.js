@@ -5,8 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom';
-import MyAuth0Provider from './contexts/MyAuth0Provider';
-import ProductsForShoppingCartProvider from './contexts/ProductsForShoppingCartContext';
+import MyAuth0Provider from '../src/Contexts/MyAuth0Provider'
+import ProductsForShoppingCartProvider from '../src/Contexts/ProductsForShoppingCartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
