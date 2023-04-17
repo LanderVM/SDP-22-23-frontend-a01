@@ -1,10 +1,21 @@
+import { useNavigate } from 'react-router';
 import './homePageStyle.css';
+import { useCallback } from 'react';
 
 export const HomeNavigation = () => {
+
+    const navigate = useNavigate();
+
+    const navigateToProducts = useCallback(() =>{
+        navigate('/products');
+    },[navigate]);
+
+    
     return (
         <div className="container">
             <div className="row">
-                <div className="col">
+                
+                <div className="col" onClick={navigateToProducts}>
                     <img src="/images/productsHomePage.png" alt="resembles products"/>
                     <div>
                         Go to consulting products.

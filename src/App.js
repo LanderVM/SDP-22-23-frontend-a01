@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header";
 import {HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage, ShoppingCartPage} from "./pages";
 import ScrollToTop from "./Contexts/ScrollToTop";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/shoppingCart" element={<ShoppingCartPage/>} />
       <Route path="*" element={<NotFoundPage/>} />
     </Routes>
+    <Footer/>
     </>
   );
 }
