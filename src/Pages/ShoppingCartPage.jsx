@@ -8,7 +8,7 @@ export default function ShoppingCartPage () {
 
   const [products,setProducts] = useState([]);
 
-  const {productsFromContext,resetShoppingCartContext} = useContext(ProductsForShoppingCartContext);
+  const {productsFromContext, resetShoppingCartContext} = useContext(ProductsForShoppingCartContext);
 
   const productsApi = useProducts();
 

@@ -10,7 +10,7 @@ export default function SingleProductElement({product_id, name, price, stock, de
             <div className="row p-4">
                 <h2 className="col"><u>{name}</u></h2>
                 <div className="row p-4">
-                    <img src={photo} alt="product image" className="col float p-2 rounded-2" style={{width: '100px'}}></img>
+                    <img src={photo} alt="product" className="col float p-2 rounded-2" style={{width: '100px'}}></img>
                     <div className="col-8 g-5">       
                         <h3 className="col p-2">Description: {description}</h3>
                         <h3 className="col p-2">Price: ${price}</h3>  

@@ -7,7 +7,7 @@ import Product from "./productElement";
 
 function ProductsListElement({products, handleView}) {
 
-    if(!products || products.length == 0) {
+    if(!products || products.length === 0) {
         return (
             <div>There are no products available</div>
         )
