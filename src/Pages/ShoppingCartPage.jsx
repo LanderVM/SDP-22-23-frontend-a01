@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useState } from "react";
 import useProducts from "../api/product";
-import ProductsForShoppingCartContext from "../contexts/ProductsForShoppingCartContext";
+import ProductsForShoppingCartContext from "../Contexts/ProductsForShoppingCartContext";
 
 
 export default function ShoppingCartPage () {

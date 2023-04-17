@@ -1,10 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header";
-import HomePage from "./Pages/HomePage";
-import PageNotFound from "./Pages/PageNotFound";
-import ProductsPage from "./Pages/ProductsPage";
-import ProfilePage from "./Pages/ProfilePage";
-import ScrollToTop from "./Pages/ScrollToTop";
+import {HomePage, NotFoundPage, ProductsPage, ProfilePage} from "./pages";
+import ScrollToTop from "./Contexts/ScrollToTop";
 import ShoppingCartPage from "./Pages/ShoppingCartPage";
 import { SingleProductPage } from "./Pages/SingleProductPage"
 
@@ -14,13 +11,13 @@ function App() {
     <Header />
     <ScrollToTop/>
     <Routes>
-      <Route index element={<HomePage />} /> 
+      <Route index element={<HomePage />}/>
       <Route path="/home" element={<HomePage />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/product/:id" element={<SingleProductPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/shoppingCart" element={<ShoppingCartPage/>} />
-      <Route path="*" element={<PageNotFound />} />
+      <Route path="*" element={<NotFoundPage/>} />
     </Routes>
     </>
   );
