@@ -1,8 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header";
-import {HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage} from "./pages";
+import {HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage, ShoppingCartPage} from "./pages";
 import ScrollToTop from "./Contexts/ScrollToTop";
-import ShoppingCartPage from "./Pages/ShoppingCartPage";
 
 function App() {
   return (
