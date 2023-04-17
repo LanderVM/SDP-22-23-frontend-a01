@@ -13,13 +13,13 @@ export const ProductsTable = ({products}) => {
             </tr>
             </thead>
             <tbody>
-            {mapProducts(products)}
+            {MapProducts(products)}
             </tbody>
         </table>
     );
 }
 
-function mapProducts(products) {
+function MapProducts(products) {
 
     const {
         removeProductFromShoppingCartContext,
@@ -42,7 +42,7 @@ function mapProducts(products) {
         return (
             <>
                 <td>{el.name}</td>
-                <td>{getAmount(el.id)}</td>
+                <td>{GetAmount(el.id)}</td>
                 <td>
                     <button onClick={handleIncrease}>Increase amount</button>
                     <button onClick={handleDecrease}>Decrease amount</button>
@@ -55,7 +55,7 @@ function mapProducts(products) {
     });
 }
 
-function getAmount(productId) {
+function GetAmount(productId) {
 
     const {productsFromContext} = useContext(ProductsForShoppingCartContext);
 
