@@ -4,8 +4,7 @@ import { memo } from 'react';
 const footer = {
   padding: "10px",
   backgroundColor: "red",
-  position:"absolute",
-  bottom:"0"
+  
 }
 
 export default memo(function Footer () {
