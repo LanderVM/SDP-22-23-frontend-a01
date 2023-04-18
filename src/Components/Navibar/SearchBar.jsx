@@ -3,7 +3,7 @@ import {AiOutlineSearch} from "react-icons/ai";
 
 export const SearchBar = () => {
     return (
-        <InputGroup className="justify-content-center p-3">
+        <InputGroup className="justify-content-center m-1">
             <Form.Control
                 placeholder="Search"
                 aria-label="product-search"
