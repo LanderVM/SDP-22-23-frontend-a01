@@ -9,7 +9,7 @@ import {CartButton} from "./CartButton";
 import './navibar.css';
 import {SearchBar} from "./SearchBar";
 
-const iconSize = 40;
+const iconSize = 45;
 
 export const Navibar = () => {
     return (<header className="delaware-navbar pb-1">

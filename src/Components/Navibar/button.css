@@ -1,0 +1,12 @@
+.navibar-button {
+    color: white;
+}
+
+.navibar-button:hover {
+    background-color: #d4403b !important;
+    border-radius: 5%;
+}
+
+.navibar-button:active {
+    background-color: #bd3935 !important;
+}

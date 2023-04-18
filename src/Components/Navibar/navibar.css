@@ -10,12 +10,12 @@
 }
 
 .delaware-hamburger-menu:hover {
-    background-color: #a53232;
-    border-color: #a53232;
+    background-color: #d4403b;
+    border-color: #bd3935;
     color: white;
 }
 
 .delaware-hamburger-menu:active {
-    background-color: #8e2b28 !important;
-    border-color: #762421 !important;
+    background-color: #a5322e !important;
+    border-color: #8e2b28 !important;
 }
