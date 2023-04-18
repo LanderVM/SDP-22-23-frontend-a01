@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import {HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage, ShoppingCartPage} from "./pages";
 import ScrollToTop from "./Contexts/ScrollToTop";
 import Footer from "./Components/Footer";
-import {Navibar} from "./Components/NewNavbar";
+import {Navibar} from "./Components/Navibar";
 
 function App() {
   return (
