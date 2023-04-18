@@ -42,7 +42,7 @@ export const Navibar = () => {
                         <VscAccount size={40} className="p-1"/>
                         <Navbar.Text style={delawareStyle}>Account</Navbar.Text>
                     </Nav.Link>
-                    <Nav.Link style={{display:"flex"}} className="p-1" as={NavLink} to="/cart" replace> {/*TODO move style={} out*/}
+                    <Nav.Link style={{display:"flex"}} className="p-1" as={NavLink} to="/shoppingCart" replace> {/*TODO move style={} out*/}
                         <HiOutlineShoppingCart size={40} className="p-1"/>
                         <Navbar.Text style={delawareStyle}>Cart</Navbar.Text>
                     </Nav.Link>
