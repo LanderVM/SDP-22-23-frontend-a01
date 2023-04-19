@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import button from 'bootstrap/js/src/button';
 import React, { useState } from 'react';
-import AccountButton from './AccountButton';
+import NotificationButton from './NotificationButton';
 import CartButton from './CartButton';
 import './navibar.css';
 import SearchBar from './SearchBar';
@@ -29,7 +29,7 @@ export default function Navibar() {
             <img src="/images/Delaware-logo_white.png" alt="delaware logo" width={200} />
           </Navbar.Brand>
           <SearchBar />
-          <AccountButton iconSize={iconSize} />
+          <NotificationButton iconSize={iconSize} bootstrapStyling="navibar-button m-0 mb-1 p-0" asClass="h2" />
           <CartButton iconSize={iconSize} />
         </Container>
       </Navbar>
