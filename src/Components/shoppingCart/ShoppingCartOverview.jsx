@@ -1,3 +1,4 @@
+import ShoppingCartForm from "./ShoppingCartForm";
 
 const buttonStyle = {
   borderRadius: '8px',
@@ -23,6 +24,9 @@ export default function ShoppingCartOverview ({numberOfArticles, priceArticles, 
     <div>
       <p>Subtotal: </p>
       <p>€ {subTotal}</p>
+    </div>
+    <div>
+      <ShoppingCartForm onOrder={onPurchase}/>
     </div>
     <div style={{borderTop : '2px solid black'}}>
       <button onClick={onPurchase} style ={buttonStyle}>
