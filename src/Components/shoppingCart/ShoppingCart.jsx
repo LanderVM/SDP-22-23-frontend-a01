@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import ShoppingCartOverview from "./ShoppingCartOverview";
-import {useContext, useState} from 'react';
+import {useContext, useState,useEffect} from 'react';
 import useProducts from './api/product';
 import ProductsForShoppingCartContext from './Contexts/ProductsForShoppingCartContext';
 
@@ -12,7 +12,8 @@ export default function ShoppingCart () {
 
   const productsApi = useProducts();
 
-  const [products,setProducts] = useState({});
+  const [products,setProducts] = useState([]);
+  const [productsAmount,setProductsAmount]= useState([]);
 
   const {productsFromContext} = useContext(ProductsForShoppingCartContext);
 
@@ -24,6 +25,18 @@ export default function ShoppingCart () {
     };
     fetchProducts();
   }, [productsApi, productsFromContext]);
+
+  useEffect(()=>{
+    products.forEach(el=>{
+      const isPresent =  productsAmount.forEach(item=>{
+        if (item.id===el.product_id) {
+          return true;
+        }})
+      if (!isPresent) {
+        setProductsAmount(...productsAmount,{id:el.product_id,amount:1})
+      }
+    });
+  },[products,productsAmount]);
 
   const noa = 3;
   const price = 200.88;
