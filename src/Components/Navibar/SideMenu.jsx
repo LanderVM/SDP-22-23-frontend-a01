@@ -20,7 +20,7 @@ export default function SideMenu({ show, handleCloseFunction }) {
     <Offcanvas show={show} onHide={handleCloseFunction}>
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>
-          <img src="/images/LogoDelaware.png" alt="Delaware logo" />
+          <img src="/images/Delaware-logo_black.png" alt="Delaware logo" />
         </Offcanvas.Title>
       </Offcanvas.Header>
       <hr className="hr m-1" />
@@ -45,22 +45,23 @@ export default function SideMenu({ show, handleCloseFunction }) {
           Track Order
         </Nav.Link>
         <hr className="hr my-4" />
-        <Nav.Link
-          className="d-flex align-items-center"
-          as={NavLink}
-          to="/orders"
-          replace
-        >
-          <FiPackage size={60} className="me-1" />
-          View Orders
-        </Nav.Link>
-        <hr className="hr my-4" />
+
         {!isAuthenticated
           ? (
             <LoginButton iconSize={60} bootStrapIconStyling="me-1" />
           )
           : (
             <>
+              <Nav.Link
+                className="d-flex align-items-center"
+                as={NavLink}
+                to="/orders"
+                replace
+              >
+                <FiPackage size={60} className="me-1" />
+                View Orders
+              </Nav.Link>
+              <hr className="hr my-4" />
               <Nav.Link
                 className="d-flex align-items-center"
                 as={NavLink}
