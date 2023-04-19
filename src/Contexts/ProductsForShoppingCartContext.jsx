@@ -1,63 +1,69 @@
-import { createContext, useCallback, useMemo, useState } from "react";
-
+import React, {
+  createContext, useCallback, useMemo, useState,
+} from 'react';
 
 const ProductsForShoppingCartContext = createContext();
 
-export default function ProductsForShoppingCartProvider ({children}) {
+export default function ProductsForShoppingCartProvider({ children }) {
+  const [productsFromContext, setProducts] = useState([]);
 
-  const [productsFromContext,setProducts] = useState([]);
-
-  const resetShoppingCartContext = useCallback(()=>{
+  const resetShoppingCartContext = useCallback(() => {
     setProducts([]);
-  },[])
+  }, []);
 
-  const removeProductFromShoppingCartContext = useCallback((productId)=>{
-    productsFromContext.filter(el=>el.id!==productId);
-  },[productsFromContext]);
+  const removeProductFromShoppingCartContext = useCallback((productId) => {
+    productsFromContext.filter((el) => el.id !== productId);
+  }, [productsFromContext]);
 
-  const addProductToShoppingCartContext = useCallback(({productId,amount})=>{
-    const product = {productId,amount};
-    setProducts([...productsFromContext,product]);
-  },[productsFromContext]);
+  const addProductToShoppingCartContext = useCallback(({ productId, amount }) => {
+    const product = { productId, amount };
+    setProducts([...productsFromContext, product]);
+  }, [productsFromContext]);
 
-  const increaseProduct = useCallback ((productId)=>{
-    const products = productsFromContext.filter(el=>el.id!==productId);
+  const increaseProduct = useCallback((productId) => {
+    const products = productsFromContext.filter((el) => el.id !== productId);
     let product = {};
     let array = [];
-    productsFromContext.forEach(el=>{
-      if (el.id===productId) {
+    productsFromContext.forEach((el) => {
+      if (el.id === productId) {
         product = {
           id: el.id,
-          amount: el.amount+1,
-        }
-        array = [...products,product];
+          amount: el.amount + 1,
+        };
+        array = [...products, product];
         setProducts(array);
-        
       }
-    })
-  },[productsFromContext]);
+    });
+  }, [productsFromContext]);
 
-  const decreaseProduct = useCallback ((productId)=>{
-    const products = productsFromContext.filter(el=>el.id!==productId);
+  const decreaseProduct = useCallback((productId) => {
+    const products = productsFromContext.filter((el) => el.id !== productId);
     let product = {};
     let array = [];
-    productsFromContext.forEach(el=>{
-      if (el.id===productId) {
+    productsFromContext.forEach((el) => {
+      if (el.id === productId) {
         product = {
           id: el.id,
-          amount: el.amount-1,
-        }
-        array = [...products,product];
+          amount: el.amount - 1,
+        };
+        array = [...products, product];
         setProducts(array);
-        
       }
-    })
-  },[productsFromContext]);
+    });
+  }, [productsFromContext]);
 
-  const value = useMemo(()=>({productsFromContext,resetShoppingCartContext,addProductToShoppingCartContext,
-    removeProductFromShoppingCartContext,increaseProduct,decreaseProduct}),
-  [productsFromContext,resetShoppingCartContext,addProductToShoppingCartContext,
-    removeProductFromShoppingCartContext,increaseProduct,decreaseProduct]);
+  const value = useMemo(
+    () => ({
+      productsFromContext,
+      resetShoppingCartContext,
+      addProductToShoppingCartContext,
+      removeProductFromShoppingCartContext,
+      increaseProduct,
+      decreaseProduct,
+    }),
+    [productsFromContext, resetShoppingCartContext, addProductToShoppingCartContext,
+      removeProductFromShoppingCartContext, increaseProduct, decreaseProduct],
+  );
 
   return (
     <ProductsForShoppingCartContext.Provider value={value}>

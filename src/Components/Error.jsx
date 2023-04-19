@@ -1,5 +1,6 @@
-export default function Error({ error }) {
+import React from 'react';
 
+export default function Error({ error }) {
   if (error) {
     return (
       <div className="mx-5 alert alert-danger" data-cy="transactions_error">

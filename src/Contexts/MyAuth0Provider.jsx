@@ -1,3 +1,4 @@
+import React from 'react';
 import { Auth0Provider } from '@auth0/auth0-react';
 
 function MyAuth0Provider({ children }) {
@@ -11,7 +12,7 @@ function MyAuth0Provider({ children }) {
       clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: audience
+        audience,
       }}
       // audience={audience}
       // redirectUri={`${window.location.origin}/home`}

@@ -8,7 +8,7 @@ const useProducts = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const getAll = useCallback(async () => {
-    const token = await getAccessTokenSilently(); 
+    const token = await getAccessTokenSilently();
     const {
       data,
     } = await axios.get(baseUrl, {
@@ -21,13 +21,13 @@ const useProducts = () => {
   }, [getAccessTokenSilently]);
 
   const getById = useCallback(async (id) => {
-    const token = await getAccessTokenSilently(); 
+    const token = await getAccessTokenSilently();
     const {
       data,
     } = await axios.get(`${baseUrl}/productId/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
-      }, 
+      },
     });
     return data;
   }, [getAccessTokenSilently]);
@@ -35,7 +35,7 @@ const useProducts = () => {
   return {
     getAll,
     getById,
-  }
-}
+  };
+};
 
-export default useProducts
+export default useProducts;
