@@ -8,6 +8,7 @@ import { TbMapSearch } from 'react-icons/tb';
 import { FiPackage } from 'react-icons/fi';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from '../authentication/LoginButton';
+import LogoutButton from '../authentication/LogoutButton';
 
 export default function SideMenu({ show, handleCloseFunction }) {
   const {
@@ -59,15 +60,19 @@ export default function SideMenu({ show, handleCloseFunction }) {
             <LoginButton iconSize={60} bootStrapIconStyling="me-1" />
           )
           : (
-            <Nav.Link
-              className="d-flex align-items-center"
-              as={NavLink}
-              to={`/profile/${user.email}`}
-              replace
-            >
-              <MdOutlineManageAccounts size={60} className="me-1" />
-              Manage Account
-            </Nav.Link>
+            <>
+              <Nav.Link
+                className="d-flex align-items-center"
+                as={NavLink}
+                to={`/profile/${user.email}`}
+                replace
+              >
+                <MdOutlineManageAccounts size={60} className="me-1" />
+                Manage Account
+              </Nav.Link>
+              <hr className="hr my-4" />
+              <LogoutButton />
+            </>
           )}
       </Offcanvas.Body>
     </Offcanvas>
