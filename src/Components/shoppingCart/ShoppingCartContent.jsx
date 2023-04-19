@@ -2,5 +2,10 @@
 
 
 export default function ShoppingCartContext () {
-  return null;
+  return(
+    <div style={{maxWidth:'80%'}}>
+      <p>Shopping cart</p>
+      
+    </div>
+  );
 }

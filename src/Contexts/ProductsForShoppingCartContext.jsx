@@ -5,6 +5,7 @@ import React, {
 const ProductsForShoppingCartContext = createContext();
 
 export default function ProductsForShoppingCartProvider({ children }) {
+
   const [productsFromContext, setProducts] = useState([]);
 
   const resetShoppingCartContext = useCallback(() => {
@@ -12,15 +13,14 @@ export default function ProductsForShoppingCartProvider({ children }) {
   }, []);
 
   const removeProductFromShoppingCartContext = useCallback((productId) => {
-    productsFromContext.filter((el) => el.id !== productId);
+    productsFromContext.filter((el) => el !== productId);
   }, [productsFromContext]);
 
-  const addProductToShoppingCartContext = useCallback(({ productId, amount }) => {
-    const product = { productId, amount };
-    setProducts([...productsFromContext, product]);
+  const addProductToShoppingCartContext = useCallback(( productId) => {
+    setProducts([...productsFromContext, productId]);
   }, [productsFromContext]);
 
-  const increaseProduct = useCallback((productId) => {
+  /*const increaseProduct = useCallback((productId) => {
     const products = productsFromContext.filter((el) => el.id !== productId);
     let product = {};
     let array = [];
@@ -50,7 +50,7 @@ export default function ProductsForShoppingCartProvider({ children }) {
         setProducts(array);
       }
     });
-  }, [productsFromContext]);
+  }, [productsFromContext]);*/
 
   const value = useMemo(
     () => ({
@@ -58,11 +58,9 @@ export default function ProductsForShoppingCartProvider({ children }) {
       resetShoppingCartContext,
       addProductToShoppingCartContext,
       removeProductFromShoppingCartContext,
-      increaseProduct,
-      decreaseProduct,
     }),
     [productsFromContext, resetShoppingCartContext, addProductToShoppingCartContext,
-      removeProductFromShoppingCartContext, increaseProduct, decreaseProduct],
+      removeProductFromShoppingCartContext, ],
   );
 
   return (
