@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function SingleProductElement({
-  name, price, stock, description, photo, age,
+  product,
 }) {
   function toDate(date) {
     const newDate = new Date(date);
@@ -11,26 +11,26 @@ export default function SingleProductElement({
   return (
     <div className="container border border-danger rounded border-2 p-2">
       <div className="row p-4">
-        <h2 className="col"><u>{name}</u></h2>
+        <h2 className="col"><u>{product.name}</u></h2>
         <div className="row p-4">
-          <img src={photo} alt="product" className="col float p-2 rounded-2" style={{ width: '100px' }} />
+          <img src={product.photo} alt="product" className="col float p-2 rounded-2" style={{ width: '100px' }} />
           <div className="col-8 g-5">
             <h3 className="col p-2">
-              Description:
-              {description}
+              Description:&nbsp;
+              {product.description}
             </h3>
             <h3 className="col p-2">
-              Price: $
-              {price}
+              Price: €&nbsp;
+              {product.price}
             </h3>
             <div className="col" />
             <h3 className="col p-2">
-              Age:
-              {toDate(age)}
+              Age:&nbsp;
+              {toDate(product.DeliveryTime)}
             </h3>
             <h3 className="col p-2">
-              Stock:
-              {stock}
+              Stock:&nbsp;
+              {product.stock}
             </h3>
             <div className="col p-2">
               <button type="submit">Add to cart</button>

@@ -15,7 +15,7 @@ function SingleProductE({ product }) {
 
   return (
     <div style={{ margin: '100px 10%' }}>
-      <SingleProductElement product />
+      <SingleProductElement product={product.items} />
     </div>
   );
 }

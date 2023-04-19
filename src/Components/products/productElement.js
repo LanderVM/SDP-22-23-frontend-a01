@@ -1,28 +1,28 @@
 import React, { useCallback } from 'react';
 
 export default function ProductElement({
-  productId, name, price, stock, photo, onView,
+  product, onView,
 }) {
   const handleView = useCallback((e) => {
     e.preventDefault();
-    onView(productId);
-  }, [productId, onView]);
+    onView(product.product_id);
+  }, [product.product_id, onView]);
 
   return (
     <span className="col card-body container">
       <div className="row">
-        <img src={photo} alt="product" className="p-2 rounded-2" />
+        <img src={product.photo} alt="product" className="p-2 rounded-2" />
         <div>
-          <h4 className="col">{name}</h4>
+          <h4 className="col">{product.name}</h4>
           <div className="col">
-            Price:
-            {price}
-            $
+            Price:&nbsp;
+            {product.price}
+            &nbsp;€
           </div>
           <div className="row">
             <div className="col">
-              In Stock:
-              {stock}
+              In Stock:&nbsp;
+              {product.stock}
             </div>
             <div className="col text-end">
               <button type="button" onClick={handleView}>View</button>

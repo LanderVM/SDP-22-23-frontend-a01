@@ -21,20 +21,23 @@ const useProducts = () => {
   }, [getAccessTokenSilently]);
 
   const getById = useCallback(async (id) => {
-    const token = await getAccessTokenSilently();
     const {
       data,
-    } = await axios.get(`${baseUrl}/productId/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    } = await axios.get(`${baseUrl}/${id}`);
     return data;
-  }, [getAccessTokenSilently]);
+  }, []);
+
+  const getFiltered = useCallback(async (price, inStock) => {
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/filtered/${price}/${inStock}`);
+    return data.items;
+  }, []);
 
   return {
     getAll,
     getById,
+    getFiltered,
   };
 };
 
