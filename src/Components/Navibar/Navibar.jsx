@@ -22,7 +22,7 @@ export default function Navibar() {
     <header className="delaware-navbar pb-1">
       <Navbar expand="lg">
         <Container className="delaware-navbar">
-          <Button className="delaware-hamburger-menu me-1" onClick={handleShow}>
+          <Button className="delaware-hamburger-menu me-1" onClick={handleShow} data-cy="test-navbar-hamMenu">
             <GiHamburgerMenu className="p-1" size={iconSize} as={button} />
           </Button>
           <Navbar.Brand className="delaware-navbar p-0 mx-1" as={NavLink} to="/" replace>

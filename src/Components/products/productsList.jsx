@@ -37,10 +37,10 @@ export default function ProductsList() {
 
   const productenApi = useProducts();
 
-  function CallBack(data) {
+  const callBack = (data) => {
     setPrice(data.price);
     setInStock(data.inStock);
-  }
+  };
 
   useEffect(() => {
     const fetchProducten = async () => {
@@ -72,7 +72,7 @@ export default function ProductsList() {
     <Container fluid>
       <Row>
         <Col md="3" style={{ margin: '3% 0' }}>
-          <SideBarProductPage handleCallback={CallBack} />
+          <SideBarProductPage handleCallback={callBack} />
         </Col>
         <Col>
           <Loader loading={loading} />

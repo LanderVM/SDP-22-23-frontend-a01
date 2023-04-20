@@ -11,6 +11,7 @@ export default function LogoutButton() {
       type="button"
       className="d-flex align-items-center"
       onClick={logout}
+      data-cy="test-navBar-LogOut"
     >
       <MdLogout size={60} className="me-1" />
       Log&nbsp;out
