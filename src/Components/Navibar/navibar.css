@@ -19,3 +19,19 @@
     background-color: #a5322e !important;
     border-color: #8e2b28 !important;
 }
+
+.ant-layout-header {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.ant-layout-header, .ant-layout-header > * {
+    color: white;
+    background-color: #EC4848;
+}
+
+.logo {
+    float: left;
+    height: auto;
+}

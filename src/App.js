@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Layout } from 'antd';
 import {
   HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage,
 } from './pages';
@@ -8,9 +9,8 @@ import Navibar from './Components/Navibar/Navibar';
 
 function App() {
   return (
-    <>
+    <Layout>
       <Navibar />
-      <ScrollToTop />
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
@@ -19,7 +19,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+      <ScrollToTop />
+    </Layout>
   );
 }
 
