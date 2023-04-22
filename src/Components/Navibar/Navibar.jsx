@@ -29,9 +29,11 @@ const items = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
 export default function Navibar() {
   return (
     <Header className="navibar">
+
       <NavLink to="/home" replace className="logo">
         <img className="logo-inner" src="/images/Delaware-logo_white.png" alt="Delaware logo" />
       </NavLink>
+
       <Search className="navibar-search" placeholder="Search" onSearch={console.log} size="large" />
       <Menu
         mode="horizontal"

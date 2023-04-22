@@ -40,8 +40,13 @@
   margin: auto;
 }
 
-.logo-inner {
+.logo {
+  width: 20%;
+}
+
+.logo-inner{
   width: 100%;
+  display: block;
 }
 
 .ant-input-group-addon {
@@ -49,8 +54,10 @@
 }
 
 
-.navibar-search {
-  margin: auto 10px;
+.navibar-search,   {
+  margin: auto 20px;
+
+
 
   * > .ant-input-group-addon {
 
