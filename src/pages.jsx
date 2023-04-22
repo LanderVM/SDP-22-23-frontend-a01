@@ -1,8 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useParams } from 'react-router';
 import React, { useContext, useEffect, useState } from 'react';
-import HomeNavigation from './Components/Home/HomeNavigation';
-import HomeWelcome from './Components/Home/HomeWelcome';
 import PageNotFoundAlert from './Components/PageNotFoundAlert';
 import ProductsList from './Components/products/productsList';
 import SingleProduct from './Components/products/singleProduct';
@@ -12,10 +10,7 @@ import ProductsTable from './Components/products/ProductsTable';
 
 export function HomePage() {
   return (
-    <main>
-      <HomeWelcome />
-      <HomeNavigation />
-    </main>
+    <main />
   );
 }
 

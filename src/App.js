@@ -4,7 +4,6 @@ import {
   HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
-import Footer from './Components/Footer';
 import Navibar from './Components/Navibar/Navibar';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Footer />
     </>
   );
 }
