@@ -42,19 +42,29 @@
   background-color: #8e2b28 !important;
 }
 
+
 .navibar-search {
   margin: auto 10px;
-}
-.navibar-search * > .ant-input-group-addon :hover .anticon-search {
-  color: #8e2b28 !important;
-}
-.navibar-search * > .ant-input-group-addon .ant-btn {
-  background-color: #d4403b;
-  border-color: #bd3935;
-  display: flex;
-}
-.navibar-search * > .ant-input-group-addon .ant-btn .anticon-search {
-  margin: auto;
+
+  * > .ant-input-group-addon {
+
+    :hover {
+      .anticon-search {
+        color: #8e2b28 !important;
+      }
+    }
+
+    .ant-btn {
+      background-color: #d4403b;
+      border-color: #bd3935;
+      display: flex;
+
+
+      .anticon-search {
+        margin: auto;
+      }
+    }
+  }
 }
 
 .ant-input {
@@ -64,5 +74,3 @@
 .ant-input:hover, .ant-input-group-addon > .ant-btn > * {
   border-color: #8e2b28 !important;
 }
-
-/*# sourceMappingURL=navibar.css.map */

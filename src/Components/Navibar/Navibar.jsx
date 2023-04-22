@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'antd/es/layout/layout';
-import './aa.scss';
+import './navibar.scss';
 import { Menu } from 'antd';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import Search from 'antd/es/input/Search';
