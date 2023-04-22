@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
+import { List } from 'antd';
 import useProducts from '../../api/product';
 import Error from '../Error';
 import Loader from '../Loader';
@@ -15,12 +16,20 @@ function ProductsListElement({ products, handleView }) {
   }
 
   return (
-    <div className="row align-items-start" style={{ margin: '2% 4%' }}>
-      {products.map((product) => (
-        <div className="card border border-danger border-2" style={{ width: '300px', margin: '50px' }}>
-          <Product key={product.product_id} product={product} onView={handleView} />
-        </div>
-      ))}
+    <div style={{ margin: '2% 4%' }}>
+      <List
+        bordered
+        dataSource={products}
+        pagination={{
+          align: 'center',
+          pageSize: 10,
+        }}
+        renderItem={(item) => (
+          <List.Item key={item.product_id} style={{ display: 'block' }}>
+            <Product product={item} onView={handleView} />
+          </List.Item>
+        )}
+      />
     </div>
   );
 }
