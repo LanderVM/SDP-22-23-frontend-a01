@@ -20,7 +20,7 @@
     border-color: #8e2b28 !important;
 }
 
-.ant-layout-header {
+.navibar {
     display: flex;
     justify-content: center;
     justify-items: center;
@@ -32,6 +32,25 @@
 }
 
 .logo {
-    float: left;
     height: auto;
+    margin: auto;
 }
+
+.ant-layout-header {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.navibar-search {
+    margin: auto 10px;
+}
+
+.navibar-search > * > .ant-input-group-addon > .ant-btn {
+    background-color: #d4403b !important;
+    border-color: #bd3935;
+    display: flex;
+}
+
+
+

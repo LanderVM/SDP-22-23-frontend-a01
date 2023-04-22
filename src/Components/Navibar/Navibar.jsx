@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'antd/es/layout/layout';
-import './navibar.css';
+import './aa.scss';
 import { Menu } from 'antd';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import Search from 'antd/es/input/Search';
@@ -27,9 +27,9 @@ const items = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
 
 export default function Navibar() {
   return (
-    <Header>
+    <Header className="navibar">
       <img className="logo" src="/images/Delaware-logo_white.png" alt="Delaware logo" />
-      <Search placeholder="input search text" onSearch={console.log} enterButton />
+      <Search className="navibar-search" placeholder="Search" onSearch={console.log} size="large" />
       <Menu
         mode="horizontal"
         defaultSelectedKeys={['2']}
