@@ -4,6 +4,7 @@ import './navibar.scss';
 import { Menu } from 'antd';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import Search from 'antd/es/input/Search';
+import { NavLink } from 'react-router-dom';
 
 const items = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
   (icon, index) => {
@@ -28,7 +29,9 @@ const items = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
 export default function Navibar() {
   return (
     <Header className="navibar">
-      <img className="logo" src="/images/Delaware-logo_white.png" alt="Delaware logo" />
+      <NavLink to="/home" replace className="logo">
+        <img className="logo-inner" src="/images/Delaware-logo_white.png" alt="Delaware logo" />
+      </NavLink>
       <Search className="navibar-search" placeholder="Search" onSearch={console.log} size="large" />
       <Menu
         mode="horizontal"

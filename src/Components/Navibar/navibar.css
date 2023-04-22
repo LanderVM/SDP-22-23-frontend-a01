@@ -1,25 +1,3 @@
-.delaware-navbar {
-  background-color: #EC4848;
-  color: white;
-}
-
-.delaware-hamburger-menu {
-  background-color: #EC4842;
-  border-color: #d4403b;
-  color: white;
-}
-
-.delaware-hamburger-menu:hover {
-  background-color: #d4403b;
-  border-color: #bd3935;
-  color: white;
-}
-
-.delaware-hamburger-menu:active {
-  background-color: #a5322e !important;
-  border-color: #8e2b28 !important;
-}
-
 .navibar {
   display: flex;
   justify-content: center;
@@ -32,10 +10,16 @@
 }
 
 .logo {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
   float: left;
-  height: auto;
   max-height: 100%;
   margin: auto;
+}
+
+.logo-inner {
+  width: 100%;
 }
 
 .ant-input-group-addon {
