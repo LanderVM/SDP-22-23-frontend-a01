@@ -2,8 +2,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Nav from 'react-bootstrap/Nav';
 import { MdLogout } from 'react-icons/md';
 import React from 'react';
+import { ExportOutlined } from '@ant-design/icons';
 
-export default function LogoutButton() {
+export function LogoutButton() {
   const { logout } = useAuth0();
 
   return (
@@ -16,5 +17,16 @@ export default function LogoutButton() {
       <MdLogout size={60} className="me-1" />
       Log&nbsp;out
     </Nav.Link>
+  );
+}
+
+export function LogoutButtonDropDown() {
+  const { logout } = useAuth0();
+
+  return (
+    <div className="d-flex align-items-center">
+      <ExportOutlined onClick={logout} style={{ fontSize: '250%' }} />
+      &nbsp;Log&nbsp;out
+    </div>
   );
 }

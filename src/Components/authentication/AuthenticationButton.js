@@ -1,36 +1,58 @@
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+// import LogoutButton from './LogoutButton';
+import { UserOutlined } from '@ant-design/icons';
+import { Dropdown } from 'antd';
+import { LoginButtonDropDown } from './LoginButton';
+import { LogoutButtonDropDown } from './LogoutButton';
+import OrderButton from '../Navibar/OrderButton';
+import TrackTraceButton from '../Navibar/TrackTraceButton';
+
+const items = [
+  {
+    label: (
+      <div>
+        <OrderButton />
+      </div>
+    ),
+    key: '0',
+  },
+  {
+    label: (
+      <div>
+        <TrackTraceButton />
+      </div>
+    ),
+    key: '1',
+  },
+  {
+    type: 'divider',
+  },
+  {
+    label: (
+      <div>
+        <LogoutButtonDropDown />
+      </div>
+    ),
+    key: '3',
+  },
+];
 
 export default function AuthenticationButton() {
   const {
     isAuthenticated,
-    user,
-  } = useAuth0(); 
+  } = useAuth0();
 
-  if (isAuthenticated) { 
-    const { name } = user;
+  if (isAuthenticated) {
     return (
-      <div className="container ">
-        <div className='d-inline-flex align-items-center'>
-          <div className="text-white p-2">
-            Welcome, {name}
-          </div>
-          <div className='p-2'>
-            <LogoutButton />
-          </div>
-          <div className='p-2'>
-            <Link to={"/profile"}><img src="/images/user.png" alt="profile icon" width="60px"/></Link>
-          </div>
-          <div className='p-2'>
-            <Link to={"/profile"}><img src='/images/shopping-cart.png' alt='shopping card' width="60px"></img></Link>
-          </div>
-        </div>
-        
-      </div>
+      <Dropdown
+        menu={{ items }}
+      >
+        <UserOutlined style={{ fontSize: '300%' }} />
+      </Dropdown>
     );
   }
 
-  return <LoginButton />;
+  return <LoginButtonDropDown />;
 }
