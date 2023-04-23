@@ -7,6 +7,7 @@ import SingleProduct from './Components/products/singleProduct';
 import ProductsForShoppingCartContext from './Contexts/ProductsForShoppingCartContext';
 import useProducts from './api/product';
 import ProductsTable from './Components/products/ProductsTable';
+import TrackingInput from './Components/Tracking/TrackingInput';
 
 export function HomePage() {
   return (
@@ -26,6 +27,14 @@ export function ProductsPage() {
   return (
     <main>
       <ProductsList />
+    </main>
+  );
+}
+
+export function TrackingPage() {
+  return (
+    <main>
+      <TrackingInput />
     </main>
   );
 }
