@@ -45,7 +45,12 @@ export default function SideBarProductPage(props) {
 
         <Panel header="Availability" key="3">
           <Space>
-            <Switch checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked onClick={() => setInStock(!inStock)} />
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              defaultChecked
+              onClick={() => setInStock(!inStock)}
+            />
             <span>Only show in stock</span>
           </Space>
         </Panel>
