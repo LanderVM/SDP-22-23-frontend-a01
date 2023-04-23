@@ -38,21 +38,30 @@
 }
 
 .logo {
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  float: left;
-  max-height: 100%;
-  margin: auto;
+  //display: flex;
+  //justify-content: center;
+  //justify-items: center;
+  //float: left;
+  //max-height: 85px;
+  //margin: auto;
+  //max-width: fit-content;
+
 }
 
 .logo-inner {
+
+  height: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
   object-fit: contain;
-  height: 85px;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  margin: auto;
+
+  //max-height: 85px;
+  //display: flex;
+  //justify-content: center;
+  //justify-items: center;
+  //margin: auto;
 
 }
 
