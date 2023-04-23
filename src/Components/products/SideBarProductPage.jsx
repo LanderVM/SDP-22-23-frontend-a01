@@ -1,5 +1,7 @@
-import Accordion from 'react-bootstrap/Accordion';
-import Form from 'react-bootstrap/Form';
+import {
+  Collapse, Checkbox, Switch, Space,
+} from 'antd';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 import React, { useState } from 'react';
 
@@ -8,6 +10,7 @@ export default function SideBarProductPage(props) {
   const [inStock, setInStock] = useState(false);
 
   const { handleCallback } = props;
+  const { Panel } = Collapse;
 
   return (
     <div
@@ -18,71 +21,36 @@ export default function SideBarProductPage(props) {
     >
       {handleCallback({ price, inStock })}
       <h1>Products</h1>
-      <Accordion defaultActiveKey={['0']} alwaysOpen style={{ borderColor: 'rgba(0,0,0,.125)' }}>
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Product Category</Accordion.Header>
-          <Accordion.Body>
-            <Form>
-              <Form.Check
-                type="checkbox"
-                id="custom-checkbox"
-                label="Product category 1"
-              />
-              <Form.Check
-                type="checkbox"
-                label="Product category 2"
-                id="custom-checkbox2"
-              />
-            </Form>
-          </Accordion.Body>
-        </Accordion.Item>
 
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>Price</Accordion.Header>
-          <Accordion.Body>
-            <p>
-              € 1 - €
-              {' '}
-              {price}
-            </p>
-            <input type="range" min={1} value={price} max={100} name="priceRange" id="priceRange" onChange={(newPrice) => { setPrice(newPrice.target.value); }} />
-          </Accordion.Body>
-        </Accordion.Item>
+      <Collapse bordered={false} defaultActiveKey={['1']}>
+        <Panel header="Product Category" key="1">
+          <Checkbox style={{ marginLeft: '8px' }}>Product Category 1</Checkbox>
+          <Checkbox>Product Category 2</Checkbox>
+          <Checkbox>Product Category 3</Checkbox>
+          <Checkbox>Product Category 4</Checkbox>
+        </Panel>
+        <Panel header="Price" key="2">
+          <p>
+            € 1 - €
+            {' '}
+            {price}
+          </p>
+          <input type="range" min={1} value={price} max={100} name="priceRange" id="priceRange" onChange={(newPrice) => { setPrice(newPrice.target.value); }} />
 
-        <Accordion.Item eventKey="2">
-          <Accordion.Header>Brand</Accordion.Header>
-          <Accordion.Body>
-            <Form>
-              <Form.Check
-                type="checkbox"
-                id="custom-checkbox"
-                label="Brand 1"
-              />
-              <Form.Check
-                type="checkbox"
-                label="Brand 2"
-                id="custom-checkbox2"
-              />
-            </Form>
-          </Accordion.Body>
-        </Accordion.Item>
+        </Panel>
+        <Panel header="Brand" key="3">
+          <Checkbox style={{ marginLeft: '8px' }}>Brand 1</Checkbox>
+          <Checkbox>Brand 2</Checkbox>
+        </Panel>
 
-        <Accordion.Item eventKey="3">
-          <Accordion.Header>Availability</Accordion.Header>
-          <Accordion.Body>
-            <Form>
-              <Form.Check
-                type="switch"
-                id="custom-switch"
-                label="Only show in stock"
-                value={inStock}
-                onClick={() => setInStock(!inStock)}
-              />
-            </Form>
-          </Accordion.Body>
-        </Accordion.Item>
+        <Panel header="Availability" key="3">
+          <Space>
+            <Switch checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked onClick={() => setInStock(!inStock)} />
+            <span>Only show in stock</span>
+          </Space>
+        </Panel>
+      </Collapse>
 
-      </Accordion>
     </div>
   );
 }
