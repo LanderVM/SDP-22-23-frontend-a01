@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from 'antd';
+import { ConfigProvider, Layout, theme } from 'antd';
 import {
-  HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage,
+  HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage, TrackingPage,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import Navibar from './Components/Navibar/Navibar';
@@ -11,14 +11,17 @@ function App() {
   return (
     <Layout>
       <Navibar />
-      <Routes>
-        <Route index element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/product/:id" element={<ProductOverviewPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm, token: { colorPrimary: '#EC4242' } }}>
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/track" element={<TrackingPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/product/:id" element={<ProductOverviewPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </ConfigProvider>
       <ScrollToTop />
     </Layout>
   );
