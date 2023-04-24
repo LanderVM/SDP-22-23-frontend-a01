@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 // import { Link } from 'react-router-dom';
 // import LogoutButton from './LogoutButton';
-import { UserOutlined } from '@ant-design/icons';
+// import { UserOutlined } from '@ant-design/icons';
 import { Dropdown } from 'antd';
 import { LoginButtonDropDown } from './LoginButton';
 import { LogoutButtonDropDown } from './LogoutButton';
@@ -49,7 +49,7 @@ export default function AuthenticationButton() {
       <Dropdown
         menu={{ items }}
       >
-        <UserOutlined style={{ fontSize: '300%' }} />
+        <img src="/images/userIconWhite.png" alt="" width="50px" />
       </Dropdown>
     );
   }

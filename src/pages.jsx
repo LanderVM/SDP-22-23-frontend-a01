@@ -57,11 +57,11 @@ export function ProfilePage() {
 }
 
 export function ProductOverviewPage() {
-  const { id } = useParams();
+  const { name } = useParams();
 
   return (
     <main>
-      <SingleProduct id={id} />
+      <SingleProduct name={name} />
     </main>
   );
 }

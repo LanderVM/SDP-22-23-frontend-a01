@@ -67,11 +67,11 @@ export default function ProductsList() {
     fetchProducten();
   }, [price, inStock]);
 
-  const handleView = useCallback(async (idToView) => {
+  const handleView = useCallback(async (nameToView) => {
     try {
       setError(null);
-      await productenApi.getById(idToView);
-      navigate(`product/${idToView}`);
+      await productenApi.getByName(nameToView);
+      navigate(`product/${nameToView}`);
     } catch (err) {
       setError(err);
     }

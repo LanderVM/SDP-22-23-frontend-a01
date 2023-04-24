@@ -20,7 +20,7 @@ function SingleProductE({ product }) {
   );
 }
 
-export default function SingleProduct({ id }) {
+export default function SingleProduct({ name }) {
   const [product, setProduct] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export default function SingleProduct({ id }) {
       try {
         setLoading(true);
         setErrorMsg(null);
-        const data = await productenApi.getById(id);
+        const data = await productenApi.getByName(name);
         setProduct(data);
       } catch (error) {
         setErrorMsg(error);

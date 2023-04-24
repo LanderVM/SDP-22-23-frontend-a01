@@ -23,20 +23,28 @@ const useProducts = () => {
   const getById = useCallback(async (id) => {
     const {
       data,
-    } = await axios.get(`${baseUrl}/${id}`);
+    } = await axios.get(`${baseUrl}/id/${id}`);
+    return data;
+  }, []);
+
+  const getByName = useCallback(async (name) => {
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/name/${name}`);
     return data;
   }, []);
 
   const getFiltered = useCallback(async (price, inStock) => {
     const {
       data,
-    } = await axios.get(`${baseUrl}/filtered/${price}/${inStock}`);
+    } = await axios.get(`${baseUrl}/filter?startPrice=1&endPrice=${price}&inStock=${inStock}`);
     return data.items;
   }, []);
 
   return {
     getAll,
     getById,
+    getByName,
     getFiltered,
   };
 };

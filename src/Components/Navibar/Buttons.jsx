@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { ShopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 
-const size = '250%';
+// const size = '250%';
 
 export function ProductsButton() {
   const navigate = useNavigate();
@@ -13,7 +13,9 @@ export function ProductsButton() {
   };
 
   return (
-    <ShopOutlined style={{ fontSize: size }} onClick={handleClick} />
+    <NavLink onClick={handleClick} onKeyDown={handleClick} role="button">
+      <img src="/images/shopIcon2.png" alt="products page" width="50px" />
+    </NavLink>
   );
 }
 
@@ -26,6 +28,8 @@ export function NotificationButton() {
   };
 
   return (
-    <NotificationOutlined style={{ fontSize: size, padding: '20px' }} onClick={handleClick} />
+    <NavLink onClick={handleClick} onKeyDown={handleClick} role="button">
+      <img src="/images/NotificationBel.png" alt="notifications" width="50px" style={{ margin: '10px' }} />
+    </NavLink>
   );
 }
