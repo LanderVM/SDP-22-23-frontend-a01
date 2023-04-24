@@ -1,6 +1,11 @@
-export default function ShoppingCartContentElement({
-  cart, handleRemove,
+import { useContext } from 'react';
+
+export default function ShoppingCartContent({
+  cart, context,
 }) {
+  const {
+    removeProductFromShoppingCartContext, addProductToShoppingCartContext,
+  } = useContext(context);
   return (
     <div className="container">
       <div className="row">
@@ -26,7 +31,10 @@ export default function ShoppingCartContentElement({
                 <td>{cart.description}</td>
                 <td><input type="number" name="amount" id="amount" value="1" /></td>
                 <td width="200px">
-                  <input type="button" value="Delete" onClick={{ handleRemove }} />
+                  <input type="button" defaultValue="Delete" onClick={removeProductFromShoppingCartContext} />
+                </td>
+                <td width="200px">
+                  <input type="button" defaultValue="add" onClick={addProductToShoppingCartContext} />
                 </td>
               </tr>
               <tr>
