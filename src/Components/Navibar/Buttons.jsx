@@ -4,17 +4,17 @@ import { NavLink } from 'react-router-dom';
 
 // const size = '250%';
 
-export function ProductsButton() {
+export function ShoppingCartButton() {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
-    navigate('/products');
+    navigate('/shoppingCart');
   };
 
   return (
     <NavLink onClick={handleClick} onKeyDown={handleClick} role="button">
-      <img src="/images/shopIcon2.png" alt="products page" width="50px" />
+      <img src="/images/shoppingCartWhite.png" alt="shopping cart page" width="50px" />
     </NavLink>
   );
 }

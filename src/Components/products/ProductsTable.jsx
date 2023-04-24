@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ProductsForShoppingCartContext from '../../Contexts/ProductsForShoppingCartContext';
+import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 
 function GetAmount(productId) {
   const { productsFromContext } = useContext(ProductsForShoppingCartContext);

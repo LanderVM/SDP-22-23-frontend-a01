@@ -5,7 +5,8 @@ import {
   Col, Row, Grid,
 } from 'antd';
 import AuthenticationButton from '../authentication/AuthenticationButton';
-import { ProductsButton, NotificationButton } from './Buttons';
+import { ShoppingCartButton, NotificationButton } from './Buttons';
+import './navibar.css';
 
 const { useBreakpoint } = Grid;
 
@@ -49,17 +50,32 @@ export default function Navibar() {
             display: 'flex', alignItems: 'center', justifyContent: formatButton,
           }}
         >
-          <ProductsButton />
+          <ShoppingCartButton />
           <NotificationButton />
           <AuthenticationButton />
         </Col>
       </Row>
       <Row style={{
-        backgroundColor: '#E0433E', padding: '20px', textAlign: 'center', alignItems: 'center', visibility: phoneFormat,
+        backgroundColor: '#E0433E', padding: '20px', textAlign: 'center', visibility: phoneFormat,
       }}
       >
-        <Col span={24} style={{ display: phoneFormat }}>
-          <Search className="navibar-search" placeholder="Search" onSearch={handleSearch} size="large" />
+        <Col span={24}>
+          <div style={{
+            textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+          >
+            <Col span={12}>
+              <NavLink to="/products" replace>
+                <h3 className="navibar-item">Products</h3>
+              </NavLink>
+            </Col>
+            <Col span={12}>
+              <NavLink to="/track&trace" replace>
+                <h3 className="navibar-item">Track & Trace</h3>
+              </NavLink>
+            </Col>
+          </div>
+          <Search style={{ display: phoneFormat }} className="navibar-search" placeholder="Search" onSearch={handleSearch} size="large" />
         </Col>
       </Row>
     </div>
