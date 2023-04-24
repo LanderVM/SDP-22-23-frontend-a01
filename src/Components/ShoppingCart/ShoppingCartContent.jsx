@@ -4,8 +4,9 @@ export default function ShoppingCartContent({
   cart, context,
 }) {
   const {
-    removeProductFromShoppingCartContext, addProductToShoppingCartContext,
+    removeProductFromShoppingCartContext,
   } = useContext(context);
+
   return (
     <div className="container">
       <div className="row">
@@ -31,11 +32,9 @@ export default function ShoppingCartContent({
                 <td>{cart.description}</td>
                 <td><input type="number" name="amount" id="amount" value="1" /></td>
                 <td width="200px">
-                  <input type="button" defaultValue="Delete" onClick={removeProductFromShoppingCartContext} />
+                  <input type="button" defaultValue="Delete" onClick={() => removeProductFromShoppingCartContext(cart.product_id)} />
                 </td>
-                <td width="200px">
-                  <input type="button" defaultValue="add" onClick={addProductToShoppingCartContext} />
-                </td>
+
               </tr>
               <tr>
                 <td>{cart.stock > 0 ? 'In stock' : 'Not in stock'}</td>

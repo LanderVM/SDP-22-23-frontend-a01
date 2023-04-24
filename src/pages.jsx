@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PageNotFoundAlert from './Components/PageNotFoundAlert';
 import ProductsList from './Components/products/productsList';
 import SingleProduct from './Components/products/singleProduct';
-import ProductsForShoppingCartContext from './Contexts/ProductsForShoppingCartContext';
+import { ProductsForShoppingCartContext } from './Contexts/ProductsForShoppingCartContext';
 import useProducts from './api/product';
 import ProductsTable from './Components/products/ProductsTable';
 
