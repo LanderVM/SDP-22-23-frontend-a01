@@ -6,6 +6,7 @@ import {
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import Navibar from './Components/Navibar/Navibar';
+import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 
 function App() {
   return (

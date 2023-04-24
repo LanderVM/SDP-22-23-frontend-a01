@@ -20,7 +20,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'linebreak-style': ['error', 'windows'],
-    'max-len': ['error', { code: 200 }],
-
+    'max-len': ['error', { code: 350 }],
+    'react/react-in-jsx-scope': 'off',
   },
 };
