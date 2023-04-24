@@ -20,6 +20,7 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/product/:name" element={<ProductOverviewPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/shoppingCart" element={<ShoppingCart />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ConfigProvider>

@@ -1,18 +1,18 @@
-import React, { useCallback } from 'react';
+import React, { useContext } from 'react';
 import { ShoppingCartOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Row, Col, Grid, Button,
 } from 'antd';
+import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 
 const { useBreakpoint } = Grid;
 
 export default function ProductElement({
-  product, onView,
+  product,
 }) {
-  const handleView = useCallback((e) => {
-    e.preventDefault();
-    onView(product.product_id);
-  }, [product.product_id, onView]);
+  const {
+    addProductToShoppingCartContext,
+  } = useContext(ProductsForShoppingCartContext);
 
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '36px' : '24px';
@@ -42,7 +42,7 @@ export default function ProductElement({
         <Button
           type="primary"
           danger
-          onClick={handleView}
+          onClick={() => addProductToShoppingCartContext(product)}
           style={{
             fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
           }}

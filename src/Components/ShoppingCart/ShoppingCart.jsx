@@ -1,23 +1,29 @@
 import React, {
+  useCallback,
 
   useContext, useEffect,
   useState,
 } from 'react';
+
+import { Col, Container, Row } from 'react-bootstrap';
+import { List } from 'antd';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import Error from '../Error';
 import Loader from '../Loader';
 import ShoppingCartContent from './ShoppingCartContent';
 import ShoppingCartOverview from './ShoppingCartOverview';
+import useProducts from '../../api/product';
 
 export default function ShoppingCart() {
   const {
-    productsFromContext, addProductToShoppingCartContext,
+    productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [myCart, setCart] = useState(null);
+  const productenApi = useProducts();
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -34,33 +40,52 @@ export default function ShoppingCart() {
     fetchCartItems();
   }, [productsFromContext]);
 
+  const handleView = useCallback(async (nameToView) => {
+    try {
+      setError(null);
+      await productenApi.getByName(nameToView);
+    } catch (err) {
+      setError(err);
+    }
+  }, []);
+  if (!myCart || myCart.length === 0) {
+    return (
+      <div>There are no products available in your cart</div>
+
+    );
+  }
   return (
 
-    <div className="container">
-      <div className="row">
-        <td width="200px">
-          <input type="button" defaultValue="add" onClick={addProductToShoppingCartContext} />
-        </td>
-        <Loader loading={loading} />
-        <Error error={error} />
-        <div className="col" style={{ maxWidth: '70%', margin: '5%', border: '1px solid black' }}>
-          <h1>Shopping Cart</h1>
-          {!error && !loading ? myCart.map((cartEl) => (
-            <ShoppingCartContent key={cartEl.product_id} cart={cartEl} context={ProductsForShoppingCartContext} />
-          )) : null}
+    <Container fluid>
+      <Row>
 
-        </div>
+        <Col>
+          <Loader loading={loading} />
+          <Error error={error} />
+          <div style={{ margin: '2% 4%' }}>
+            <List
+              bordered
+              dataSource={myCart}
+              pagination={{
+                align: 'center',
+                pageSize: 10,
+              }}
+              renderItem={(item) => (
+                <List.Item key={item.product_id} style={{ display: 'block' }}>
+                  {!loading && !error ? <ShoppingCartContent cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
+                    : null}
 
-        <div
-          className="col"
-          style={{
-            maxWidth: '20%', margin: '5%',
-          }}
-        >
-          {myCart ? <ShoppingCartOverview cart={myCart} /> : null}
+                </List.Item>
+              )}
+            />
+          </div>
 
-        </div>
-      </div>
-    </div>
+        </Col>
+        <Col md="3" style={{ margin: '3% 0' }}>
+          <ShoppingCartOverview cart={myCart} />
+        </Col>
+      </Row>
+    </Container>
+
   );
 }

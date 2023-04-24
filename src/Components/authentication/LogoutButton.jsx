@@ -22,10 +22,13 @@ export function LogoutButton() {
 
 export function LogoutButtonDropDown() {
   const { logout } = useAuth0();
-
+  const handleLogout = () => {
+    logout();
+    localStorage.clear();
+  };
   return (
     <div className="d-flex align-items-center">
-      <ExportOutlined onClick={logout} style={{ fontSize: '250%' }} />
+      <ExportOutlined onClick={handleLogout} style={{ fontSize: '250%' }} />
       &nbsp;Log&nbsp;out
     </div>
   );
