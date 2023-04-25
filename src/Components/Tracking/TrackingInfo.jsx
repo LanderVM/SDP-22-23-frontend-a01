@@ -1,5 +1,14 @@
 import { Steps, Table } from 'antd';
 import React from 'react';
+import {
+  MdDeliveryDining, MdPlace,
+} from 'react-icons/md';
+import {
+  IoMdBoat, IoMdCheckmark,
+} from 'react-icons/io';
+import {
+  BsBoxSeam,
+} from 'react-icons/bs';
 
 const columns = [
   {
@@ -42,18 +51,28 @@ export default function TrackingInfo({ tracker }) {
         items={[
           {
             title: 'Placed',
+            status: 'placed',
+            icon: <IoMdCheckmark />,
           },
           {
             title: 'Processed',
+            status: 'processed',
+            icon: <BsBoxSeam />,
           },
           {
             title: 'Shipped',
+            status: 'shipped',
+            icon: <IoMdBoat />,
           },
           {
             title: 'Out for Delivery',
+            status: 'outfordelivery',
+            icon: <MdDeliveryDining />,
           },
           {
             title: 'Delivered',
+            status: 'delivered',
+            icon: <MdPlace />,
           },
         ]}
       />
