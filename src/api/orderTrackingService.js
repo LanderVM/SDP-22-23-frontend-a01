@@ -17,7 +17,7 @@ export default function useOrderTracker() {
     const token = await getAccessTokenSilently();
     const {
       data,
-    } = await axios.get(`${baseUrl}/?trackAndTraceCode=${trackingCode}&verificatiecode=${verificationCode}`, {
+    } = await axios.get(`${baseUrl}/?trackAndTraceCode=${trackingCode}&verificationCode=${verificationCode}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

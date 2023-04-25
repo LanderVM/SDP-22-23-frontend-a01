@@ -70,7 +70,7 @@ export default function Navibar() {
               </NavLink>
             </Col>
             <Col span={12}>
-              <NavLink to="/track&trace" replace>
+              <NavLink to="/track" replace>
                 <h3 className="navibar-item">Track & Trace</h3>
               </NavLink>
             </Col>
