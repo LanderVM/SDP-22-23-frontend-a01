@@ -24,13 +24,10 @@ export default function ProductsForShoppingCartProvider({ children }) {
   }, []);
 
   const removeProductFromShoppingCartContext = useCallback((productId) => {
-    console.log('testRemove');
     setProducts(productsFromContext.filter((el) => el.product_id !== productId));
   }, [productsFromContext]);
 
   const addProductToShoppingCartContext = useCallback((product) => {
-    console.log('testAdd');
-
     setProducts([...productsFromContext, product]);
   }, [productsFromContext]);
 

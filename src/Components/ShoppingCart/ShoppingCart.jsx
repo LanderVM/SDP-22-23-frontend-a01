@@ -57,14 +57,15 @@ export default function ShoppingCart() {
   return (
 
     <Container fluid>
-      <Row>
+      <Row style={{ margin: '2% 4%' }}>
 
         <Col>
           <Loader loading={loading} />
           <Error error={error} />
-          <div style={{ margin: '2% 4%' }}>
+          <div>
             <List
               bordered
+              style={{ backgroundColor: 'white' }}
               dataSource={myCart}
               pagination={{
                 align: 'center',
@@ -81,7 +82,7 @@ export default function ShoppingCart() {
           </div>
 
         </Col>
-        <Col md="3" style={{ margin: '3% 0' }}>
+        <Col md="3">
           <ShoppingCartOverview cart={myCart} />
         </Col>
       </Row>

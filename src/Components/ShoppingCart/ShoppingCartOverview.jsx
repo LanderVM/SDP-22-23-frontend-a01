@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card } from 'antd';
-
-const buttonStyle = {
-  border: '2px solid white',
-  backgroundColor: '#d4403b',
-  margin: '5px',
-  maxWidth: '90%',
-  color: 'white',
-};
+import { Card, Button } from 'antd';
+import './ShoppingCart.css';
 
 export default function ShoppingCartOverview({
   cart,
@@ -29,30 +22,49 @@ export default function ShoppingCartOverview({
       style={{ width: 300 }}
       actions={[
         // eslint-disable-next-line react/button-has-type
-        <button style={buttonStyle}>
-          Proceed to checkout
-        </button>,
+        <Button type="primary">
+          Continue to payment
+        </Button>,
       ]}
     >
-      <p style={{ textAlign: 'left' }}>
-        Articles
-        {cart.size}
+      <table style={{ width: '100%' }}>
+        <tbody>
+          <tr>
+            <td>
+              Articles (
+              {cart.length}
+              ):
 
-      </p>
-      <p style={{ textAlign: 'right' }}>
-        €
-        {cost}
-      </p>
-      <p style={{ textAlign: 'left' }}>shipping costs: </p>
-      <p style={{ textAlign: 'right' }}>
-        €
-        20
-      </p>
-      <p>Subtotal: </p>
-      <p>
-        €
-        {20 + cost}
-      </p>
+            </td>
+            <td id="priceTd">
+              <strong>
+                €&nbsp;
+                {cost}
+              </strong>
+            </td>
+          </tr>
+          <tr id="trShipping">
+            <td>Shipping Costs:</td>
+            <td id="priceTd">
+              <strong>
+                €&nbsp;20
+              </strong>
+            </td>
+          </tr>
+          &nbsp;
+          <tr>
+            <td>Subtotal:</td>
+            <td id="priceTd">
+              <strong>
+                €&nbsp;
+                {20 + cost}
+              </strong>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
     </Card>
   );
 }
