@@ -1,4 +1,5 @@
-import { Steps, Table } from 'antd';
+import Table from 'ant-responsive-table';
+import { Steps } from 'antd';
 import React from 'react';
 import {
   MdDeliveryDining, MdPlace,
@@ -9,40 +10,78 @@ import {
 import {
   BsBoxSeam,
 } from 'react-icons/bs';
+import moment from 'moment/moment';
 
 const columns = [
   {
     title: 'Order Date',
     dataIndex: 'order_date',
     key: 'order_date',
+    showOnResponse: true,
+    showOnDesktop: true,
   },
   {
     title: 'Shipped By',
     dataIndex: 'name',
     key: 'name',
+    showOnResponse: true,
+    showOnDesktop: true,
   },
   {
     title: 'Status',
     dataIndex: 'order_status',
     key: 'order_status',
+    showOnResponse: true,
+    showOnDesktop: true,
   },
   {
     title: 'Tracking Code',
     dataIndex: 'tracking_code',
     key: 'tracking_code',
+    showOnResponse: true,
+    showOnDesktop: true,
   },
 ];
+
+const getStatusAsString = (statusInt) => {
+  switch (statusInt) {
+    case 0:
+      return 'Placed';
+    case 1:
+      return 'Processed';
+    case 2:
+      return 'Shipped';
+    case 3:
+      return 'Out for Delivery';
+    case 4:
+      return 'Delivered';
+    default:
+      return 'Unknown Status';
+  }
+};
 
 export default function TrackingInfo({ tracker }) {
   if (tracker === null) return null;
 
+  const dataSource = [
+    {
+      order_date: moment(tracker.items.order_date.split('T')[0]).format('MMMM Do YYYY'),
+      name: tracker.items.name,
+      order_status: getStatusAsString(tracker.items.order_status),
+      tracking_code: tracker.items.tracking_code,
+    },
+  ];
+
   return (
     <>
       <Table
-        columns={columns}
-        dataSource={[tracker.items]}
-        bordered
-        pagination={false}
+        antTableProps={{
+          showHeader: true,
+          columns,
+          dataSource,
+          pagination: false,
+        }}
+        mobileBreakPoint={768}
         className="delaware-tracking-infotable"
       />
       <Steps
