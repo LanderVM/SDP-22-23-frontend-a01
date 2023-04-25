@@ -65,6 +65,7 @@ export default function TrackingInfo({ tracker }) {
 
   const dataSource = [
     {
+      key: tracker.items.tracking_code,
       order_date: moment(tracker.items.order_date.split('T')[0]).format('MMMM Do YYYY'),
       name: tracker.items.name,
       order_status: getStatusAsString(tracker.items.order_status),
