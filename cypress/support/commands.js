@@ -93,6 +93,6 @@ Cypress.Commands.add('logout', () => {
     displayName: 'logout',
   });
   cy.goToHomePage();
-  cy.get('[data-cy=test-navbar-hamMenu]').click();
+  cy.get('[data-cy=test-navbar-userIcon]').click();
   cy.get('[data-cy=test-navBar-LogOut]').click();
 });

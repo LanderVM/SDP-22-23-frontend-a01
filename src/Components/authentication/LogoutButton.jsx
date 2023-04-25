@@ -10,7 +10,7 @@ export default function LogoutButtonDropDown() {
   };
   return (
     <div className="d-flex align-items-center">
-      <ExportOutlined onClick={handleLogout} style={{ fontSize: '250%' }} />
+      <ExportOutlined onClick={handleLogout} style={{ fontSize: '250%' }} data-cy="test-navBar-LogOut" />
       &nbsp;Log&nbsp;out
     </div>
   );

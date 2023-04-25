@@ -46,7 +46,7 @@ export default function AuthenticationButton() {
       <Dropdown
         menu={{ items }}
       >
-        <img src="/images/userIconWhite.png" alt="" width="50px" />
+        <img src="/images/userIconWhite.png" alt="" width="50px" data-cy="test-navbar-userIcon" />
       </Dropdown>
     );
   }

@@ -24,6 +24,7 @@ function ProductsListElement({ products, handleView }) {
           align: 'center',
           pageSize: 10,
         }}
+        data-cy="test-procducts-list"
         renderItem={(item) => (
           <List.Item key={item.product_id} style={{ display: 'block' }}>
             <Product product={item} onView={handleView} />
@@ -39,7 +40,7 @@ export default function ProductsList() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [priceStart, setPriceStart] = useState(50);
+  const [priceStart, setPriceStart] = useState(0);
   const [priceEnd, setPriceEnd] = useState(50);
   const [inStock, setInStock] = useState(true);
 
