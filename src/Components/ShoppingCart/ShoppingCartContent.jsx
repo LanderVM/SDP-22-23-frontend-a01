@@ -26,8 +26,8 @@ export default function ShoppingCartContent({
         <img src={cart.photo} alt="product" width="100px" />
       </Col>
       <Col>
-        <div style={{ fontSize: fontSizeName }}><b>{cart.name}</b></div>
-        <div style={{ fontSize: fontSizeDesc }}>{cart.description}</div>
+        <div style={{ fontSize: fontSizeName }} data-cy="cartName"><b>{cart.name}</b></div>
+        <div style={{ fontSize: fontSizeDesc }} data-cy="cartDescription">{cart.description}</div>
         <div>
           <Select
             defaultValue="1"
@@ -43,14 +43,14 @@ export default function ShoppingCartContent({
         </div>
       </Col>
       <Col className="col text-end">
-        <div style={{ fontSize: fontSizeName }}>
-          €
-          {' '}
+        <div data-cy="cartPrice" style={{ fontSize: fontSizeName }}>
+          €&nbsp;
           {cart.price}
         </div>
         <Button
           type="primary"
           danger
+          data-cy="removeCartItem"
           onClick={() => removeProductFromShoppingCartContext(cart.product_id)}
           style={{
             fontSize: '20px', height: buttonHeight, verticalAlign: '3px',

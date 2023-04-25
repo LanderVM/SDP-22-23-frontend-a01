@@ -67,6 +67,7 @@ export default function ShoppingCart() {
               bordered
               style={{ backgroundColor: 'white' }}
               dataSource={myCart}
+              data-cy="shoppingCart"
               pagination={{
                 align: 'center',
                 pageSize: 10,
