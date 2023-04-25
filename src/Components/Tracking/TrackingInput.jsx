@@ -70,7 +70,7 @@ export default function TrackingInput() {
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item name="verificationCode" label="Extra Verification code" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} rules={[{ required: true }]}>
+                <Form.Item name="verificationCode" label="Verification code" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} rules={[{ required: true }]}>
                   <Input />
                 </Form.Item>
               </Col>

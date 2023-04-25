@@ -1,19 +1,4 @@
-
-.navibar-item {
-  color: white;
-  text-decoration: none !important;
-}
-
-.navibar-item:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-a {
-  color: white;
-}
-
-/* .navibar {
+.navibar {
   display: inline-flex;
   justify-content: center;
   justify-items: center;
@@ -57,13 +42,8 @@ a {
   object-fit: contain;
 }
 
-*/
 .ant-input-group-addon {
   background-color: #8e2b28 !important;
-}
-
-.ant-input {
-  min-width: 200px;
 }
 
 .navibar-search {
@@ -90,6 +70,6 @@ a {
 .ant-input:hover, .ant-input-group-addon > .ant-btn > * {
   border-color: #8e2b28 !important;
   border-width: 2px;
-} 
+}
 
 /*# sourceMappingURL=navibar.css.map */
