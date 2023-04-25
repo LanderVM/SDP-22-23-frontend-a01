@@ -24,12 +24,14 @@ export default function TrackingInput() {
         const toTrackOrder = await orderTrackingApi.getTrackingStatus(values);
         setTrackingInfo(toTrackOrder);
       } catch (error2) {
+        let errorMessage;
         if (error2.response.data.details.query !== undefined) { // validation failure
-          const validationFailureMessages = Object.values(error2.response.data.details.query)[0];
-          setError(validationFailureMessages[0]);
+          // eslint-disable-next-line prefer-destructuring
+          errorMessage = Object.values(error2.response.data.details.query)[0][0];
         } else if (error2.response.data.message !== undefined) { // no order found
-          setError(error2.response.data);
-        } else setError(error2); // other errors
+          errorMessage = error2.response.data;
+        } else errorMessage = error2; // other errors
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }
