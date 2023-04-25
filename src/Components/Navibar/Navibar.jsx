@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
 import {
-  Col, Row, Grid,
+  Col, Row, Grid, Badge,
 } from 'antd';
 import AuthenticationButton from '../authentication/AuthenticationButton';
 import { ShoppingCartButton, NotificationButton } from './Buttons';
 import './navibar.css';
+import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 
 const { useBreakpoint } = Grid;
 
 export default function Navibar() {
+  const {
+    productsFromContext,
+  } = useContext(ProductsForShoppingCartContext);
+
   const { lg } = useBreakpoint();
 
   const desktopFormat = lg ? 'inline' : 'none';
@@ -50,13 +55,15 @@ export default function Navibar() {
             display: 'flex', alignItems: 'center', justifyContent: formatButton,
           }}
         >
-          <ShoppingCartButton />
+          <Badge count={productsFromContext.length} color="geekblue" offset={[3, 5]}>
+            <ShoppingCartButton />
+          </Badge>
           <NotificationButton />
           <AuthenticationButton />
         </Col>
       </Row>
       <Row style={{
-        backgroundColor: '#E0433E', padding: '20px', textAlign: 'center', visibility: phoneFormat,
+        backgroundColor: '#E0433E', padding: '5px', textAlign: 'center', visibility: phoneFormat,
       }}
       >
         <Col span={24}>

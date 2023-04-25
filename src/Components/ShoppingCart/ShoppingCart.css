@@ -1,0 +1,8 @@
+#priceTd{
+    text-align: right;
+}
+
+tbody > *{
+    margin: 2%;
+}
+
