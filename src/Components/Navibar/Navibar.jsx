@@ -19,21 +19,21 @@ export default function Navibar() {
   const formatLogo = lg ? 'center' : 'left';
   const formatButtonSpan = lg ? 6 : 14;
   const formatButton = lg ? 'center' : 'right';
-  const logo = lg ? '/images/Delaware-logo_white.png' : '/images/LogoDelaware.png';
-  const logoSize = lg ? '200px' : '50px';
+  const logo = '/images/Delaware-logo_white.png';
+  const logoSize = '200px';
   const color = '#EC4842';
 
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    navigate(`/products/product/${e}`);
-    window.location.reload(false);
+    navigate(`/products/product/${e}`, { replace: true });
+    navigate(0);
   };
 
   return (
     <div>
       <Row style={{
-        backgroundColor: color, padding: '0px 10px', textAlign: 'center', alignItems: 'center',
+        backgroundColor: color, textAlign: 'center', alignItems: 'center',
       }}
       >
         <Col span={formatLogoSpan} style={{ textAlign: formatLogo }}>

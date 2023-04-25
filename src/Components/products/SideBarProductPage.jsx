@@ -1,13 +1,16 @@
 import {
-  Collapse, Checkbox, Switch, Space,
+  Collapse, Checkbox, Switch, Space, Slider,
 } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 import React, { useState } from 'react';
 
+import './Sidebar.css';
+
 export default function SideBarProductPage(props) {
-  const [price, setPrice] = useState(50);
-  const [inStock, setInStock] = useState(false);
+  const [priceStart, setPriceStart] = useState(0);
+  const [priceEnd, setPriceEnd] = useState(50);
+  const [inStock, setInStock] = useState(true);
 
   const { handleCallback } = props;
   const { Panel } = Collapse;
@@ -19,10 +22,10 @@ export default function SideBarProductPage(props) {
         backgroundColor: '#EC4848', padding: '15px', borderRadius: '10px', color: 'white',
       }}
     >
-      {handleCallback({ price, inStock })}
+      {handleCallback({ priceStart, priceEnd, inStock })}
       <h1>Products</h1>
 
-      <Collapse bordered={false} defaultActiveKey={['1']}>
+      <Collapse bordered={false} defaultActiveKey={['1']} className="sideBar">
         <Panel header="Product Category" key="1">
           <Checkbox style={{ marginLeft: '8px' }}>Product Category 1</Checkbox>
           <Checkbox>Product Category 2</Checkbox>
@@ -31,11 +34,15 @@ export default function SideBarProductPage(props) {
         </Panel>
         <Panel header="Price" key="2">
           <p>
-            € 1 - €
+            €
             {' '}
-            {price}
+            {priceStart}
+            {' '}
+            - €
+            {' '}
+            {priceEnd}
           </p>
-          <input type="range" min={1} value={price} max={100} name="priceRange" id="priceRange" onChange={(newPrice) => { setPrice(newPrice.target.value); }} />
+          <Slider range min={0} defaultValue={[priceStart, priceEnd]} max={100} style={{ scrollbarColor: 'black' }} name="priceRange" id="priceRange" onAfterChange={(newPrice) => { setPriceStart(newPrice[0]); setPriceEnd(newPrice[1]); }} />
 
         </Panel>
         <Panel header="Brand" key="3">

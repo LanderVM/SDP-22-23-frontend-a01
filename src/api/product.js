@@ -34,10 +34,10 @@ const useProducts = () => {
     return data;
   }, []);
 
-  const getFiltered = useCallback(async (price, inStock) => {
+  const getFiltered = useCallback(async (priceStart, priceEnd, inStock) => {
     const {
       data,
-    } = await axios.get(`${baseUrl}/filter?startPrice=1&endPrice=${price}&inStock=${inStock}`);
+    } = await axios.get(`${baseUrl}/filter?startPrice=${priceStart}&endPrice=${priceEnd}&inStock=${inStock}`);
     return data.items;
   }, []);
 

@@ -9,6 +9,10 @@
   text-decoration: underline;
 }
 
+a {
+  color: white;
+}
+
 /* .navibar {
   display: inline-flex;
   justify-content: center;

@@ -1,0 +1,9 @@
+.sideBar > * > * > * {
+    color: white;
+    font-size: 20px;
+}
+
+.sideBar > * > * > * > * {
+    color: white;
+    font-size: 15px;
+}
