@@ -16,7 +16,7 @@ function ProductsListElement({ products, handleView }) {
   }
 
   return (
-    <div style={{ margin: '2% 4%' }}>
+    <div>
       <List
         bordered
         dataSource={products}
@@ -81,8 +81,8 @@ export default function ProductsList() {
 
   return (
     <Container fluid>
-      <Row>
-        <Col md="3" style={{ margin: '3% 0' }}>
+      <Row style={{ margin: '3% 0' }}>
+        <Col md="3">
           <SideBarProductPage handleCallback={callBack} />
         </Col>
         <Col>
