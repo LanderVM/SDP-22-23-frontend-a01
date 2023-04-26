@@ -1,11 +1,13 @@
 import React from 'react';
 import { HomeOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
+import './navibar.css';
 
 export default function TrackTraceButton() {
   return (
-    <div className="delaware-dropdown-button">
+    <NavLink to="/track" className="user-item">
       <HomeOutlined style={{ fontSize: '250%' }} />
       &nbsp;Track & Trace
-    </div>
+    </NavLink>
   );
 }

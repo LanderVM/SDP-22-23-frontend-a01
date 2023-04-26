@@ -19,7 +19,6 @@ export default function ShoppingCartOverview({
     <Card
       title="Overview"
       bordered
-      style={{ width: 300 }}
       actions={[
         // eslint-disable-next-line react/button-has-type
         <Button type="primary">

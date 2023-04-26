@@ -15,8 +15,8 @@ export default function ProductElement({
   } = useContext(ProductsForShoppingCartContext);
 
   const { lg } = useBreakpoint();
-  const fontSizeName = lg ? '36px' : '24px';
-  const fontSizeDesc = lg ? '28px' : '18px';
+  const fontSizeName = lg ? '28px' : '20px';
+  const fontSizeDesc = lg ? '22px' : '18px';
   const fontSizeIcon = lg ? '150%' : '100%';
   const fontSizeIco2 = lg ? '100%' : '80%';
   const buttonHeight = lg ? '45px' : '40px';

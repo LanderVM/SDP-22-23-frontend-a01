@@ -72,12 +72,12 @@ export default function Navibar() {
           }}
           >
             <Col span={12}>
-              <NavLink to="/products" replace>
+              <NavLink to="/products" replace data-cy="test-navbar-product">
                 <h3 className="navibar-item">Products</h3>
               </NavLink>
             </Col>
             <Col span={12}>
-              <NavLink to="/track" replace>
+              <NavLink to="/track" replace data-cy="test-navbar-track&trace">
                 <h3 className="navibar-item">Track & Trace</h3>
               </NavLink>
             </Col>

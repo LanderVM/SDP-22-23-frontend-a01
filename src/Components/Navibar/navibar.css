@@ -1,3 +1,27 @@
+.navibar-item {
+  color: white;
+  text-decoration: none !important;
+}
+
+.navibar-item:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+a {
+  color: white;
+}
+
+.user-item {
+  color: black;
+  text-decoration: none !important;
+}
+
+.user-item:hover {
+  color: black;
+  text-decoration: none !important;
+}
+
 .navibar {
   display: inline-flex;
   justify-content: center;
@@ -17,18 +41,22 @@
   display: flex;
   margin: 4px;
 }
+
 .navibar-button .navibar-button-icon {
   margin: 4px;
 }
+
 .navibar-button :hover {
   background-color: #d4403b;
   border-radius: 5%;
 }
+
 .navibar-button :active {
   background-color: #bd3935;
 }
 
-.ant-layout-header, .ant-layout-header > * {
+.ant-layout-header,
+.ant-layout-header>* {
   color: white;
   background-color: #EC4848;
 }
@@ -50,15 +78,18 @@
   margin: auto 20px;
   min-width: 100px;
 }
-.navibar-search * > .ant-input-group-addon :hover .anticon-search {
+
+.navibar-search *>.ant-input-group-addon :hover .anticon-search {
   color: #8e2b28 !important;
 }
-.navibar-search * > .ant-input-group-addon .ant-btn {
+
+.navibar-search *>.ant-input-group-addon .ant-btn {
   background-color: #d4403b;
   border-color: #bd3935;
   display: flex;
 }
-.navibar-search * > .ant-input-group-addon .ant-btn .anticon-search {
+
+.navibar-search *>.ant-input-group-addon .ant-btn .anticon-search {
   margin: auto;
 }
 
@@ -67,7 +98,8 @@
   border-width: 2px;
 }
 
-.ant-input:hover, .ant-input-group-addon > .ant-btn > * {
+.ant-input:hover,
+.ant-input-group-addon>.ant-btn>* {
   border-color: #8e2b28 !important;
   border-width: 2px;
 }
@@ -76,5 +108,7 @@
   display: flex;
   align-items: center;
 }
+
+/*# sourceMappingURL=navibar.css.map */
 
 /*# sourceMappingURL=navibar.css.map */
