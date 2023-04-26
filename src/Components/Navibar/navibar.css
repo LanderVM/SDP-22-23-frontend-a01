@@ -72,4 +72,9 @@
   border-width: 2px;
 }
 
+.delaware-dropdown-button {
+  display: flex;
+  align-items: center;
+}
+
 /*# sourceMappingURL=navibar.css.map */

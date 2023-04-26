@@ -17,7 +17,6 @@ export default function SideBarProductPage(props) {
 
   return (
     <div
-      className="w3-sidebar w3-bar-block"
       style={{
         backgroundColor: '#EC4848', padding: '15px', borderRadius: '10px', color: 'white',
       }}
