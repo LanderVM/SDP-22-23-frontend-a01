@@ -42,12 +42,12 @@ export default function Navibar() {
       }}
       >
         <Col span={formatLogoSpan} style={{ textAlign: formatLogo }}>
-          <NavLink className="logo" to="/home" replace>
+          <NavLink data-cy="navibar_logo" className="logo" to="/home" replace>
             <img src={logo} width={logoSize} alt="Delaware logo" />
           </NavLink>
         </Col>
         <Col span={12} style={{ display: desktopFormat }}>
-          <Search className="navibar-search" placeholder="Search" onSearch={handleSearch} size="large" />
+          <Search data-cy="navibar_searchBar" className="navibar-search" placeholder="Search" onSearch={handleSearch} size="large" />
         </Col>
         <Col
           span={formatButtonSpan}
