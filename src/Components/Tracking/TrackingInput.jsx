@@ -61,26 +61,26 @@ export default function TrackingInput() {
       </div>
       <TrackingInfo tracker={trackingInfo} />
       { trackingInfo !== null ? (
-        <Button type="primary" htmlType="reset" onClick={clearTracker}>Track Different Product</Button>
+        <Button type="primary" htmlType="reset" onClick={clearTracker} data-cy="trackDifferentOrder_button">Track Different Product</Button>
       )
         : (
           <Form form={form} onFinish={onFinish}>
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item name="trackingCode" label="Tracking code" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} rules={[{ required: true }]}>
-                  <Input />
+                  <Input data-cy="trackingCode_input" />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item name="verificationCode" label="Verification code" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} rules={[{ required: true }]}>
-                  <Input />
+                  <Input data-cy="extraVerification_input" />
                 </Form.Item>
               </Col>
             </Row>
             <Row>
               <Col>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">Track</Button>
+                  <Button type="primary" htmlType="submit" data-cy="track_button">Track</Button>
                 </Form.Item>
               </Col>
             </Row>

@@ -86,6 +86,7 @@ export default function TrackingInfo({ tracker }) {
         className="delaware-tracking-infotable"
       />
       <Steps
+        data-cy="status_steps"
         className="delaware-tracking-steps"
         current={tracker.items.order_status}
         items={[
