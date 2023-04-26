@@ -1,12 +1,10 @@
 import React, {
-  useCallback,
-
-  useContext, useEffect,
-  useState,
+  useCallback, useContext, useEffect, useState,
 } from 'react';
 
-import { Col, Container, Row } from 'react-bootstrap';
-import { List } from 'antd';
+import {
+  List, Col, Row, Grid,
+} from 'antd';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import Error from '../Error';
 import Loader from '../Loader';
@@ -14,10 +12,14 @@ import ShoppingCartContent from './ShoppingCartContent';
 import ShoppingCartOverview from './ShoppingCartOverview';
 import useProducts from '../../api/product';
 
+const { useBreakpoint } = Grid;
+
 export default function ShoppingCart() {
   const {
     productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
+
+  const { lg } = useBreakpoint();
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -51,43 +53,41 @@ export default function ShoppingCart() {
   if (!myCart || myCart.length === 0) {
     return (
       <div>There are no products available in your cart</div>
-
     );
   }
+
+  const phoneFormatItemList = lg ? '18' : '24';
+  const phoneFormatOverView = lg ? '6' : '24';
+  const phoneFormatPaddingItemList = lg ? '40px 20px 40px 40px' : '20px';
+  const phoneFormatPaddingOverView = lg ? '40px 40px 40px 20px' : '20px';
+
   return (
-
-    <Container fluid>
-      <Row style={{ margin: '2% 4%' }}>
-
-        <Col>
-          <Loader loading={loading} />
-          <Error error={error} />
-          <div>
-            <List
-              bordered
-              style={{ backgroundColor: 'white' }}
-              dataSource={myCart}
-              data-cy="shoppingCart"
-              pagination={{
-                align: 'center',
-                pageSize: 10,
-              }}
-              renderItem={(item) => (
-                <List.Item key={item.product_id} style={{ display: 'block' }}>
-                  {!loading && !error ? <ShoppingCartContent cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
-                    : null}
-
-                </List.Item>
-              )}
-            />
-          </div>
-
-        </Col>
-        <Col md="3">
-          <ShoppingCartOverview cart={myCart} />
-        </Col>
-      </Row>
-    </Container>
-
+    <Row>
+      <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
+        <Loader loading={loading} />
+        <Error error={error} />
+        <div>
+          <List
+            bordered
+            style={{ backgroundColor: 'white' }}
+            dataSource={myCart}
+            data-cy="shoppingCart"
+            pagination={{
+              align: 'center',
+              pageSize: 10,
+            }}
+            renderItem={(item) => (
+              <List.Item key={item.product_id} style={{ display: 'block' }}>
+                {!loading && !error ? <ShoppingCartContent cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
+                  : null}
+              </List.Item>
+            )}
+          />
+        </div>
+      </Col>
+      <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
+        <ShoppingCartOverview cart={myCart} />
+      </Col>
+    </Row>
   );
 }

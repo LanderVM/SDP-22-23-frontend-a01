@@ -1,22 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Col, Container, Row } from 'react-bootstrap';
-import { List } from 'antd';
+import {
+  List, Row, Col, Grid,
+} from 'antd';
 import useProducts from '../../api/product';
 import Error from '../Error';
 import Loader from '../Loader';
 import Product from './productElement';
 import SideBarProductPage from './SideBarProductPage';
 
+const { useBreakpoint } = Grid;
+
 function ProductsListElement({ products, handleView }) {
   if (!products || products.length === 0) {
     return (
-      <div>There are no products available</div>
+      <div data-cy="test-products-listEmpty">There are no products available</div>
     );
   }
 
   return (
-    <div>
+    <div data-cy="test-products-list">
       <List
         bordered
         dataSource={products}
@@ -24,7 +27,6 @@ function ProductsListElement({ products, handleView }) {
           align: 'center',
           pageSize: 10,
         }}
-        data-cy="test-procducts-list"
         renderItem={(item) => (
           <List.Item key={item.product_id} style={{ display: 'block' }}>
             <Product product={item} onView={handleView} />
@@ -80,19 +82,24 @@ export default function ProductsList() {
     }
   }, []);
 
+  const { lg } = useBreakpoint();
+
+  const phoneFormatSideBar = lg ? '6' : '24';
+  const phoneFormatItemList = lg ? '18' : '24';
+  const phoneFormatPaddingSideBar = lg ? '40px 20px 40px 40px' : '20px';
+  const phoneFormatPaddingItemList = lg ? '40px 40px 40px 20px' : '20px';
+
   return (
-    <Container fluid>
-      <Row style={{ margin: '3% 0' }}>
-        <Col md="3">
-          <SideBarProductPage handleCallback={callBack} />
-        </Col>
-        <Col>
-          <Loader loading={loading} />
-          <Error error={error} />
-          {!loading && !error ? <ProductsListElement products={producten} handleView={handleView} />
-            : null}
-        </Col>
-      </Row>
-    </Container>
+    <Row>
+      <Col span={phoneFormatSideBar} style={{ padding: phoneFormatPaddingSideBar }}>
+        <SideBarProductPage handleCallback={callBack} />
+      </Col>
+      <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
+        <Loader loading={loading} />
+        <Error error={error} />
+        {!loading && !error ? <ProductsListElement products={producten} handleView={handleView} />
+          : null}
+      </Col>
+    </Row>
   );
 }

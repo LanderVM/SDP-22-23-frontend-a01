@@ -32,7 +32,7 @@ export default function SideBarProductPage(props) {
           <Checkbox>Product Category 3</Checkbox>
           <Checkbox>Product Category 4</Checkbox>
         </Panel>
-        <Panel header="Price" key="2">
+        <Panel header="Price" key="2" data-cy="test-products-filter-priceTab">
           <p>
             €
             {' '}
@@ -42,7 +42,7 @@ export default function SideBarProductPage(props) {
             {' '}
             {priceEnd}
           </p>
-          <Slider range min={0} defaultValue={[priceStart, priceEnd]} max={100} style={{ scrollbarColor: 'black' }} name="priceRange" id="priceRange" onAfterChange={(newPrice) => { setPriceStart(newPrice[0]); setPriceEnd(newPrice[1]); }} />
+          <Slider range min={0} defaultValue={[priceStart, priceEnd]} max={100} style={{ scrollbarColor: 'black' }} name="priceRange" id="priceRange" onAfterChange={(newPrice) => { setPriceStart(newPrice[0]); setPriceEnd(newPrice[1]); }} data-cy="test-products-filter-price" />
 
         </Panel>
         <Panel header="Brand" key="3">
@@ -50,13 +50,14 @@ export default function SideBarProductPage(props) {
           <Checkbox>Brand 2</Checkbox>
         </Panel>
 
-        <Panel header="Availability" key="3">
+        <Panel header="Availability" key="3" data-cy="test-products-filter-inStockTab">
           <Space>
             <Switch
               checkedChildren={<CheckOutlined />}
               unCheckedChildren={<CloseOutlined />}
               defaultChecked
               onClick={() => setInStock(!inStock)}
+              data-cy="test-products-filter-inStock"
             />
             <span>Only show in stock</span>
           </Space>
