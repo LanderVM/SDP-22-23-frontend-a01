@@ -9,7 +9,7 @@ export default function LogoutButtonDropDown() {
     localStorage.clear();
   };
   return (
-    <div className="delaware-dropdown-button">
+    <div className="delaware-dropdown-button" data-cy="test-navBar-LogOut">
       <ExportOutlined onClick={handleLogout} style={{ fontSize: '250%' }} />
       &nbsp;Log&nbsp;out
     </div>
