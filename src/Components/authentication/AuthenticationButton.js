@@ -9,7 +9,7 @@ import TrackTraceButton from '../Navibar/TrackTraceButton';
 const items = [
   {
     label: (
-      <div>
+      <div data-cy="navibar_dropdownMenu_orderButton">
         <OrderButton />
       </div>
     ),

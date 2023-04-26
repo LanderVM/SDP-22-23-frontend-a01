@@ -11,7 +11,7 @@ export default function SingleProductElement({
   return (
     <div className="container border border-danger rounded border-2 p-2">
       <div className="row p-4">
-        <h2 className="col"><u>{product.name}</u></h2>
+        <h2 data-cy="singleProduct_name" className="col"><u>{product.name}</u></h2>
         <div className="row p-4">
           <img src={product.photo} alt="product" className="col float p-2 rounded-2" style={{ width: '100px' }} />
           <div className="col-8 g-5">
