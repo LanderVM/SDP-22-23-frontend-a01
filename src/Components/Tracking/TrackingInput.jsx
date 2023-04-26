@@ -25,7 +25,9 @@ export default function TrackingInput() {
         setTrackingInfo(toTrackOrder);
       } catch (error2) {
         let errorMessage;
-        if (error2.response.data.details.query !== undefined) { // validation failure
+        if (error2.response === undefined) {
+          errorMessage = error2;
+        } else if (error2.response.data.details.query !== undefined) { // validation failure
           // eslint-disable-next-line prefer-destructuring
           errorMessage = Object.values(error2.response.data.details.query)[0][0];
         } else if (error2.response.data.message !== undefined) { // no order found
