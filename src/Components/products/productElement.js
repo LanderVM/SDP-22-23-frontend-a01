@@ -15,11 +15,11 @@ export default function ProductElement({
   } = useContext(ProductsForShoppingCartContext);
 
   const { lg } = useBreakpoint();
-  const fontSizeName = lg ? '28px' : '20px';
-  const fontSizeDesc = lg ? '22px' : '18px';
-  const fontSizeIcon = lg ? '150%' : '100%';
-  const fontSizeIco2 = lg ? '100%' : '80%';
-  const buttonHeight = lg ? '45px' : '40px';
+  const fontSizeName = lg ? '24px' : '16px';
+  const fontSizeDesc = lg ? '18px' : '14px';
+  const fontSizeIcon = lg ? '130%' : '80%';
+  const fontSizeIco2 = lg ? '80%' : '60%';
+  const buttonHeight = lg ? '40px' : '35px';
 
   return (
     <Row gutter={{

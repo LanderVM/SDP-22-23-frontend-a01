@@ -68,17 +68,21 @@ export default function Navibar() {
       >
         <Col span={24}>
           <div style={{
-            textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            textAlign: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+
           }}
           >
             <Col span={12}>
-              <NavLink to="/products" replace data-cy="test-navbar-product">
-                <h3 className="navibar-item">Products</h3>
+              <NavLink to="/products" replace data-cy="test-navbar-product" style={{ textDecoration: 'none' }}>
+                <span className="navibar-item">Products</span>
               </NavLink>
             </Col>
             <Col span={12}>
-              <NavLink to="/track" replace data-cy="test-navbar-track&trace">
-                <h3 className="navibar-item">Track & Trace</h3>
+              <NavLink to="/track" replace data-cy="test-navbar-track&trace" style={{ textDecoration: 'none' }}>
+                <span className="navibar-item">Track & Trace</span>
               </NavLink>
             </Col>
           </div>

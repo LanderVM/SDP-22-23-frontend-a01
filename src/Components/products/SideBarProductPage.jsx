@@ -49,7 +49,7 @@ export default function SideBarProductPage(props) {
           <Checkbox>Brand 2</Checkbox>
         </Panel>
 
-        <Panel header="Availability" key="3" data-cy="test-products-filter-inStockTab">
+        <Panel header="Availability" key="4" data-cy="test-products-filter-inStockTab">
           <Space>
             <Switch
               checkedChildren={<CheckOutlined />}
@@ -57,6 +57,7 @@ export default function SideBarProductPage(props) {
               defaultChecked
               onClick={() => setInStock(!inStock)}
               data-cy="test-products-filter-inStock"
+              style={{ backgroundColor: '#1677ff' }}
             />
             <span>Only show in stock</span>
           </Space>
