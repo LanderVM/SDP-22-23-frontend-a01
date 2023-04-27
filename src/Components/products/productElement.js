@@ -29,11 +29,11 @@ export default function ProductElement({
       <Col>
         <img src={product.photo} alt="product" width="150px" />
       </Col>
-      <Col>
+      <Col style={{ flex: '1 0 50%' }}>
         <div style={{ fontSize: fontSizeName }}><b>{product.name}</b></div>
         <div style={{ fontSize: fontSizeDesc }}>{product.description}</div>
       </Col>
-      <Col className="col text-end">
+      <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>
         <div style={{ fontSize: fontSizeName }}>
           €
           {' '}

@@ -39,6 +39,7 @@ const items = [
 export default function AuthenticationButton() {
   const {
     isAuthenticated,
+    user,
   } = useAuth0();
 
   if (isAuthenticated) {
@@ -46,7 +47,7 @@ export default function AuthenticationButton() {
       <Dropdown
         menu={{ items }}
       >
-        <img src="/images/userIconWhite.png" alt="" width="40px" data-cy="test-navbar-userIcon" />
+        <img src={user.picture} alt="" width="40px" data-cy="test-navbar-userIcon" />
       </Dropdown>
     );
   }
