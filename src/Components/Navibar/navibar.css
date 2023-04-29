@@ -1,11 +1,12 @@
 .navibar-item {
   color: white;
+  font-size: 25px;
   text-decoration: none !important;
 }
 
 .navibar-item:hover {
   color: white;
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 a {

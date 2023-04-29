@@ -72,7 +72,7 @@ export default function Navibar() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-
+            fontSize: '30px',
           }}
           >
             <Col span={12}>
