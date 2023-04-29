@@ -1,7 +1,7 @@
 import {
-  Collapse, Checkbox, Switch, Space, Slider, InputNumber, Col, Row,
+  Collapse, Checkbox, Switch, Space, InputNumber, Col, Row, Button,
 } from 'antd';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, RightOutlined } from '@ant-design/icons';
 
 import React, { useState } from 'react';
 
@@ -21,11 +21,10 @@ export default function SideBarProductPage(props) {
   return (
     <div
       style={{
-        backgroundColor: '#EC4848', padding: '15px 30px', borderRadius: '10px', color: 'white',
+        padding: '15px 30px', borderRadius: '10px',
       }}
     >
       {handleCallback({ priceStart, priceEnd, inStock })}
-      <h1>Products</h1>
 
       <Collapse bordered={false} defaultActiveKey={['1']} className="sideBar">
         <Panel header="Product Category" key="1">
@@ -38,27 +37,21 @@ export default function SideBarProductPage(props) {
           <Checkbox>Product Category 4</Checkbox>
         </Panel>
         <Panel header="Price" key="2" data-cy="test-products-filter-priceTab">
-          <p>
-            €
-            {' '}
-            {priceStart}
-            {' '}
-            - €
-            {' '}
-            {priceEnd}
-          </p>
           <Row>
             <Col>
-              <InputNumber value={priceStart} defaultValue={priceStart} min={minPrice} max={maxPrice} onChange={(newPrice) => setPriceStart(newPrice)} />
+              <InputNumber value={priceStart} formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} defaultValue={priceStart} min={minPrice} max={maxPrice} onChange={(newPrice) => setPriceStart(newPrice)} />
             </Col>
             <Col>
               &nbsp; - &nbsp;
             </Col>
             <Col>
-              <InputNumber value={priceEnd} defaultValue={priceEnd} min={minPrice} max={maxPrice} onChange={(newPrice) => setPriceEnd(newPrice)} />
+              <InputNumber value={priceEnd} formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} defaultValue={priceEnd} min={minPrice} max={maxPrice} onChange={(newPrice) => setPriceEnd(newPrice)} />
             </Col>
+            <Button
+              type="primary"
+              icon={<RightOutlined />}
+            />
           </Row>
-          <Slider range min={minPrice} max={maxPrice} value={[priceStart, priceEnd]} defaultValue={[priceStart, priceEnd]} name="priceRange" id="priceRange" onAfterChange={(newPrice) => { setPriceStart(newPrice[0]); setPriceEnd(newPrice[1]); }} data-cy="test-products-filter-price" />
         </Panel>
         <Panel header="Brand" key="3">
           <Checkbox>Brand 1</Checkbox>
