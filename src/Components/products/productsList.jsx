@@ -43,8 +43,10 @@ export default function ProductsList() {
   const [loading, setLoading] = useState(true);
 
   const [priceStart, setPriceStart] = useState(0);
-  const [priceEnd, setPriceEnd] = useState(50);
+  const [priceEnd, setPriceEnd] = useState(2000);
   const [inStock, setInStock] = useState(true);
+  const [brand, setBrand] = useState([]);
+  const [category, setCategory] = useState([]);
 
   const navigate = useNavigate();
 
@@ -54,6 +56,8 @@ export default function ProductsList() {
     setPriceStart(data.priceStart);
     setPriceEnd(data.priceEnd);
     setInStock(data.inStock);
+    setBrand(data.brand);
+    setCategory(data.category);
   };
 
   useEffect(() => {
@@ -61,7 +65,7 @@ export default function ProductsList() {
       try {
         setLoading(true);
         setError(null);
-        const data = await productenApi.getFiltered(priceStart, priceEnd, inStock);
+        const data = await productenApi.getFiltered(priceStart, priceEnd, inStock, brand, category);
         setProducten(data);
       } catch (error2) {
         setError(error2);
@@ -70,7 +74,7 @@ export default function ProductsList() {
       }
     };
     fetchProducten();
-  }, [priceStart, priceEnd, inStock]);
+  }, [priceStart, priceEnd, inStock, brand, category]);
 
   const handleView = useCallback(async (nameToView) => {
     try {

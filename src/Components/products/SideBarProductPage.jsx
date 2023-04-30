@@ -8,15 +8,29 @@ import React, { useState } from 'react';
 import './Sidebar.css';
 
 const minPrice = 0;
-const maxPrice = 100;
+const maxPrice = 2000;
 
 export default function SideBarProductPage(props) {
-  const [priceStart, setPriceStart] = useState(0);
-  const [priceEnd, setPriceEnd] = useState(50);
+  const [priceStart, setPriceStart] = useState(minPrice);
+  const [priceEnd, setPriceEnd] = useState(maxPrice);
   const [inStock, setInStock] = useState(true);
+  const [brand, setBrand] = useState([]);
+  const [category, setCategory] = useState([]);
 
   const { handleCallback } = props;
   const { Panel } = Collapse;
+
+  const onBrandChange = (checkedValues) => {
+    setBrand(checkedValues);
+  };
+
+  const onCategoriesChange = (checkedValues) => {
+    setCategory(checkedValues);
+  };
+
+  const brandOptions = ['Apple', 'Samsung', 'Huawei', 'The Warehouse', 'LouisWill'];
+
+  const categoriesOptions = ['laptops', 'smartphones', 'groceries', 'automotive', 'lighting'];
 
   return (
     <div
@@ -24,17 +38,13 @@ export default function SideBarProductPage(props) {
         padding: '15px 30px', borderRadius: '10px',
       }}
     >
-      {handleCallback({ priceStart, priceEnd, inStock })}
+      {handleCallback({
+        priceStart, priceEnd, inStock, brand, category,
+      })}
 
       <Collapse bordered={false} defaultActiveKey={['1']} className="sideBar">
         <Panel header="Product Category" key="1">
-          <Checkbox>Product Category 1</Checkbox>
-          <br />
-          <Checkbox>Product Category 2</Checkbox>
-          <br />
-          <Checkbox>Product Category 3</Checkbox>
-          <br />
-          <Checkbox>Product Category 4</Checkbox>
+          <Checkbox.Group options={categoriesOptions} defaultValue={category} onChange={onCategoriesChange} />
         </Panel>
         <Panel header="Price" key="2" data-cy="test-products-filter-priceTab">
           <Row>
@@ -54,9 +64,7 @@ export default function SideBarProductPage(props) {
           </Row>
         </Panel>
         <Panel header="Brand" key="3">
-          <Checkbox>Brand 1</Checkbox>
-          <br />
-          <Checkbox>Brand 2</Checkbox>
+          <Checkbox.Group options={brandOptions} defaultValue={brand} onChange={onBrandChange} />
         </Panel>
 
         <Panel header="Availability" key="4" data-cy="test-products-filter-inStockTab">

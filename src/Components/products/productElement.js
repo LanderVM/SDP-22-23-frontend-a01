@@ -27,7 +27,7 @@ export default function ProductElement({
     }}
     >
       <Col>
-        <img src={product.photo} alt="product" width="150px" />
+        <img src={product.image_URL} alt="product" width="150px" />
       </Col>
       <Col style={{ flex: '1 0 50%' }}>
         <div style={{ fontSize: fontSizeName }}><b>{product.name}</b></div>

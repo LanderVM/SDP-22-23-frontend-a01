@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useCallback } from 'react';
 
-const baseUrl = `${process.env.REACT_APP_API_URL}/product`;
+const baseUrl = `${process.env.REACT_APP_API_URL}/products`;
 
 const useProducts = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -34,10 +34,19 @@ const useProducts = () => {
     return data;
   }, []);
 
-  const getFiltered = useCallback(async (priceStart, priceEnd, inStock) => {
+  const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category) => {
+    let brandString = '';
+    let categoryString = '';
+    if (brand !== undefined) {
+      brandString = brand.map((e) => `&brand=${e}`).join('');
+    }
+    if (category !== undefined) {
+      categoryString = category.map((e) => `&category=${e}`).join('');
+    }
+    console.log(`${baseUrl}/filter?startPrice=${priceStart}&endPrice=${priceEnd}&inStock=${inStock}${brandString}${categoryString}`);
     const {
       data,
-    } = await axios.get(`${baseUrl}/filter?startPrice=${priceStart}&endPrice=${priceEnd}&inStock=${inStock}`);
+    } = await axios.get(`${baseUrl}/filter?startPrice=${priceStart}&endPrice=${priceEnd}&inStock=${inStock}${brandString}${categoryString}`);
     return data.items;
   }, []);
 
