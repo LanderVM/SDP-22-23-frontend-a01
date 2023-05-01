@@ -75,14 +75,19 @@ export default function Navibar() {
             fontSize: '30px',
           }}
           >
-            <Col span={12}>
+            <Col span={8}>
               <NavLink to="/products" replace data-cy="test-navbar-product" style={{ textDecoration: 'none' }}>
                 <span className="navibar-item">Products</span>
               </NavLink>
             </Col>
-            <Col span={12}>
+            <Col span={8}>
               <NavLink to="/track" replace data-cy="test-navbar-track&trace" style={{ textDecoration: 'none' }}>
                 <span className="navibar-item">Track & Trace</span>
+              </NavLink>
+            </Col>
+            <Col span={8}>
+              <NavLink to="/orders" replace style={{ textDecoration: 'none' }}>
+                <span className="navibar-item">Orders</span>
               </NavLink>
             </Col>
           </div>
