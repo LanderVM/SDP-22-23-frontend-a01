@@ -25,6 +25,7 @@ const useOrders = () => {
       return result;
     } catch (error) {
       console.error(error);
+      return null; // TODO temporary to make ESLint happy
     }
   }, [getAccessTokenSilently]);
 
