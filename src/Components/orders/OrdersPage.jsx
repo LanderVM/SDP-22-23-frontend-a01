@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import Sider from 'antd/es/layout/Sider';
+import { Content } from 'antd/es/layout/layout';
 import useCustomerApi from '../../api/customerService';
 
 export default function OrdersPage() {
@@ -13,8 +15,12 @@ export default function OrdersPage() {
   }, []);
 
   return (
-    <div>
-      {orders === null ? '' : orders.items.map((order) => <p>{order.order_id}</p>)}
-    </div>
+    <>
+      <Sider />
+      <Content>
+        {orders === null ? '' : orders.items.map((order) => <p>{order.order_id}</p>)}
+
+      </Content>
+    </>
   );
 }
