@@ -23,9 +23,9 @@ export default function ShoppingCartContent({
     }}
     >
       <Col>
-        <img src={cart.photo} alt="product" width="100px" />
+        <img src={cart.image_URL} alt="product" width="100px" />
       </Col>
-      <Col>
+      <Col style={{ flex: '1 0 50%' }}>
         <div style={{ fontSize: fontSizeName }} data-cy="cartName"><b>{cart.name}</b></div>
         <div style={{ fontSize: fontSizeDesc }} data-cy="cartDescription">{cart.description}</div>
         <div>
@@ -42,7 +42,7 @@ export default function ShoppingCartContent({
           />
         </div>
       </Col>
-      <Col className="col text-end">
+      <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>
         <div data-cy="cartPrice" style={{ fontSize: fontSizeName }}>
           €&nbsp;
           {cart.price}
