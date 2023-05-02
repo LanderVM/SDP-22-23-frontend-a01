@@ -1,42 +1,85 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import {
+  Row, Col, Grid, Button,
+} from 'antd';
+import { CheckOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
+import './Sidebar.css';
+
+const { useBreakpoint } = Grid;
 
 export default function SingleProductElement({
   product,
 }) {
-  function toDate(date) {
-    const newDate = new Date(date);
-    return `${newDate.getDate()} / ${newDate.getMonth() + 1} / ${newDate.getFullYear()}`;
-  }
+  const {
+    addProductToShoppingCartContext,
+  } = useContext(ProductsForShoppingCartContext);
+
+  const { md } = useBreakpoint();
+  const imageMobileFormat = md ? 12 : 24;
+  // const textMobileFormat = md ? '20% 100px' : '';
+  const fontSizeIcon = md ? '170%' : '120%';
+  // const fontSizeIco2 = md ? '110%' : '60%';
+  const buttonHeight = md ? '60px' : '40px';
+  const paddingTextMF = md ? '3% 5%' : '0';
+  const fontSizeTitle = md ? '40px' : '30px';
+  const fontSizeSmall = md ? '20px' : '15px';
+  const fontSizeDetails = md ? '30px' : '20px';
+  const marginDetails = md ? '10px' : '5px';
 
   return (
-    <div className="container border border-danger rounded border-2 p-2">
-      <div className="row p-4">
-        <h2 data-cy="singleProduct_name" className="col"><u>{product.name}</u></h2>
-        <div className="row p-4">
-          <img src={product.photo} alt="product" className="col float p-2 rounded-2" style={{ width: '100px' }} />
-          <div className="col-8 g-5">
-            <h3 className="col p-2">
-              Description:&nbsp;
-              {product.description}
-            </h3>
-            <h3 className="col p-2">
-              Price: €&nbsp;
+    <div>
+      <NavLink to="/products" className="linkTo">
+        &lt; Back to products
+      </NavLink>
+      <div style={{ fontSize: fontSizeTitle }}>
+        <b>{product.name}</b>
+      </div>
+      <div style={{ fontSize: fontSizeSmall }}>
+        {product.brand}
+      </div>
+      <Row>
+        <Col span={imageMobileFormat}>
+          <img src={product.image_URL} width="100%" alt="" style={{ padding: '10px 0' }} />
+        </Col>
+        <Col span={imageMobileFormat} style={{ padding: paddingTextMF }}>
+          <p style={{ fontSize: fontSizeDetails, margin: marginDetails }}>
+            <b>
+              €
+              {' '}
               {product.price}
-            </h3>
-            <div className="col" />
-            <h3 className="col p-2">
-              Age:&nbsp;
-              {toDate(product.DeliveryTime)}
-            </h3>
-            <h3 className="col p-2">
-              Stock:&nbsp;
-              {product.stock}
-            </h3>
-            <div className="col p-2">
-              <button type="submit">Add to cart</button>
-            </div>
-          </div>
-        </div>
+            </b>
+          </p>
+          <p style={{ fontSize: fontSizeDetails, color: product.stock > 0 ? 'green' : 'red', margin: marginDetails }}>
+            {product.stock > 0 ? `in stock (${product.stock} left)` : 'Out of stock'}
+          </p>
+          <Button
+            type="primary"
+            danger
+            data-cy="btnAddToCart"
+            onClick={() => addProductToShoppingCartContext(product)}
+            style={{
+              fontSize: fontSizeIcon, height: buttonHeight, verticalAlign: '10px', margin: marginDetails,
+            }}
+          >
+            <ShoppingCartOutlined style={{ fontSize: fontSizeIcon }} />
+            Add to cart
+          </Button>
+          <p style={{ fontSize: fontSizeSmall, margin: marginDetails }}>
+            <CheckOutlined />
+            &nbsp; 2 year warranty
+            <br />
+            <CheckOutlined />
+            &nbsp; 2 weeks return policy
+          </p>
+        </Col>
+      </Row>
+      <div style={{ fontSize: fontSizeDetails }}>
+        <b>Product description</b>
+      </div>
+      <div style={{ fontSize: fontSizeSmall }}>
+        {product.description}
       </div>
     </div>
   );

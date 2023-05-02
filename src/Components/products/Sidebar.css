@@ -16,3 +16,12 @@
 .ant-checkbox-wrapper+.ant-checkbox-wrapper {
     margin-inline-start: 0%;
 }
+
+.linkTo {
+    color: black !important;
+}
+
+.linkTo:hover {
+    color: black !important;
+    text-decoration: underline;
+}

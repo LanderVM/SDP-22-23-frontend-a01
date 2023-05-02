@@ -20,10 +20,10 @@ const useProducts = () => {
     return data.items;
   }, [getAccessTokenSilently]);
 
-  const getById = useCallback(async (id) => {
+  const getById = useCallback(async (productId) => {
     const {
       data,
-    } = await axios.get(`${baseUrl}/id/${id}`);
+    } = await axios.get(`${baseUrl}/id/${productId}`);
     return data;
   }, []);
 
