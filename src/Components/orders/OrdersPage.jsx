@@ -1,14 +1,20 @@
-import useOrders from '../../api/order';
-
-const getOrders = () => {
-  const data = useOrders.getOrders();
-  console.log(data);
-};
+import { useEffect, useState } from 'react';
+import useCustomerApi from '../../api/customerService';
 
 export default function OrdersPage() {
+  const [orders, setOrders] = useState(null);
+  const customerApi = useCustomerApi();
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      setOrders(await customerApi.getOrders());
+    };
+    fetchOrders();
+  }, []);
+
   return (
     <div>
-      <button type="button" onClick={getOrders}>click</button>
+      {orders === null ? '' : orders.items.map((order) => <p>{order.order_id}</p>)}
     </div>
   );
 }
