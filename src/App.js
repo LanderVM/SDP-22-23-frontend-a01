@@ -5,14 +5,14 @@ import {
   HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage, TrackingPage,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
-import Navibar from './Components/Navibar/Navibar';
+// import Navibar from './Components/Navibar/Navibar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import OrdersPage from './Components/orders/OrdersPage';
 
 function App() {
   return (
     <Layout>
-      <Navibar />
+      {/* <Navibar /> */}
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm, token: { colorPrimary: '#EC4242' } }}>
         <Routes>
           <Route index element={<HomePage />} />
