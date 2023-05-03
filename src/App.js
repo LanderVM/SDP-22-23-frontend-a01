@@ -7,7 +7,7 @@ import {
 import ScrollToTop from './Contexts/ScrollToTop';
 // import Navibar from './Components/Navibar/Navibar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
-import OrdersPage from './pages/OrdersPage';
+import OrdersOverview from './pages/OrdersOverview';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/product/:productId" element={<ProductOverviewPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/shoppingCart" element={<ShoppingCart />} />
-          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/orders" element={<OrdersOverview />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ConfigProvider>

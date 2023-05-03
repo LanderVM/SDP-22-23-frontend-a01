@@ -9,7 +9,7 @@ import { RiShoppingBasket2Line } from 'react-icons/ri';
 import useCustomerApi from '../api/customerService';
 import OrderInfo from '../Feature/OrderOverview';
 
-export default function OrdersPage() {
+export default function OrdersOverview() {
   const [orders, setOrders] = useState(null);
   const customerApi = useCustomerApi();
 
