@@ -1,3 +1,4 @@
 import OrderInfo from './OrderInfo';
+import ProductInfo from './ProductInfo';
 
-export default OrderInfo;
+export { OrderInfo, ProductInfo };

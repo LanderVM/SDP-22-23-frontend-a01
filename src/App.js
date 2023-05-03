@@ -7,7 +7,7 @@ import {
 import ScrollToTop from './Contexts/ScrollToTop';
 import Navibar from './Components/Navibar/Navibar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
-import OrdersOverview from './pages/OrdersOverview';
+import OrdersOverview from './Feature/OrderOverview/OrdersOverview';
 
 function App() {
   return (

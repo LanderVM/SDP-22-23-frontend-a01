@@ -6,8 +6,8 @@ import {
 } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { RiShoppingBasket2Line } from 'react-icons/ri';
-import useCustomerApi from '../api/customerService';
-import OrderInfo from '../Feature/OrderOverview';
+import useCustomerApi from '../../api/customerService';
+import { OrderInfo } from './index';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);
@@ -36,7 +36,7 @@ export default function OrdersOverview() {
   ];
 
   return (
-    <Content style={{ padding: '0 50px' }}>
+    <Content style={{ padding: '0 32px' }}>
       <Breadcrumb style={{ marginTop: '16px' }}>
         <Breadcrumb.Item>Account</Breadcrumb.Item>
         <Breadcrumb.Item>Orders</Breadcrumb.Item>
@@ -51,7 +51,7 @@ export default function OrdersOverview() {
           />
         </Sider>
         <Content style={{
-          padding: '0 24px', minHeight: 280,
+          margin: '0 14px', minHeight: 280,
         }}
         >
           <h1 style={{ fontSize: '48px', margin: '0' }}>Orders</h1>
