@@ -14,7 +14,7 @@ export function ShoppingCartButton() {
 export function NotificationButton() {
   return (
     <NavLink role="button" to="/notifications" data-cy="navibar_notificationsButton">
-      <img src="/images/NotificationBel.png" alt="notifications" width="40px" style={{ margin: '10px' }} />
+      <img src="/images/NotificationBel.png" alt="notifications" width="40px" />
     </NavLink>
   );
 }
