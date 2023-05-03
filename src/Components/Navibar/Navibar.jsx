@@ -55,7 +55,7 @@ export default function Navibar() {
             display: 'flex', alignItems: 'center', justifyContent: formatButton,
           }}
         >
-          <Badge count={productsFromContext === null ? 0 : productsFromContext.length} color="geekblue" offset={[3, 5]}>
+          <Badge count={productsFromContext === null ? 0 : productsFromContext.length} color="geekblue" offset={[3, 5]} data-cy="shoppingCartBadge">
             <ShoppingCartButton />
           </Badge>
           <NotificationButton />

@@ -34,7 +34,7 @@ export default function ProductElement({
         <img src={product.image_URL} alt="product" width="150px" />
       </Col>
       <Col style={{ flex: '1 0 50%' }}>
-        <NavLink to={link} style={{ fontSize: fontSizeName }} className="linkTo"><b>{product.name}</b></NavLink>
+        <NavLink to={link} style={{ fontSize: fontSizeName }} className="linkTo" data-cy="productNameUrl"><b>{product.name}</b></NavLink>
         <div style={{ fontSize: fontSizeDesc }}>{product.description}</div>
       </Col>
       <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>

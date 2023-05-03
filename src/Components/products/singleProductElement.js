@@ -33,25 +33,25 @@ export default function SingleProductElement({
       <NavLink to="/products" className="linkTo">
         &lt; Back to products
       </NavLink>
-      <div style={{ fontSize: fontSizeTitle }}>
+      <div style={{ fontSize: fontSizeTitle }} data-cy="productName">
         <b>{product.name}</b>
       </div>
-      <div style={{ fontSize: fontSizeSmall }}>
+      <div style={{ fontSize: fontSizeSmall }} data-cy="productBrand">
         {product.brand}
       </div>
       <Row>
         <Col span={imageMobileFormat}>
-          <img src={product.image_URL} width="100%" alt="" style={{ padding: '10px 0' }} />
+          <img src={product.image_URL} width="100%" alt="" style={{ padding: '10px 0' }} data-cy="productImage" />
         </Col>
         <Col span={imageMobileFormat} style={{ padding: paddingTextMF }}>
-          <p style={{ fontSize: fontSizeDetails, margin: marginDetails }}>
+          <p style={{ fontSize: fontSizeDetails, margin: marginDetails }} data-cy="productPrice">
             <b>
               €
               {' '}
               {product.price}
             </b>
           </p>
-          <p style={{ fontSize: fontSizeDetails, color: product.stock > 0 ? 'green' : 'red', margin: marginDetails }}>
+          <p style={{ fontSize: fontSizeDetails, color: product.stock > 0 ? 'green' : 'red', margin: marginDetails }} data-cy="productStock">
             {product.stock > 0 ? `in stock (${product.stock} left)` : 'Out of stock'}
           </p>
           <Button
@@ -78,7 +78,7 @@ export default function SingleProductElement({
       <div style={{ fontSize: fontSizeDetails }}>
         <b>Product description</b>
       </div>
-      <div style={{ fontSize: fontSizeSmall }}>
+      <div data-cy="productDescription" style={{ fontSize: fontSizeSmall }}>
         {product.description}
       </div>
     </div>
