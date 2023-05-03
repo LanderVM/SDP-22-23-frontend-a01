@@ -13,6 +13,6 @@ export default function LoginButtonDropDown() {
   );
 
   return (
-    <ImportOutlined style={{ fontSize: '250%' }} onClick={handleLogin} data-cy="test-navbar-login" />
+    <ImportOutlined style={{ fontSize: '250%', color: 'white' }} onClick={handleLogin} data-cy="test-navbar-login" />
   );
 }

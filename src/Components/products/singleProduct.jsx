@@ -14,13 +14,13 @@ function SingleProductE({ product }) {
   }
 
   return (
-    <div style={{ margin: '100px 10%' }}>
+    <div style={{ margin: '50px 10%' }}>
       <SingleProductElement product={product.items} />
     </div>
   );
 }
 
-export default function SingleProduct({ name }) {
+export default function SingleProduct({ productId }) {
   const [product, setProduct] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ export default function SingleProduct({ name }) {
       try {
         setLoading(true);
         setErrorMsg(null);
-        const data = await productenApi.getByName(name);
+        const data = await productenApi.getById(productId);
         setProduct(data);
       } catch (error) {
         setErrorMsg(error);
@@ -41,7 +41,7 @@ export default function SingleProduct({ name }) {
       }
     };
     fetchProduct();
-  }, []);
+  }, [productId]);
 
   return (
     <>

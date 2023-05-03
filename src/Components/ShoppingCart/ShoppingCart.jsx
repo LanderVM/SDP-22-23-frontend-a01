@@ -77,7 +77,7 @@ export default function ShoppingCart() {
               pageSize: 10,
             }}
             renderItem={(item) => (
-              <List.Item key={item.product_id} style={{ display: 'block' }}>
+              <List.Item key={item.productId} style={{ display: 'block' }}>
                 {!loading && !error ? <ShoppingCartContent cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
                   : null}
               </List.Item>

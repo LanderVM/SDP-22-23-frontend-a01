@@ -19,7 +19,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/track" element={<TrackingPage />} />
           <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/product/:name" element={<ProductOverviewPage />} />
+          <Route path="/product/:productId" element={<ProductOverviewPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/shoppingCart" element={<ShoppingCart />} />
           <Route path="/orders" element={<OrdersPage />} />

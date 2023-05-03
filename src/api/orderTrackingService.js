@@ -6,7 +6,7 @@ import {
   useCallback,
 } from 'react';
 
-const baseUrl = `${process.env.REACT_APP_API_URL}/order`;
+const baseUrl = `${process.env.REACT_APP_API_URL}/orders`;
 
 export default function useOrderTracker() {
   const {
