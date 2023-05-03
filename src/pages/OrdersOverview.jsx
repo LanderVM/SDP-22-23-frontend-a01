@@ -41,8 +41,8 @@ export default function OrdersOverview() {
         <Breadcrumb.Item>Account</Breadcrumb.Item>
         <Breadcrumb.Item>Orders</Breadcrumb.Item>
       </Breadcrumb>
-      <Layout style={{ background: '#EC48842 !important' }}>
-        <Sider style={{ backgroundColor: '#f5f5f5' }} width={200}>
+      <Layout>
+        <Sider style={{ backgroundColor: '#f5f5f5' }} breakpoint="lg" collapsedWidth={0} reverseArrow>
           <Menu
             mode="inline"
             defaultSelectedKeys={['sidenav2']}
@@ -50,7 +50,10 @@ export default function OrdersOverview() {
             items={items}
           />
         </Sider>
-        <Content style={{ padding: '0 24px', minHeight: 280 }}>
+        <Content style={{
+          padding: '0 24px', minHeight: 280,
+        }}
+        >
           <h1 style={{ fontSize: '48px', margin: '0' }}>Orders</h1>
           {orderList === null
             ? 'no_orders'
