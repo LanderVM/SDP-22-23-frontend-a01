@@ -130,6 +130,19 @@ a {
   color: white !important;
   border-color: white !important;
 }
+.anticon.anticon-ellipsis>svg {
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+  margin-top: 10px;
+  color: white;
+}
+
+.anticon.anticon-ellipsis {
+  display: flex;
+  align-items: center;
+}
+
 /*# sourceMappingURL=navibar.css.map */
 
 /*# sourceMappingURL=navibar.css.map */
