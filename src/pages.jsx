@@ -41,7 +41,7 @@ export function ProfilePage() {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <main>
+    <main style={{ padding: '1%' }}>
       {isAuthenticated
         ? (
           <ProfileOverview />
