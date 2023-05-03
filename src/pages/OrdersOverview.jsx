@@ -10,15 +10,14 @@ import useCustomerApi from '../api/customerService';
 import OrderInfo from '../Feature/OrderOverview';
 
 export default function OrdersOverview() {
-  const [orders, setOrders] = useState(null);
+  const [orderList, setOrderList] = useState(null);
   const customerApi = useCustomerApi();
 
   useEffect(() => {
     const fetchOrders = async () => {
-      setOrders(await customerApi.getOrders());
+      setOrderList(await customerApi.getOrders());
     };
     fetchOrders();
-    console.log(orders);
   }, []);
 
   const items = [
@@ -53,11 +52,9 @@ export default function OrdersOverview() {
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 280 }}>
           <h1 style={{ fontSize: '48px', margin: '0' }}>Orders</h1>
-          {orders === null
+          {orderList === null
             ? 'no_orders'
-            : orders.items.map((order) => (
-              <OrderInfo order={order} />
-            ))}
+            : Object.keys(orderList.items).map((orderId) => <OrderInfo key={orderId} productList={orderList.items[orderId]} />)}
         </Content>
       </Layout>
     </Content>
