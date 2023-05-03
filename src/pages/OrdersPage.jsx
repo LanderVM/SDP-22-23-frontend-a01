@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Sider from 'antd/es/layout/Sider';
 import { Content } from 'antd/es/layout/layout';
 import {
-  Breadcrumb, Col, Layout, Menu, Row,
+  Breadcrumb, Layout, Menu,
 } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { RiShoppingBasket2Line } from 'react-icons/ri';
-import moment from 'moment';
-import useCustomerApi from '../../api/customerService';
+import useCustomerApi from '../api/customerService';
+import OrderInfo from '../Feature/OrderOverview';
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState(null);
@@ -56,24 +56,7 @@ export default function OrdersPage() {
           {orders === null
             ? 'no_orders'
             : orders.items.map((order) => (
-              <Row>
-                <Col span={24}>
-                  <Row>
-                    <p>
-                      Ordered on:&nbsp;
-                    </p>
-                    <p>
-                      {moment(order.order_date.split('T')[0]).format('LL')}
-                    </p>
-                    <p>
-                      &nbsp;| Order &nbsp;
-                    </p>
-                    <p>
-                      {order.ORDER_order_id}
-                    </p>
-                  </Row>
-                </Col>
-              </Row>
+              <OrderInfo order={order} />
             ))}
         </Content>
       </Layout>
