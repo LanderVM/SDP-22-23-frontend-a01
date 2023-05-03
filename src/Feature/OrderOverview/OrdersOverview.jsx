@@ -6,6 +6,7 @@ import {
 } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { RiShoppingBasket2Line } from 'react-icons/ri';
+import { NavLink } from 'react-router-dom';
 import useCustomerApi from '../../api/customerService';
 import { OrderInfo } from './index';
 
@@ -24,13 +25,21 @@ export default function OrdersOverview() {
     {
       key: 'sidenav1',
       icon: <UserOutlined />,
-      label: 'Account Overview',
+      label: (
+        <NavLink to="/profile" className="user-item delaware-dropdown-button">
+          <p>Account Overview</p>
+        </NavLink>
+      ),
       style: { padding: '0', margin: '0' },
     },
     {
       key: 'sidenav2',
       icon: <RiShoppingBasket2Line />,
-      label: 'Orders',
+      label: (
+        <NavLink to="/orders" className="user-item delaware-dropdown-button">
+          <p>Orders</p>
+        </NavLink>
+      ),
       style: { padding: '0', margin: '0' },
     },
   ];
