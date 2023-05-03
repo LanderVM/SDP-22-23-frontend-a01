@@ -11,6 +11,7 @@ import {
   BsBoxSeam,
 } from 'react-icons/bs';
 import moment from 'moment/moment';
+import getStatusAsString from '../../utils';
 
 const columns = [
   {
@@ -42,23 +43,6 @@ const columns = [
     showOnDesktop: true,
   },
 ];
-
-const getStatusAsString = (statusInt) => {
-  switch (statusInt) {
-    case 0:
-      return 'Placed';
-    case 1:
-      return 'Processed';
-    case 2:
-      return 'Shipped';
-    case 3:
-      return 'Out for Delivery';
-    case 4:
-      return 'Delivered';
-    default:
-      return 'Unknown Status';
-  }
-};
 
 export default function TrackingInfo({ tracker }) {
   if (tracker === null) return null;
