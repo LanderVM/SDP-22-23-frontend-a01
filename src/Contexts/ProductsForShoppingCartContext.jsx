@@ -27,8 +27,11 @@ export default function ProductsForShoppingCartProvider({ children }) {
     setProducts(productsFromContext.filter((el) => el.product_id !== productId));
   }, [productsFromContext]);
 
-  const addProductToShoppingCartContext = useCallback((product) => {
-    setProducts([...productsFromContext, product]);
+  const addProductToShoppingCartContext = useCallback((product, amount) => {
+    const productId = product.product_id;
+    console.log(productId);
+    console.log(product);
+    setProducts([...productsFromContext, { productId, amount }]);
   }, [productsFromContext]);
 
   const value = useMemo(

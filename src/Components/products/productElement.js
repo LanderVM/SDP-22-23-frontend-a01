@@ -47,7 +47,7 @@ export default function ProductElement({
           type="primary"
           danger
           data-cy="btnAddToCart"
-          onClick={() => addProductToShoppingCartContext(product)}
+          onClick={() => addProductToShoppingCartContext(product, 1)}
           style={{
             fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
           }}
