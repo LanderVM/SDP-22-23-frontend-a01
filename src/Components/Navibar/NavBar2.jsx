@@ -1,9 +1,11 @@
+import React, { useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Menu, Badge, Layout, Space,
 } from 'antd';
-import { NavLink, useNavigate } from 'react-router-dom';
 import { NotificationButton, ShoppingCartButton } from './Buttons';
 import AuthenticationButton from '../authentication/AuthenticationButton';
+import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 
 const { Header } = Layout;
 // const { useBreakpoint } = Grid;
@@ -39,6 +41,10 @@ function NavBar2() {
   const navigate = useNavigate();
   // const { lg } = useBreakpoint();
 
+  const {
+    productsFromContext,
+  } = useContext(ProductsForShoppingCartContext);
+
   const onClick = (e) => {
     navigate(`/${e.key}`);
   };
@@ -53,7 +59,7 @@ function NavBar2() {
           <img src={logo} height="60px" alt="Delaware logo" />
         </NavLink>
         <Space align="center" style={{ float: 'right', paddingTop: '25px', height: heightNB }}>
-          <Badge color="geekblue" offset={[3, 5]}>
+          <Badge count={productsFromContext === null ? 0 : productsFromContext.length} color="geekblue" offset={[3, 5]} data-cy="shoppingCartBadge">
             <ShoppingCartButton />
           </Badge>
           <NotificationButton />
