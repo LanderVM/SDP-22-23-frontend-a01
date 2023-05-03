@@ -1,17 +1,12 @@
 import { UserOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import './navibar.css';
 
 export default function ProfileButton() {
-  const navigate = useNavigate();
-
-  const goToProfilePage = () => {
-    navigate('/profilePage');
-  };
-
   return (
-    <div className="delaware-dropdown-button" onClick={goToProfilePage}>
+    <NavLink to="/profile" className="user-item delaware-dropdown-button">
       <UserOutlined twoToneColor="#FFFFFF" style={{ fontSize: '250%' }} />
       &nbsp;Company profile
-    </div>
+    </NavLink>
   );
 }
