@@ -22,15 +22,27 @@ const headerStyle = {
 
 const items = [
   {
-    label: 'Products',
+    label: (
+      <NavLink to="/products">
+        Products
+      </NavLink>
+    ),
     key: 'products',
   },
   {
-    label: 'Track & Trace',
+    label: (
+      <NavLink to="/track">
+        Track & Trace
+      </NavLink>
+    ),
     key: 'track',
   },
   {
-    label: 'Notifications',
+    label: (
+      <NavLink to="/notifications">
+        Notifications
+      </NavLink>
+    ),
     key: 'notifications',
   },
 ];
