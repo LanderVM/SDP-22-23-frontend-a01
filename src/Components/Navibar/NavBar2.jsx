@@ -16,7 +16,7 @@ const heightNB = '70px';
 const headerStyle = {
   color: '#fff',
   height: heightNB,
-  padding: '0 5%',
+  padding: '0 3%',
   backgroundColor: color,
 };
 
@@ -64,10 +64,10 @@ function NavBar2() {
   const navMenu2MF = lg ? 'flex' : 'none';
 
   return (
-    <Header top style={headerStyle}>
+    <Header style={headerStyle}>
       <div>
         <div style={{
-          float: 'left', paddingTop: '5px', lineHeight: 0, display: 'flex',
+          float: 'left', display: 'flex',
         }}
         >
           <Dropdown
@@ -81,7 +81,7 @@ function NavBar2() {
               <img src="/images/menu.png" width="30px" alt="" />
             </Space>
           </Dropdown>
-          <NavLink data-cy="navibar_logo" to="/home" replace>
+          <NavLink data-cy="navibar_logo" to="/home" style={{ paddingTop: '5px' }} replace>
             <img src={logo} height="60px" alt="Delaware logo" />
           </NavLink>
         </div>

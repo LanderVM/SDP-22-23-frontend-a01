@@ -10,7 +10,7 @@ import Error from '../Error';
 import Loader from '../Loader';
 import ShoppingCartContent from './ShoppingCartContent';
 import ShoppingCartOverview from './ShoppingCartOverview';
-import useProducts from '../../api/product';
+import useProducts from '../../api/productService';
 
 const { useBreakpoint } = Grid;
 

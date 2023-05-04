@@ -46,6 +46,7 @@ export default function AuthenticationButton() {
     return (
       <Dropdown
         menu={{ items }}
+        trigger={['click']}
       >
         <img src={user.picture} alt="" width="40px" data-cy="test-navbar-userIcon" />
       </Dropdown>

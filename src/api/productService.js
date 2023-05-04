@@ -35,18 +35,17 @@ const useProducts = () => {
   }, []);
 
   const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category) => {
-    let brandString = '';
-    let categoryString = '';
-    if (brand !== undefined) {
-      brandString = brand.map((e) => `&brand=${e}`).join('');
-    }
-    if (category !== undefined) {
-      categoryString = category.map((e) => `&category=${e}`).join('');
-    }
-    console.log(`${baseUrl}/filter?startPrice=${priceStart}&endPrice=${priceEnd}&inStock=${inStock}${brandString}${categoryString}`);
+    const url = new URLSearchParams();
+
+    if (priceStart !== undefined) url.append('startPrice', priceStart);
+    if (priceEnd !== undefined) url.append('endPrice', priceEnd);
+    if (inStock !== undefined) url.append('inStock', inStock);
+    if (brand.length > 0) brand.map((c) => url.append('brand', c));
+    if (category.length > 0) category.map((b) => url.append('category', b));
+
     const {
       data,
-    } = await axios.get(`${baseUrl}/filter?startPrice=${priceStart}&endPrice=${priceEnd}&inStock=${inStock}${brandString}${categoryString}`);
+    } = await axios.get(`${baseUrl}/filter?${url.toString()}`);
     return data.items;
   }, []);
 
