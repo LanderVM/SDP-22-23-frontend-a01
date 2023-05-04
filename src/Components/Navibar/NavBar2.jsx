@@ -75,6 +75,7 @@ function NavBar2() {
               backgroundColor: color, color: 'white', fontSize: '25px', height: heightNB,
             }}
             menu={{ items }}
+            trigger={['click']}
           >
             <Space style={{ paddingRight: '10px', display: navMenu1MF }}>
               <img src="/images/menu.png" width="30px" alt="" />
