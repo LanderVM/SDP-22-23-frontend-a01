@@ -10,12 +10,16 @@ export default function ShoppingCartOverview({
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
-    const totalCost = cart.map((e) => e.price).reduce(
+    let total = [];
+
+    total = cart.map((e) => productsFromContext.find((p) => p.productId === e.product_id).amount * e.price);
+
+    const totalCost = total.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
       0,
     );
     setCost(totalCost);
-  });
+  }, [cart]);
 
   return (
 
