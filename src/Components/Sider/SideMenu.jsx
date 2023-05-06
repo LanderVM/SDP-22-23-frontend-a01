@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import { RiShoppingBasket2Line } from 'react-icons/ri';
@@ -36,10 +36,6 @@ export default function SideMenu() {
     setToggled(false);
   };
 
-  useEffect((() => {
-    setToggled(false);
-  }), []);
-
   return (
     <>
       <Button
@@ -75,15 +71,6 @@ export default function SideMenu() {
       </Drawer>
       <Sider
         style={{ backgroundColor: '#f5f5f5' }}
-        breakpoint="lg"
-        onBreakpoint={(broken) => {
-          setToggled(broken);
-        }}
-        collapsed={isToggled}
-        onCollapse={(broken) => {
-          setToggled(broken);
-        }}
-        collapsedWidth={0}
         className="hideOnMobile"
       >
         <Menu
