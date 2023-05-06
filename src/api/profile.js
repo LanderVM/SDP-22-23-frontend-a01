@@ -8,21 +8,22 @@ const useProfile = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const getCompanyInfo = useCallback(async () => {
-    const token = getAccessTokenSilently();
-
-    const { data } = axios.get(baseUrl, {
+    const token = await getAccessTokenSilently();
+    console.log(`het token: ${token}`);
+    const { data } = await axios.get(baseUrl, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-
+    // console.log(`de data: ${data}`);
+    // console.log(`de items: ${data.items}`);
     return data.items;
   }, [getAccessTokenSilently]);
 
   const getAllCollegues = useCallback(async () => {
-    const token = getAccessTokenSilently();
+    const token = await getAccessTokenSilently();
 
-    const { data } = axios.get(`${baseUrl}/colleagues`, {
+    const { data } = await axios.get(`${baseUrl}/colleagues`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

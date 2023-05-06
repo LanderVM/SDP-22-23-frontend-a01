@@ -2,7 +2,7 @@ import {
   Card, Col, Row,
 } from 'antd';
 import { useEffect, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
 import { UserOutlined, ShoppingOutlined } from '@ant-design/icons';
 import useProfile from '../../api/profile';
@@ -12,18 +12,17 @@ export default function ProfileOverview() {
 
   const [companyInfo, setCompanyInfo] = useState({});
 
-  const { isAuthenticated } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    const fetchcompanyInfo = async () => {
+    const fetchCompanyInfo = async () => {
       const data = await profileApi.getCompanyInfo();
       setCompanyInfo(data);
     };
-    if (isAuthenticated) {
-      fetchcompanyInfo();
-    }
+    fetchCompanyInfo();
     console.log(companyInfo);
-  }, [isAuthenticated]);
+    // console.log(companyInfo.user_email);
+  }, []);
 
   return (
     <Row>
@@ -80,7 +79,9 @@ export default function ProfileOverview() {
             </Card>
           </Col>
           <Col span={24}>
-            <p>Company purchasers</p>
+            <p>
+              Company purchasers
+            </p>
           </Col>
         </Row>
       </Col>
