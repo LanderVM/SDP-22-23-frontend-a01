@@ -29,8 +29,7 @@ const useProducts = () => {
 
   const getByIds = useCallback(async (productId) => {
     const url = new URLSearchParams();
-
-    if (productId.length > 0) productId.map((id) => url.append('productId', id));
+    if (productId.length > 0) productId.map((id) => url.append('productId', id.productId));
 
     const {
       data,

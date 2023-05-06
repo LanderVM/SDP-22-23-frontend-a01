@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card, Button } from 'antd';
 import './ShoppingCart.css';
 
 export default function ShoppingCartOverview({
-  cart,
+  cart, context,
 }) {
+  const { productsFromContext } = useContext(context);
+
   const [cost, setCost] = useState(0);
+
   useEffect(() => {
     const totalCost = cart.map((e) => e.price).reduce(
       (accumulator, currentValue) => accumulator + currentValue,
@@ -31,7 +34,10 @@ export default function ShoppingCartOverview({
           <tr>
             <td>
               Articles (
-              {cart.length}
+              {productsFromContext.map((e) => e.amount).reduce(
+                (accumulator, currentValue) => accumulator + currentValue,
+                0,
+              )}
               ):
 
             </td>

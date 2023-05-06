@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {
-  Button, Col, Grid, Row, Select,
+  Button, Col, Grid, InputNumber, Row,
 } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
@@ -8,14 +8,19 @@ const { useBreakpoint } = Grid;
 export default function ShoppingCartContent({
   cart, context,
 }) {
-  const handleChange = () => null;
-
-  const { removeProductFromShoppingCartContext } = useContext(context);
+  const { removeProductFromShoppingCartContext, productsFromContext, addProductToShoppingCartContext } = useContext(context);
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '24px' : '12px';
   const fontSizeDesc = lg ? '18px' : '8px';
   const fontSizeIcon = lg ? '120%' : '70%';
   const buttonHeight = lg ? '40px' : '35px';
+
+  const product = productsFromContext.filter((e) => e.productId === cart.product_id);
+  const productAmount = product.map((el) => el.amount);
+
+  const handleChange = (value) => {
+    addProductToShoppingCartContext(cart, parseInt(value, 10));
+  };
 
   return (
     <Row gutter={{
@@ -29,23 +34,14 @@ export default function ShoppingCartContent({
         <div style={{ fontSize: fontSizeName }} data-cy="cartName"><b>{cart.name}</b></div>
         <div style={{ fontSize: fontSizeDesc }} data-cy="cartDescription">{cart.description}</div>
         <div>
-          <Select
-            defaultValue="1"
-            style={{ width: 90 }}
-            onChange={handleChange}
-            options={[
-              { value: '1', label: '1' },
-              { value: '2', label: '2' },
-              { value: '3', label: '3' },
-              { value: '4', label: '4' },
-            ]}
-          />
+
+          <InputNumber min={1} max={100} defaultValue={productAmount} onChange={handleChange} />
         </div>
       </Col>
       <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>
         <div data-cy="cartPrice" style={{ fontSize: fontSizeName }}>
           €&nbsp;
-          {cart.price}
+          {cart.price * productAmount }
         </div>
         <Button
           type="primary"

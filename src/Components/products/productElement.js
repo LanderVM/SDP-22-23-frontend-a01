@@ -13,7 +13,7 @@ export default function ProductElement({
   product,
 }) {
   const {
-    addProductToShoppingCartContext,
+    addProductToShoppingCartContext, productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
 
   const link = `/product/${product.product_id}`;
@@ -24,6 +24,12 @@ export default function ProductElement({
   const fontSizeIcon = lg ? '130%' : '80%';
   const fontSizeIco2 = lg ? '80%' : '60%';
   const buttonHeight = lg ? '40px' : '35px';
+
+  const productWanted = productsFromContext.filter((e) => e.productId === product.product_id);
+  let productAmount = 0;
+  if (productWanted.length === 1) {
+    productAmount = productWanted.map((el) => el.amount);
+  }
 
   return (
     <Row gutter={{
@@ -47,7 +53,7 @@ export default function ProductElement({
           type="primary"
           danger
           data-cy="btnAddToCart"
-          onClick={() => addProductToShoppingCartContext(product, 1)}
+          onClick={() => addProductToShoppingCartContext(product, parseInt(productAmount, 10) + 1)}
           style={{
             fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
           }}

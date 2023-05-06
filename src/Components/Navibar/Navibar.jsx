@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
 import {
@@ -55,7 +55,12 @@ export default function Navibar() {
             display: 'flex', alignItems: 'center', justifyContent: formatButton,
           }}
         >
-          <Badge count={productsFromContext === null ? 0 : productsFromContext.length} color="geekblue" offset={[3, 5]} data-cy="shoppingCartBadge">
+          <Badge
+            count={productsFromContext === null ? 0 : productsFromContext.length}
+            color="geekblue"
+            offset={[3, 5]}
+            data-cy="shoppingCartBadge"
+          >
             <ShoppingCartButton />
           </Badge>
           <NotificationButton />

@@ -24,14 +24,14 @@ export default function ProductsForShoppingCartProvider({ children }) {
   }, []);
 
   const removeProductFromShoppingCartContext = useCallback((productId) => {
-    setProducts(productsFromContext.filter((el) => el.product_id !== productId));
+    setProducts(productsFromContext.filter((el) => el.productId !== productId));
   }, [productsFromContext]);
 
   const addProductToShoppingCartContext = useCallback((product, amount) => {
     const productId = product.product_id;
-    console.log(productId);
-    console.log(product);
-    setProducts([...productsFromContext, { productId, amount }]);
+    const updatedCart = productsFromContext.filter((element) => element.productId !== productId);
+
+    setProducts([...updatedCart, { productId, amount }]);
   }, [productsFromContext]);
 
   const value = useMemo(

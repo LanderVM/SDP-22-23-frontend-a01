@@ -18,7 +18,6 @@ export default function ShoppingCart() {
   const {
     productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
-
   const { lg } = useBreakpoint();
 
   const [error, setError] = useState(null);
@@ -32,7 +31,8 @@ export default function ShoppingCart() {
       try {
         setLoading(true);
         setError(null);
-        await setCart(productsFromContext);
+        const data = await productenApi.getByIds(productsFromContext);
+        setCart(data);
       } catch (error2) {
         setError(error2);
       } finally {
@@ -86,7 +86,7 @@ export default function ShoppingCart() {
         </div>
       </Col>
       <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
-        <ShoppingCartOverview cart={myCart} />
+        <ShoppingCartOverview cart={myCart} context={ProductsForShoppingCartContext} />
       </Col>
     </Row>
   );
