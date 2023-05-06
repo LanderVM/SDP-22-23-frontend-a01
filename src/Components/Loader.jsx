@@ -4,7 +4,9 @@ import { Spin } from 'antd';
 export default function Loader({ loading }) {
   if (loading) {
     return (
-      <Spin tip="Loading.." size="large" />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Spin tip="Loading.." size="large" />
+      </div>
     );
   }
 

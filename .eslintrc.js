@@ -23,5 +23,6 @@ module.exports = {
     'max-len': ['error', { code: 350 }],
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'no-nested-ternary': 'off',
   },
 };

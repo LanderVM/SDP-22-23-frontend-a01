@@ -3,16 +3,29 @@ import { Content } from 'antd/es/layout/layout';
 import { Breadcrumb, Empty, Layout } from 'antd';
 
 import useCustomerApi from '../../api/customerService';
-import { OrderInfo } from './index';
 import SideMenu from '../../Components/Sider/SideMenu';
+import Error from '../../Components/Error';
+import Loader from '../../Components/Loader';
+import { OrderInfo } from './index';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const customerApi = useCustomerApi();
 
   useEffect(() => {
     const fetchOrders = async () => {
-      setOrderList(await customerApi.getOrders());
+      try {
+        setLoading(true);
+        setError(null);
+        const dbOrderList = await customerApi.getOrders();
+        setOrderList(dbOrderList);
+      } catch (error2) {
+        setError(error2);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchOrders();
   }, []);
@@ -31,8 +44,14 @@ export default function OrdersOverview() {
           }}
           >
             <h1 style={{ fontSize: '48px', margin: '0' }}>Orders</h1>
+            <Error error={error} />
+            {!error
+              ? <Loader loading={loading} />
+              : null}
             {orderList === null
-              ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="There were no orders found." />
+              ? !loading
+                ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="There were no orders found." />
+                : null
               : Object.keys(orderList.items).map((orderId) => (
                 <OrderInfo
                   key={orderId}
