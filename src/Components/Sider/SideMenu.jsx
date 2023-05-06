@@ -44,8 +44,10 @@ export default function SideMenu() {
         style={{
           position: 'fixed',
           top: '50%',
-          left: '-3%',
-          // margin: '3%',
+          left: '0%',
+          borderTopLeftRadius: '0',
+          borderBottomLeftRadius: '0',
+          paddingLeft: '5px',
         }}
         size="large"
       >
