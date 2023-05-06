@@ -3,8 +3,6 @@ import React from 'react';
 import './productInfo.scss';
 
 export default function ProductInfo({ product }) {
-  console.log(product);
-
   return (
     <Row className="delaware-product-info">
       <Col>

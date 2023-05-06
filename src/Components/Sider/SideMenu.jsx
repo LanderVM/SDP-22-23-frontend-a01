@@ -58,10 +58,11 @@ export default function SideMenu() {
       <Drawer
         placement="left"
         onClose={onClose}
-        closable={false}
-        visible={isToggled}
+        closable
+        open={isToggled}
         className="hideOnDesktop"
         bodyStyle={{ backgroundColor: '#f5f5f5' }}
+        // closeIcon={<CloseOutlined />}
       >
         <Menu
           mode="inline"

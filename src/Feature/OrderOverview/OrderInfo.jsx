@@ -12,19 +12,19 @@ export default function OrderInfo({ productList }) {
     <Row>
       <Col span={24}>
         <Row className="delaware-order-info-body-header">
-          <p>
+          <p key="orderInfoHeader1">
             {moment(productList[0].order_date.split('T')[0]).format('LL')}
           </p>
-          <p>
+          <p key="orderInfoHeader2">
               &nbsp;|&nbsp;Order&nbsp;number&nbsp;
             {productList[0].ORDER_order_id}
             &nbsp;|&nbsp;
           </p>
-          <p className="delaware-order-info-body-header-status">
+          <p key="orderInfoHeader3" className="delaware-order-info-body-header-status">
             {getStatusAsString(productList[0].order_status)}
           </p>
         </Row>
-        {productList.map((product) => <ProductInfo product={product} />)}
+        {productList.map((product) => <ProductInfo product={product} key={product.productId} />)}
       </Col>
     </Row>
   );
