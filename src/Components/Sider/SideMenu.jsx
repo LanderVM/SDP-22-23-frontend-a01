@@ -1,9 +1,10 @@
-import { Menu } from 'antd';
-import React from 'react';
-import { UserOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import { RiShoppingBasket2Line } from 'react-icons/ri';
 import Sider from 'antd/es/layout/Sider';
+import { Button, Drawer, Menu } from 'antd';
+import './SideMenu.scss';
 
 const items = [
   {
@@ -29,14 +30,64 @@ const items = [
 ];
 
 export default function SideMenu() {
+  const [isToggled, setToggled] = useState(false);
+  const toggleTrueFalse = () => setToggled(!isToggled);
+  const onClose = () => {
+    setToggled(false);
+  };
+
   return (
-    <Sider style={{ backgroundColor: '#f5f5f5' }} breakpoint="lg" collapsedWidth={0} reverseArrow>
-      <Menu
-        mode="inline"
-        defaultSelectedKeys={['sidenav2']}
-        style={{ backgroundColor: '#f5f5f5', paddingTop: '15px' }}
-        items={items}
-      />
-    </Sider>
+    <>
+      <Button
+        className="trigger"
+        onClick={toggleTrueFalse}
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '-3%',
+          // margin: '3%',
+        }}
+        size="large"
+      >
+        {isToggled
+          ? <MenuUnfoldOutlined />
+          : <MenuFoldOutlined />}
+      </Button>
+      <Drawer
+        placement="left"
+        onClose={onClose}
+        closable={false}
+        visible={isToggled}
+        className="hideOnDesktop"
+        bodyStyle={{ backgroundColor: '#f5f5f5' }}
+      >
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['sidenav2']}
+          style={{ backgroundColor: '#f5f5f5', paddingTop: '15px' }}
+          items={items}
+        />
+      </Drawer>
+      <Sider
+        style={{ backgroundColor: '#f5f5f5' }}
+        breakpoint="lg"
+        onBreakpoint={(broken) => {
+          setToggled(broken);
+        }}
+        collapsed={isToggled}
+        onCollapse={(broken) => {
+          setToggled(broken);
+        }}
+        collapsedWidth={0}
+        className="hideOnMobile"
+      >
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={['sidenav2']}
+          style={{ backgroundColor: '#f5f5f5', paddingTop: '15px' }}
+          items={items}
+        />
+      </Sider>
+    </>
   );
 }
