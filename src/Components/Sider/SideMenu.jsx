@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import { RiShoppingBasket2Line } from 'react-icons/ri';
@@ -36,6 +36,10 @@ export default function SideMenu() {
     setToggled(false);
   };
 
+  useEffect((() => {
+    setToggled(false);
+  }), []);
+
   return (
     <>
       <Button
@@ -47,7 +51,6 @@ export default function SideMenu() {
           left: '0%',
           borderTopLeftRadius: '0',
           borderBottomLeftRadius: '0',
-          paddingLeft: '5px',
         }}
         size="large"
       >
@@ -62,7 +65,6 @@ export default function SideMenu() {
         open={isToggled}
         className="hideOnDesktop"
         bodyStyle={{ backgroundColor: '#f5f5f5' }}
-        // closeIcon={<CloseOutlined />}
       >
         <Menu
           mode="inline"
