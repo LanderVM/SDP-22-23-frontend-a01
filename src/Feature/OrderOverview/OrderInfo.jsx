@@ -24,7 +24,7 @@ export default function OrderInfo({ productList }) {
             {getStatusAsString(productList[0].order_status)}
           </p>
         </Row>
-        {productList.map((product) => <ProductInfo product={product} key={product.productId} />)}
+        {productList.map((product) => <ProductInfo product={product} key={`${product.ORDER_order_id}_${product.PRODUCT_product_id}}`} />)}
       </Col>
     </Row>
   );
