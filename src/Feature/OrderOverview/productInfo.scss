@@ -12,11 +12,18 @@
 
   .delaware-product-info-body {
     display: flex;
-    justify-content: center;
     align-items: center;
   }
 
   h1 {
     font-size: 24px;
+    margin-right: 10px;
+  }
+
+  .delaware-order-info-body-info-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
   }
 }

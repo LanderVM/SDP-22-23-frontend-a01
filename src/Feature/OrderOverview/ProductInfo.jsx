@@ -1,6 +1,8 @@
-import { Col, Row } from 'antd';
+import { Button, Col, Row } from 'antd';
 import React from 'react';
 import './productInfo.scss';
+import { NavLink } from 'react-router-dom';
+import { AiOutlineRight } from 'react-icons/ai';
 
 export default function ProductInfo({ product }) {
   return (
@@ -12,6 +14,14 @@ export default function ProductInfo({ product }) {
         <Row>
           <h1>{`${product.brand} ${product.name}`}</h1>
         </Row>
+      </Col>
+      <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <NavLink to={`/orders/${product.ORDER_order_id}`}>
+          <Button className="delaware-order-info-body-info-button">
+            <p>More Info</p>
+            <AiOutlineRight />
+          </Button>
+        </NavLink>
       </Col>
     </Row>
   );
