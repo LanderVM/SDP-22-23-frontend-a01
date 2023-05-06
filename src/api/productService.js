@@ -27,6 +27,17 @@ const useProducts = () => {
     return data;
   }, []);
 
+  const getByIds = useCallback(async (productId) => {
+    const url = new URLSearchParams();
+
+    if (productId.length > 0) productId.map((id) => url.append('productId', id));
+
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/ids?${url.toString()}`);
+    return data.items;
+  }, []);
+
   const getByName = useCallback(async (name) => {
     const {
       data,
@@ -52,6 +63,7 @@ const useProducts = () => {
   return {
     getAll,
     getById,
+    getByIds,
     getByName,
     getFiltered,
   };
