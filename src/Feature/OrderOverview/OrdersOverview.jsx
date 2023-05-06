@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Content } from 'antd/es/layout/layout';
-import {
-  Breadcrumb, Layout,
-} from 'antd';
+import { Breadcrumb, Empty, Layout } from 'antd';
 
 import useCustomerApi from '../../api/customerService';
 import { OrderInfo } from './index';
@@ -29,13 +27,18 @@ export default function OrdersOverview() {
         <Layout>
           <SideMenu />
           <Content style={{
-            margin: '0 14px', minHeight: 280,
+            margin: '0 14px',
           }}
           >
             <h1 style={{ fontSize: '48px', margin: '0' }}>Orders</h1>
             {orderList === null
-              ? 'no_orders'
-              : Object.keys(orderList.items).map((orderId) => <OrderInfo key={orderId} productList={orderList.items[orderId]} />)}
+              ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="There were no orders found." />
+              : Object.keys(orderList.items).map((orderId) => (
+                <OrderInfo
+                  key={orderId}
+                  productList={orderList.items[orderId]}
+                />
+              ))}
           </Content>
         </Layout>
       </Content>

@@ -70,7 +70,7 @@ export default function SideMenu() {
         />
       </Drawer>
       <Sider
-        style={{ backgroundColor: '#f5f5f5' }}
+        style={{ backgroundColor: '#f5f5f5', minHeight: '100vh', borderInlineEnd: '1px solid rgba(5, 5, 5, 0.06)' }}
         className="hideOnMobile"
       >
         <Menu
