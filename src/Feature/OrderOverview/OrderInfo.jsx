@@ -14,7 +14,7 @@ export default function OrderInfo({ productList }) {
             <p>
               {moment(productList[0].order_date.split('T')[0]).format('LL')}
                             &nbsp;|&nbsp;Order&nbsp;#
-              {productList[0].ORDER_order_id}
+              {productList[0].order_id}
             </p>
             <p className="delaware-order-info-body-header-status">
               {getStatusAsString(productList[0].order_status)}
@@ -24,7 +24,7 @@ export default function OrderInfo({ productList }) {
         {productList.map((product) => (
           <ProductInfo
             product={product}
-            key={`${product.ORDER_order_id}_${product.PRODUCT_product_id}}`}
+            key={`${product.order_id}_${product.PRODUCT_product_id}}`}
           />
         ))}
       </Col>

@@ -16,7 +16,7 @@ export default function ProductInfo({ product }) {
         </Row>
       </Col>
       <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <NavLink to={`/orders/${product.ORDER_order_id}`}>
+        <NavLink to={`/orders/${product.order_id}`}>
           <Button className="delaware-order-info-body-info-button">
             <p>More Info</p>
             <AiOutlineRight />

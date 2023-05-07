@@ -52,7 +52,7 @@ export default function OrdersOverview() {
               ? !loading
                 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="There were no orders found." />
                 : null
-              : Object.keys(orderList.items).map((orderId) => (
+              : Object.keys(orderList.items).reverse().map((orderId) => (
                 <OrderInfo
                   key={orderId}
                   productList={orderList.items[orderId]}
