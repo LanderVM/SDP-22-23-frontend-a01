@@ -11,15 +11,13 @@ export default function ColleagueInfo({ colleague }) {
   return (
     <Row>
       <Col span={phoneFormatColleagueInfoImg}>
-        <img src={colleague.image_URL} alt="" />
+        <img src={colleague.image_URL} alt="" style={{ maxWidth: '40%' }} />
       </Col>
       <Col span={phoneFormatColleagueInfoCredentials}>
         <p>
-          name:&nbsp;
           {colleague.username}
         </p>
         <p>
-          email:&nbsp;
           {colleague.email}
         </p>
       </Col>

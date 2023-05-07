@@ -19,14 +19,7 @@ export default function CompanyInfo({ companyInformation }) {
           <p>{companyInformation.supplier_phone_number}</p>
         </Col>
         <Col span={phoneFormatCard}>
-          <Row>
-            <Col span={8}>
-              <p>Logo:</p>
-            </Col>
-            <Col span={12}>
-              <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: '50%' }} />
-            </Col>
-          </Row>
+          <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: '45%' }} />
         </Col>
       </Row>
     </Card>

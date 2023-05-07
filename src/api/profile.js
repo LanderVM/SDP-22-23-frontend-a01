@@ -9,14 +9,13 @@ const useProfile = () => {
 
   const getCompanyInfo = useCallback(async () => {
     const token = await getAccessTokenSilently();
-    // console.log(`het token: ${token}`);
+
     const { data } = await axios.get(baseUrl, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    // console.log(`de data: ${data}`);
-    console.log(data.items);
+
     return data.items;
   }, [getAccessTokenSilently]);
 
@@ -28,6 +27,7 @@ const useProfile = () => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log(data);
 
     return data.items;
   }, [getAccessTokenSilently]);
