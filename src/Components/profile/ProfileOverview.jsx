@@ -1,18 +1,26 @@
 import {
-  Card, Col, Row,
+  Col, Row,
 } from 'antd';
 import { useEffect, useState } from 'react';
 // import { useAuth0 } from '@auth0/auth0-react';
 import { NavLink } from 'react-router-dom';
 import { UserOutlined, ShoppingOutlined } from '@ant-design/icons';
 import useProfile from '../../api/profile';
+import { mockdata } from './mockdata';
+import CompanyInfo from './CompanyInfo';
 
 export default function ProfileOverview() {
   const profileApi = useProfile();
 
   const [companyInfo, setCompanyInfo] = useState({});
+  const [colleagues, setColleagues] = useState([]);
 
   // const { isAuthenticated } = useAuth0();
+
+  useEffect(() => {
+    setColleagues(mockdata.items);
+    console.log(colleagues);
+  }, []);
 
   useEffect(() => {
     const fetchCompanyInfo = async () => {
@@ -23,6 +31,15 @@ export default function ProfileOverview() {
     console.log(companyInfo);
     // console.log(companyInfo.user_email);
   }, []);
+  /*
+  useEffect(() => {
+    const fecthColleagues = async () => {
+      const data = await profileApi.getAllCollegues();
+      setColleagues(data);
+    };
+    fecthColleagues();
+    console.log(`onbelangerijk: ${colleagues}`);
+  }, []); */
 
   return (
     <Row>
@@ -57,26 +74,7 @@ export default function ProfileOverview() {
       <Col span={19}>
         <Row>
           <Col span={24}>
-            <Card title="Company information">
-              <Row>
-                <Col span={12}>
-                  <p>Name: Tim CO</p>
-                  <p>Email: sales@timCo.com</p>
-                  <p>Phone number: 0455667788</p>
-                  <p>Delivery address: Merestraat 44 C Aalst Belgium</p>
-                </Col>
-                <Col span={12}>
-                  <Row>
-                    <Col span={8}>
-                      <p>Logo:</p>
-                    </Col>
-                    <Col span={12}>
-                      <img src="../../../public/images/Delaware-logo_black.png" alt="" />
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Card>
+            <CompanyInfo />
           </Col>
           <Col span={24}>
             <p>
