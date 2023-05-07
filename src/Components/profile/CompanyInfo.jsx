@@ -4,7 +4,7 @@ import {
 
 const { useBreakpoint } = Grid;
 
-export default function CompanyInfo() {
+export default function CompanyInfo({ companyInformation }) {
   const { lg } = useBreakpoint();
 
   const phoneFormatCard = lg ? '12' : '24';
@@ -13,10 +13,10 @@ export default function CompanyInfo() {
     <Card title="Company information">
       <Row>
         <Col span={phoneFormatCard}>
-          <p>Name: Tim CO</p>
-          <p>Email: sales@timCo.com</p>
-          <p>Phone number: 0455667788</p>
-          <p>Delivery address: Merestraat 44 C Aalst Belgium</p>
+          <p>{companyInformation.supplier_name}</p>
+          <p>{companyInformation.user_email}</p>
+          <p>{companyInformation.supplier_phone_number}</p>
+          <p>{companyInformation.supplier_phone_number}</p>
         </Col>
         <Col span={phoneFormatCard}>
           <Row>
@@ -24,7 +24,7 @@ export default function CompanyInfo() {
               <p>Logo:</p>
             </Col>
             <Col span={12}>
-              <img src="../../../public/images/Delaware-logo_black.png" alt="" />
+              <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: '50%' }} />
             </Col>
           </Row>
         </Col>

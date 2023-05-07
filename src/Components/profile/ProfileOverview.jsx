@@ -59,7 +59,7 @@ export default function ProfileOverview() {
       <Col span={phoneFormatProfileOverview}>
         <Row>
           <Col span={24}>
-            <CompanyInfo />
+            <CompanyInfo companyInformation={companyInfo} />
           </Col>
           <Col span={24} style={{ marginTop: '2%' }}>
             <Colleagues colleagues={colleagues} />
