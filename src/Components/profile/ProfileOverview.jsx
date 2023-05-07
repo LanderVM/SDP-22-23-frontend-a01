@@ -1,5 +1,5 @@
 import {
-  Col, Row,
+  Col, Grid, Row,
 } from 'antd';
 import { useEffect, useState } from 'react';
 // import { useAuth0 } from '@auth0/auth0-react';
@@ -9,6 +9,8 @@ import CompanyInfo from './CompanyInfo';
 import SidewayNavigation from './SidewayNavigation';
 import Colleagues from './Colleagues';
 
+const { useBreakpoint } = Grid;
+
 export default function ProfileOverview() {
   const profileApi = useProfile();
 
@@ -16,6 +18,8 @@ export default function ProfileOverview() {
   const [colleagues, setColleagues] = useState([]);
 
   // const { isAuthenticated } = useAuth0();
+
+  const { lg } = useBreakpoint();
 
   useEffect(() => {
     setColleagues(mockdata.items);
@@ -41,12 +45,18 @@ export default function ProfileOverview() {
     console.log(`onbelangerijk: ${colleagues}`);
   }, []); */
 
+  const phoneFormatProfileOverview = lg ? '19' : '24';
+
   return (
     <Row>
-      <Col span={5} style={{ color: 'black' }}>
-        <SidewayNavigation />
-      </Col>
-      <Col span={19}>
+      {
+        lg ? (
+          <Col span={5} style={{ color: 'black' }}>
+            <SidewayNavigation />
+          </Col>
+        ) : null
+      }
+      <Col span={phoneFormatProfileOverview}>
         <Row>
           <Col span={24}>
             <CompanyInfo />
