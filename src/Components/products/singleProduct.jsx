@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useProducts from '../../api/productService';
-import SingleProductElement from './singleProductElement';
+import SingleProductElement from './SingleProductElement';
 import Loader from '../Loader';
 import Error from '../Error';
 

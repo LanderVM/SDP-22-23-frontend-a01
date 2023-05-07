@@ -2,8 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useParams } from 'react-router';
 import React from 'react';
 import PageNotFoundAlert from './Components/PageNotFoundAlert';
-import ProductsList from './Components/products/productsList';
-import SingleProduct from './Components/products/singleProduct';
+import ProductsList from './Components/Products/ProductsList';
+import SingleProduct from './Components/Products/SingleProduct';
 import TrackingInput from './Components/Tracking/TrackingInput';
 
 export function HomePage() {

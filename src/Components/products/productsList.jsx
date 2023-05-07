@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  List, Row, Col, Grid,
+  List, Row, Col, Grid, Empty,
 } from 'antd';
 import useProducts from '../../api/productService';
 import Error from '../Error';
@@ -14,7 +14,14 @@ const { useBreakpoint } = Grid;
 function ProductsListElement({ products, handleView }) {
   if (!products || products.length === 0) {
     return (
-      <div data-cy="test-products-listEmpty">There are no products available</div>
+      <Empty
+        image={Empty.PRESENTED_IMAGE_SIMPLE}
+        description={(
+          <span>
+            No products available
+          </span>
+      )}
+      />
     );
   }
 
