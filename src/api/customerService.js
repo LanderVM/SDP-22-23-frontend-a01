@@ -6,7 +6,7 @@ import {
   useCallback,
 } from 'react';
 
-const baseUrl = `${process.env.REACT_APP_API_URL}/customers`;
+const baseUrl = `${process.env.REACT_APP_API_URL}`;
 
 export default function useCustomerApi() {
   const {
@@ -17,7 +17,19 @@ export default function useCustomerApi() {
     const token = await getAccessTokenSilently();
     const {
       data,
-    } = await axios.get(`${baseUrl}/orders`, {
+    } = await axios.get(`${baseUrl}/customers/orders`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  }, [getAccessTokenSilently]);
+
+  const getOrderById = useCallback(async (orderId) => {
+    const token = await getAccessTokenSilently();
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/orders/id/${orderId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,5 +39,6 @@ export default function useCustomerApi() {
 
   return {
     getOrders,
+    getOrderById,
   };
 }

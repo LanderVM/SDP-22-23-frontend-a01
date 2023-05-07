@@ -1,25 +1,36 @@
 import { Content } from 'antd/es/layout/layout';
 import { Breadcrumb, Layout } from 'antd';
 
-import SingleOrderInfo from './SingleOrderInfo';
+import { useParams } from 'react-router';
+import React, { useEffect, useState } from 'react';
 import SideMenu from '../../Components/Sider/SideMenu';
+import useCustomerApi from '../../api/customerService';
+import Error from '../../Components/Error';
+import Loader from '../../Components/Loader';
+import SingleOrderInfo from './SingleOrderInfo';
 
 export default function SingleOrderOverview() {
-  const order = [{
-    order_id: 4,
-    order_date: '2023-04-15',
-    order_status: 2,
-    product_id: 5,
-    image_URL: 'https://i.dummyjson.com/data/products/5/thumbnail.jpg',
-    name: 'Huawei P30',
-  }, {
-    order_id: 4,
-    order_date: '2023-04-15',
-    order_status: 2,
-    product_id: 5,
-    image_URL: 'https://i.dummyjson.com/data/products/5/thumbnail.jpg',
-    name: 'Test P30',
-  }];
+  const { orderId } = useParams();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [order, setOrder] = useState(null);
+  const customerApi = useCustomerApi();
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const dbOrder = await customerApi.getOrderById(orderId);
+        setOrder(dbOrder);
+      } catch (error2) {
+        setError(error2);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrder();
+  }, []);
 
   return (
     <Content style={{ padding: '0 32px' }}>
@@ -33,10 +44,15 @@ export default function SingleOrderOverview() {
           margin: '0 14px', minHeight: 280,
         }}
         >
-          <h1 style={{ fontSize: '48px', margin: '0' }}>Order 254555</h1>
-
-          <SingleOrderInfo key={order[0].order_id} productList={order} />
-
+          <h1 style={{ fontSize: '48px', margin: '0' }}>
+            Order
+            {order === null ? '' : ` #${order.order_info.order_id}`}
+          </h1>
+          <Error error={error} />
+          {!error
+            ? <Loader loading={loading} />
+            : null}
+          <SingleOrderInfo order={order} />
         </Content>
       </Layout>
     </Content>
