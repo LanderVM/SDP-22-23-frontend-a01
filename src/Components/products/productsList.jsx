@@ -6,7 +6,7 @@ import {
 import useProducts from '../../api/productService';
 import Error from '../Error';
 import Loader from '../Loader';
-import Product from './productElement';
+import Product from './ProductElement';
 import SideBarProductPage from './SideBarProductPage';
 
 const { useBreakpoint } = Grid;

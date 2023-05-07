@@ -12,7 +12,9 @@ export default function ProductInfo({ product }) {
       </Col>
       <Col className="delaware-product-info-body">
         <Row>
-          <h1>{`${product.brand} ${product.name}`}</h1>
+          <NavLink to={`/product/${product.product_id}`} style={{ color: 'black' }}>
+            <h1>{`${product.brand} ${product.name}`}</h1>
+          </NavLink>
         </Row>
       </Col>
       <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
