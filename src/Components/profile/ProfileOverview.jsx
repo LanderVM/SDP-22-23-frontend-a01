@@ -72,14 +72,16 @@ export default function ProfileOverview() {
           ) : null
         }
         <Col span={phoneFormatProfileOverview}>
-          <Row>
-            <Col span={24}>
-              <CompanyInfo companyInformation={companyInfo} />
-            </Col>
-            <Col span={24} style={{ marginTop: '2%' }}>
-              <Colleagues colleagues={colleagues} />
-            </Col>
-          </Row>
+          {!loading && !error ? (
+            <Row>
+              <Col span={24}>
+                <CompanyInfo companyInformation={companyInfo} />
+              </Col>
+              <Col span={24} style={{ marginTop: '2%' }}>
+                <Colleagues colleagues={colleagues} />
+              </Col>
+            </Row>
+          ) : null}
         </Col>
       </Row>
     </>
