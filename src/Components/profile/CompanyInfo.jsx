@@ -9,12 +9,6 @@ export default function CompanyInfo({ companyInformation }) {
 
   const phoneFormatCard = lg ? '12' : '24';
 
-  const addressPart1 = companyInformation.supplier_delivery_street.concat(' ').concat((companyInformation.supplier_delivery_house_number).toString()).concat(' ').concat(companyInformation.supplier_delivery_box);
-
-  const addressPart2 = (companyInformation.supplier_delivery_postal_code).toString().concat(' ').concat(companyInformation.supplier_delivery_city);
-
-  const addressPart3 = companyInformation.supplier_delivery_country;
-
   return (
     <Card title="Company information">
       <Row>
@@ -23,11 +17,17 @@ export default function CompanyInfo({ companyInformation }) {
           <p>{companyInformation.user_email}</p>
           <p>{companyInformation.supplier_phone_number}</p>
           <p>
-            {addressPart1}
+            {companyInformation.supplier_delivery_street}
+            &nbsp;
+            {companyInformation.supplier_delivery_house_number}
+            &nbsp;
+            {companyInformation.supplier_delivery_box}
             <br />
-            {addressPart2}
+            {companyInformation.supplier_delivery_postal_code}
+            &nbsp;
+            {companyInformation.supplier_delivery_city}
             <br />
-            {addressPart3}
+            {companyInformation.supplier_delivery_country}
           </p>
         </Col>
         <Col span={phoneFormatCard}>
