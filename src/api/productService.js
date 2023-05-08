@@ -47,15 +47,15 @@ const useProducts = () => {
   const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category) => {
     const url = new URLSearchParams();
 
-    if (priceStart !== undefined) url.append('startPrice', priceStart);
-    if (priceEnd !== undefined) url.append('endPrice', priceEnd);
-    if (inStock !== undefined) url.append('inStock', inStock);
+    if (priceStart) url.append('startPrice', priceStart);
+    if (priceEnd) url.append('endPrice', priceEnd);
+    if (inStock) url.append('inStock', inStock);
     if (brand.length > 0) brand.map((c) => url.append('brand', c));
     if (category.length > 0) category.map((b) => url.append('category', b));
 
     const {
       data,
-    } = await axios.get(`${baseUrl}/filter?${url.toString()}`);
+    } = await axios.get(`${baseUrl}?${url.toString()}`);
     return data.items;
   }, []);
 
