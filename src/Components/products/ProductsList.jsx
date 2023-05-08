@@ -60,8 +60,8 @@ export default function ProductsList() {
   const productenApi = useProducts();
 
   const callBack = (data) => {
-    setPriceStart(data.priceStart);
-    setPriceEnd(data.priceEnd);
+    setPriceStart(data.priceS);
+    setPriceEnd(data.priceE);
     setInStock(data.inStock);
     setBrand(data.brand);
     setCategory(data.category);

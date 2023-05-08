@@ -44,6 +44,20 @@ const useProducts = () => {
     return data;
   }, []);
 
+  const getBrands = useCallback(async () => {
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/brands`);
+    return data.items;
+  }, []);
+
+  const getCategories = useCallback(async () => {
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/categories`);
+    return data.items;
+  }, []);
+
   const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category) => {
     const url = new URLSearchParams();
 
@@ -64,6 +78,8 @@ const useProducts = () => {
     getById,
     getByIds,
     getByName,
+    getBrands,
+    getCategories,
     getFiltered,
   };
 };
