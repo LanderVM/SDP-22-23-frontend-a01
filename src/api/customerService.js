@@ -29,7 +29,7 @@ export default function useCustomerApi() {
     const token = await getAccessTokenSilently();
     const {
       data,
-    } = await axios.get(`${baseUrl}/orders/id/${orderId}`, {
+    } = await axios.get(`${baseUrl}/orders/${orderId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

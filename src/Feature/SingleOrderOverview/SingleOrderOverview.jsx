@@ -22,6 +22,7 @@ export default function SingleOrderOverview() {
         setLoading(true);
         setError(null);
         const dbOrder = await customerApi.getOrderById(orderId);
+
         setOrder(dbOrder);
       } catch (error2) {
         setError(error2);
