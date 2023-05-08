@@ -5,6 +5,7 @@ import PageNotFoundAlert from './Components/PageNotFoundAlert';
 import ProductsList from './Components/products/ProductsList';
 import SingleProduct from './Components/products/SingleProduct';
 import TrackingInput from './Components/Tracking/TrackingInput';
+import ProfileOverview from './Components/profile/ProfileOverview';
 
 export function HomePage() {
   return (
@@ -37,16 +38,13 @@ export function TrackingPage() {
 }
 
 export function ProfilePage() {
-  const { user, isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   return (
-    <main>
+    <main style={{ padding: '1%' }}>
       {isAuthenticated
         ? (
-          <div>
-            Name:
-            {user.email}
-          </div>
+          <ProfileOverview />
         )
         : <div />}
     </main>

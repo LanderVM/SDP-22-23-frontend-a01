@@ -5,6 +5,7 @@ import LoginButtonDropDown from './LoginButton';
 import LogoutButtonDropDown from './LogoutButton';
 import OrderButton from '../Navibar/OrderButton';
 import TrackTraceButton from '../Navibar/TrackTraceButton';
+import ProfileButton from '../Navibar/ProfileButton';
 
 const items = [
   {
@@ -22,6 +23,14 @@ const items = [
       </div>
     ),
     key: '1',
+  },
+  {
+    label: (
+      <div>
+        <ProfileButton />
+      </div>
+    ),
+    key: '2',
   },
   {
     type: 'divider',
