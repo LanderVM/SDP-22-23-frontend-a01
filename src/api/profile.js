@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useCallback } from 'react';
 
-const baseUrl = `${process.env.REACT_APP_API_URL}/profile`;
+const baseUrl = `${process.env.REACT_APP_API_URL}/customers`;
 
 const useProfile = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -10,7 +10,7 @@ const useProfile = () => {
   const getCompanyInfo = useCallback(async () => {
     const token = await getAccessTokenSilently();
 
-    const { data } = await axios.get(baseUrl, {
+    const { data } = await axios.get(`${baseUrl}/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,7 +27,6 @@ const useProfile = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(data);
 
     return data.items;
   }, [getAccessTokenSilently]);
