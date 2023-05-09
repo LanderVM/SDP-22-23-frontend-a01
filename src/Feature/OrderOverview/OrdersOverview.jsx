@@ -9,6 +9,7 @@ import SideMenu from '../../Components/Sider/SideMenu';
 import Error from '../../Components/Error';
 import Loader from '../../Components/Loader';
 import { OrderInfo } from './index';
+import RequireAuth from '../../Components/authentication/RequireAuth';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);
@@ -33,7 +34,7 @@ export default function OrdersOverview() {
   }, []);
 
   return (
-    <div className="a">
+    <RequireAuth>
       <Content style={{ padding: '0 32px' }}>
         <Breadcrumb style={{ marginTop: '16px' }}>
           <Breadcrumb.Item>Account</Breadcrumb.Item>
@@ -75,6 +76,6 @@ export default function OrdersOverview() {
           </Content>
         </Layout>
       </Content>
-    </div>
+    </RequireAuth>
   );
 }

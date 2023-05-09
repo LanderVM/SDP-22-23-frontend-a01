@@ -85,7 +85,7 @@ function NavBar2() {
             <img src={logo} height="60px" alt="Delaware logo" />
           </NavLink>
         </div>
-        <Space align="center" style={{ float: 'right', paddingTop: '25px', height: heightNB }}>
+        <Space align="center" style={{ float: 'right', height: heightNB, marginTop: '7px' }}>
           <Badge count={productsFromContext === null ? 0 : productsFromContext.length} color="geekblue" offset={[3, 5]} data-cy="shoppingCartBadge">
             <ShoppingCartButton />
           </Badge>

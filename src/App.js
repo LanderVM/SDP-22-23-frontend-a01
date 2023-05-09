@@ -5,10 +5,10 @@ import {
   HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage, TrackingPage,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
-// import Navibar from './Components/Navibar/Navibar';
 import NavBar2 from './Components/Navibar/NavBar2';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import OrdersOverview from './Feature/OrderOverview/OrdersOverview';
+import AuthLanding from './Components/authentication/AuthLanding';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/shoppingCart" element={<ShoppingCart />} />
           <Route path="/orders" element={<OrdersOverview />} />
+          <Route path="/login" element={<AuthLanding />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ConfigProvider>

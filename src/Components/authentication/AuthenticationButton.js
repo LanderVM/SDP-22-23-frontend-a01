@@ -57,7 +57,16 @@ export default function AuthenticationButton() {
         menu={{ items }}
         trigger={['click']}
       >
-        <img src={user.picture} alt="" width="40px" data-cy="test-navbar-userIcon" />
+        <img
+          src={user.picture}
+          alt=""
+          width="35px"
+          data-cy="test-navbar-userIcon"
+          style={{
+            fontSize: '250%',
+            marginTop: '40%',
+          }}
+        />
       </Dropdown>
     );
   }
