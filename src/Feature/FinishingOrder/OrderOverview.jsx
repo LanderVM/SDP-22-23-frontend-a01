@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Card } from 'antd';
-import './ShoppingCart.css';
 import { NavLink } from 'react-router-dom';
 
-export default function ShoppingCartOverview({
+export default function OrderOverview({
   cart, context,
 }) {
   const { productsFromContext } = useContext(context);
@@ -29,8 +28,8 @@ export default function ShoppingCartOverview({
       bordered
       actions={[
         // eslint-disable-next-line react/button-has-type
-        <NavLink to="/FinishingOrder">
-          Continue to payment
+        <NavLink to="/">
+          Finish order
         </NavLink>,
       ]}
     >
@@ -63,7 +62,7 @@ export default function ShoppingCartOverview({
           </tr>
           &nbsp;
           <tr>
-            <td>Subtotal:</td>
+            <td>Total:</td>
             <td id="priceTd">
               <strong>
                 €&nbsp;

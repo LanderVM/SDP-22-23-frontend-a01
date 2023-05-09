@@ -25,7 +25,24 @@ export default function useCustomerApi() {
     return data;
   }, [getAccessTokenSilently]);
 
+  const placeOrder = useCallback(async (order) => {
+    const token = await getAccessTokenSilently();
+    const {
+      id,
+      ...values
+    } = order;
+    await axios({
+      method: id ? 'PUT' : 'POST',
+      url: `${baseUrl}/${id ?? ''}`,
+      data: values,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }, [getAccessTokenSilently]);
+
   return {
     getOrders,
+    placeOrder,
   };
 }

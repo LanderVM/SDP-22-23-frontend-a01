@@ -1,26 +1,19 @@
 import React, { useContext } from 'react';
 import {
-  Button, Col, Grid, InputNumber, Row,
+  Col, Grid, Row,
 } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
 
 const { useBreakpoint } = Grid;
-export default function ShoppingCartContent({
+export default function OrderContent({
   cart, context,
 }) {
-  const { removeProductFromShoppingCartContext, productsFromContext, addProductToShoppingCartContext } = useContext(context);
+  const { productsFromContext } = useContext(context);
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '24px' : '12px';
   const fontSizeDesc = lg ? '18px' : '8px';
-  const fontSizeIcon = lg ? '120%' : '70%';
-  const buttonHeight = lg ? '40px' : '35px';
 
   const product = productsFromContext.filter((e) => e.productId === cart.product_id);
   const productAmount = product.map((el) => el.amount);
-
-  const handleChange = (value) => {
-    addProductToShoppingCartContext(cart, parseInt(value, 10));
-  };
 
   return (
     <Row gutter={{
@@ -34,7 +27,10 @@ export default function ShoppingCartContent({
         <div style={{ fontSize: fontSizeName }} data-cy="cartName"><b>{cart.name}</b></div>
         <div style={{ fontSize: fontSizeDesc }} data-cy="cartDescription">{cart.description}</div>
         <div>
-          <InputNumber min={1} max={100} defaultValue={productAmount} onChange={handleChange} />
+          {productAmount}
+          {' '}
+          x €&nbsp;
+          {cart.price}
         </div>
       </Col>
       <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>
@@ -42,19 +38,6 @@ export default function ShoppingCartContent({
           €&nbsp;
           {cart.price * productAmount }
         </div>
-
-        <Button
-          type="primary"
-          danger
-          data-cy="removeCartItem"
-          onClick={() => removeProductFromShoppingCartContext(cart.product_id)}
-          style={{
-            fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
-          }}
-        >
-          <DeleteOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
-
-        </Button>
       </Col>
     </Row>
 
