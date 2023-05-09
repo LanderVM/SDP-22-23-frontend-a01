@@ -10,11 +10,11 @@ export default function CompanyInfo({ companyInformation }) {
   const phoneFormatCard = lg ? '12' : '24';
 
   return (
-    <Card title="Company information">
+    <Card title="Company information" data-cy="companyInfo">
       <Row>
         <Col span={phoneFormatCard}>
-          <p>{companyInformation.supplier_name}</p>
-          <p>{companyInformation.user_email}</p>
+          <p data-cy="companyInfoSupplierName">{companyInformation.supplier_name}</p>
+          <p data-cy="companyInfoSupplierEmail">{companyInformation.supplier_email}</p>
           <p>{companyInformation.supplier_phone_number}</p>
           <p>
             {companyInformation.supplier_delivery_street}
