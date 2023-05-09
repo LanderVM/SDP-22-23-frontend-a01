@@ -1,6 +1,5 @@
 import {
-  // eslint-disable-next-line no-unused-vars
-  Button, Col, Form, Input, InputNumber, Modal, Row,
+  Button, Col, Form, Input, Modal, Row,
 } from 'antd';
 import React, { useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
@@ -11,13 +10,12 @@ export default function ChangeAddressModal() {
   const size0 = 0;
   const { lg } = useBreakpoint();
   const fontSizeMini = lg ? '18px' : '14px';
-  // const widthText = lg ? '50%' : '20%';
-  // const widthNumber = lg ? '100px' : '50px';
 
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
+    // TODO try post & show confirmation, catch & display error
     setIsModalOpen(false);
   };
 
@@ -40,53 +38,64 @@ export default function ChangeAddressModal() {
           layout="vertical"
           initialValues={{ remember: true }}
         >
-          <Form.Item
-            label="Street name"
-            name="streetName"
-            rules={[{ required: true, type: 'string' }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="House"
-            name="houseNumber"
-            rules={[{ required: true, type: 'number' }]}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            label="Bus"
-            name="busNumber"
-            rules={[{ required: false, type: 'number' }]}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            label="Bus"
-            name="busNumber"
-            rules={[{ required: false, type: 'number' }]}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            label="Bus"
-            name="busNumber"
-            rules={[{ required: false, type: 'number' }]}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            label="Bus"
-            name="busNumber"
-            rules={[{ required: false, type: 'number' }]}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} sm={8}>
+              <Form.Item
+                name="street"
+                label="Street"
+                rules={[{ required: true, type: 'string' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={8}>
+              <Form.Item
+                name="houseNumber"
+                label="House Number"
+                rules={[{ required: true, type: 'number' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={8}>
+              <Form.Item
+                name="busNumber"
+                label="Bus"
+                rules={[{ type: 'number' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={[16, 16]}>
+            <Col xs={24} sm={8}>
+              <Form.Item
+                name="postalCode"
+                label="Postal Code"
+                rules={[{ required: true, type: 'number' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={8}>
+              <Form.Item
+                name="city"
+                label="City"
+                rules={[{ required: true, type: 'string' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={8}>
+              <Form.Item
+                name="country"
+                label="Country"
+                rules={[{ required: true, type: 'string' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+          </Row>
         </Form>
       </Modal>
     </>
