@@ -1,33 +1,22 @@
 import {
-  Button, Col, Modal, Row,
+  Col, Row,
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import React, { useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import ChangeAddress from './ChangeAddress';
+import ChangeAddressModal from './ChangeAddressModal';
+import ChangePackagingModal from './ChangePackagingModal';
 
 const size0 = 0;
 
 export default function SingleOrderDetails({ order }) {
   if (!order) return null;
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [totalCost, setTotalCost] = useState(0);
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '36px' : '24px';
   const fontSizeDesc = lg ? '24px' : '18px';
   const fontSizeMini = lg ? '18px' : '14px';
   const positionChangePackageMF = lg ? 'absolute' : 'relative';
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
 
   useMemo(() => {
     const calculateTotalCost = () => {
@@ -62,29 +51,13 @@ export default function SingleOrderDetails({ order }) {
             <div>
               {order.order_info.delivery_country}
             </div>
-            <Button type="link" onClick={showModal} style={{ padding: size0, fontSize: fontSizeMini }}> &#62;&nbsp;Change address</Button>
-            <Modal
-              title="Change address"
-              open={isModalOpen}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <ChangeAddress />
-            </Modal>
+            <ChangeAddressModal />
           </div>
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 8 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Packaging</h1>
           <div style={{ fontSize: fontSizeMini }}>{order.order_info.name}</div>
-          <Button
-            style={{
-              position: positionChangePackageMF, bottom: size0, padding: size0, fontSize: fontSizeMini,
-            }}
-            type="link"
-            onClick={showModal}
-          >
-            &#62;&nbsp;Change packaging
-          </Button>
+          <ChangePackagingModal />
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Total amount: </h1>

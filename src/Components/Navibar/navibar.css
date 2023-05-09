@@ -1,28 +1,3 @@
-.navibar-item {
-  color: white;
-  font-size: 25px;
-  text-decoration: none !important;
-}
-
-.navibar-item:hover {
-  color: white;
-  text-decoration: underline !important;
-}
-
-a {
-  color: white;
-}
-
-.user-item {
-  color: black;
-  text-decoration: none !important;
-}
-
-.user-item:hover {
-  color: black;
-  text-decoration: none !important;
-}
-
 .navibar {
   display: inline-flex;
   justify-content: center;
@@ -42,27 +17,22 @@ a {
   display: flex;
   margin: 4px;
 }
-
 .navibar-button .navibar-button-icon {
   margin: 4px;
 }
-
 .navibar-button :hover {
   background-color: #d4403b;
   border-radius: 5%;
 }
-
 .navibar-button :active {
   background-color: #bd3935;
 }
 
-/*
-.ant-layout-header,
-.ant-layout-header>* {
+.ant-layout-header, .ant-layout-header > * {
   color: white;
   background-color: #EC4848;
 }
-*/
+
 .logo-inner {
   height: 100%;
   box-sizing: border-box;
@@ -80,69 +50,21 @@ a {
   margin: auto 20px;
   min-width: 100px;
 }
-
-.navibar-search *>.ant-input-group-addon :hover .anticon-search {
+.navibar-search * > .ant-input-group-addon :hover .anticon-search {
   color: #8e2b28 !important;
 }
-
-.navibar-search *>.ant-input-group-addon .ant-btn {
+.navibar-search * > .ant-input-group-addon .ant-btn {
   background-color: #d4403b;
   border-color: #bd3935;
   display: flex;
 }
-
-.navibar-search *>.ant-input-group-addon .ant-btn .anticon-search {
+.navibar-search * > .ant-input-group-addon .ant-btn .anticon-search {
   margin: auto;
-}
-
-.ant-input {
-  border-color: #bd3935;
-  border-width: 2px;
-}
-
-.ant-input:hover,
-.ant-input-group-addon>.ant-btn>* {
-  border-color: #8e2b28 !important;
-  border-width: 2px;
 }
 
 .delaware-dropdown-button {
   display: flex;
   align-items: center;
 }
-
-.ant-menu.ant-menu-sub.ant-menu-vertical>.ant-menu-item::before {
-  color: black !important;
-}
-.ant-menu-overflow-item {
-  color: white !important;
-}
-.ant-menu-light.ant-menu-horizontal>.ant-menu-item-selected::after {
-  border-color: white !important;
-}
-.ant-menu-light.ant-menu-horizontal>.ant-menu-item-active::after {
-  border-color: white !important;
-}
-.ant-menu-light.ant-menu-horizontal>.ant-menu-submenu-active::after {
-  border-color: white !important;
-}
-.ant-menu-light>.ant-menu .ant-menu-submenu-selected>.ant-menu-submenu-title {
-  color: white !important;
-  border-color: white !important;
-}
-.anticon.anticon-ellipsis>svg {
-  height: 50px;
-  width: 50px;
-  margin: 0 auto;
-  margin-top: 10px;
-  color: white;
-}
-
-.anticon.anticon-ellipsis {
-  display: flex;
-  align-items: center;
-}
-
-/*# sourceMappingURL=navibar.css.map */
 
 /*# sourceMappingURL=navibar.css.map */
