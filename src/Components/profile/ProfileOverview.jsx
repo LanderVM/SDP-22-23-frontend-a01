@@ -1,17 +1,19 @@
 import {
-  Col, Grid, Row,
+  Col, Row, Breadcrumb, Layout,
 } from 'antd';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useAuth0 } from '@auth0/auth0-react';
+import { Content } from 'antd/es/layout/layout';
 import useProfile from '../../api/profile';
 // import { mockdata } from './mockdata';
 import CompanyInfo from './CompanyInfo';
-import SidewayNavigation from './SidewayNavigation';
+// import SidewayNavigation from './SidewayNavigation';
 import Colleagues from './Colleagues';
 import Loader from '../Loader';
 import Error from '../Error';
+import SideMenu from '../Sider/SideMenu';
 
-const { useBreakpoint } = Grid;
+// const { useBreakpoint } = Grid;
 
 export default function ProfileOverview() {
   const profileApi = useProfile();
@@ -23,7 +25,7 @@ export default function ProfileOverview() {
 
   // const { isAuthenticated } = useAuth0();
 
-  const { lg } = useBreakpoint();
+  // const { lg } = useBreakpoint();
 
   useEffect(() => {
     const fetchCompanyInfo = async () => {
@@ -57,33 +59,36 @@ export default function ProfileOverview() {
     fecthColleagues();
   }, []);
 
-  const phoneFormatProfileOverview = lg ? '19' : '24';
+  // onst phoneFormatProfileOverview = lg ? '19' : '24';
 
   return (
-    <>
-      <Loader loading={loading} />
-      <Error error={error} />
-      <Row>
-        {
-          lg ? (
-            <Col span={5} style={{ color: 'black' }}>
-              <SidewayNavigation />
-            </Col>
-          ) : null
-        }
-        <Col span={phoneFormatProfileOverview}>
-          {!loading && !error ? (
-            <Row>
-              <Col span={24}>
-                <CompanyInfo companyInformation={companyInfo} />
-              </Col>
-              <Col span={24} style={{ marginTop: '2%' }}>
-                <Colleagues colleagues={colleagues} />
-              </Col>
-            </Row>
-          ) : null}
-        </Col>
-      </Row>
-    </>
+    <div className="a">
+      <Content style={{ padding: '0 32px' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Account</Breadcrumb.Item>
+          <Breadcrumb.Item>Company Info</Breadcrumb.Item>
+        </Breadcrumb>
+        <Layout>
+          <SideMenu />
+          <Content style={{
+            margin: '0 14px',
+          }}
+          >
+            <Loader loading={loading} />
+            <Error error={error} />
+            {!loading && !error ? (
+              <Row>
+                <Col span={24}>
+                  <CompanyInfo companyInformation={companyInfo} />
+                </Col>
+                <Col span={24} style={{ marginTop: '2%' }}>
+                  <Colleagues colleagues={colleagues} />
+                </Col>
+              </Row>
+            ) : null}
+          </Content>
+        </Layout>
+      </Content>
+    </div>
   );
 }
