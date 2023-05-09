@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Content } from 'antd/es/layout/layout';
-import { Breadcrumb, Empty, Layout } from 'antd';
+import {
+  Breadcrumb, Empty, Layout, List,
+} from 'antd';
 
 import useCustomerApi from '../../api/customerService';
 import SideMenu from '../../Components/Sider/SideMenu';
@@ -52,12 +54,24 @@ export default function OrdersOverview() {
               ? !loading
                 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="There were no orders found." />
                 : null
-              : Object.keys(orderList.items).reverse().map((orderId) => (
-                <OrderInfo
-                  key={orderId}
-                  productList={orderList.items[orderId]}
+              : (
+                <List
+                  bordered
+                  style={{ backgroundColor: 'white' }}
+                  dataSource={Object.keys(orderList.items).reverse()}
+                  data-cy="shoppingCart"
+                  pagination={{
+                    align: 'center',
+                    pageSize: 10,
+                  }}
+                  renderItem={(orderId) => (
+                    <OrderInfo
+                      key={orderId}
+                      productList={orderList.items[orderId]}
+                    />
+                  )}
                 />
-              ))}
+              )}
           </Content>
         </Layout>
       </Content>
