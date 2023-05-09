@@ -26,7 +26,7 @@ const items = [
   },
   {
     label: (
-      <div>
+      <div data-cy="navibar_dropdownMenu_profileButton">
         <ProfileButton />
       </div>
     ),

@@ -9,15 +9,15 @@ export default function ColleagueInfo({ colleague }) {
   const phoneFormatColleagueInfoCredentials = lg ? '18' : '24';
 
   return (
-    <Row>
+    <Row data-cy="colleagueInfo">
       <Col span={phoneFormatColleagueInfoImg}>
         <img src={colleague.image_URL} alt="" style={{ maxWidth: '40%' }} />
       </Col>
       <Col span={phoneFormatColleagueInfoCredentials}>
-        <p>
+        <p data-cy="colleagueUsername">
           {colleague.username}
         </p>
-        <p>
+        <p data-cy="colleagueEmail">
           {colleague.email}
         </p>
       </Col>

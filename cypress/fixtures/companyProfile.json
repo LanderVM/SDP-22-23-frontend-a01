@@ -1,0 +1,20 @@
+{
+  "items": {
+      "auth0_id": "auth0|64439bc8bc6509196a8e5990",
+      "user_email": "bert@timCo.com",
+      "username": "Bert",
+      "image_URL": "https://s.gravatar.com/avatar/74d81d6aada690a1b114800a2c3dcec8?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fbe.png",
+      "supplier_id": 2,
+      "supplier_delivery_country": "Belgium",
+      "supplier_delivery_city": "Aalst",
+      "supplier_delivery_postal_code": 9300,
+      "supplier_delivery_street": "Merestraat",
+      "supplier_delivery_house_number": 80,
+      "supplier_delivery_box": "B",
+      "supplier_email": "sales@timCo.com",
+      "supplier_name": "Jan INC",
+      "supplier_phone_number": "0456443212",
+      "logo_URL": "https://static.vecteezy.com/ti/gratis-vector/p3/2520838-apple-logo-zwart-geisoleerd-op-transparante-achtergrond-gratis-vector.jpg"
+  },
+  "count": 1
+}

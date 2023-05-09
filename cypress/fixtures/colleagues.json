@@ -1,0 +1,15 @@
+{
+  "items": [
+      {
+          "username": "Bart",
+          "email": "bart@timCo.com",
+          "image_URL": "https://s.gravatar.com/avatar/bfcfa4a79d8e219a21cd65a1759a6205?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fba.png"
+      },
+      {
+          "username": "Berta",
+          "email": "berta@timCo.com",
+          "image_URL": "https://s.gravatar.com/avatar/ec14e0034e64ea808a11a89cce82765e?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fbe.png"
+      }
+  ],
+  "count": 2
+}
