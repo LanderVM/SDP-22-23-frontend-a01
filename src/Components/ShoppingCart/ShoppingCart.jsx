@@ -3,8 +3,9 @@ import React, {
 } from 'react';
 
 import {
-  List, Col, Row, Grid,
+  List, Col, Row, Grid, Empty, Button,
 } from 'antd';
+import { NavLink } from 'react-router-dom';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import Error from '../Error';
 import Loader from '../Loader';
@@ -52,7 +53,9 @@ export default function ShoppingCart() {
   }, []);
   if (!myCart || myCart.length === 0) {
     return (
-      <div>There are no products available in your cart</div>
+      <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="There are no items in your shopping cart">
+        <NavLink to="/products"><Button type="primary">Continue shopping</Button></NavLink>
+      </Empty>
     );
   }
 
@@ -67,6 +70,7 @@ export default function ShoppingCart() {
         <Loader loading={loading} />
         <Error error={error} />
         <div>
+          (
           <List
             bordered
             style={{ backgroundColor: 'white' }}
@@ -77,12 +81,14 @@ export default function ShoppingCart() {
               pageSize: 10,
             }}
             renderItem={(item) => (
+
               <List.Item key={item.productId} style={{ display: 'block' }}>
                 {!loading && !error ? <ShoppingCartContent cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
                   : null}
               </List.Item>
             )}
           />
+          )
         </div>
       </Col>
       <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
