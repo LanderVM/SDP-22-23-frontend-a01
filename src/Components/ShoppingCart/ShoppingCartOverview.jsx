@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Card, Button } from 'antd';
+import { Card, Button, Divider } from 'antd';
 import './ShoppingCart.css';
 
 export default function ShoppingCartOverview({
@@ -52,17 +52,12 @@ export default function ShoppingCartOverview({
               </strong>
             </td>
           </tr>
-          <tr id="trShipping">
-            <td>Shipping Costs:</td>
-            <td id="priceTd">
-              <strong>
-                €&nbsp;20
-              </strong>
-            </td>
-          </tr>
-          &nbsp;
+          <Divider style={{ borderTop: '1px solid white' }} />
+
           <tr>
-            <td>Subtotal:</td>
+            <td>
+              Subtotal:
+            </td>
             <td id="priceTd">
               <strong>
                 €&nbsp;
@@ -70,6 +65,12 @@ export default function ShoppingCartOverview({
               </strong>
 
             </td>
+          </tr>
+          <tr>
+            <td style={{ fontSize: '10px' }}>
+              (Excl. shipping costs)
+            </td>
+
           </tr>
 
         </tbody>
