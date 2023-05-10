@@ -10,7 +10,7 @@ import Error from '../../Components/Error';
 import Loader from '../../Components/Loader';
 
 export function ChangeAddressModal({ orderDetails }) {
-  // if (orderDetails.order_status !== 0) return null; TODO re-enable when done with testing
+  if (orderDetails.order_status !== 0) return null;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState(null);
@@ -54,6 +54,7 @@ export function ChangeAddressModal({ orderDetails }) {
   };
   const handleOk = async (values) => {
     try {
+      setError(null);
       setLoading(true);
       const newDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, values);
       console.log(newDetails);
@@ -65,6 +66,8 @@ export function ChangeAddressModal({ orderDetails }) {
   };
 
   const handleCancel = () => {
+    setError(null);
+    setLoading(false);
     setIsModalOpen(false);
   };
 
