@@ -1,4 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { useParams } from 'react-router';
 import React from 'react';
 import PageNotFoundAlert from './Components/PageNotFoundAlert';
@@ -38,15 +37,9 @@ export function TrackingPage() {
 }
 
 export function ProfilePage() {
-  const { isAuthenticated } = useAuth0();
-
   return (
-    <main style={{ padding: '1%' }}>
-      {isAuthenticated
-        ? (
-          <ProfileOverview />
-        )
-        : <div />}
+    <main>
+      <ProfileOverview />
     </main>
   );
 }

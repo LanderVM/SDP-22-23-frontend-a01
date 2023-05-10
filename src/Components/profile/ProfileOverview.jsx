@@ -12,6 +12,7 @@ import Colleagues from './Colleagues';
 import Loader from '../Loader';
 import Error from '../Error';
 import SideMenu from '../Sider/SideMenu';
+import RequireAuth from '../authentication/RequireAuth';
 
 // const { useBreakpoint } = Grid;
 
@@ -62,9 +63,9 @@ export default function ProfileOverview() {
   // onst phoneFormatProfileOverview = lg ? '19' : '24';
 
   return (
-    <div className="a">
+    <RequireAuth>
       <Content style={{ padding: '0 32px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb style={{ marginTop: '16px' }}>
           <Breadcrumb.Item>Account</Breadcrumb.Item>
           <Breadcrumb.Item>Company Info</Breadcrumb.Item>
         </Breadcrumb>
@@ -89,6 +90,6 @@ export default function ProfileOverview() {
           </Content>
         </Layout>
       </Content>
-    </div>
+    </RequireAuth>
   );
 }

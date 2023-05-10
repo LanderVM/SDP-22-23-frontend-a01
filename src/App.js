@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider, Layout, theme } from 'antd';
 import {
-  HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, ProfilePage, TrackingPage,
+  HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import NavBar2 from './Components/Navibar/NavBar2';
@@ -10,6 +10,7 @@ import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import OrdersOverview from './Feature/OrderOverview/OrdersOverview';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './Feature/SingleOrderOverview/SingleOrderOverview';
+import ProfileOverview from './Components/profile/ProfileOverview';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/track" element={<TrackingPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:productId" element={<ProductOverviewPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfileOverview />} />
           <Route path="/shoppingCart" element={<ShoppingCart />} />
           <Route path="/orders" element={<OrdersOverview />} />
           <Route path="/login" element={<AuthLanding />} />
