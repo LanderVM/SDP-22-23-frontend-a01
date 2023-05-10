@@ -39,7 +39,7 @@ export default function SingleOrderOverview() {
         <Breadcrumb.Item>Orders</Breadcrumb.Item>
       </Breadcrumb>
       <Layout>
-        <SideMenu />
+        <SideMenu selectedKey={['orders']} />
         <Content style={{
           margin: '0 14px', minHeight: 280,
         }}

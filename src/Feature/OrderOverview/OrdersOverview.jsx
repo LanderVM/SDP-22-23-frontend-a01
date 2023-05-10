@@ -36,12 +36,9 @@ export default function OrdersOverview() {
   return (
     <RequireAuth>
       <Content style={{ padding: '0 32px' }}>
-        <Breadcrumb style={{ marginTop: '16px' }}>
-          <Breadcrumb.Item>Account</Breadcrumb.Item>
-          <Breadcrumb.Item>Orders</Breadcrumb.Item>
-        </Breadcrumb>
+        <Breadcrumb style={{ marginTop: '16px' }} items={[{ title: 'Account' }, { title: 'Orders' }]} />
         <Layout>
-          <SideMenu />
+          <SideMenu selectedKey={['orders']} />
           <Content style={{
             margin: '0 14px',
           }}

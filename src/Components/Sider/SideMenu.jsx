@@ -8,7 +8,7 @@ import './SideMenu.scss';
 
 const items = [
   {
-    key: 'sidenav1',
+    key: 'profile',
     icon: <UserOutlined />,
     label: (
       <NavLink to="/profile" className="user-item delaware-dropdown-button">
@@ -18,7 +18,7 @@ const items = [
     style: { padding: '0', margin: '0' },
   },
   {
-    key: 'sidenav2',
+    key: 'orders',
     icon: <RiShoppingBasket2Line />,
     label: (
       <NavLink to="/orders" className="user-item delaware-dropdown-button">
@@ -29,7 +29,7 @@ const items = [
   },
 ];
 
-export default function SideMenu() {
+export default function SideMenu({ selectedKey }) {
   const [isToggled, setToggled] = useState(false);
   const toggleTrueFalse = () => setToggled(!isToggled);
   const onClose = () => {
@@ -64,7 +64,7 @@ export default function SideMenu() {
       >
         <Menu
           mode="inline"
-          defaultSelectedKeys={['sidenav2']}
+          defaultSelectedKeys={selectedKey}
           style={{ backgroundColor: '#f5f5f5', paddingTop: '15px' }}
           items={items}
         />
@@ -75,7 +75,7 @@ export default function SideMenu() {
       >
         <Menu
           mode="inline"
-          defaultSelectedKeys={['sidenav2']}
+          defaultSelectedKeys={selectedKey}
           style={{ backgroundColor: '#f5f5f5', paddingTop: '15px' }}
           items={items}
         />

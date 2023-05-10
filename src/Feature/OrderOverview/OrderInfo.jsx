@@ -24,7 +24,7 @@ export default function OrderInfo({ productList }) {
         {productList.map((product) => (
           <ProductInfo
             product={product}
-            key={`${product.order_id}_${product.PRODUCT_product_id}}`}
+            key={`${product.order_id}_${product.product_id}`}
           />
         ))}
       </Col>

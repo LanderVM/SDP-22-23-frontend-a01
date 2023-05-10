@@ -2,19 +2,14 @@ import {
   Col, Row, Breadcrumb, Layout,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
-// import { useAuth0 } from '@auth0/auth0-react';
 import { Content } from 'antd/es/layout/layout';
 import useProfile from '../../api/profile';
-// import { mockdata } from './mockdata';
 import CompanyInfo from './CompanyInfo';
-// import SidewayNavigation from './SidewayNavigation';
 import Colleagues from './Colleagues';
 import Loader from '../Loader';
 import Error from '../Error';
 import SideMenu from '../Sider/SideMenu';
 import RequireAuth from '../authentication/RequireAuth';
-
-// const { useBreakpoint } = Grid;
 
 export default function ProfileOverview() {
   const profileApi = useProfile();
@@ -23,10 +18,6 @@ export default function ProfileOverview() {
   const [colleagues, setColleagues] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // const { isAuthenticated } = useAuth0();
-
-  // const { lg } = useBreakpoint();
 
   useEffect(() => {
     const fetchCompanyInfo = async () => {
@@ -60,17 +51,12 @@ export default function ProfileOverview() {
     fecthColleagues();
   }, []);
 
-  // onst phoneFormatProfileOverview = lg ? '19' : '24';
-
   return (
     <RequireAuth>
       <Content style={{ padding: '0 32px' }}>
-        <Breadcrumb style={{ marginTop: '16px' }}>
-          <Breadcrumb.Item>Account</Breadcrumb.Item>
-          <Breadcrumb.Item>Company Info</Breadcrumb.Item>
-        </Breadcrumb>
+        <Breadcrumb style={{ marginTop: '16px' }} items={[{ title: 'Account' }, { title: 'Company Info' }]} />
         <Layout>
-          <SideMenu />
+          <SideMenu selectedKey={['profile']} />
           <Content style={{
             margin: '0 14px',
           }}
