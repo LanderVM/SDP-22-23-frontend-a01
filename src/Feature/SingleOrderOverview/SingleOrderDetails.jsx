@@ -38,19 +38,6 @@ export default function SingleOrderDetails({ order }) {
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Delivery adress</h1>
           <div style={{ fontSize: fontSizeMini }}>
-            <div>
-              {order.order_info.delivery_street}
-                    &nbsp;
-              {order.order_info.delivery_house_number}
-            </div>
-            <div>
-              {order.order_info.delivery_postal_code}
-                    &nbsp;
-              {order.order_info.delivery_city}
-            </div>
-            <div>
-              {order.order_info.delivery_country}
-            </div>
             <ChangeAddressModalMemo orderDetails={order.order_info} />
           </div>
         </Col>
