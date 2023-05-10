@@ -29,6 +29,10 @@ export default function SingleOrderInfo({ order }) {
           bordered
           style={{ backgroundColor: 'white', margin: '14px 10px 10px 10px' }}
           dataSource={order.product_list}
+          pagination={{
+            align: 'center',
+            pageSize: 10,
+          }}
           data-cy="SingleOrderProductsList"
           renderItem={(item) => (
             <List.Item key={item.product_id} style={{ display: 'block' }}>
