@@ -125,7 +125,7 @@ export function ChangeAddressModal({ orderDetails }) {
             <Col xs={24} sm={8}>
               <Form.Item
                 name="delivery_street"
-                label="Street"
+                label="Street address"
                 rules={[{ required: true, type: 'string' }]}
               >
                 <Input />
@@ -134,7 +134,7 @@ export function ChangeAddressModal({ orderDetails }) {
             <Col xs={24} sm={8}>
               <Form.Item
                 name="delivery_house_number"
-                label="House Number"
+                label="House number"
                 rules={[{ required: true }]}
               >
                 <Input />
@@ -143,7 +143,7 @@ export function ChangeAddressModal({ orderDetails }) {
             <Col xs={24} sm={8}>
               <Form.Item
                 name="delivery_box"
-                label="Box"
+                label="Mailbox number"
               >
                 <Input />
               </Form.Item>
@@ -153,7 +153,7 @@ export function ChangeAddressModal({ orderDetails }) {
             <Col xs={24} sm={8}>
               <Form.Item
                 name="delivery_postal_code"
-                label="Postal Code"
+                label="Postcode"
                 rules={[{ required: true }]}
               >
                 <Input />
