@@ -1,10 +1,11 @@
 import {
-  Button, Col, Form, Input, Modal, Row,
+  Button, Col, Form, Input, Modal, Row, Select,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import './modal.scss';
 import { useForm } from 'antd/es/form/Form';
+import { countries } from 'countries-list';
 import useOrderApi from '../../api/orderService';
 import Error from '../../Components/Error';
 
@@ -19,8 +20,8 @@ export function ChangeAddressModal({ orderDetails }) {
   const { lg } = useBreakpoint();
   const fontSizeMini = lg ? '18px' : '14px';
   const orderApi = useOrderApi();
-
   const [form] = useForm();
+
   useEffect(() => form.setFields([
     {
       name: 'delivery_street',
@@ -57,8 +58,8 @@ export function ChangeAddressModal({ orderDetails }) {
       try {
         setError(null);
         setLoading(true);
-        const newDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, values);
-        setCurrentDetails(newDetails.items);
+        const updatedDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, values);
+        setCurrentDetails(updatedDetails.items);
         setLoading(false);
         setIsModalOpen(false);
       } catch (error2) {
@@ -171,9 +172,19 @@ export function ChangeAddressModal({ orderDetails }) {
               <Form.Item
                 name="delivery_country"
                 label="Country"
-                rules={[{ required: true, type: 'string' }]}
+                rules={[{ required: true }]}
               >
-                <Input />
+                <Select showSearch>
+                  {Object.values(countries).map((country) => (
+                    <Select.Option
+                      title={country.name}
+                      key={country.name}
+                      value={country.name}
+                    >
+                      {country.name}
+                    </Select.Option>
+                  ))}
+                </Select>
               </Form.Item>
             </Col>
           </Row>
