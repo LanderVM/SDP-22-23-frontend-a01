@@ -55,7 +55,13 @@ export default function FinishingOrder() {
       setError(err);
     }
   }, []);
-  if (!myCart || myCart.length === 0) {
+
+  if (!myCart) {
+    return (
+      <Loader loading={loading} />
+    );
+  }
+  if (myCart.length === 0) {
     return (
       <Empty description=" There are no products in your shoppingcart" />
     );
@@ -70,7 +76,6 @@ export default function FinishingOrder() {
 
     <Row>
       <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
-        <Loader loading={loading} />
         <Error error={error} />
         <div>
           <List

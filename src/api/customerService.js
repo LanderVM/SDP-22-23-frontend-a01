@@ -31,10 +31,21 @@ export default function useCustomerApi() {
       id,
       ...values
     } = order;
+    const values2 = values.order_lines.map((e) => {
+      const { productId, amount } = e;
+      return {
+        PRODUCT_product_id: productId,
+        product_count: amount,
+      };
+    });
+    const values3 = {
+      ...values,
+      order_lines: values2,
+    };
     await axios({
       method: id ? 'PUT' : 'POST',
-      url: `${baseUrl}/${id ?? ''}`,
-      data: values,
+      url: `${process.env.REACT_APP_API_URL}/orders/${id ?? ''}`,
+      data: values3,
       headers: {
         Authorization: `Bearer ${token}`,
       },

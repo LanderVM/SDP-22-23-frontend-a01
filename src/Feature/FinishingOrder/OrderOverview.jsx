@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Card } from 'antd';
-import { NavLink } from 'react-router-dom';
+import { Button, Card } from 'antd';
+// import { NavLink } from 'react-router-dom';
+
+import useCustomerApi from '../../api/customerService';
 
 export default function OrderOverview({
   cart, context,
@@ -8,6 +10,8 @@ export default function OrderOverview({
   const { productsFromContext } = useContext(context);
 
   const [cost, setCost] = useState(0);
+
+  const customerService = useCustomerApi();
 
   useEffect(() => {
     let total = [];
@@ -21,6 +25,27 @@ export default function OrderOverview({
     setCost(totalCost);
   }, [cart]);
 
+  const onFinish = async () => {
+    try {
+      const request = await customerService.placeOrder({
+        delivery_country: 'test',
+        delivery_city: 'test',
+        delivery_postal_code: 1,
+        delivery_street: 'test',
+        delivery_house_number: 1,
+        delivery_box: 'test', // ingeven
+        CARRIER_carrier_id: 1, // kiezen
+        PACKAGING_packaging_id: 1, // kiezen
+        SUPPLIER_supplier_id: 1, // kiezen
+        order_lines: productsFromContext,
+      });
+      console.log(request);
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
 
     <Card
@@ -28,9 +53,9 @@ export default function OrderOverview({
       bordered
       actions={[
         // eslint-disable-next-line react/button-has-type
-        <NavLink to="/">
+        <Button onClick={onFinish}>
           Finish order
-        </NavLink>,
+        </Button>,
       ]}
     >
       <table style={{ width: '100%' }}>
