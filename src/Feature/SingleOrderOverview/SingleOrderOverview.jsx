@@ -4,7 +4,7 @@ import { Breadcrumb, Layout } from 'antd';
 import { useParams } from 'react-router';
 import React, { useEffect, useState } from 'react';
 import SideMenu from '../../Components/Sider/SideMenu';
-import useCustomerApi from '../../api/customerService';
+import useOrderApi from '../../api/orderService';
 import Error from '../../Components/Error';
 import Loader from '../../Components/Loader';
 import SingleOrderInfo from './SingleOrderInfo';
@@ -14,7 +14,7 @@ export default function SingleOrderOverview() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState(null);
-  const customerApi = useCustomerApi();
+  const customerApi = useOrderApi();
 
   useEffect(() => {
     const fetchOrder = async () => {

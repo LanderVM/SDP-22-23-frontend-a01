@@ -8,7 +8,7 @@ import {
 
 const baseUrl = `${process.env.REACT_APP_API_URL}`;
 
-export default function useCustomerApi() {
+export default function useOrderApi() {
   const {
     getAccessTokenSilently,
   } = useAuth0();
