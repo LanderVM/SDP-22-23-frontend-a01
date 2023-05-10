@@ -14,8 +14,8 @@ import SingleOrderOverview from './Feature/SingleOrderOverview/SingleOrderOvervi
 function App() {
   return (
     <Layout>
-      <NavBar2 />
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm, token: { colorPrimary: '#EC4242' } }}>
+        <NavBar2 />
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
