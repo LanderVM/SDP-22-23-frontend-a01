@@ -6,7 +6,6 @@ import React, { useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import ChangeAddressModal from './ChangeAddressModal';
 import ChangePackagingModal from './ChangePackagingModal';
-import getStatusAsString from '../../utils';
 
 const size0 = 0;
 
@@ -52,14 +51,13 @@ export default function SingleOrderDetails({ order }) {
             <div>
               {order.order_info.delivery_country}
             </div>
-            {getStatusAsString(order.order_info.order_status).toLowerCase() === 'posted' ? <ChangeAddressModal /> : null}
-
+            <ChangeAddressModal orderDetails={order.order_info} />
           </div>
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 8 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Packaging</h1>
           <div style={{ fontSize: fontSizeMini }}>{order.order_info.name}</div>
-          <ChangePackagingModal />
+          <ChangePackagingModal orderDetails={order.order_info} />
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Total amount: </h1>

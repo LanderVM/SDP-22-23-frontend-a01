@@ -8,7 +8,9 @@ import Loader from '../../Components/Loader';
 
 import usePackagingApi from '../../api/packagingService';
 
-export default function ChangePackagingModal() {
+export default function ChangePackagingModal({ orderDetails }) {
+  if (orderDetails.order_status !== 0) return null;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackaging, setSelectedPackaging] = useState(null);
   const [packaging, setPackaging] = useState([]);

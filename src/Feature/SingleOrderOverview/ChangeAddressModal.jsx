@@ -5,7 +5,10 @@ import React, { useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import './modal.scss';
 
-export default function ChangeAddressModal() {
+export default function ChangeAddressModal({ orderDetails }) {
+  console.log(orderDetails);
+  // if (orderDetails.order_status !== 0) return null; TODO re-enable when done with testing
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const size0 = 0;
   const { lg } = useBreakpoint();
