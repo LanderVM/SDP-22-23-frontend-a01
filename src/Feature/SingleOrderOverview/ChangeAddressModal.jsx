@@ -7,7 +7,6 @@ import './modal.scss';
 import { useForm } from 'antd/es/form/Form';
 import useOrderApi from '../../api/orderService';
 import Error from '../../Components/Error';
-import Loader from '../../Components/Loader';
 
 export function ChangeAddressModal({ orderDetails }) {
   if (orderDetails.order_status !== 0) return null;
@@ -33,7 +32,7 @@ export function ChangeAddressModal({ orderDetails }) {
     },
     {
       name: 'delivery_box',
-      value: orderDetails.delivery_box,
+      value: orderDetails.delivery_box === 'null' ? '' : orderDetails.delivery_box,
     },
     {
       name: 'delivery_postal_code',
@@ -50,19 +49,31 @@ export function ChangeAddressModal({ orderDetails }) {
   ]), []);
 
   const showModal = () => {
+    setLoading(null);
     setIsModalOpen(true);
   };
-  const handleOk = async (values) => {
-    try {
-      setError(null);
-      setLoading(true);
-      const newDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, values);
-      console.log(newDetails);
-    } catch (error2) {
-      setError(error2);
-    } finally {
+  const handleOk = (values) => {
+    const updateOrder = async () => {
+      try {
+        console.log(`0 ${error}`);
+        setError(null);
+        setLoading(true);
+        const newDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, values);
+        console.log(newDetails);
+      } catch (error2) {
+        console.log(`1 ${error}`);
+        console.log(`1_2 ${error2}`);
+        setError(error2);
+        console.log(`2 ${error}`);
+      } finally {
+        console.log(`3 ${error}`);
+      }
+    };
+    updateOrder();
+    setTimeout(() => {
+      if (error === null) setIsModalOpen(false);
       setLoading(false);
-    }
+    }, 0);
   };
 
   const handleCancel = () => {
@@ -79,6 +90,7 @@ export function ChangeAddressModal({ orderDetails }) {
         okText="Update"
         cancelText="Cancel"
         open={isModalOpen}
+        confirmLoading={loading}
         onOk={() => {
           form
             .validateFields()
@@ -157,7 +169,6 @@ export function ChangeAddressModal({ orderDetails }) {
             </Col>
           </Row>
         </Form>
-        <Loader loading={loading} />
       </Modal>
     </>
   );

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import React, { useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { ChangeAddressModalMemo } from './ChangeAddressModal';
-import ChangePackagingModal from './ChangePackagingModal';
+import { ChangePackagingModalMemo } from './ChangePackagingModal';
 
 const size0 = 0;
 
@@ -57,7 +57,7 @@ export default function SingleOrderDetails({ order }) {
         <Col xs={{ span: 24 }} lg={{ span: 8 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Packaging</h1>
           <div style={{ fontSize: fontSizeMini }}>{order.order_info.name}</div>
-          <ChangePackagingModal orderDetails={order.order_info} />
+          <ChangePackagingModalMemo orderDetails={order.order_info} />
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Total amount: </h1>
