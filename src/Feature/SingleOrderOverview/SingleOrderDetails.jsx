@@ -59,8 +59,7 @@ export default function SingleOrderDetails({ order }) {
         <Col xs={{ span: 24 }} lg={{ span: 8 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Packaging</h1>
           <div style={{ fontSize: fontSizeMini }}>{order.order_info.name}</div>
-          {getStatusAsString(order.order_info.order_status).toLowerCase() === 'posted' ? <ChangePackagingModal /> : null}
-
+          <ChangePackagingModal />
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Total amount: </h1>
