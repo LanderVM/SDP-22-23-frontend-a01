@@ -96,6 +96,7 @@ export function ChangeAddressModal({ orderDetails }) {
       </div>
       <Button type="link" onClick={showModal} style={{ padding: size0, fontSize: fontSizeMini }}> &#62;&nbsp;Change address</Button>
       <Modal
+        forceRender
         title="Change address"
         okText="Update"
         cancelText="Cancel"

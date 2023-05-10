@@ -8,10 +8,11 @@ import Loader from '../../Components/Loader';
 
 import usePackagingApi from '../../api/packagingService';
 
-export default function ChangePackagingModal({ orderDetails }) {
+export function ChangePackagingModal({ orderDetails }) {
   if (orderDetails.order_status !== 0) return null;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [selectedPackaging, setSelectedPackaging] = useState(null);
   const [packaging, setPackaging] = useState([]);
   const [error, setError] = useState(null);
@@ -29,7 +30,6 @@ export default function ChangePackagingModal({ orderDetails }) {
         setError(null);
         const data = await packagingApi.getPackaging();
         setPackaging(data.items);
-        console.log(data.items);
       } catch (error2) {
         setError(error2);
       } finally {
@@ -52,7 +52,6 @@ export default function ChangePackagingModal({ orderDetails }) {
   const rowSelection = {
     onChange: (selectedRowKeys) => {
       setSelectedPackaging(selectedRowKeys[0]);
-      console.log(selectedPackaging);
     },
   };
 
@@ -89,6 +88,7 @@ export default function ChangePackagingModal({ orderDetails }) {
         &#62;&nbsp;Change packaging
       </Button>
       <Modal
+        forceRender
         title="Change packaging"
         open={isModalOpen}
         onOk={handleOk}
