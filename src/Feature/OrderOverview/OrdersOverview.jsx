@@ -4,7 +4,7 @@ import {
   Breadcrumb, Empty, Layout, List,
 } from 'antd';
 
-import useCustomerApi from '../../api/customerService';
+import useOrderApi from '../../api/orderService';
 import SideMenu from '../../Components/Sider/SideMenu';
 import Error from '../../Components/Error';
 import Loader from '../../Components/Loader';
@@ -15,7 +15,7 @@ export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const customerApi = useCustomerApi();
+  const customerApi = useOrderApi();
 
   useEffect(() => {
     const fetchOrders = async () => {

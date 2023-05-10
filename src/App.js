@@ -9,6 +9,7 @@ import NavBar2 from './Components/Navibar/NavBar2';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import OrdersOverview from './Feature/OrderOverview/OrdersOverview';
 import AuthLanding from './Components/authentication/AuthLanding';
+import SingleOrderOverview from './Feature/SingleOrderOverview/SingleOrderOverview';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/shoppingCart" element={<ShoppingCart />} />
           <Route path="/orders" element={<OrdersOverview />} />
           <Route path="/login" element={<AuthLanding />} />
+          <Route path="/orders/:orderId" element={<SingleOrderOverview />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ConfigProvider>
