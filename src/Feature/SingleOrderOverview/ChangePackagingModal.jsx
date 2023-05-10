@@ -1,17 +1,41 @@
 import {
   Button, Modal, Table,
 } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import Error from '../../Components/Error';
+import Loader from '../../Components/Loader';
+
+import usePackagingApi from '../../api/packagingService';
 
 export default function ChangePackagingModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackaging, setSelectedPackaging] = useState(null);
+  const [packaging, setPackaging] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const size0 = 0;
   const { lg } = useBreakpoint();
   const fontSizeMini = lg ? '18px' : '14px';
   const positionChangePackageMF = lg ? 'absolute' : 'relative';
+  const packagingApi = usePackagingApi();
 
+  useEffect(() => {
+    const fetchPackaging = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await packagingApi.getPackaging();
+        setPackaging(data.items);
+        console.log(data.items);
+      } catch (error2) {
+        setError(error2);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPackaging();
+  }, []);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -40,53 +64,19 @@ export default function ChangePackagingModal() {
       title: 'Measurements  L x W x H  \n'
           + '(in cm)',
       dataIndex: 'width',
+
     },
     {
       title: 'Price',
       dataIndex: 'price',
     },
   ];
-  const data = [
-    {
-      key: 1,
-      packaging_id: 1,
-      height: 5.5,
-      length: 6.6,
-      width: 4,
-      name: 'Medium',
-      price: 10,
-    },
-    {
-      key: 2,
-      packaging_id: 2,
-      height: 4.5,
-      length: 4.5,
-      width: 3,
-      name: 'Medium',
-      price: 30,
-    },
-    {
-      key: 3,
-      packaging_id: 3,
-      height: 4.5,
-      length: 6.6,
-      width: 5,
-      name: 'MediumOld',
-      price: 14,
-    },
-    {
-      key: 4,
-      packaging_id: 4,
-      height: 3,
-      length: 2,
-      width: 2,
-      name: 'Small',
-      price: 15,
-    },
-  ];
+
   // TODO
   return (
     <>
+      <Loader loading={loading} />
+      <Error error={error} />
       <Button
         style={{
           position: positionChangePackageMF, bottom: size0, padding: size0, fontSize: fontSizeMini,
@@ -109,7 +99,8 @@ export default function ChangePackagingModal() {
             ...rowSelection,
           }}
           columns={columns}
-          dataSource={data}
+          dataSource={packaging}
+          rowKey="packaging_id"
 
         />
       </Modal>
