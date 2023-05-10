@@ -5,14 +5,40 @@ import React, { useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import './modal.scss';
 
-export default function ChangeAddressModal({ orderDetails }) {
-  console.log(orderDetails);
+export function ChangeAddressModal({ orderDetails }) {
   // if (orderDetails.order_status !== 0) return null; TODO re-enable when done with testing
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const size0 = 0;
   const { lg } = useBreakpoint();
   const fontSizeMini = lg ? '18px' : '14px';
+
+  const data = [
+    {
+      name: 'street',
+      value: orderDetails.delivery_street,
+    },
+    {
+      name: 'houseNumber',
+      value: orderDetails.delivery_house_number,
+    },
+    {
+      name: 'boxNumber',
+      value: orderDetails.delivery_box,
+    },
+    {
+      name: 'postalCode',
+      value: orderDetails.delivery_postal_code,
+    },
+    {
+      name: 'city',
+      value: orderDetails.delivery_city,
+    },
+    {
+      name: 'country',
+      value: orderDetails.delivery_country,
+    },
+  ];
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -39,6 +65,7 @@ export default function ChangeAddressModal({ orderDetails }) {
         <Form
           name="basic"
           layout="vertical"
+          fields={data}
           initialValues={{ remember: true }}
         >
           <Row gutter={[16, 16]}>
@@ -62,8 +89,8 @@ export default function ChangeAddressModal({ orderDetails }) {
             </Col>
             <Col xs={24} sm={8}>
               <Form.Item
-                name="busNumber"
-                label="Bus"
+                name="boxNumber"
+                label="Box"
                 rules={[{ type: 'number' }]}
               >
                 <Input />
@@ -104,3 +131,5 @@ export default function ChangeAddressModal({ orderDetails }) {
     </>
   );
 }
+
+export const ChangeAddressModalMemo = React.memo(ChangeAddressModal);
