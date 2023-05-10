@@ -30,6 +30,8 @@ export default function useOrder() {
       ...values,
       order_lines: values2,
     };
+
+    console.log(values3);
     await axios({
       method: id ? 'PUT' : 'POST',
       url: `${baseUrl}/${id ?? ''}`,

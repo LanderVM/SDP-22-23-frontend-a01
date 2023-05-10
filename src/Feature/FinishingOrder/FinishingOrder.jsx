@@ -32,14 +32,25 @@ export default function FinishingOrder() {
   const [loading, setLoading] = useState(true);
 
   const [customer, setCustomer] = useState(null);
+  const [deliveryCity, setDeliveryCity] = useState(null);
+  const [deliveryCounrty, setDeliveryCounrty] = useState(null);
+  const [deliveryPostalCode, setDeliveryPostalCode] = useState(null);
+  const [deliveryStreet, setDeliveryStreet] = useState(null);
+  const [deliveryBus, setDeliveryBus] = useState(null);
+  const [deliveryHouseNumber, setDeliveryHouseNumber] = useState(null);
   const [myCart, setCart] = useState(null);
 
   const profileApi = useProfile();
   const productenApi = useProducts();
   const orderApi = useOrder();
 
-  const callBack = (data) => {
-    console.log(data);
+  const callBack = async (data) => {
+    setDeliveryCity(data.delivery_city);
+    setDeliveryCounrty(data.delivery_country);
+    setDeliveryPostalCode(data.delivery_postal_code);
+    setDeliveryStreet(data.delivery_street);
+    setDeliveryBus(data.delivery_box);
+    setDeliveryHouseNumber(data.delivery_house_number);
   };
 
   useEffect(() => {
@@ -86,15 +97,13 @@ export default function FinishingOrder() {
   const handleOrder = async (e) => {
     e.preventDefault();
     try {
-      console.log(customer);
       const request = await orderApi.placeOrder({
-        delivery_country: 'test',
-        delivery_city: 'test',
-        delivery_postal_code: 1,
-        delivery_street: 'test',
-        delivery_house_number: 1,
-        delivery_box: 'test', // ingeven
-        CARRIER_carrier_id: 1, // kiezen
+        delivery_country: deliveryCounrty || customer.delivery_country,
+        delivery_city: deliveryCity || customer.delivery_city,
+        delivery_postal_code: deliveryPostalCode || customer.delivery_postal_code,
+        delivery_street: deliveryStreet || customer.delivery_street,
+        delivery_house_number: deliveryHouseNumber || customer.delivery_house_number,
+        delivery_box: deliveryBus || customer.delivery_box,
         PACKAGING_packaging_id: 1, // kiezen
         SUPPLIER_supplier_id: 1, // kiezen
         order_lines: productsFromContext,
@@ -110,21 +119,20 @@ export default function FinishingOrder() {
     <div>
       <Loader loading={loading} />
       <Error error={error} />
-      {!loading && !error ? <FinishingOrderOverview customer={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} /> : null}
+      {!loading && !error ? <FinishingOrderOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} /> : null}
     </div>
   );
 }
 
 function FinishingOrderOverview({
-  customer, myCart, handleOrder, handleView, setAddressList,
+  customerDetails, myCart, handleOrder, handleView, setAddressList,
 }) {
   if (myCart.length === 0) {
     return (
       <Empty description=" There are no products in your shoppingcart" />
     );
   }
-
-  if (customer == null || myCart == null || handleView == null) {
+  if (customerDetails == null || myCart == null || handleView == null) {
     return (
       <Loader loading={Loader} />
     );
@@ -163,8 +171,8 @@ function FinishingOrderOverview({
         </Col>
       </Row>
       <Row>
-        <Col>
-          <SingleOrderDetails customer={customer} setAddressList={setAddressList} />
+        <Col span={24} style={{ margin: '20px' }}>
+          <SingleOrderDetails customerDetails={customerDetails} setAddressList={setAddressList} />
         </Col>
       </Row>
     </>

@@ -9,18 +9,16 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 // import ChangePackagingModal from './ChangePackagingModal';
 // import getStatusAsString from '../../utils';
 
-import ChangeAddressModal from './ChangeAddressModal';
+import { ChangeAddressModalMemo } from './ChangeAddressModal';
 
 const size0 = 0;
 
-export default function OrderDetails({ customer, setAddressList }) {
+export default function OrderDetails({ customerDetails, setAddressList }) {
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '36px' : '24px';
   const fontSizeDesc = lg ? '24px' : '18px';
   const fontSizeMini = lg ? '18px' : '14px';
   const positionChangePackageMF = lg ? 'absolute' : 'relative';
-
-  console.log(customer);
 
   return (
     <>
@@ -29,23 +27,8 @@ export default function OrderDetails({ customer, setAddressList }) {
       </Row>
       <Row style={{ fontSize: fontSizeDesc }}>
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>
-          <h1 style={{ fontSize: fontSizeDesc }}>Delivery adress</h1>
-          <div style={{ fontSize: fontSizeMini }}>
-            <div>
-              {customer.supplier_delivery_street}
-                              &nbsp;
-              {customer.supplier_delivery_house_number}
-            </div>
-            <div>
-              {customer.supplier_delivery_postal_code}
-                              &nbsp;
-              {customer.supplier_delivery_city}
-            </div>
-            <div>
-              {customer.supplier_delivery_country}
-            </div>
-          </div>
-          <ChangeAddressModal setAddressList={setAddressList} />
+          <h1>Delivery address</h1>
+          <ChangeAddressModalMemo setAddressList={setAddressList} customerDetails={customerDetails} />
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <NavLink

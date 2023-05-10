@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card } from 'antd';
 // import { NavLink } from 'react-router-dom';
 
-export default function OrderOverview(props, {
+export default function OrderOverview({
   cart, context, onOrder,
 }) {
   const { productsFromContext } = useContext(context);
 
   const [cost, setCost] = useState(0);
-
-  const { handleCallback } = props;
 
   useEffect(() => {
     let total = [];
@@ -34,7 +32,6 @@ export default function OrderOverview(props, {
         </Button>,
       ]}
     >
-      {handleCallback}
       <table style={{ width: '100%' }}>
         <tbody>
           <tr>
