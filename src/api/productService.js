@@ -55,7 +55,7 @@ const useProducts = () => {
 
     const {
       data,
-    } = await axios.get(`${baseUrl}/filter?${url.toString()}`);
+    } = await axios.get(`${baseUrl}?${url.toString()}`);
     return data.items;
   }, []);
 
