@@ -1,9 +1,11 @@
 import {
   Button, Col, Form, Input, Modal, Row,
 } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import './modal.scss';
+import { useForm } from 'antd/es/form/Form';
+import useOrderApi from '../../api/orderService';
 
 export function ChangeAddressModal({ orderDetails }) {
   // if (orderDetails.order_status !== 0) return null; TODO re-enable when done with testing
@@ -12,38 +14,42 @@ export function ChangeAddressModal({ orderDetails }) {
   const size0 = 0;
   const { lg } = useBreakpoint();
   const fontSizeMini = lg ? '18px' : '14px';
+  // eslint-disable-next-line no-unused-vars
+  const orderApi = useOrderApi();
 
-  const data = [
+  const [form] = useForm();
+  useEffect(() => form.setFields([
     {
-      name: 'street',
+      name: 'delivery_street',
       value: orderDetails.delivery_street,
     },
     {
-      name: 'houseNumber',
+      name: 'delivery_house_number',
       value: orderDetails.delivery_house_number,
     },
     {
-      name: 'boxNumber',
+      name: 'delivery_box',
       value: orderDetails.delivery_box,
     },
     {
-      name: 'postalCode',
+      name: 'delivery_postal_code',
       value: orderDetails.delivery_postal_code,
     },
     {
-      name: 'city',
+      name: 'delivery_city',
       value: orderDetails.delivery_city,
     },
     {
-      name: 'country',
+      name: 'delivery_country',
       value: orderDetails.delivery_country,
     },
-  ];
+  ]), []);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
+  const handleOk = (values) => {
+    orderApi.updateShippingDetailsById(orderDetails.order_id, values);
     // TODO try post & show confirmation, catch & display error
     setIsModalOpen(false);
   };
@@ -57,21 +63,32 @@ export function ChangeAddressModal({ orderDetails }) {
       <Button type="link" onClick={showModal} style={{ padding: size0, fontSize: fontSizeMini }}> &#62;&nbsp;Change address</Button>
       <Modal
         title="Change address"
+        okText="Update"
+        cancelText="Cancel"
         open={isModalOpen}
-        onOk={handleOk}
+        onOk={() => {
+          form
+            .validateFields()
+            .then((values) => {
+              handleOk(values);
+            })
+            .catch((info) => {
+              console.log('Validate Failed:', info);
+            });
+        }}
         onCancel={handleCancel}
         width={700}
       >
         <Form
+          form={form}
           name="basic"
           layout="vertical"
-          fields={data}
           initialValues={{ remember: true }}
         >
           <Row gutter={[16, 16]}>
             <Col xs={24} sm={8}>
               <Form.Item
-                name="street"
+                name="delivery_street"
                 label="Street"
                 rules={[{ required: true, type: 'string' }]}
               >
@@ -80,18 +97,17 @@ export function ChangeAddressModal({ orderDetails }) {
             </Col>
             <Col xs={24} sm={8}>
               <Form.Item
-                name="houseNumber"
+                name="delivery_house_number"
                 label="House Number"
-                rules={[{ required: true, type: 'number' }]}
+                rules={[{ required: true }]}
               >
                 <Input />
               </Form.Item>
             </Col>
             <Col xs={24} sm={8}>
               <Form.Item
-                name="boxNumber"
+                name="delivery_box"
                 label="Box"
-                rules={[{ type: 'number' }]}
               >
                 <Input />
               </Form.Item>
@@ -100,16 +116,16 @@ export function ChangeAddressModal({ orderDetails }) {
           <Row gutter={[16, 16]}>
             <Col xs={24} sm={8}>
               <Form.Item
-                name="postalCode"
+                name="delivery_postal_code"
                 label="Postal Code"
-                rules={[{ required: true, type: 'number' }]}
+                rules={[{ required: true }]}
               >
                 <Input />
               </Form.Item>
             </Col>
             <Col xs={24} sm={8}>
               <Form.Item
-                name="city"
+                name="delivery_city"
                 label="City"
                 rules={[{ required: true, type: 'string' }]}
               >
@@ -118,7 +134,7 @@ export function ChangeAddressModal({ orderDetails }) {
             </Col>
             <Col xs={24} sm={8}>
               <Form.Item
-                name="country"
+                name="delivery_country"
                 label="Country"
                 rules={[{ required: true, type: 'string' }]}
               >

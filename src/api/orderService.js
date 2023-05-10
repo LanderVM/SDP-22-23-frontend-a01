@@ -37,8 +37,21 @@ export default function useOrderApi() {
     return data;
   }, [getAccessTokenSilently]);
 
+  const updateShippingDetailsById = useCallback(async (orderId, shippingDetails) => {
+    const token = await getAccessTokenSilently();
+    const {
+      data,
+    } = await axios.put(`${baseUrl}/orders/`, { order_id: orderId, ...shippingDetails }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  }, [getAccessTokenSilently]);
+
   return {
     getOrders,
     getOrderById,
+    updateShippingDetailsById,
   };
 }
