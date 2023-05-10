@@ -6,11 +6,15 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import './modal.scss';
 import { useForm } from 'antd/es/form/Form';
 import useOrderApi from '../../api/orderService';
+import Error from '../../Components/Error';
+import Loader from '../../Components/Loader';
 
 export function ChangeAddressModal({ orderDetails }) {
   // if (orderDetails.order_status !== 0) return null; TODO re-enable when done with testing
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const size0 = 0;
   const { lg } = useBreakpoint();
   const fontSizeMini = lg ? '18px' : '14px';
@@ -48,10 +52,16 @@ export function ChangeAddressModal({ orderDetails }) {
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = (values) => {
-    orderApi.updateShippingDetailsById(orderDetails.order_id, values);
-    // TODO try post & show confirmation, catch & display error
-    setIsModalOpen(false);
+  const handleOk = async (values) => {
+    try {
+      setLoading(true);
+      const newDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, values);
+      console.log(newDetails);
+    } catch (error2) {
+      setError(error2);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -73,12 +83,13 @@ export function ChangeAddressModal({ orderDetails }) {
               handleOk(values);
             })
             .catch((info) => {
-              console.log('Validate Failed:', info);
+              setError(info);
             });
         }}
         onCancel={handleCancel}
         width={700}
       >
+        <Error error={error} />
         <Form
           form={form}
           name="basic"
@@ -143,6 +154,7 @@ export function ChangeAddressModal({ orderDetails }) {
             </Col>
           </Row>
         </Form>
+        <Loader loading={loading} />
       </Modal>
     </>
   );
