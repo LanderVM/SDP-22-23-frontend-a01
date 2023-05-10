@@ -25,35 +25,7 @@ export default function useCustomerApi() {
     return data;
   }, [getAccessTokenSilently]);
 
-  const placeOrder = useCallback(async (order) => {
-    const token = await getAccessTokenSilently();
-    const {
-      id,
-      ...values
-    } = order;
-    const values2 = values.order_lines.map((e) => {
-      const { productId, amount } = e;
-      return {
-        PRODUCT_product_id: productId,
-        product_count: amount,
-      };
-    });
-    const values3 = {
-      ...values,
-      order_lines: values2,
-    };
-    await axios({
-      method: id ? 'PUT' : 'POST',
-      url: `${process.env.REACT_APP_API_URL}/orders/${id ?? ''}`,
-      data: values3,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }, [getAccessTokenSilently]);
-
   return {
     getOrders,
-    placeOrder,
   };
 }

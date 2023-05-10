@@ -86,7 +86,18 @@ function NavBar2() {
           </NavLink>
         </div>
         <Space align="center" style={{ float: 'right', height: heightNB, marginTop: '7px' }}>
-          <Badge count={productsFromContext === null ? 0 : productsFromContext.length} color="geekblue" offset={[3, 5]} data-cy="shoppingCartBadge">
+          <Badge
+            count={productsFromContext === null ? 0 : productsFromContext.map((e) => e.amount).reduce(
+              (accumulator, currentValue) => accumulator + currentValue,
+              0,
+            )}
+            color="geekblue"
+            offset={[3, 2]}
+            data-cy="shoppingCartBadge"
+            overflowCount={99}
+            size="default"
+
+          >
             <ShoppingCartButton />
           </Badge>
           <NotificationButton />
