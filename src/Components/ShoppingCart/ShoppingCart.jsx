@@ -25,15 +25,19 @@ export default function ShoppingCart() {
   const [loading, setLoading] = useState(true);
 
   const [myCart, setCart] = useState(null);
-  const productenApi = useProducts();
+  const productApi = useProducts();
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await productenApi.getByIds(productsFromContext);
-        setCart(data);
+        if (productsFromContext.length === 0) {
+          setCart([]);
+        } else {
+          const data = await productApi.getByIds(productsFromContext);
+          setCart(data);
+        }
       } catch (error2) {
         setError(error2);
       } finally {
@@ -46,7 +50,7 @@ export default function ShoppingCart() {
   const handleView = useCallback(async (nameToView) => {
     try {
       setError(null);
-      await productenApi.getByName(nameToView);
+      await productApi.getByName(nameToView);
     } catch (err) {
       setError(err);
     }
@@ -70,7 +74,6 @@ export default function ShoppingCart() {
         <Loader loading={loading} />
         <Error error={error} />
         <div>
-          (
           <List
             bordered
             style={{ backgroundColor: 'white' }}
@@ -88,7 +91,6 @@ export default function ShoppingCart() {
               </List.Item>
             )}
           />
-          )
         </div>
       </Col>
       <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
