@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider, Layout, theme } from 'antd';
 import {
-  HomePage, NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage,
+  NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import NavBar2 from './Components/Navibar/NavBar2';
@@ -19,7 +19,7 @@ function App() {
         <NavBar2 />
         <Routes>
           <Route index element={<ProductsPage />} />
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/home" element={<ProductsPage />} />
           <Route path="/track" element={<TrackingPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:productId" element={<ProductOverviewPage />} />

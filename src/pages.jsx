@@ -6,12 +6,6 @@ import SingleProduct from './Components/products/SingleProduct';
 import TrackingInput from './Components/Tracking/TrackingInput';
 import ProfileOverview from './Components/profile/ProfileOverview';
 
-export function HomePage() {
-  return (
-    <main />
-  );
-}
-
 export function NotFoundPage() {
   return (
     <main>
