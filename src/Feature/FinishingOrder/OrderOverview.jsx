@@ -28,7 +28,7 @@ export default function OrderOverview({
       actions={[
         // eslint-disable-next-line react/button-has-type
         <Button onClick={onOrder}>
-          Finish order
+          Place order
         </Button>,
       ]}
     >

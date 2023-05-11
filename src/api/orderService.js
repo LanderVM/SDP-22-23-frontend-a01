@@ -70,7 +70,7 @@ export default function useOrderApi() {
     console.log(values3);
     await axios({
       method: id ? 'PUT' : 'POST',
-      url: `${baseUrl}/${id ?? ''}`,
+      url: `${baseUrl}/orders/${id ?? ''}`,
       data: values3,
       headers: {
         Authorization: `Bearer ${token}`,

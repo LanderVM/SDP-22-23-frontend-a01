@@ -30,7 +30,7 @@ export default function ShoppingCartOverview({
       actions={[
         // eslint-disable-next-line react/button-has-type
         <NavLink to="/FinishingOrder">
-          Continue to payment
+          Proceed to checkout
         </NavLink>,
       ]}
     >
