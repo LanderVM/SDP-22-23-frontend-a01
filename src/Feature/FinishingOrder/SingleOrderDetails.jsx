@@ -1,7 +1,6 @@
 import {
   Col, Row,
 } from 'antd';
-import { NavLink } from 'react-router-dom';
 import React from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
@@ -10,15 +9,14 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 // import getStatusAsString from '../../utils';
 
 import { ChangeAddressModalMemo } from './ChangeAddressModal';
+import { ChangePackagingModalMemo } from './ChangePackagingModal';
 
-const size0 = 0;
-
-export default function OrderDetails({ customerDetails, setAddressList }) {
+export default function OrderDetails({
+  customerDetails, setAddressList, setPackaging,
+}) {
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '36px' : '24px';
   const fontSizeDesc = lg ? '24px' : '18px';
-  const fontSizeMini = lg ? '18px' : '14px';
-  const positionChangePackageMF = lg ? 'absolute' : 'relative';
 
   return (
     <>
@@ -30,15 +28,12 @@ export default function OrderDetails({ customerDetails, setAddressList }) {
           <h1>Delivery address</h1>
           <ChangeAddressModalMemo setAddressList={setAddressList} customerDetails={customerDetails} />
         </Col>
+        <Col xs={{ span: 24 }} lg={{ span: 6 }}>
+          <h1>Packaging</h1>
+          <ChangePackagingModalMemo setPackaging={setPackaging} />
+        </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
-          <NavLink
-            to="/track"
-            style={{
-              position: positionChangePackageMF, bottom: size0, height: '26px', fontSize: fontSizeMini, color: '#1677ff',
-            }}
-          >
-            &#62;&nbsp;Track order
-          </NavLink>
+          <h1>Estimated delivery</h1>
         </Col>
       </Row>
 

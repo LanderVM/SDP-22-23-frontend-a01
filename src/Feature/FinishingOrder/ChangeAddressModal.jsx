@@ -1,14 +1,18 @@
+import React, { useState, useEffect } from 'react';
+
 import {
   Button, Col, Form, Input, Modal, Row,
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 // import { countries } from 'countries-list';
-import React, { useState, useEffect } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+
+import Error from '../../Components/Error';
 import './modal.scss';
 
 export function ChangeAddressModal({ setAddressList, customerDetails }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
   const [form] = useForm();
   const [currentDetails, setCurrentDetails] = useState(customerDetails);
   const size0 = 0;
@@ -83,12 +87,13 @@ export function ChangeAddressModal({ setAddressList, customerDetails }) {
               handleOk(values);
             })
             .catch((info) => {
-              console.log(info);
+              setError(info.errors);
             });
         }}
         onCancel={handleCancel}
         width={700}
       >
+        <Error error={error} />
         <Form
           name="basic"
           layout="vertical"
