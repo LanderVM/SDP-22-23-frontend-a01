@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Card, Divider } from 'antd';
-import './ShoppingCart.css';
-import { NavLink } from 'react-router-dom';
+import { Button, Card } from 'antd';
+// import { NavLink } from 'react-router-dom';
 
-export default function ShoppingCartOverview({
-  cart, context,
+export default function OrderOverview({
+  cart, context, onOrder,
 }) {
   const { productsFromContext } = useContext(context);
 
@@ -23,15 +22,14 @@ export default function ShoppingCartOverview({
   }, [cart]);
 
   return (
-
     <Card
       title="Overview"
       bordered
       actions={[
         // eslint-disable-next-line react/button-has-type
-        <NavLink to="/FinishingOrder">
-          Continue to payment
-        </NavLink>,
+        <Button onClick={onOrder}>
+          Finish order
+        </Button>,
       ]}
     >
       <table style={{ width: '100%' }}>
@@ -53,23 +51,24 @@ export default function ShoppingCartOverview({
               </strong>
             </td>
           </tr>
-          <Divider style={{ borderTop: '1px solid white' }} />
-          <tr>
-            <td>
-              Subtotal:
+          <tr id="trShipping">
+            <td>Shipping Costs:</td>
+            <td id="priceTd">
+              <strong>
+                €&nbsp;20
+              </strong>
             </td>
+          </tr>
+          &nbsp;
+          <tr>
+            <td>Total:</td>
             <td id="priceTd">
               <strong>
                 €&nbsp;
                 {20 + cost}
               </strong>
-            </td>
-          </tr>
-          <tr>
-            <td style={{ fontSize: '10px' }}>
-              (Excl. shipping costs)
-            </td>
 
+            </td>
           </tr>
 
         </tbody>
