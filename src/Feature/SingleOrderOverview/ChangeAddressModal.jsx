@@ -33,7 +33,7 @@ export function ChangeAddressModal({ orderDetails }) {
     },
     {
       name: 'delivery_box',
-      value: currentDetails.delivery_box === 'null' ? '' : orderDetails.delivery_box,
+      value: currentDetails.delivery_box === 'null' || currentDetails.delivery_box === null ? '' : orderDetails.delivery_box,
     },
     {
       name: 'delivery_postal_code',
@@ -53,12 +53,12 @@ export function ChangeAddressModal({ orderDetails }) {
     setLoading(null);
     setIsModalOpen(true);
   };
-  const handleOk = (values) => {
+  const handleOk = (toUpdateValues) => {
     const updateOrder = async () => {
       try {
         setError(null);
         setLoading(true);
-        const updatedDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, values);
+        const updatedDetails = await orderApi.updateShippingDetailsById(orderDetails.order_id, toUpdateValues);
         setCurrentDetails(updatedDetails.items);
         setLoading(false);
         setIsModalOpen(false);
