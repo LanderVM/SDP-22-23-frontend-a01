@@ -98,12 +98,12 @@ export default function FinishingOrder() {
     e.preventDefault();
     try {
       const request = await orderApi.placeOrder({
-        delivery_country: deliveryCounrty || customer.delivery_country,
-        delivery_city: deliveryCity || customer.delivery_city,
-        delivery_postal_code: deliveryPostalCode || customer.delivery_postal_code,
-        delivery_street: deliveryStreet || customer.delivery_street,
-        delivery_house_number: deliveryHouseNumber || customer.delivery_house_number,
-        delivery_box: deliveryBus || customer.delivery_box,
+        delivery_country: deliveryCounrty || customer.supplier_delivery_country,
+        delivery_city: deliveryCity || customer.supplier_delivery_city,
+        delivery_postal_code: deliveryPostalCode || customer.supplier_delivery_postal_code.toString(),
+        delivery_street: deliveryStreet || customer.supplier_delivery_street,
+        delivery_house_number: deliveryHouseNumber || customer.supplier_delivery_house_number.toString(),
+        delivery_box: deliveryBus || customer.supplier_delivery_box,
         PACKAGING_packaging_id: 1, // kiezen
         SUPPLIER_supplier_id: 1, // kiezen
         order_lines: productsFromContext,
