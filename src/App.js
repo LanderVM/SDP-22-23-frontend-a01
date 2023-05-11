@@ -18,7 +18,7 @@ function App() {
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm, token: { colorPrimary: '#EC4242' } }}>
         <NavBar2 />
         <Routes>
-          <Route index element={<HomePage />} />
+          <Route index element={<ProductsPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/track" element={<TrackingPage />} />
           <Route path="/products" element={<ProductsPage />} />
