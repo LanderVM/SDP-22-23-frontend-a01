@@ -13,7 +13,7 @@ export default function SingleProductElement({
   product,
 }) {
   const {
-    addProductToShoppingCartContext,
+    addProductToShoppingCartContext, productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
 
   const { md } = useBreakpoint();
@@ -28,6 +28,11 @@ export default function SingleProductElement({
   const fontSizeDetails = md ? '30px' : '20px';
   const marginDetails = md ? '10px' : '5px';
 
+  const productWanted = productsFromContext.filter((e) => e.productId === product.product_id);
+  let productAmount = 0;
+  if (productWanted.length === 1) {
+    productAmount = productWanted.map((el) => el.amount);
+  }
   return (
     <div>
       <NavLink to="/products" className="linkTo">
@@ -58,7 +63,7 @@ export default function SingleProductElement({
             type="primary"
             danger
             data-cy="btnAddToCart"
-            onClick={() => addProductToShoppingCartContext(product)}
+            onClick={() => addProductToShoppingCartContext(product, parseInt(productAmount, 10) + 1)}
             style={{
               fontSize: fontSizeIcon, height: buttonHeight, verticalAlign: '10px', margin: marginDetails,
             }}

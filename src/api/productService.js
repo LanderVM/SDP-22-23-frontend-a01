@@ -23,7 +23,7 @@ const useProducts = () => {
   const getById = useCallback(async (productId) => {
     const {
       data,
-    } = await axios.get(`${baseUrl}/id/${productId}`);
+    } = await axios.get(`${baseUrl}/ids?productId=${productId}`);
     return data;
   }, []);
 

@@ -1,6 +1,6 @@
 import { UserOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
-import './navibar.css';
+import './navibar.scss';
 
 export default function ProfileButton() {
   return (
