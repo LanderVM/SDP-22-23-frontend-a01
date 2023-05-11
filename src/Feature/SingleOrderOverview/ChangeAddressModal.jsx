@@ -10,8 +10,6 @@ import useOrderApi from '../../api/orderService';
 import Error from '../../Components/Error';
 
 export function ChangeAddressModal({ orderDetails }) {
-  if (orderDetails.order_status !== 0) return null;
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -94,7 +92,9 @@ export function ChangeAddressModal({ orderDetails }) {
       <div>
         {currentDetails.delivery_country}
       </div>
-      <Button type="link" onClick={showModal} style={{ padding: size0, fontSize: fontSizeMini }}> &#62;&nbsp;Change address</Button>
+      { orderDetails.order_status === 0
+        ? <Button type="link" onClick={showModal} style={{ padding: size0, fontSize: fontSizeMini }}> &#62;&nbsp;Change address</Button>
+        : null}
       <Modal
         forceRender
         title="Change address"

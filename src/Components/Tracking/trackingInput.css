@@ -38,4 +38,12 @@
   min-height: 50px;
 }
 
+.ant-steps-item .ant-steps-icon {
+  color: black !important;
+}
+
+.ant-steps-item-active .ant-steps-icon {
+  color: #EC4242 !important;
+}
+
 /*# sourceMappingURL=trackingInput.css.map */
