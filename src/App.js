@@ -11,6 +11,7 @@ import OrdersOverview from './Feature/OrderOverview/OrdersOverview';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './Feature/SingleOrderOverview/SingleOrderOverview';
 import ProfileOverview from './Components/profile/ProfileOverview';
+import './App.css';
 
 function App() {
   return (
