@@ -139,14 +139,14 @@ export default function FinishingOrder() {
 function FinishingOrderOverview({
   customerDetails, myCart, handleOrder, handleView, setAddressList, setPackaging,
 }) {
+  if (customerDetails == null || myCart == null || handleView == null) {
+    return (
+      null
+    );
+  }
   if (myCart.length === 0) {
     return (
       <Empty description=" There are no products in your shoppingcart" />
-    );
-  }
-  if (customerDetails == null || myCart == null || handleView == null) {
-    return (
-      <Loader loading={Loader} />
     );
   }
   const { lg } = useBreakpoint();
