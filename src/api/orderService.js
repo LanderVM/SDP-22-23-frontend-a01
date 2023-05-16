@@ -13,11 +13,13 @@ export default function useOrderApi() {
     getAccessTokenSilently,
   } = useAuth0();
 
-  const getOrders = useCallback(async () => {
+  const getOrders = useCallback(async (statuses) => {
     const token = await getAccessTokenSilently();
+    const url = new URLSearchParams();
+    if (statuses.length > 0) statuses.map((id) => url.append('statuses', id));
     const {
       data,
-    } = await axios.get(`${baseUrl}/customers/orders`, {
+    } = await axios.get(`${baseUrl}/customers/orders?${url.toString()}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

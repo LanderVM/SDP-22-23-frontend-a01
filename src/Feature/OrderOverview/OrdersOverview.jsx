@@ -10,19 +10,27 @@ import Error from '../../Components/Error';
 import Loader from '../../Components/Loader';
 import { OrderInfo } from './index';
 import RequireAuth from '../../Components/authentication/RequireAuth';
+import OrderFilter from './OrderFilter';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const [statuses, setStatuses] = useState([]);
+
   const customerApi = useOrderApi();
+
+  const callBack = (data) => {
+    setStatuses(data.statusesChecked);
+  };
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         setLoading(true);
         setError(null);
-        const dbOrderList = await customerApi.getOrders();
+        const dbOrderList = await customerApi.getOrders(statuses);
         setOrderList(dbOrderList);
       } catch (error2) {
         setError(error2);
@@ -31,7 +39,7 @@ export default function OrdersOverview() {
       }
     };
     fetchOrders();
-  }, []);
+  }, [statuses]);
 
   return (
     <RequireAuth>
@@ -43,6 +51,7 @@ export default function OrdersOverview() {
             margin: '0 14px',
           }}
           >
+            <OrderFilter handleCallback={callBack} />
             <h1 style={{ fontSize: '48px', margin: '0' }}>Orders</h1>
             <Error error={error} />
             {!error

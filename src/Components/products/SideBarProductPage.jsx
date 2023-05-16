@@ -42,6 +42,12 @@ export default function SideBarProductPage(props) {
   };
 
   useEffect(() => {
+    handleCallback({
+      priceS, priceE, inStock, brand, category,
+    });
+  }, [priceS, priceE, inStock, brand, category]);
+
+  useEffect(() => {
     const fetchBrands = async () => {
       try {
         const data = await productenApi.getBrands();
@@ -71,11 +77,7 @@ export default function SideBarProductPage(props) {
         padding: '15px 30px', borderRadius: '10px',
       }}
     >
-      {handleCallback({
-        priceS, priceE, inStock, brand, category,
-      })}
-
-      <Collapse bordered={false} defaultActiveKey={['4']} className="sideBar">
+      <Collapse bordered={false} defaultActiveKey={['1']} className="sideBar">
         <Panel header="Product Category" key="1">
           <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={category} onChange={onCategoriesChange} />
         </Panel>

@@ -52,8 +52,8 @@ export default function ProductsList() {
   const [priceStart, setPriceStart] = useState(0);
   const [priceEnd, setPriceEnd] = useState(2000);
   const [inStock, setInStock] = useState(true);
-  const [brand, setBrand] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [brand, setBrand] = useState(null);
+  const [category, setCategory] = useState(null);
 
   const navigate = useNavigate();
 
