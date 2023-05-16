@@ -34,7 +34,7 @@ export default function OrderOverview({
     >
       <table style={{ width: '100%' }}>
         <tbody>
-          <tr>
+          <tr style={{ marginBottom: '0px', paddingBottom: '0px' }}>
             <td>
               Articles (
               {productsFromContext.map((e) => e.amount).reduce(
@@ -47,7 +47,23 @@ export default function OrderOverview({
             <td id="priceTd">
               <strong>
                 €&nbsp;
-                {cost}
+                {cost - cost * 0.21}
+              </strong>
+            </td>
+          </tr>
+          <tr style={{ marginTop: '0px', paddingTop: '0px' }}>
+            <td style={{ fontSize: '10px', color: 'grey' }}>
+              Excluding VAT
+            </td>
+          </tr>
+          <tr>
+            <td>
+              VAT
+            </td>
+            <td id="priceTd">
+              <strong>
+                €&nbsp;
+                {cost * 0.21 }
               </strong>
             </td>
           </tr>

@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ShoppingCartOutlined, PlusOutlined } from '@ant-design/icons';
 import {
-  Row, Col, Grid, Button,
+  Row, Col, Grid, Button, InputNumber,
 } from 'antd';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import './Sidebar.css';
@@ -15,7 +15,7 @@ export default function ProductElement({
   const {
     addProductToShoppingCartContext, productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
-
+  const [productAmount, setProductAmount] = useState(1);
   const link = `/product/${product.product_id}`;
 
   const { lg } = useBreakpoint();
@@ -26,10 +26,15 @@ export default function ProductElement({
   const buttonHeight = lg ? '40px' : '35px';
 
   const productWanted = productsFromContext.filter((e) => e.productId === product.product_id);
-  let productAmount = 0;
+  let productAmountExisting = 0;
   if (productWanted.length === 1) {
-    productAmount = productWanted.map((el) => el.amount);
+    productAmountExisting = productWanted.map((el) => el.amount);
   }
+
+  const onChangeAmount = (value) => {
+    console.log(value);
+    setProductAmount(value);
+  };
 
   return (
     <Row gutter={{
@@ -49,18 +54,21 @@ export default function ProductElement({
           {' '}
           {product.price}
         </div>
-        <Button
-          type="primary"
-          danger
-          data-cy="btnAddToCart"
-          onClick={() => addProductToShoppingCartContext(product, parseInt(productAmount, 10) + 1)}
-          style={{
-            fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
-          }}
-        >
-          <PlusOutlined style={{ fontSize: fontSizeIco2, verticalAlign: '3px' }} />
-          <ShoppingCartOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
-        </Button>
+        <div>
+          <InputNumber min={1} max={100} defaultValue={1} onChange={onChangeAmount} />
+          <Button
+            type="primary"
+            danger
+            data-cy="btnAddToCart"
+            onClick={() => addProductToShoppingCartContext(product, parseInt(productAmountExisting, 10) + productAmount)}
+            style={{
+              fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
+            }}
+          >
+            <PlusOutlined style={{ fontSize: fontSizeIco2, verticalAlign: '3px' }} />
+            <ShoppingCartOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
+          </Button>
+        </div>
       </Col>
     </Row>
   );
