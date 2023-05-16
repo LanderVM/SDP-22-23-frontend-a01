@@ -3,18 +3,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Dropdown } from 'antd';
 import LoginButtonDropDown from './LoginButton';
 import LogoutButtonDropDown from './LogoutButton';
-import OrderButton from '../Navibar/OrderButton';
 import ProfileButton from '../Navibar/ProfileButton';
 
 const items = [
-  {
-    label: (
-      <div data-cy="navibar_dropdownMenu_orderButton">
-        <OrderButton />
-      </div>
-    ),
-    key: '0',
-  },
+
   {
     label: (
       <div data-cy="navibar_dropdownMenu_profileButton">

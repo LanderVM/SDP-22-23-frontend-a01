@@ -39,11 +39,11 @@ const items = [
   },
   {
     label: (
-      <NavLink to="/notifications">
-        Notifications
+      <NavLink to="/orders">
+        Orders
       </NavLink>
     ),
-    key: 'notifications',
+    key: 'orders',
   },
 ];
 function NavBar2() {
