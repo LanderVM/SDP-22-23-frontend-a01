@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Menu, Badge, Layout, Space, Grid, Dropdown, theme, ConfigProvider,
 } from 'antd';
-import { NotificationButton, ShoppingCartButton, AccountButton } from './Buttons';
+import { NotificationButton, ShoppingCartButton, AccountButton } from './NavbarButtons';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import './navibar.scss';
 
