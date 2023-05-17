@@ -7,7 +7,7 @@ import {
 import ScrollToTop from './Contexts/ScrollToTop';
 import Navbar from './Components/Navibar/Navbar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
-import OrdersOverview from './Feature/OrderOverview/OrdersOverview';
+import OrdersOverview from './Feature/OrderOverview/index';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './Feature/SingleOrderOverview/SingleOrderOverview';
 import ProfileOverview from './Components/profile/ProfileOverview';

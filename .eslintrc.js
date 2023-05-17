@@ -24,5 +24,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-nested-ternary': 'off',
+    'no-restricted-imports': [
+      'error', { patterns: ['@/features/*/*'] },
+    ],
   },
 };

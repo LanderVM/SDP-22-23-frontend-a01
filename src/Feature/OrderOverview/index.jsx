@@ -1,4 +1,3 @@
-import OrderInfo from './OrderInfo';
-import OrderFilter from './OrderFilter';
+import OrdersOverview from './OrdersOverview';
 
-export { OrderInfo, OrderFilter };
+export default OrdersOverview;

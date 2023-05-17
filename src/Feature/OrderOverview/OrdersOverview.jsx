@@ -9,7 +9,8 @@ import SideMenu from '../../Components/Sider/SideMenu';
 import Error from '../../Components/Error';
 import Loader from '../../Components/Loader';
 import RequireAuth from '../../Components/authentication/RequireAuth';
-import { OrderFilter, OrderInfo } from './index';
+import OrderFilter from './OrderFilter';
+import OrderInfo from './OrderInfo';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);
@@ -50,8 +51,8 @@ export default function OrdersOverview() {
             margin: '0 14px',
           }}
           >
-            <OrderFilter handleCallback={callBack} />
             <h1 style={{ fontSize: '48px', margin: '0' }}>Orders</h1>
+            <OrderFilter handleCallback={callBack} />
             <Error error={error} />
             {!error
               ? <Loader loading={loading} />
