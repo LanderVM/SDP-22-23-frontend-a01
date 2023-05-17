@@ -43,7 +43,6 @@ export default function SideBarProductPage(props) {
   };
 
   const onSortByChange = (value) => {
-    console.log(value.target.value);
     setSortBy(value.target.value);
   };
 
@@ -140,7 +139,7 @@ export default function SideBarProductPage(props) {
         <Panel header="Sort" key="5">
           <Radio.Group defaultValue={sortBy} onChange={onSortByChange}>
             <Space direction="vertical">
-              {sortValues.map((e) => <Radio value={e.value}>{e.name}</Radio>)}
+              {sortValues.map((e) => <Radio value={e.value} key={e.value}>{e.name}</Radio>)}
             </Space>
           </Radio.Group>
         </Panel>

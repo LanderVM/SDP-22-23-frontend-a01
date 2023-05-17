@@ -58,15 +58,20 @@ const useProducts = () => {
     return data.items;
   }, []);
 
-  const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category, sortBy) => {
+  const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category, sortBy, name) => {
     const url = new URLSearchParams();
 
-    if (priceStart) url.append('startPrice', priceStart);
-    if (priceEnd) url.append('endPrice', priceEnd);
-    if (inStock) url.append('inStock', inStock);
-    if (brand.length > 0) brand.map((c) => url.append('brand', c));
-    if (category.length > 0) category.map((b) => url.append('category', b));
-    if (sortBy) url.append('sortBy', sortBy);
+    try {
+      if (name) url.append('name', name);
+      if (priceStart) url.append('startPrice', priceStart);
+      if (priceEnd) url.append('endPrice', priceEnd);
+      if (inStock) url.append('inStock', inStock);
+      if (brand) if (brand.length > 0) brand.map((c) => url.append('brand', c));
+      if (category) if (category.length > 0) category.map((b) => url.append('category', b));
+      if (sortBy) url.append('sortBy', sortBy);
+    } catch (error2) {
+      throw new Error(`Something whent wrong while trying to fetch products ${error2}`);
+    }
 
     const {
       data,

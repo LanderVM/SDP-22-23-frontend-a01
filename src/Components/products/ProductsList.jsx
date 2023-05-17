@@ -7,6 +7,7 @@ import useProducts from '../../api/productService';
 import Error from '../Error';
 import Loader from '../Loader';
 import Product from './ProductElement';
+import SearchBar from './SearchBar';
 import SideBarProductPage from './SideBarProductPage';
 
 const { useBreakpoint } = Grid;
@@ -56,6 +57,8 @@ export default function ProductsList() {
   const [category, setCategory] = useState(null);
   const [sortBy, setSortBy] = useState(null);
 
+  const [name, setName] = useState(null);
+
   const navigate = useNavigate();
 
   const productenApi = useProducts();
@@ -69,12 +72,16 @@ export default function ProductsList() {
     setSortBy(data.sortBy);
   };
 
+  const callBackSearch = (data) => {
+    setName(data.name);
+  };
+
   useEffect(() => {
     const fetchProducten = async () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await productenApi.getFiltered(priceStart, priceEnd, inStock, brand, category, sortBy);
+        const data = await productenApi.getFiltered(priceStart, priceEnd, inStock, brand, category, sortBy, name);
         setProducten(data);
       } catch (error2) {
         setError(error2);
@@ -83,7 +90,7 @@ export default function ProductsList() {
       }
     };
     fetchProducten();
-  }, [priceStart, priceEnd, inStock, brand, category, sortBy]);
+  }, [priceStart, priceEnd, inStock, brand, category, sortBy, name]);
 
   const handleView = useCallback(async (nameToView) => {
     try {
@@ -110,7 +117,9 @@ export default function ProductsList() {
       <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
         <Loader loading={loading} />
         <Error error={error} />
-        {!loading && !error ? <ProductsListElement products={producten} handleView={handleView} />
+        <SearchBar handleSearch={callBackSearch} priceStart={priceStart} priceEnd={priceEnd} inStock={inStock} brand={brand} category={category} />
+        {!loading && !error
+          ? <ProductsListElement products={producten} handleView={handleView} />
           : null}
       </Col>
     </Row>
