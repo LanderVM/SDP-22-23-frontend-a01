@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
-  Menu, Badge, Layout, Space, Grid, Dropdown, theme, ConfigProvider,
+  Menu, Badge, Layout, Space, Grid, theme, ConfigProvider,
 } from 'antd';
 import { NotificationButton, ShoppingCartButton, AccountButton } from './NavbarButtons';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import './navibar.scss';
+import NavbarMobileDrawer from './NavbarMobileDrawer';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -59,7 +60,6 @@ function Navbar() {
 
   const logo = '/images/Delaware-logo_white.png';
   const navMenuMF = lg ? 'center' : 'left';
-  const navMenu1MF = lg ? 'none' : 'flex';
   const navMenu2MF = lg ? 'flex' : 'none';
 
   return (
@@ -69,17 +69,7 @@ function Navbar() {
           float: 'left', display: 'flex',
         }}
         >
-          <Dropdown
-            style={{
-              backgroundColor: color, color: 'white', fontSize: '25px', height: heightNB,
-            }}
-            menu={{ items }}
-            trigger={['click']}
-          >
-            <Space style={{ paddingRight: '10px', display: navMenu1MF }}>
-              <img src="/images/menu.png" width="30px" alt="" />
-            </Space>
-          </Dropdown>
+          <NavbarMobileDrawer />
           <NavLink data-cy="navibar_logo" to="/home" style={{ paddingTop: '5px' }} replace>
             <img src={logo} height="60px" alt="Delaware logo" />
           </NavLink>

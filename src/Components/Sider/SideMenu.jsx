@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { RiShoppingBasket2Line } from 'react-icons/ri';
 import Sider from 'antd/es/layout/Sider';
 import { Button, Drawer, Menu } from 'antd';
-import './SideMenu.scss';
 
 const items = [
   {
