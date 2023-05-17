@@ -9,7 +9,7 @@ const useProfile = () => {
 
   const getCompanyInfo = useCallback(async () => {
     const token = await getAccessTokenSilently();
-
+    console.log(token);
     const { data } = await axios.get(`${baseUrl}/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
