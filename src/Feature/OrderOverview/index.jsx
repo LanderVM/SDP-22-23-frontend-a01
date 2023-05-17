@@ -1,4 +1,4 @@
-import OrderInfo from './OrderInfo';
-import ProductInfo from './ProductInfo';
+import OrderInfo from './NewOrderInfo';
+import OrderFilter from './OrderFilter';
 
-export { OrderInfo, ProductInfo };
+export { OrderInfo, OrderFilter };

@@ -8,9 +8,8 @@ import useOrderApi from '../../api/orderService';
 import SideMenu from '../../Components/Sider/SideMenu';
 import Error from '../../Components/Error';
 import Loader from '../../Components/Loader';
-import { OrderInfo } from './index';
 import RequireAuth from '../../Components/authentication/RequireAuth';
-import OrderFilter from './OrderFilter';
+import { OrderFilter, OrderInfo } from './index';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);
@@ -72,10 +71,9 @@ export default function OrdersOverview() {
                     pageSize: 10,
                   }}
                   renderItem={(orderId) => (
-                    <OrderInfo
-                      key={orderId}
-                      productList={orderList.items[orderId]}
-                    />
+                    <List.Item key={orderId} style={{ display: 'block' }}>
+                      <OrderInfo order={orderList.items[orderId][0]} />
+                    </List.Item>
                   )}
                 />
               )}

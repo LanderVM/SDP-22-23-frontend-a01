@@ -10,8 +10,21 @@
     color: green;
     font-weight: bolder;
   }
-  .productsList{
+
+  .productsList {
     margin-left: 14px;
     margin-top: 14px;
+  }
+}
+
+.delaware-order-info-body-info-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-bottom: 2px;
+    margin-right: 5px;
+    font-size: 15px;
   }
 }
