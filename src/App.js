@@ -7,9 +7,9 @@ import {
 import ScrollToTop from './Contexts/ScrollToTop';
 import Navbar from './Components/Navibar/Navbar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
-import OrdersOverview from './Feature/OrderOverview/index';
+import OrdersOverview from './features/OrderOverview/index';
 import AuthLanding from './Components/authentication/AuthLanding';
-import SingleOrderOverview from './Feature/SingleOrderOverview/SingleOrderOverview';
+import SingleOrderOverview from './features/SingleOrderOverview/SingleOrderOverview';
 import ProfileOverview from './Components/profile/ProfileOverview';
 import './App.css';
 
