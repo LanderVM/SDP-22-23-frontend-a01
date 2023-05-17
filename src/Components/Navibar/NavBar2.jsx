@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
-  Menu, Badge, Layout, Space, Grid, Dropdown,
+  Menu, Badge, Layout, Space, Grid, Dropdown, theme, ConfigProvider,
 } from 'antd';
-import { NotificationButton, ShoppingCartButton } from './Buttons';
-import AuthenticationButton from '../authentication/AuthenticationButton';
+import { NotificationButton, ShoppingCartButton, AccountButton } from './Buttons';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
+import './navibar.scss';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -14,7 +14,6 @@ const color = '#EC4842';
 const heightNB = '70px';
 
 const headerStyle = {
-  color: '#fff',
   height: heightNB,
   padding: '0 3%',
   backgroundColor: color,
@@ -96,21 +95,22 @@ function NavBar2() {
             data-cy="shoppingCartBadge"
             overflowCount={99}
             size="default"
-
           >
             <ShoppingCartButton />
           </Badge>
           <NotificationButton />
-          <AuthenticationButton />
+          <AccountButton />
         </Space>
-        <Menu
-          onClick={onClick}
-          style={{
-            backgroundColor: color, color: 'white', fontSize: '25px', display: navMenu2MF, justifyContent: navMenuMF, height: heightNB,
-          }}
-          mode="horizontal"
-          items={items}
-        />
+        <ConfigProvider theme={{ algorithm: theme.darkAlgorithm, token: { colorPrimary: '#fff' } }}>
+          <Menu
+            onClick={onClick}
+            style={{
+              backgroundColor: color, color: 'white', fontSize: '25px', display: navMenu2MF, justifyContent: navMenuMF, height: heightNB,
+            }}
+            mode="horizontal"
+            items={items}
+          />
+        </ConfigProvider>
       </div>
     </Header>
   );

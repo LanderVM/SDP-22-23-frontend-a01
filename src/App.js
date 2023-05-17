@@ -16,8 +16,8 @@ import './App.css';
 function App() {
   return (
     <Layout>
+      <NavBar2 />
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm, token: { colorPrimary: '#EC4242' } }}>
-        <NavBar2 />
         <Routes>
           <Route index element={<ProductsPage />} />
           <Route path="/home" element={<ProductsPage />} />
