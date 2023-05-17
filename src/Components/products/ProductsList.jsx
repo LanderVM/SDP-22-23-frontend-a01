@@ -54,6 +54,7 @@ export default function ProductsList() {
   const [inStock, setInStock] = useState(true);
   const [brand, setBrand] = useState(null);
   const [category, setCategory] = useState(null);
+  const [sortBy, setSortBy] = useState(null);
 
   const navigate = useNavigate();
 
@@ -65,6 +66,7 @@ export default function ProductsList() {
     setInStock(data.inStock);
     setBrand(data.brand);
     setCategory(data.category);
+    setSortBy(data.sortBy);
   };
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export default function ProductsList() {
       try {
         setLoading(true);
         setError(null);
-        const data = await productenApi.getFiltered(priceStart, priceEnd, inStock, brand, category);
+        const data = await productenApi.getFiltered(priceStart, priceEnd, inStock, brand, category, sortBy);
         setProducten(data);
       } catch (error2) {
         setError(error2);
@@ -81,7 +83,7 @@ export default function ProductsList() {
       }
     };
     fetchProducten();
-  }, [priceStart, priceEnd, inStock, brand, category]);
+  }, [priceStart, priceEnd, inStock, brand, category, sortBy]);
 
   const handleView = useCallback(async (nameToView) => {
     try {

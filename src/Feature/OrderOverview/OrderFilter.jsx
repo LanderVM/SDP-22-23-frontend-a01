@@ -26,7 +26,28 @@ const statusesValuesList = [
     value: 4,
   },
 ];
-
+// const sortingValuesList = [
+//   {
+//     name: 'Price',
+//     value: 0,
+//   },
+//   {
+//     name: 'Date',
+//     value: 1,
+//   },
+//   {
+//     name: 'Shipped',
+//     value: 2,
+//   },
+//   {
+//     name: 'Out for Delivery',
+//     value: 3,
+//   },
+//   {
+//     name: 'Delivered',
+//     value: 4,
+//   },
+// ];
 export default function OrderFilter(props) {
   const { handleCallback } = props;
 

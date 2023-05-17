@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ShoppingCartOutlined, PlusOutlined } from '@ant-design/icons';
 import {
-  Row, Col, Grid, Button, InputNumber,
+  Row, Col, Grid, Button, InputNumber, Space,
 } from 'antd';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import './Sidebar.css';
@@ -54,8 +54,8 @@ export default function ProductElement({
           {' '}
           {product.price}
         </div>
-        <div>
-          <InputNumber min={1} max={100} defaultValue={1} onChange={onChangeAmount} />
+        <Space direction="horizontal">
+          <InputNumber min={1} max={100} defaultValue={1} onChange={onChangeAmount} style={{ width: '70px' }} />
           <Button
             type="primary"
             danger
@@ -68,7 +68,7 @@ export default function ProductElement({
             <PlusOutlined style={{ fontSize: fontSizeIco2, verticalAlign: '3px' }} />
             <ShoppingCartOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
           </Button>
-        </div>
+        </Space>
       </Col>
     </Row>
   );

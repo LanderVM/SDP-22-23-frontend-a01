@@ -1,5 +1,5 @@
 import {
-  Collapse, Checkbox, Switch, Space, InputNumber, Col, Row, Button,
+  Collapse, Checkbox, Switch, Space, InputNumber, Col, Row, Button, Radio,
 } from 'antd';
 import { CheckOutlined, CloseOutlined, RightOutlined } from '@ant-design/icons';
 
@@ -22,6 +22,7 @@ export default function SideBarProductPage(props) {
   const [category, setCategory] = useState([]);
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [sortBy, setSortBy] = useState(null);
 
   const { handleCallback } = props;
   const { Panel } = Collapse;
@@ -41,11 +42,16 @@ export default function SideBarProductPage(props) {
     setCategory(checkedValues);
   };
 
+  const onSortByChange = (value) => {
+    console.log(value.target.value);
+    setSortBy(value.target.value);
+  };
+
   useEffect(() => {
     handleCallback({
-      priceS, priceE, inStock, brand, category,
+      priceS, priceE, inStock, brand, category, sortBy,
     });
-  }, [priceS, priceE, inStock, brand, category]);
+  }, [priceS, priceE, inStock, brand, category, sortBy]);
 
   useEffect(() => {
     const fetchBrands = async () => {
@@ -71,13 +77,28 @@ export default function SideBarProductPage(props) {
     fetchCategories();
   }, []);
 
+  const sortValues = [
+    {
+      value: 'price',
+      name: 'Price',
+    },
+    {
+      value: 'name',
+      name: 'Name',
+    },
+    {
+      value: null,
+      name: 'None',
+    },
+  ];
+
   return (
     <div
       style={{
         padding: '15px 30px', borderRadius: '10px',
       }}
     >
-      <Collapse bordered={false} defaultActiveKey={['1']} className="sideBar">
+      <Collapse bordered={false} defaultActiveKey={['1', '4']} className="sideBar">
         <Panel header="Product Category" key="1">
           <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={category} onChange={onCategoriesChange} />
         </Panel>
@@ -115,6 +136,13 @@ export default function SideBarProductPage(props) {
             />
             <span>Only show in stock</span>
           </Space>
+        </Panel>
+        <Panel header="Sort" key="5">
+          <Radio.Group defaultValue={sortBy} onChange={onSortByChange}>
+            <Space direction="vertical">
+              {sortValues.map((e) => <Radio value={e.value}>{e.name}</Radio>)}
+            </Space>
+          </Radio.Group>
         </Panel>
       </Collapse>
 

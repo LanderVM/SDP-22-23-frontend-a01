@@ -58,7 +58,7 @@ const useProducts = () => {
     return data.items;
   }, []);
 
-  const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category) => {
+  const getFiltered = useCallback(async (priceStart, priceEnd, inStock, brand, category, sortBy) => {
     const url = new URLSearchParams();
 
     if (priceStart) url.append('startPrice', priceStart);
@@ -66,6 +66,7 @@ const useProducts = () => {
     if (inStock) url.append('inStock', inStock);
     if (brand.length > 0) brand.map((c) => url.append('brand', c));
     if (category.length > 0) category.map((b) => url.append('category', b));
+    if (sortBy) url.append('sortBy', sortBy);
 
     const {
       data,
