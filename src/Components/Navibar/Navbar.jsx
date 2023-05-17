@@ -28,6 +28,10 @@ const items = [
       </NavLink>
     ),
     key: 'products',
+    style: {
+      marginRight: '3%',
+      fontSize: '30px',
+    },
   },
   {
     label: (
@@ -36,6 +40,10 @@ const items = [
       </NavLink>
     ),
     key: 'track',
+    style: {
+      marginRight: '3%',
+      fontSize: '30px',
+    },
   },
   {
     label: (
@@ -44,6 +52,9 @@ const items = [
       </NavLink>
     ),
     key: 'orders',
+    style: {
+      fontSize: '30px',
+    },
   },
 ];
 function Navbar() {
