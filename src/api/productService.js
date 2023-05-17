@@ -37,13 +37,6 @@ const useProducts = () => {
     return data.items;
   }, []);
 
-  const getByName = useCallback(async (name) => {
-    const {
-      data,
-    } = await axios.get(`${baseUrl}/name/${name}`);
-    return data;
-  }, []);
-
   const getBrands = useCallback(async () => {
     const {
       data,
@@ -83,7 +76,6 @@ const useProducts = () => {
     getAll,
     getById,
     getByIds,
-    getByName,
     getBrands,
     getCategories,
     getFiltered,
