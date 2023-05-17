@@ -45,7 +45,7 @@ const items = [
     key: 'orders',
   },
 ];
-function NavBar2() {
+function Navbar() {
   const navigate = useNavigate();
   const { lg } = useBreakpoint();
 
@@ -115,4 +115,4 @@ function NavBar2() {
     </Header>
   );
 }
-export default NavBar2;
+export default Navbar;

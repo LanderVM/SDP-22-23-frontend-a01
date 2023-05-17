@@ -34,31 +34,6 @@ export function NotificationButton() {
   );
 }
 
-const accountButtonDropdownItems = [
-  {
-    label: (
-      <div data-cy="navibar_dropdownMenu_profileButton">
-        <NavLink to="/profile" className="user-item delaware-dropdown-button">
-          <UserOutlined twoToneColor="#FFFFFF" style={{ fontSize: '250%' }} />
-                    &nbsp;Company profile
-        </NavLink>
-      </div>
-    ),
-    key: '2',
-  },
-  {
-    type: 'divider',
-  },
-  {
-    label: (
-      <div>
-        <LogoutButtonDropDown />
-      </div>
-    ),
-    key: '3',
-  },
-];
-
 export function AccountButton() {
   const {
     isAuthenticated,
@@ -67,9 +42,34 @@ export function AccountButton() {
 
   if (!isAuthenticated) return <LoginButtonDropDown />;
 
+  const items = [
+    {
+      label: (
+        <div data-cy="navibar_dropdownMenu_profileButton">
+          <NavLink to="/profile" className="user-item delaware-dropdown-button">
+            <UserOutlined twoToneColor="#FFFFFF" style={{ fontSize: '250%' }} />
+                        &nbsp;Company profile
+          </NavLink>
+        </div>
+      ),
+      key: '2',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: (
+        <div>
+          <LogoutButtonDropDown />
+        </div>
+      ),
+      key: '3',
+    },
+  ];
+
   return (
     <Dropdown
-      menu={{ accountButtonDropdownItems }}
+      menu={{ items }}
       trigger={['click']}
     >
       <img

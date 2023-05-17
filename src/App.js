@@ -5,7 +5,7 @@ import {
   NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, FinishingOrderPage,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
-import NavBar2 from './Components/Navibar/NavBar2';
+import Navbar from './Components/Navibar/Navbar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import OrdersOverview from './Feature/OrderOverview/OrdersOverview';
 import AuthLanding from './Components/authentication/AuthLanding';
@@ -16,7 +16,7 @@ import './App.css';
 function App() {
   return (
     <Layout>
-      <NavBar2 />
+      <Navbar />
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm, token: { colorPrimary: '#EC4242' } }}>
         <Routes>
           <Route index element={<ProductsPage />} />
