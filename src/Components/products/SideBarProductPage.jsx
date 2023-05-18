@@ -19,7 +19,7 @@ export default function SideBarProductPage(props) {
   const [priceE, setPriceE] = useState(maxPrice);
   const [priceStart, setPriceStart] = useState(minPrice);
   const [priceEnd, setPriceEnd] = useState(maxPrice);
-  const [inStock, setInStock] = useState(true);
+  const [inStock, setInStock] = useState(false);
   const [brand, setBrand] = useState([]);
   const [category, setCategory] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -149,7 +149,6 @@ export default function SideBarProductPage(props) {
             <Switch
               checkedChildren={<CheckOutlined />}
               unCheckedChildren={<CloseOutlined />}
-              defaultChecked
               onClick={() => setInStock(!inStock)}
               data-cy="test-products-filter-inStock"
               style={{ backgroundColor: '#1677ff' }}

@@ -27,6 +27,8 @@ export default function TrackingInput() {
         let errorMessage;
         if (error2.response === undefined) {
           errorMessage = error2;
+        } else if (error2.response.status === 401) {
+          errorMessage = { message: `There was no order found with tracking code "${values.trackingCode}" and verification code "${values.verificationCode}"` };
         } else if (error2.response.data.details.query !== undefined) { // validation failure
           // eslint-disable-next-line prefer-destructuring
           errorMessage = Object.values(error2.response.data.details.query)[0][0];

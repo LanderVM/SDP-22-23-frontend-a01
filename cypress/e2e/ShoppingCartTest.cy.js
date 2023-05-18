@@ -1,3 +1,9 @@
+const exampleProduct = {
+  name: "iPhone 9",
+  price: "€ 549",
+  description: "An apple mobile which is nothing like apple",
+}
+
 describe('add to shopping cart', () => {
   beforeEach(() => {
     cy.login();
@@ -19,9 +25,9 @@ describe('add to shopping cart', () => {
     cy.get('[data-cy=btnAddToCart]').eq(0).click();
 
     cy.visit('http://localhost:3000/shoppingCart');
-    cy.get('[data-cy=cartPrice]').eq(0).contains('€ 11');
-    cy.get('[data-cy=cartName]').eq(0).contains('test_product vijf');
-    cy.get('[data-cy=cartDescription]').eq(0).contains('omschrijning test_product 5');
+    cy.get('[data-cy=cartPrice]').eq(0).contains(exampleProduct.price);
+    cy.get('[data-cy=cartName]').eq(0).contains(exampleProduct.name);
+    cy.get('[data-cy=cartDescription]').eq(0).contains(exampleProduct.description);
     cy.visit('http://localhost:3000/shoppingCart');
     cy.get('[data-cy=removeCartItem]').eq(0).click();
     cy.get('[data-cy=shoppingCart]').should('have.length', 0);

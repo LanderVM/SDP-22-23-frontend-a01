@@ -1,3 +1,20 @@
+const exampleProducts = [
+    {
+      name: "iPhone 9",
+      brand: "Apple",
+      price: "€ 549",
+      stock_message: "in stock (94 left)",
+      description: "An apple mobile which is nothing like apple",
+    },
+    {
+      name: "iPhone X",
+      brand: "Apple",
+      price: "€ 899",
+      stock_message: "Out of stock",
+      description: "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+    },
+];
+
 describe('single product page', () => {
   beforeEach(() => {
     cy.login();
@@ -23,25 +40,23 @@ describe('single product page', () => {
     cy.visit('http://localhost:3000/products');
     cy.get('[data-cy=productNameUrl]').eq(0).click();
 
-    cy.get('[data-cy=productName]').contains('iPhone 9');
-    cy.get('[data-cy=productBrand]').contains('Apple');
-    cy.get('[data-cy=productPrice]').contains('€ 549');
-    cy.get('[data-cy=productStock]').contains('in stock (94 left)');
-    cy.get('[data-cy=productDescription]').contains('An apple mobile which is nothing like apple');
+    cy.get('[data-cy=productName]').contains(exampleProducts[0].name);
+    cy.get('[data-cy=productBrand]').contains(exampleProducts[0].brand);
+    cy.get('[data-cy=productPrice]').contains(exampleProducts[0].price);
+    cy.get('[data-cy=productStock]').contains(exampleProducts[0].stock_message);
+    cy.get('[data-cy=productDescription]').contains(exampleProducts[0].description);
   });
 
   it('go to single products page without stock', () => {
     cy.visit('http://localhost:3000/products');
-    cy.get('[data-cy=test-products-filter-inStockTab]').click();
-    cy.get('[data-cy=test-products-filter-inStock]').click();
-    cy.get('[data-cy=productNameUrl]').eq(0).click();
-
-    cy.get('[data-cy=productName]').contains('iPhone X');
-    cy.get('[data-cy=productBrand]').contains('Apple');
-    cy.get('[data-cy=productPrice]').contains('€ 899');
-    cy.get('[data-cy=productStock]').contains('Out of stock');
-    cy.get('[data-cy=productDescription]').contains('SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...');
+    cy.get('[data-cy=productNameUrl]').eq(1).click();
+    cy.get('[data-cy=productName]').contains(exampleProducts[1].name);
+    cy.get('[data-cy=productBrand]').contains(exampleProducts[1].brand);
+    cy.get('[data-cy=productPrice]').contains(exampleProducts[1].price);
+    cy.get('[data-cy=productStock]').contains(exampleProducts[1].stock_message);
+    cy.get('[data-cy=productDescription]').contains(exampleProducts[1].description);
   });
+
   it('add to shopping cart test', () => {
     cy.visit('http://localhost:3000/product/1');
     cy.get('[data-cy=btnAddToCart]').click();
