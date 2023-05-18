@@ -32,9 +32,12 @@ export default function MostRecentNotifications() {
     <div style={{ margin: '5% 15%' }}>
       <Loader loading={loading} />
       <Error error={error} />
-      <h1>Your five most recent notifications</h1>
-      <List
-        header={
+      {!loading && !error
+        ? (
+          <>
+            <h1>Your five most recent notifications</h1>
+            <List
+              header={
           (
             <div style={{ fontWeight: '500', fontSize: '1.2em', textAlign: 'center' }}>
               <Row>
@@ -54,15 +57,17 @@ export default function MostRecentNotifications() {
             </div>
           )
         }
-        bordered
-        itemLayout="horizontal"
-        dataSource={fiveMostRecentNotifications}
-        renderItem={(item) => (
-          <List.Item key={item.notification_id} style={{ display: 'block' }}>
-            <SingleNotification notification={item} />
-          </List.Item>
-        )}
-      />
+              bordered
+              itemLayout="horizontal"
+              dataSource={fiveMostRecentNotifications}
+              renderItem={(item) => (
+                <List.Item key={item.notification_id} style={{ display: 'block' }}>
+                  <SingleNotification notification={item} />
+                </List.Item>
+              )}
+            />
+          </>
+        ) : null}
     </div>
   );
 }
