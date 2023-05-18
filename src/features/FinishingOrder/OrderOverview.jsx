@@ -27,7 +27,7 @@ export default function OrderOverview({
       bordered
       actions={[
         // eslint-disable-next-line react/button-has-type
-        <Button onClick={onOrder}>
+        <Button onClick={onOrder} style={{ backgroundColor: '#ff4d4f', color: 'white' }}>
           Place order
         </Button>,
       ]}

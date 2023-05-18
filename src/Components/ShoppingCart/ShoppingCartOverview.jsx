@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Card, Divider } from 'antd';
+import { Card, Divider, Button } from 'antd';
 import './ShoppingCart.css';
 import { NavLink } from 'react-router-dom';
 
@@ -29,9 +29,11 @@ export default function ShoppingCartOverview({
       bordered
       actions={[
         // eslint-disable-next-line react/button-has-type
-        <NavLink to="/FinishingOrder">
-          Proceed to checkout
-        </NavLink>,
+        <Button style={{ backgroundColor: '#ff4d4f' }}>
+          <NavLink to="/FinishingOrder" style={{ color: 'white' }}>
+            <b>Proceed to checkout</b>
+          </NavLink>
+        </Button>,
       ]}
     >
       <table style={{ width: '100%' }}>

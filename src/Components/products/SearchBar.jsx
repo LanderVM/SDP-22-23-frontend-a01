@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   AutoComplete,
   Button,
-  Row,
-  Col,
 } from 'antd';
 import useProducts from '../../api/productService';
 
@@ -40,28 +38,24 @@ function SearchBar({
   };
 
   return (
-    <div>
+    <div style={{ margin: '25px 0' }}>
       {!loading && !error ? (
-        <Row style={{ margin: '25px 0' }}>
-          <Col span={18}>
-            <AutoComplete
-              style={{ width: '100%' }}
-              options={products.map((e) => ({ value: e.name }))}
-              filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
-              onSearch={setSelectedProduct}
-              onSelect={setSelectedProduct}
-            />
-          </Col>
-          <Col span={6}>
-            <Button
-              data-cy="products_searchBar"
-              onClick={onSearchName}
-              style={{ width: '100%' }}
-            >
-              Search for Product
-            </Button>
-          </Col>
-        </Row>
+        <div style={{ display: 'flex', fontSize: '30px' }}>
+          <AutoComplete
+            style={{ width: '100%' }}
+            options={products.map((e) => ({ value: e.name }))}
+            filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+            onSearch={setSelectedProduct}
+            onSelect={setSelectedProduct}
+          />
+          <Button
+            data-cy="products_searchBar"
+            onClick={onSearchName}
+            style={{ float: 'right', backgroundColor: '#ff4d4f', color: 'white' }}
+          >
+            <b>Search for Product</b>
+          </Button>
+        </div>
       ) : null}
     </div>
   );

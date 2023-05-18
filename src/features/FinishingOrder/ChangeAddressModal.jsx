@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-  Button, Col, Form, Input, Modal, Row,
+  Button, Col, Form, Input, Modal, Row, Select,
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
-// import { countries } from 'countries-list';
+import { countries } from 'countries-list';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 import Error from '../../Components/Error';
@@ -22,27 +22,27 @@ export function ChangeAddressModal({ setAddressList, customerDetails }) {
   useEffect(() => form.setFields([
     {
       name: 'delivery_street',
-      value: currentDetails.delivery_street,
+      value: currentDetails.supplier_delivery_street,
     },
     {
       name: 'delivery_house_number',
-      value: currentDetails.delivery_house_number,
+      value: currentDetails.supplier_delivery_house_number,
     },
     {
       name: 'delivery_box',
-      value: currentDetails.delivery_box === 'null' ? '' : customerDetails.delivery_box,
+      value: currentDetails.supplier_delivery_box === 'null' ? '' : customerDetails.supplier_delivery_box,
     },
     {
       name: 'delivery_postal_code',
-      value: currentDetails.delivery_postal_code,
+      value: currentDetails.supplier_delivery_postal_code,
     },
     {
       name: 'delivery_city',
-      value: currentDetails.delivery_city,
+      value: currentDetails.supplier_delivery_city,
     },
     {
       name: 'delivery_country',
-      value: currentDetails.delivery_country,
+      value: currentDetails.supplier_delivery_country,
     },
   ]), []);
 
@@ -95,9 +95,9 @@ export function ChangeAddressModal({ setAddressList, customerDetails }) {
       >
         <Error error={error} />
         <Form
+          form={form}
           name="basic"
           layout="vertical"
-          form={form}
           initialValues={{ remember: true }}
         >
           <Row gutter={[16, 16]}>
@@ -153,7 +153,17 @@ export function ChangeAddressModal({ setAddressList, customerDetails }) {
                 label="Country"
                 rules={[{ required: true }]}
               >
-                <Input />
+                <Select showSearch>
+                  {Object.values(countries).map((country) => (
+                    <Select.Option
+                      title={country.name}
+                      key={country.name}
+                      value={country.name}
+                    >
+                      {country.name}
+                    </Select.Option>
+                  ))}
+                </Select>
               </Form.Item>
             </Col>
           </Row>
