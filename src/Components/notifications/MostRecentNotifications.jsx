@@ -6,7 +6,7 @@ import Loader from '../Loader';
 import Error from '../Error';
 
 export default function MostRecentNotifications() {
-  const [fiveMostRecentNotifications, setFiveMostRecentNotifications] = useState([]);
+  const [notifications, setNotifications] = useState([]);
 
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(null);
@@ -17,8 +17,8 @@ export default function MostRecentNotifications() {
     const fetchFiveMostRecent = async () => {
       try {
         setLoading(true);
-        const data = await notificationsApi.getFiveMostRecent();
-        setFiveMostRecentNotifications(data);
+        const data = await notificationsApi.getAll();
+        setNotifications(data);
       } catch (error2) {
         setError(error2);
       } finally {
@@ -35,7 +35,7 @@ export default function MostRecentNotifications() {
       {!loading && !error
         ? (
           <>
-            <h1>Your five most recent notifications</h1>
+            <h1>All your notifications</h1>
             <List
               header={
           (
@@ -59,7 +59,8 @@ export default function MostRecentNotifications() {
         }
               bordered
               itemLayout="horizontal"
-              dataSource={fiveMostRecentNotifications}
+              pagination={{ pageSize: 10, align: 'center' }}
+              dataSource={notifications}
               renderItem={(item) => (
                 <List.Item key={item.notification_id} style={{ display: 'block' }}>
                   <SingleNotification notification={item} />

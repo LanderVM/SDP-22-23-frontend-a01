@@ -25,6 +25,18 @@ export default function useNotifications() {
     return data.count;
   }, [getAccessTokenSilently]);
 
+  const getAll = useCallback(async () => {
+    const token = await getAccessTokenSilently();
+
+    const { data } = await axios.get(`${baseUrl}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return data.items;
+  }, []);
+
   const getFiveMostRecent = useCallback(async () => {
     const token = await getAccessTokenSilently();
 
@@ -38,5 +50,20 @@ export default function useNotifications() {
     return toReturn;
   }, []);
 
-  return { getAmountNotRead, getFiveMostRecent };
+  const saveNotification = useCallback(async (notification) => {
+    const token = await getAccessTokenSilently();
+
+    await axios({
+      method: 'PUT',
+      url: `${baseUrl}`,
+      data: notification,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }, []);
+
+  return {
+    getAmountNotRead, getAll, getFiveMostRecent, saveNotification,
+  };
 }

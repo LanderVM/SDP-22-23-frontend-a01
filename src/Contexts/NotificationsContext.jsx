@@ -14,9 +14,7 @@ export default function NotificationsProvider({ children }) {
     try {
       const fetchAmountNotRead = async () => {
         const data = await notificationApi.getAmountNotRead();
-        console.log(`opgehaald: ${data}`);
         setAmountNotReadNotifications(data);
-        console.log(`amount in context: ${amountNotReadNotifications}`);
       };
       fetchAmountNotRead();
     } catch (error) {

@@ -1,8 +1,31 @@
 import { Row, Col } from 'antd';
+// import { useNavigate } from 'react-router';
+import useNotifications from '../../api/notification';
 
 export default function SingleNotification({ notification }) {
+  // const { navigate } = useNavigate();
+  const notificationsApi = useNotifications();
+
+  const handleClickNotification = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    if (notification.status === 'new' || notification.status === 'unread') {
+      const theNotification = {
+        notification_id: notification.notification_id,
+        notification_date: notification.notification_date,
+        CUSTOMER_supplier_id: notification.CUSTOMER_supplier_id,
+        ORDER_order_id: notification.ORDER_order_id,
+        status: 'read',
+        message: notification.message,
+      };
+
+      notificationsApi.saveNotification(theNotification);
+    }
+    // navigate(`/orders/${notification.ORDER_order_id}`);
+  };
+
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center' }} onClick={handleClickNotification}>
       <Row>
         <Col span={6}>
           <p>{notification.notification_date.split('T')[0]}</p>

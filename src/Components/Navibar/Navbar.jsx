@@ -69,8 +69,6 @@ function Navbar() {
 
   const { amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications } = useContext(NotificationsContext);
 
-  console.log(`in de navbar: ${amountNotReadNotifications}`);
-
   const { isAuthenticated } = useAuth0();
 
   const onClick = (e) => {
