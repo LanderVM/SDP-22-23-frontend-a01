@@ -67,7 +67,7 @@ function Navbar() {
     productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
 
-  const { amountNotReadNotifications, refreshAmountNotReadNotifications } = useContext(NotificationsContext);
+  const { amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications } = useContext(NotificationsContext);
 
   console.log(`in de navbar: ${amountNotReadNotifications}`);
 
@@ -78,7 +78,11 @@ function Navbar() {
   };
 
   useEffect(() => {
-    refreshAmountNotReadNotifications();
+    if (isAuthenticated) {
+      refreshAmountNotReadNotifications();
+    } else {
+      setAmountNotReadNotifications(0);
+    }
   }, [isAuthenticated]);
 
   const logo = '/images/Delaware-logo_white.png';

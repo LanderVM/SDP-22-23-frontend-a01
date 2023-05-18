@@ -1,5 +1,5 @@
 import {
-  createContext, useCallback, useMemo, useState,
+  createContext, useMemo, useState,
 } from 'react';
 import useNotifications from '../api/notification';
 
@@ -10,22 +10,25 @@ export default function NotificationsProvider({ children }) {
 
   const [amountNotReadNotifications, setAmountNotReadNotifications] = useState(0);
 
-  const refreshAmountNotReadNotifications = useCallback(async () => {
+  const refreshAmountNotReadNotifications = async () => {
     try {
-      const data = await notificationApi.getAmountNotRead();
-      console.log(`opgehaald: ${data}`);
-      setAmountNotReadNotifications(data);
-      console.log(`amount in context: ${amountNotReadNotifications}`);
+      const fetchAmountNotRead = async () => {
+        const data = await notificationApi.getAmountNotRead();
+        console.log(`opgehaald: ${data}`);
+        setAmountNotReadNotifications(data);
+        console.log(`amount in context: ${amountNotReadNotifications}`);
+      };
+      fetchAmountNotRead();
     } catch (error) {
       console.log(error);
     }
-  }, [notificationApi]);
+  };
 
   const value = useMemo(() => (
     {
-      amountNotReadNotifications, refreshAmountNotReadNotifications,
+      amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications,
     }
-  ), [amountNotReadNotifications, refreshAmountNotReadNotifications]);
+  ), [amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications]);
 
   return (
     <NotificationsContext.Provider value={value}>

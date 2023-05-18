@@ -23,7 +23,20 @@ export default function useNotifications() {
     });
 
     return data.count;
+  }, [getAccessTokenSilently]);
+
+  const getFiveMostRecent = useCallback(async () => {
+    const token = await getAccessTokenSilently();
+
+    const { data } = await axios.get(`${baseUrl}/fiveMostRecent`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const toReturn = data.items;
+
+    return toReturn;
   }, []);
 
-  return { getAmountNotRead };
+  return { getAmountNotRead, getFiveMostRecent };
 }
