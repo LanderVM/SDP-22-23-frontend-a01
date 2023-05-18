@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Menu, Badge, Layout, Space, Grid, theme, ConfigProvider,
@@ -7,7 +7,6 @@ import { NotificationButton, ShoppingCartButton, AccountButton } from './NavbarB
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import './navibar.scss';
 import NavbarMobileDrawer from './NavbarMobileDrawer';
-import useNotification from '../../api/notification';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -59,9 +58,6 @@ const items = [
   },
 ];
 function Navbar() {
-  const notificationApi = useNotification();
-
-  const [amountNotReadNotifications, setAmountNotReadNotifications] = useState(0);
   const navigate = useNavigate();
   const { lg } = useBreakpoint();
 
@@ -72,18 +68,6 @@ function Navbar() {
   const onClick = (e) => {
     navigate(`/${e.key}`);
   };
-
-  useEffect(() => {
-    const fetchCompanyInfo = async () => {
-      try {
-        const data = await notificationApi.getAmountNotRead();
-        setAmountNotReadNotifications(data);
-      } catch (error2) {
-        console.log(error2);
-      }
-    };
-    fetchCompanyInfo();
-  }, []);
 
   const logo = '/images/Delaware-logo_white.png';
   const navMenuMF = lg ? 'center' : 'left';

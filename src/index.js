@@ -7,16 +7,19 @@ import reportWebVitals from './reportWebVitals';
 
 import MyAuth0Provider from './Contexts/MyAuth0Provider';
 import ProductsForShoppingCartProvider from './Contexts/ProductsForShoppingCartContext';
+import NotificationsProvider from './Contexts/NotificationsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ProductsForShoppingCartProvider>
-      <MyAuth0Provider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </MyAuth0Provider>
+      <NotificationsProvider>
+        <MyAuth0Provider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </MyAuth0Provider>
+      </NotificationsProvider>
     </ProductsForShoppingCartProvider>
   </React.StrictMode>,
 );

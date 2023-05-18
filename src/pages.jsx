@@ -6,6 +6,7 @@ import SingleProduct from './Components/products/SingleProduct';
 import TrackingInput from './Components/Tracking/TrackingInput';
 import ProfileOverview from './Components/profile/ProfileOverview';
 import FinishingOrder from './Feature/FinishingOrder/FinishingOrder';
+import MostRecentNotifications from './Components/notifications/MostRecentNotifications';
 
 export function NotFoundPage() {
   return (
@@ -54,5 +55,13 @@ export function ProductOverviewPage() {
     <main>
       <SingleProduct productId={productId} />
     </main>
+  );
+}
+
+export function Notifications() {
+  return (
+    <div>
+      <MostRecentNotifications />
+    </div>
   );
 }

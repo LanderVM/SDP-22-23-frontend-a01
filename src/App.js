@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider, Layout, theme } from 'antd';
 import {
-  NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, FinishingOrderPage,
+  NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, FinishingOrderPage, Notifications,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import Navbar from './Components/Navibar/Navbar';
@@ -30,6 +30,7 @@ function App() {
           <Route path="/orders" element={<OrdersOverview />} />
           <Route path="/login" element={<AuthLanding />} />
           <Route path="/orders/:orderId" element={<SingleOrderOverview />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ConfigProvider>
