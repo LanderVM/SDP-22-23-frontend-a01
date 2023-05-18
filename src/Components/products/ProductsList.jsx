@@ -16,6 +16,7 @@ function ProductsListElement({ products, handleView }) {
   if (!products || products.length === 0) {
     return (
       <Empty
+        data-cy="products_empty"
         image={Empty.PRESENTED_IMAGE_SIMPLE}
         description={(
           <span>
@@ -37,7 +38,7 @@ function ProductsListElement({ products, handleView }) {
         }}
         renderItem={(item) => (
           <List.Item key={item.product_id} style={{ display: 'block' }}>
-            <Product product={item} onView={handleView} />
+            <Product data-cy="" product={item} onView={handleView} />
           </List.Item>
         )}
       />

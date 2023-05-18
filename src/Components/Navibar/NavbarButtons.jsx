@@ -59,9 +59,7 @@ export function AccountButton() {
     },
     {
       label: (
-        <div>
-          <LogoutButtonDropDown />
-        </div>
+        <LogoutButtonDropDown />
       ),
       key: '3',
     },

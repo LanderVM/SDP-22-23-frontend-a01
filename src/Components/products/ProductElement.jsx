@@ -32,7 +32,6 @@ export default function ProductElement({
   }
 
   const onChangeAmount = (value) => {
-    console.log(value);
     setProductAmount(value);
   };
 
@@ -49,7 +48,7 @@ export default function ProductElement({
         <div style={{ fontSize: fontSizeDesc }}>{product.description}</div>
       </Col>
       <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>
-        <div style={{ fontSize: fontSizeName }}>
+        <div data-cy="products_price" style={{ fontSize: fontSizeName }}>
           €
           {' '}
           {product.price}

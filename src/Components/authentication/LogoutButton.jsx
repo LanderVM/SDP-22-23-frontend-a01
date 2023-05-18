@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
 import { ExportOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 
 export default function LogoutButtonDropDown() {
   const { logout } = useAuth0();
@@ -9,9 +10,9 @@ export default function LogoutButtonDropDown() {
     localStorage.clear();
   };
   return (
-    <div className="delaware-dropdown-button" data-cy="test-navBar-LogOut">
+    <NavLink to="/home" onClick={handleLogout} className="delaware-dropdown-button" data-cy="test-navBar-LogOut">
       <ExportOutlined onClick={handleLogout} style={{ fontSize: '250%' }} />
       &nbsp;Log&nbsp;out
-    </div>
+    </NavLink>
   );
 }

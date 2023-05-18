@@ -1,18 +1,20 @@
 import {
-  Collapse, Checkbox, Switch, Space, InputNumber, Col, Row, Button, Radio,
+  Collapse, Checkbox, Switch, Space, InputNumber, Col, Row, Radio,
 } from 'antd';
-import { CheckOutlined, CloseOutlined, RightOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 import React, { useState, useEffect } from 'react';
-
+import { useDebouncedCallback } from 'use-debounce';
 import useProducts from '../../api/productService';
 
 import './Sidebar.css';
+import Error from '../Error';
 
 const minPrice = 0;
 const maxPrice = 2000;
 
 export default function SideBarProductPage(props) {
+  const [error, setError] = useState(null);
   const [priceS, setPriceS] = useState(minPrice);
   const [priceE, setPriceE] = useState(maxPrice);
   const [priceStart, setPriceStart] = useState(minPrice);
@@ -27,12 +29,17 @@ export default function SideBarProductPage(props) {
   const { handleCallback } = props;
   const { Panel } = Collapse;
 
-  const productenApi = useProducts();
+  const productsApi = useProducts();
 
-  const searchByPrice = () => {
-    setPriceS(priceStart);
+  const debouncedSetPriceStart = useDebouncedCallback((newPrice) => {
+    setPriceStart(newPrice);
+    setPriceS(newPrice);
+  }, 400);
+
+  const debouncedSetPriceEnd = useDebouncedCallback((newPrice) => {
+    setPriceEnd(newPrice);
     setPriceE(priceEnd);
-  };
+  }, 400);
 
   const onBrandChange = (checkedValues) => {
     setBrand(checkedValues);
@@ -55,10 +62,10 @@ export default function SideBarProductPage(props) {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const data = await productenApi.getBrands();
+        const data = await productsApi.getBrands();
         setBrands(data);
       } catch (error2) {
-        console.log(error2);
+        setError(error2);
       }
     };
     fetchBrands();
@@ -67,10 +74,10 @@ export default function SideBarProductPage(props) {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const data = await productenApi.getCategories();
+        const data = await productsApi.getCategories();
         setCategories(data);
       } catch (error2) {
-        console.log(error2);
+        setError(error2);
       }
     };
     fetchCategories();
@@ -97,6 +104,9 @@ export default function SideBarProductPage(props) {
         padding: '15px 30px', borderRadius: '10px',
       }}
     >
+      {error
+        ? <Error error={error} />
+        : null}
       <Collapse bordered={false} defaultActiveKey={['1', '4']} className="sideBar">
         <Panel header="Product Category" key="1">
           <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={category} onChange={onCategoriesChange} />
@@ -104,19 +114,30 @@ export default function SideBarProductPage(props) {
         <Panel header="Price" key="2" data-cy="test-products-filter-priceTab">
           <Row>
             <Col>
-              <InputNumber value={priceStart} formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} defaultValue={priceStart} min={minPrice} max={maxPrice} onChange={(newPrice) => setPriceStart(newPrice)} data-cy="test-products-filter-price-firstInput" />
+              <InputNumber
+                value={priceStart}
+                formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                defaultValue={priceStart}
+                min={minPrice}
+                max={maxPrice}
+                onChange={(input) => debouncedSetPriceStart(input)}
+                data-cy="test-products-filter-price-firstInput"
+              />
             </Col>
             <Col>
               &nbsp; - &nbsp;
             </Col>
             <Col>
-              <InputNumber value={priceEnd} formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} defaultValue={priceEnd} min={minPrice} max={maxPrice} onChange={(newPrice) => setPriceEnd(newPrice)} data-cy="test-products-filter-price-secondInput" />
+              <InputNumber
+                value={priceEnd}
+                formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                defaultValue={priceEnd}
+                min={minPrice}
+                max={maxPrice}
+                onChange={(input) => debouncedSetPriceEnd(input)}
+                data-cy="test-products-filter-price-secondInput"
+              />
             </Col>
-            <Button
-              type="primary"
-              icon={<RightOutlined />}
-              onClick={searchByPrice}
-            />
           </Row>
         </Panel>
         <Panel header="Brand" key="3">
@@ -136,10 +157,10 @@ export default function SideBarProductPage(props) {
             <span>Only show in stock</span>
           </Space>
         </Panel>
-        <Panel header="Sort" key="5">
+        <Panel header="Sort" key="5" data-cy="test-products-filter-sortTab">
           <Radio.Group defaultValue={sortBy} onChange={onSortByChange}>
             <Space direction="vertical">
-              {sortValues.map((e) => <Radio value={e.value} key={e.value}>{e.name}</Radio>)}
+              {sortValues.map((e) => <Radio data-cy={`test-products-filter-sortOn${e.name}Option`} value={e.value} key={e.value}>{e.name}</Radio>)}
             </Space>
           </Radio.Group>
         </Panel>

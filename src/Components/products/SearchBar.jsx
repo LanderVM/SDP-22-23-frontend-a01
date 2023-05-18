@@ -14,7 +14,7 @@ function SearchBar({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProducten = async () => {
+    const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
@@ -26,7 +26,7 @@ function SearchBar({
         setLoading(false);
       }
     };
-    fetchProducten();
+    fetchProducts();
   }, [priceStart, priceEnd, inStock, brand, category]);
 
   const [name, setName] = useState(null);
@@ -51,7 +51,7 @@ function SearchBar({
               options={products.map((e) => ({ value: e.name }))}
               filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
             >
-              <Input.Search placeholder="input product name" enterButton="Search for product" size="large" onSearch={onSearchName} />
+              <Input.Search data-cy="products_searchBar" placeholder="iPhone 9" enterButton="Search for Product" size="large" onSearch={onSearchName} />
             </AutoComplete>
           </div>
         ) : null}
