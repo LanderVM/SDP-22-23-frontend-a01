@@ -115,7 +115,7 @@ function Navbar() {
             count={amountNotReadNotifications}
             color="geekblue"
             offset={[-5, 2]}
-            data-cy="shoppingCartBadge"
+            data-cy="amountNotReadNotifications"
             overflowCount={99}
             size="default"
           >

@@ -25,7 +25,7 @@ export default function NotificationsProvider({ children }) {
     {
       amountNotReadNotifications, refreshAmountNotReadNotifications,
     }
-  ), []);
+  ), [amountNotReadNotifications, refreshAmountNotReadNotifications]);
 
   return (
     <NotificationsContext.Provider value={value}>
