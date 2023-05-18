@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { AutoComplete, Input } from 'antd';
+import {
+  AutoComplete,
+  Button,
+  Row,
+  Col,
+} from 'antd';
 import useProducts from '../../api/productService';
-import Error from '../Error';
-import Loader from '../Loader';
 
 function SearchBar({
   handleSearch, priceStart, priceEnd, inStock, brand, category,
@@ -12,6 +15,7 @@ function SearchBar({
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -29,34 +33,37 @@ function SearchBar({
     fetchProducts();
   }, [priceStart, priceEnd, inStock, brand, category]);
 
-  const [name, setName] = useState(null);
-
-  useEffect(() => {
-    handleSearch({ name });
-  }, [name]);
-
-  const onSearchName = (value) => {
-    setName(value);
+  const onSearchName = () => {
+    if (selectedProduct || selectedProduct === '') {
+      handleSearch({ name: selectedProduct });
+    }
   };
 
   return (
     <div>
-      <Loader loading={loading} />
-      <Error error={error} />
-      {!loading && !error
-        ? (
-          <div style={{ margin: '25px 0' }}>
+      {!loading && !error ? (
+        <Row style={{ margin: '25px 0' }}>
+          <Col span={18}>
             <AutoComplete
               style={{ width: '100%' }}
               options={products.map((e) => ({ value: e.name }))}
               filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+              onSearch={setSelectedProduct}
+              onSelect={setSelectedProduct}
+            />
+          </Col>
+          <Col span={6}>
+            <Button
+              data-cy="products_searchBar"
+              onClick={onSearchName}
+              style={{ width: '100%' }}
             >
-              <Input.Search data-cy="products_searchBar" placeholder="iPhone 9" enterButton="Search for Product" size="large" onSearch={onSearchName} />
-            </AutoComplete>
-          </div>
-        ) : null}
+              Search for Product
+            </Button>
+          </Col>
+        </Row>
+      ) : null}
     </div>
-
   );
 }
 
