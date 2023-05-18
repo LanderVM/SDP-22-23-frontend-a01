@@ -13,13 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ProductsForShoppingCartProvider>
-      <NotificationsProvider>
-        <MyAuth0Provider>
+      <MyAuth0Provider>
+        <NotificationsProvider>
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        </MyAuth0Provider>
-      </NotificationsProvider>
+        </NotificationsProvider>
+      </MyAuth0Provider>
     </ProductsForShoppingCartProvider>
   </React.StrictMode>,
 );

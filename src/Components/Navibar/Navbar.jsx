@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   Menu, Badge, Layout, Space, Grid, theme, ConfigProvider,
 } from 'antd';
@@ -7,6 +8,7 @@ import { NotificationButton, ShoppingCartButton, AccountButton } from './NavbarB
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import './navibar.scss';
 import NavbarMobileDrawer from './NavbarMobileDrawer';
+import { NotificationsContext } from '../../Contexts/NotificationsContext';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -65,9 +67,19 @@ function Navbar() {
     productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
 
+  const { amountNotReadNotifications, refreshAmountNotReadNotifications } = useContext(NotificationsContext);
+
+  console.log(`in de navbar: ${amountNotReadNotifications}`);
+
+  const { isAuthenticated } = useAuth0();
+
   const onClick = (e) => {
     navigate(`/${e.key}`);
   };
+
+  useEffect(() => {
+    refreshAmountNotReadNotifications();
+  }, [isAuthenticated]);
 
   const logo = '/images/Delaware-logo_white.png';
   const navMenuMF = lg ? 'center' : 'left';
