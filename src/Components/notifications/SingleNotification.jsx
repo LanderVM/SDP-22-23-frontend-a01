@@ -2,10 +2,10 @@ import { Row, Col } from 'antd';
 
 export default function SingleNotification({ notification }) {
   return (
-    <div>
+    <div style={{ textAlign: 'center' }}>
       <Row>
         <Col span={6}>
-          <p>{notification.notification_date}</p>
+          <p>{notification.notification_date.split('T')[0]}</p>
         </Col>
         <Col span={6}>
           <p>{notification.message}</p>
