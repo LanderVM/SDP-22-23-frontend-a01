@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { List, Row, Col } from 'antd';
 import useNotifications from '../../api/notification';
 import SingleNotification from './SingleNotification';
@@ -12,6 +13,8 @@ export default function NotificationsOverview() {
   const [loading, setLoading] = useState(null);
 
   const notificationsApi = useNotifications();
+
+  const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     const fetchAllNotifications = async () => {
@@ -27,6 +30,18 @@ export default function NotificationsOverview() {
     };
     fetchAllNotifications();
   }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      notifications.forEach(async (el) => {
+        if (el.status === 'new') {
+          const aNotification = el;
+          aNotification.status = 'unread';
+          await notificationsApi.saveNotification(aNotification);
+        }
+      });
+    }
+  }, [isAuthenticated]);
 
   return (
     <div style={{ margin: '5% 15%' }}>
