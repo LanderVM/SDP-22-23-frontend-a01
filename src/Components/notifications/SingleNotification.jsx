@@ -25,8 +25,8 @@ export default function SingleNotification({ notification }) {
   };
 
   return (
-    <div style={{ textAlign: 'center' }} onClick={handleClickNotification}>
-      <Row>
+    <div style={{ textAlign: 'center' }}>
+      <Row onClick={handleClickNotification}>
         <Col span={6}>
           <p>{notification.notification_date.split('T')[0]}</p>
         </Col>
