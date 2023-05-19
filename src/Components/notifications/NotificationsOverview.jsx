@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import { List, Row, Col } from 'antd';
 import useNotifications from '../../api/notification';
 import SingleNotification from './SingleNotification';
@@ -14,14 +14,29 @@ export default function NotificationsOverview() {
 
   const notificationsApi = useNotifications();
 
-  const { isAuthenticated } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
+    const anArray = [];
+
+    const updateNotifications = async (array) => {
+      const theObject = {
+        notifications: array,
+      };
+      await notificationsApi.saveMultipleToUnread(theObject);
+    };
+
     const fetchAllNotifications = async () => {
       try {
         setLoading(true);
         const data = await notificationsApi.getAll();
         setNotifications(data);
+        notifications.forEach((el) => {
+          if (el.status === 'new') {
+            anArray.push(el.notification_id);
+          }
+        });
+        updateNotifications(anArray);
       } catch (error2) {
         setError(error2);
       } finally {
@@ -30,18 +45,26 @@ export default function NotificationsOverview() {
     };
     fetchAllNotifications();
   }, []);
-
+  /*
   useEffect(() => {
+    const updateNotifications = async (array) => {
+      const object = {
+        notifications: array,
+      };
+      await notificationsApi.saveMultipleToUnread(object);
+    };
+    const anArray = [];
+    console.log('HIER');
     if (!isAuthenticated) {
-      notifications.forEach(async (el) => {
+      console.log('HIER OOK');
+      notifications.forEach((el) => {
         if (el.status === 'new') {
-          const aNotification = el;
-          aNotification.status = 'unread';
-          await notificationsApi.saveNotification(aNotification);
+          anArray.push(el.notification_id);
         }
       });
+      updateNotifications(anArray);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated]); */
 
   return (
     <div style={{ margin: '5% 15%' }}>
