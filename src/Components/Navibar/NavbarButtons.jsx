@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { NotificationOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Dropdown } from 'antd';
 import LogoutButtonDropDown from '../authentication/LogoutButton';
 import LoginButtonDropDown from '../authentication/LoginButton';
+import NotificationsDropdown from './NotificationsDropdown';
 
 export function ShoppingCartButton() {
   return (
@@ -22,15 +23,7 @@ export function ShoppingCartButton() {
 
 export function NotificationButton() {
   return (
-    <NavLink role="button" to="/notifications" data-cy="navibar_notificationsButton">
-      <NotificationOutlined
-        style={{
-          fontSize: '250%',
-          color: 'white',
-        }}
-        size={35}
-      />
-    </NavLink>
+    <NotificationsDropdown />
   );
 }
 
