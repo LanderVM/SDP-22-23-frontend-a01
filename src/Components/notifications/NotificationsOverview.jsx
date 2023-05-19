@@ -62,7 +62,7 @@ export default function NotificationsOverview() {
               pagination={{ pageSize: 10, align: 'center' }}
               dataSource={notifications}
               renderItem={(item) => (
-                <List.Item key={item.notification_id} style={{ display: 'block' }}>
+                <List.Item key={item.notification_id} style={{ display: 'block', backgroundColor: item.status === 'new' || item.status === 'unread' ? 'white' : '#f5f5f5' }}>
                   <SingleNotification notification={item} />
                 </List.Item>
               )}
