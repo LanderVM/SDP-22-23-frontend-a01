@@ -19,11 +19,11 @@ export default function NotificationsOverview() {
   useEffect(() => {
     const anArray = [];
 
-    const updateNotifications = async (array) => {
+    const updateNotifications = (array) => {
       const theObject = {
         notifications: array,
       };
-      await notificationsApi.saveMultipleToUnread(theObject);
+      notificationsApi.saveMultipleToUnread(theObject);
     };
 
     const fetchAllNotifications = async () => {
@@ -31,7 +31,7 @@ export default function NotificationsOverview() {
         setLoading(true);
         const data = await notificationsApi.getAll();
         setNotifications(data);
-        notifications.forEach((el) => {
+        data.forEach((el) => {
           if (el.status === 'new') {
             anArray.push(el.notification_id);
           }

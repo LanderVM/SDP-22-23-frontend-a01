@@ -65,7 +65,6 @@ export default function useNotifications() {
 
   const saveMultipleToUnread = useCallback(async (array) => {
     const token = await getAccessTokenSilently();
-
     await axios({
       method: 'PUT',
       url: `${baseUrl}/updateToUnread`,
