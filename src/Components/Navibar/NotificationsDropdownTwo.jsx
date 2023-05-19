@@ -1,13 +1,14 @@
-import { Dropdown } from "antd";
-import { NavLink } from "react-router-dom";
+import { Dropdown } from 'antd';
+import { NavLink } from 'react-router-dom';
+import { NotificationOutlined } from '@ant-design/icons';
 
 export default function NotificationsDropdownTwo({ notifications }) {
   const items = [
     {
       label: (
         <div>
-          <NavLink to={firstNavigation}>
-            <p>{firstMessage}</p>
+          <NavLink to={`orders${notifications[0].ORDER_order_id}`}>
+            <p>{notifications[0].message}</p>
           </NavLink>
         </div>
       ),
@@ -33,7 +34,6 @@ export default function NotificationsDropdownTwo({ notifications }) {
       menu={{ items }}
       trigger={['click']}
     >
-      
       <NotificationOutlined
         style={{
           fontSize: '250%',
@@ -44,4 +44,3 @@ export default function NotificationsDropdownTwo({ notifications }) {
     </Dropdown>
   );
 }
-
