@@ -1,10 +1,15 @@
+import { useContext } from 'react';
 import { Row, Col } from 'antd';
-// import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import useNotifications from '../../api/notification';
+import { NotificationsContext } from '../../Contexts/NotificationsContext';
+import './singleNotification.css';
 
 export default function SingleNotification({ notification }) {
-  // const { navigate } = useNavigate();
+  const navigate = useNavigate();
   const notificationsApi = useNotifications();
+
+  const { refreshAmountNotReadNotifications } = useContext(NotificationsContext);
 
   const handleClickNotification = (event) => {
     event.stopPropagation();
@@ -21,12 +26,13 @@ export default function SingleNotification({ notification }) {
 
       notificationsApi.saveNotification(theNotification);
     }
-    // navigate(`/orders/${notification.ORDER_order_id}`);
+    refreshAmountNotReadNotifications();
+    navigate(`/orders/${notification.ORDER_order_id}`);
   };
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <Row onClick={handleClickNotification}>
+      <Row onClick={handleClickNotification} className="notCols">
         <Col span={6}>
           <p>{notification.notification_date.split('T')[0]}</p>
         </Col>

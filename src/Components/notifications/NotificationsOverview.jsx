@@ -5,7 +5,7 @@ import SingleNotification from './SingleNotification';
 import Loader from '../Loader';
 import Error from '../Error';
 
-export default function MostRecentNotifications() {
+export default function NotificationsOverview() {
   const [notifications, setNotifications] = useState([]);
 
   const [error, setError] = useState(false);
@@ -14,7 +14,7 @@ export default function MostRecentNotifications() {
   const notificationsApi = useNotifications();
 
   useEffect(() => {
-    const fetchFiveMostRecent = async () => {
+    const fetchAllNotifications = async () => {
       try {
         setLoading(true);
         const data = await notificationsApi.getAll();
@@ -25,7 +25,7 @@ export default function MostRecentNotifications() {
         setLoading(false);
       }
     };
-    fetchFiveMostRecent();
+    fetchAllNotifications();
   }, []);
 
   return (
@@ -35,7 +35,7 @@ export default function MostRecentNotifications() {
       {!loading && !error
         ? (
           <>
-            <h1>All your notifications</h1>
+            <h1 style={{ textAlign: 'center', fontSize: '2.3em' }}>All your notifications</h1>
             <List
               header={
           (
@@ -48,7 +48,7 @@ export default function MostRecentNotifications() {
                   Description
                 </Col>
                 <Col span={6}>
-                  Satus
+                  Status
                 </Col>
                 <Col span={6}>
                   OrderId
