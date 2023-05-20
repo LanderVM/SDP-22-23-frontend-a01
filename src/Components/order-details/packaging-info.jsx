@@ -11,7 +11,7 @@ import usePackagingApi from '../../api/packagingService';
 export default function PackagingInfo({ orderDetails, updateFunction, updatedOrderDetailsFunction }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackaging, setSelectedPackaging] = useState({ packaging_id: orderDetails.packaging_id });
-  const [currentPackagingName, setCurrentPackagingName] = useState(orderDetails.name);
+  const [currentPackagingName, setCurrentPackagingName] = useState(undefined);
   const [packaging, setPackaging] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,15 +27,26 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
       try {
         setLoading(true);
         setError(null);
-        const data = await packagingApi.getPackaging();
+        const data = await packagingApi.getPackagingsList();
         setPackaging(data.items);
+        if (selectedPackaging.packaging_id === undefined) {
+          setSelectedPackaging(data.items[0]);
+          setSelectedPackaging(data.items[0]);
+          setCurrentPackagingName(data.items[0].packaging_name);
+        } else {
+          setCurrentPackagingName(orderDetails.name);
+        }
       } catch (error2) {
         setError(error2);
       } finally {
         setLoading(false);
       }
     };
+    const setDefaultPackaging = () => {
+      updatedOrderDetailsFunction(selectedPackaging);
+    };
     fetchPackaging();
+    if (updatedOrderDetailsFunction) setDefaultPackaging();
   }, []);
 
   const showModal = () => {

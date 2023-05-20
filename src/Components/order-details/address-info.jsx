@@ -19,32 +19,35 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
 
   const [form] = useForm();
 
-  useEffect(() => form.setFields([
-    {
-      name: 'delivery_street',
-      value: currentDetails.delivery_street,
-    },
-    {
-      name: 'delivery_house_number',
-      value: currentDetails.delivery_house_number,
-    },
-    {
-      name: 'delivery_box',
-      value: currentDetails.delivery_box === 'null' || currentDetails.delivery_box === null ? '' : currentDetails.delivery_box,
-    },
-    {
-      name: 'delivery_postal_code',
-      value: currentDetails.delivery_postal_code,
-    },
-    {
-      name: 'delivery_city',
-      value: currentDetails.delivery_city,
-    },
-    {
-      name: 'delivery_country',
-      value: currentDetails.delivery_country,
-    },
-  ]), []);
+  useEffect(() => {
+    if (updatedOrderDetailsFunction) updatedOrderDetailsFunction(orderDetails);
+    form.setFields([
+      {
+        name: 'delivery_street',
+        value: currentDetails.delivery_street,
+      },
+      {
+        name: 'delivery_house_number',
+        value: currentDetails.delivery_house_number,
+      },
+      {
+        name: 'delivery_box',
+        value: currentDetails.delivery_box === 'null' || currentDetails.delivery_box === null ? '' : currentDetails.delivery_box,
+      },
+      {
+        name: 'delivery_postal_code',
+        value: currentDetails.delivery_postal_code,
+      },
+      {
+        name: 'delivery_city',
+        value: currentDetails.delivery_city,
+      },
+      {
+        name: 'delivery_country',
+        value: currentDetails.delivery_country,
+      },
+    ]);
+  }, []);
 
   const showModal = () => {
     setLoading(null);

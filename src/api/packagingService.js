@@ -8,7 +8,7 @@ export default function usePackagingApi() {
     getAccessTokenSilently,
   } = useAuth0();
 
-  const getPackaging = useCallback(async () => {
+  const getPackagingsList = useCallback(async () => {
     const token = await getAccessTokenSilently();
     const {
       data,
@@ -21,6 +21,6 @@ export default function usePackagingApi() {
   }, [getAccessTokenSilently]);
 
   return {
-    getPackaging,
+    getPackagingsList,
   };
 }

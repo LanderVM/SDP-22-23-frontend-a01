@@ -28,7 +28,7 @@ export function ChangePackagingModal({ orderDetails }) {
       try {
         setLoading(true);
         setError(null);
-        const data = await packagingApi.getPackaging();
+        const data = await packagingApi.getPackagingsList();
         setPackaging(data.items);
       } catch (error2) {
         setError(error2);

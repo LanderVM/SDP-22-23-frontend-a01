@@ -12,7 +12,7 @@ import OrderContent from './OrderContent';
 
 import useProducts from '../../api/productService';
 import useProfile from '../../api/profile';
-import useOrder from '../../api/orderService';
+import useOrderApi from '../../api/orderService';
 
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 
@@ -21,6 +21,7 @@ import Loader from '../../Components/Loader';
 
 import SingleOrderDetails from './SingleOrderDetails';
 import FinishedOrder from './FinishedOrder';
+import usePackagingApi from '../../api/packagingService';
 
 const { useBreakpoint } = Grid;
 
@@ -45,8 +46,9 @@ export default function FinishingOrder() {
   const [myCart, setCart] = useState(null);
 
   const profileApi = useProfile();
-  const productenApi = useProducts();
-  const orderApi = useOrder();
+  const productsApi = useProducts();
+  const orderApi = useOrderApi();
+  const packagingApi = usePackagingApi();
 
   const callBack = async (data) => {
     setDeliveryCity(data.delivery_city);
@@ -58,7 +60,7 @@ export default function FinishingOrder() {
   };
 
   const callBack2 = async (data) => {
-    setPackaging(data.packaging_id);
+    setPackaging(data);
   };
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export default function FinishingOrder() {
         if (productsFromContext && productsFromContext.length > 0) {
           setLoading(true);
           setError(null);
-          const data = await productenApi.getByIds(productsFromContext);
+          const data = await productsApi.getByIds(productsFromContext);
           setCart(data);
         }
       } catch (error2) {
@@ -80,25 +82,28 @@ export default function FinishingOrder() {
   }, [productsFromContext]);
 
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchCustomerInfo = async () => {
       try {
         setLoading(true);
         setError(null);
-        const dbOrderList = await profileApi.getCompanyInfo();
-        setCustomer(dbOrderList);
+        const dbCustomerInfo = await profileApi.getCompanyInfo();
+        setCustomer(dbCustomerInfo);
+        const dbPackagingList = await packagingApi.getPackagingsList();
+        setPackaging(dbPackagingList.items[0]);
+        setCustomer(dbCustomerInfo);
       } catch (error2) {
         setError(error2);
       } finally {
         setLoading(false);
       }
     };
-    fetchOrders();
+    fetchCustomerInfo();
   }, []);
 
   const handleView = useCallback(async (nameToView) => {
     try {
       setError(null);
-      await productenApi.getByName(nameToView);
+      await productsApi.getByName(nameToView);
     } catch (err) {
       setError(err);
     }
@@ -114,7 +119,7 @@ export default function FinishingOrder() {
         delivery_street: deliveryStreet,
         delivery_house_number: deliveryHouseNumber,
         delivery_box: deliveryBus,
-        PACKAGING_packaging_id: packaging,
+        PACKAGING_packaging_id: packaging.packaging_id,
         SUPPLIER_supplier_id: customer.supplier_id,
         order_lines: productsFromContext,
       });

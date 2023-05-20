@@ -68,8 +68,6 @@ export default function useOrderApi() {
       ...values,
       order_lines: values2,
     };
-
-    console.log(values3);
     await axios({
       method: id ? 'PUT' : 'POST',
       url: `${baseUrl}/orders/${id ?? ''}`,
