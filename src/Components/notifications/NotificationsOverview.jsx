@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { useAuth0 } from '@auth0/auth0-react';
 import { List, Row, Col } from 'antd';
 import useNotifications from '../../api/notification';
 import SingleNotification from './SingleNotification';
@@ -13,8 +12,6 @@ export default function NotificationsOverview() {
   const [loading, setLoading] = useState(null);
 
   const notificationsApi = useNotifications();
-
-  // const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     const anArray = [];
@@ -45,26 +42,6 @@ export default function NotificationsOverview() {
     };
     fetchAllNotifications();
   }, []);
-  /*
-  useEffect(() => {
-    const updateNotifications = async (array) => {
-      const object = {
-        notifications: array,
-      };
-      await notificationsApi.saveMultipleToUnread(object);
-    };
-    const anArray = [];
-    console.log('HIER');
-    if (!isAuthenticated) {
-      console.log('HIER OOK');
-      notifications.forEach((el) => {
-        if (el.status === 'new') {
-          anArray.push(el.notification_id);
-        }
-      });
-      updateNotifications(anArray);
-    }
-  }, [isAuthenticated]); */
 
   return (
     <div style={{ margin: '5% 15%' }}>
