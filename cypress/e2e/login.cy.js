@@ -1,14 +1,14 @@
 describe('login', () => {
   beforeEach(() => {
     cy.intercept(
-      "GET",
-      "http://localhost:9000/api/notifications/fiveMostRecent",
-      { fixture: 'fiveMostRecentNotifications.json' }
+      'GET',
+      'http://localhost:9000/api/notifications/fiveMostRecent',
+      { fixture: 'fiveMostRecentNotifications.json' },
     );
     cy.intercept(
-      "GET",
-      "http://localhost:9000/api/notifications/amountNotRead",
-      { fixture: 'amountNotReadNotifications.json' }
+      'GET',
+      'http://localhost:9000/api/notifications/amountNotRead',
+      { fixture: 'amountNotReadNotifications.json' },
     );
     cy.login();
   });
@@ -19,6 +19,5 @@ describe('login', () => {
 
   it('should successfully log out of the app', () => {
     cy.logout();
-  })
-
+  });
 });

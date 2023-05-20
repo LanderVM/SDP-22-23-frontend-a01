@@ -1,31 +1,31 @@
 const exampleProducts = [
-    {
-      name: "iPhone 9",
-      brand: "Apple",
-      price: "€ 549",
-      stock_message: "in stock (94 left)",
-      description: "An apple mobile which is nothing like apple",
-    },
-    {
-      name: "iPhone X",
-      brand: "Apple",
-      price: "€ 899",
-      stock_message: "Out of stock",
-      description: "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-    },
+  {
+    name: 'iPhone 9',
+    brand: 'Apple',
+    price: '€ 549',
+    stock_message: 'in stock (94 left)',
+    description: 'An apple mobile which is nothing like apple',
+  },
+  {
+    name: 'iPhone X',
+    brand: 'Apple',
+    price: '€ 899',
+    stock_message: 'Out of stock',
+    description: 'SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...',
+  },
 ];
 
 describe('single product page', () => {
   beforeEach(() => {
     cy.intercept(
-      "GET",
-      "http://localhost:9000/api/notifications/fiveMostRecent",
-      { fixture: 'fiveMostRecentNotifications.json' }
+      'GET',
+      'http://localhost:9000/api/notifications/fiveMostRecent',
+      { fixture: 'fiveMostRecentNotifications.json' },
     );
     cy.intercept(
-      "GET",
-      "http://localhost:9000/api/notifications/amountNotRead",
-      { fixture: 'amountNotReadNotifications.json' }
+      'GET',
+      'http://localhost:9000/api/notifications/amountNotRead',
+      { fixture: 'amountNotReadNotifications.json' },
     );
     cy.login();
   });

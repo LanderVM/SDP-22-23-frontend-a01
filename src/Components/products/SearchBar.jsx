@@ -42,6 +42,7 @@ function SearchBar({
       {!loading && !error ? (
         <div style={{ display: 'flex', fontSize: '30px' }}>
           <AutoComplete
+            data-cy="products_searchBar"
             style={{ width: '100%' }}
             options={products.map((e) => ({ value: e.name }))}
             filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
@@ -49,7 +50,7 @@ function SearchBar({
             onSelect={setSelectedProduct}
           />
           <Button
-            data-cy="products_searchBar"
+            data-cy="products_searchButton"
             onClick={onSearchName}
             style={{ float: 'right', backgroundColor: '#ff4d4f', color: 'white' }}
           >

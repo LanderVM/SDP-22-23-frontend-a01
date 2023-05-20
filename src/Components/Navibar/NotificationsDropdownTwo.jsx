@@ -59,7 +59,7 @@ export default function NotificationsDropdownTwo({ notifications }) {
     {
       label: (
         <div>
-          <NavLink to="/notifications">
+          <NavLink to="/notifications" data-cy="navibar_notificationsViewAllButton">
             <b>View all</b>
           </NavLink>
         </div>
@@ -86,6 +86,7 @@ export default function NotificationsDropdownTwo({ notifications }) {
       trigger={['click']}
     >
       <NotificationOutlined
+        data-cy="navibar_notificationsButton"
         style={{
           fontSize: '250%',
           color: 'white',

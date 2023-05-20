@@ -1,20 +1,20 @@
 const exampleProduct = {
-  name: "iPhone 9",
-  price: "€ 549",
-  description: "An apple mobile which is nothing like apple",
-}
+  name: 'iPhone 9',
+  price: '€ 549',
+  description: 'An apple mobile which is nothing like apple',
+};
 
 describe('add to shopping cart', () => {
   beforeEach(() => {
     cy.intercept(
-      "GET",
-      "http://localhost:9000/api/notifications/fiveMostRecent",
-      { fixture: 'fiveMostRecentNotifications.json' }
+      'GET',
+      'http://localhost:9000/api/notifications/fiveMostRecent',
+      { fixture: 'fiveMostRecentNotifications.json' },
     );
     cy.intercept(
-      "GET",
-      "http://localhost:9000/api/notifications/amountNotRead",
-      { fixture: 'amountNotReadNotifications.json' }
+      'GET',
+      'http://localhost:9000/api/notifications/amountNotRead',
+      { fixture: 'amountNotReadNotifications.json' },
     );
     cy.login();
   });
