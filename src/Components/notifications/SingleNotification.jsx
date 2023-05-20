@@ -11,7 +11,7 @@ export default function SingleNotification({ notification }) {
 
   const { refreshAmountNotReadNotifications } = useContext(NotificationsContext);
 
-  const handleClickNotification = (event) => {
+  const handleClickNotification = async (event) => {
     event.stopPropagation();
     event.preventDefault();
     if (notification.status === 'new' || notification.status === 'unread') {
@@ -23,8 +23,10 @@ export default function SingleNotification({ notification }) {
         status: 'read',
         message: notification.message,
       };
-
-      notificationsApi.saveNotification(theNotification);
+      const save = async () => {
+        await notificationsApi.saveNotification(theNotification);
+      };
+      await save();
     }
     refreshAmountNotReadNotifications();
     navigate(`/orders/${notification.ORDER_order_id}`);

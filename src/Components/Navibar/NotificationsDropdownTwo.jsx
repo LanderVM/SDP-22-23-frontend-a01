@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { NotificationOutlined } from '@ant-design/icons';
 
 export default function NotificationsDropdownTwo({ notifications }) {
-  console.log(notifications);
   let items = [
     {
       label: (
