@@ -4,8 +4,9 @@ import {
 import { NavLink } from 'react-router-dom';
 import React, { useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import { ChangeAddressModalMemo } from './ChangeAddressModal';
 import { ChangePackagingModalMemo } from './ChangePackagingModal';
+import AddressInfo from '../../Components/order-details/address-info';
+import useOrderApi from '../../api/orderService';
 
 const size0 = 0;
 
@@ -18,6 +19,9 @@ export default function SingleOrderDetails({ order }) {
   const fontSizeMini = lg ? '18px' : '14px';
   const positionChangePackageMF = lg ? 'absolute' : 'relative';
 
+  const orderApi = useOrderApi();
+  const updateAddressFunction = async (orderId, shippingDetails) => orderApi.updateShippingDetailsById(orderId, shippingDetails);
+
   useMemo(() => {
     const calculateTotalCost = () => {
       const calculatedCost = order.product_list.map((product) => product.product_count * product.original_acquisition_price).reduce(
@@ -27,7 +31,7 @@ export default function SingleOrderDetails({ order }) {
       setTotalCost(calculatedCost);
     };
     calculateTotalCost();
-  }, [order]);
+  }, []);
 
   return (
     <>
@@ -36,9 +40,9 @@ export default function SingleOrderDetails({ order }) {
       </Row>
       <Row style={{ fontSize: fontSizeDesc }}>
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>
-          <h1 style={{ fontSize: fontSizeDesc }}>Delivery adress</h1>
+          <h1 style={{ fontSize: fontSizeDesc }}>Delivery address</h1>
           <div style={{ fontSize: fontSizeMini }}>
-            <ChangeAddressModalMemo orderDetails={order.order_info} />
+            <AddressInfo orderDetails={order.order_info} updateFunction={updateAddressFunction} />
           </div>
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 8 }}>
