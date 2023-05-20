@@ -4,9 +4,9 @@ import {
 import { NavLink } from 'react-router-dom';
 import React, { useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import { ChangePackagingModalMemo } from './ChangePackagingModal';
 import AddressInfo from '../../Components/order-details/address-info';
 import useOrderApi from '../../api/orderService';
+import PackagingInfo from '../../Components/order-details/packaging-info';
 
 const size0 = 0;
 
@@ -21,6 +21,7 @@ export default function SingleOrderDetails({ order }) {
 
   const orderApi = useOrderApi();
   const updateAddressFunction = async (orderId, shippingDetails) => orderApi.updateShippingDetailsById(orderId, shippingDetails);
+  const updatePackagingFunction = async (orderId, packagingId) => orderApi.updateShippingDetailsById(orderId, { PACKAGING_packaging_id: packagingId });
 
   useMemo(() => {
     const calculateTotalCost = () => {
@@ -46,9 +47,7 @@ export default function SingleOrderDetails({ order }) {
           </div>
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 8 }}>
-          <h1 style={{ fontSize: fontSizeDesc }}>Packaging</h1>
-          <div style={{ fontSize: fontSizeMini }}>{order.order_info.name}</div>
-          <ChangePackagingModalMemo orderDetails={order.order_info} />
+          <PackagingInfo orderDetails={order.order_info} updateFunction={updatePackagingFunction} />
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Total amount: </h1>
