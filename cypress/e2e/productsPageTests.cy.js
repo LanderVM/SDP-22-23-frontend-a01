@@ -2,6 +2,16 @@ const exampleProduct = "iPhone 9";
 
 describe('products page tests', () => {
   beforeEach(() => {
+    cy.intercept(
+      "GET",
+      "http://localhost:9000/api/notifications/fiveMostRecent",
+      { fixture: 'fiveMostRecentNotifications.json' }
+    );
+    cy.intercept(
+      "GET",
+      "http://localhost:9000/api/notifications/amountNotRead",
+      { fixture: 'amountNotReadNotifications.json' }
+    );
     cy.visit('http://localhost:3000/products');
   });
 
