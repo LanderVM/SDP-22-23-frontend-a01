@@ -36,7 +36,7 @@ export default function NotificationsDropdownTwo({ notifications }) {
       label: (
         <div>
           {notifications.map((noti, index) => (
-            <NavLink key={noti.ORDER_order_id} to={`orders/${noti.ORDER_order_id}`} onClick={arrayOfHandlers[index]}>
+            <NavLink key={noti.ORDER_order_id} to={`orders/${noti.ORDER_order_id}`} onClick={arrayOfHandlers[index]} data-cy={`notificationInDropdown${index}`}>
               <p>
                 <b>
                   Order

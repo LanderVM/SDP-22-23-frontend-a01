@@ -34,18 +34,18 @@ export default function SingleNotification({ notification }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <Row onClick={handleClickNotification} className="notCols">
+      <Row onClick={handleClickNotification} className="notCols" data-cy="notification">
         <Col span={6}>
-          <p>{notification.notification_date.split('T')[0]}</p>
+          <p data-cy="notificationDate">{notification.notification_date.split('T')[0]}</p>
         </Col>
         <Col span={6}>
-          <p>{notification.message}</p>
+          <p data-cy="notificationMessage">{notification.message}</p>
         </Col>
         <Col span={6}>
-          <p>{notification.status}</p>
+          <p data-cy="notificationStatus">{notification.status}</p>
         </Col>
         <Col span={6}>
-          <p>{notification.order_id}</p>
+          <p data-cy="notificationOrderId">{notification.order_id}</p>
         </Col>
       </Row>
     </div>
