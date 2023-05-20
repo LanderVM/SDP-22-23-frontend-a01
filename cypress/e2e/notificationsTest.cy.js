@@ -25,7 +25,7 @@ describe('notifications test', () => {
   it('test notifications dropdown menu',() =>{
     cy.get('[data-cy=amountNotReadNotifications]').click();
     cy.wait(500);
-    cy.get('[data-cy=dropdownAllNotifications]').should('exist');
+    cy.get('[data-cy=navibar_notificationsViewAllButton]').should('exist');
     cy.get('[data-cy=notificationInDropdown1]').should('exist');
   });
 
@@ -40,7 +40,7 @@ describe('notifications test', () => {
   it('test all notifications navigate from dropdown menu', () => {
     cy.get('[data-cy=amountNotReadNotifications]').click();
     cy.wait(500);
-    cy.get('[data-cy=dropdownAllNotifications]').click();
+    cy.get('[data-cy=navibar_notificationsViewAllButton]').click();
     cy.wait(500);
     cy.url().should('equal', 'http://localhost:3000/notifications');
   });
