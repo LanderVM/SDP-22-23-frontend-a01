@@ -107,7 +107,7 @@ export default function FinishingOrder() {
   const handleOrder = async (e) => {
     e.preventDefault();
     try {
-      const request = await orderApi.placeOrder({
+      await orderApi.placeOrder({
         delivery_country: deliveryCounrty || customer.supplier_delivery_country,
         delivery_city: deliveryCity || customer.supplier_delivery_city,
         delivery_postal_code: deliveryPostalCode || customer.supplier_delivery_postal_code.toString(),
@@ -118,7 +118,6 @@ export default function FinishingOrder() {
         SUPPLIER_supplier_id: customer.supplier_id,
         order_lines: productsFromContext,
       });
-      console.log(request);
       setFinished(true);
       resetShoppingCartContext();
       // window.location.reload(false);
@@ -140,9 +139,7 @@ function FinishingOrderOverview({
   customerDetails, myCart, handleOrder, handleView, setAddressList, setPackaging,
 }) {
   if (customerDetails == null || myCart == null || handleView == null) {
-    return (
-      null
-    );
+    return null;
   }
   if (myCart.length === 0) {
     return (
@@ -156,7 +153,6 @@ function FinishingOrderOverview({
   const phoneFormatPaddingOverView = lg ? '40px 40px 40px 20px' : '20px';
 
   return (
-
     <>
       <Row>
         <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>

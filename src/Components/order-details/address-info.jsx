@@ -55,9 +55,15 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
       try {
         setError(null);
         setLoading(true);
-        const updatedDetails = await updateFunction(orderDetails.order_id, toUpdateValues);
-        setCurrentDetails(updatedDetails.items);
-        if (updatedOrderDetailsFunction) updatedOrderDetailsFunction(currentDetails);
+        if (updateFunction) {
+          const updatedDetails = await updateFunction(orderDetails.order_id, toUpdateValues);
+          setCurrentDetails(updatedDetails.items);
+        } else if (updatedOrderDetailsFunction) {
+          updatedOrderDetailsFunction(toUpdateValues);
+          setCurrentDetails(toUpdateValues);
+        } else {
+          setCurrentDetails(toUpdateValues);
+        }
         setLoading(false);
         setIsModalOpen(false);
       } catch (error2) {
@@ -92,7 +98,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
       <div>
         {currentDetails.delivery_country}
       </div>
-      { currentDetails.order_status === 0
+      { (currentDetails.order_status === 0 || currentDetails.order_status === undefined)
         ? <Button type="link" onClick={showModal} style={{ padding: size0, fontSize: fontSizeMini }}> &#62;&nbsp;Change address</Button>
         : null}
       <Modal
@@ -109,7 +115,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
               handleOk(values);
             })
             .catch((info) => {
-              setError(info);
+              setError(info.errorFields[0].errors[0]);
             });
         }}
         onCancel={handleCancel}
@@ -127,7 +133,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
               <Form.Item
                 name="delivery_street"
                 label="Street address"
-                rules={[{ required: true, type: 'string' }]}
+                rules={[{ required: true, type: 'string', whitespace: true }]}
               >
                 <Input />
               </Form.Item>
@@ -136,7 +142,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
               <Form.Item
                 name="delivery_house_number"
                 label="House number"
-                rules={[{ required: true }]}
+                rules={[{ required: true, whitespace: true }]}
               >
                 <Input />
               </Form.Item>
@@ -155,7 +161,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
               <Form.Item
                 name="delivery_postal_code"
                 label="Postcode"
-                rules={[{ required: true }]}
+                rules={[{ required: true, whitespace: true }]}
               >
                 <Input />
               </Form.Item>
@@ -164,7 +170,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
               <Form.Item
                 name="delivery_city"
                 label="City"
-                rules={[{ required: true, type: 'string' }]}
+                rules={[{ required: true, type: 'string', whitespace: true }]}
               >
                 <Input />
               </Form.Item>
@@ -173,7 +179,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
               <Form.Item
                 name="delivery_country"
                 label="Country"
-                rules={[{ required: true }]}
+                rules={[{ required: true, whitespace: true }]}
               >
                 <Select showSearch>
                   {Object.values(countries).map((country) => (

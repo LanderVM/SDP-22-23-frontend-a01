@@ -13,7 +13,6 @@ export default function NotificationsDropdown() {
   useEffect(() => {
     const fetchFiveMostRecent = async () => {
       const data = await notificationsApi.getFiveMostRecent();
-      console.log(data);
       setFiveMostRecentNotifications(data);
     };
     if (isAuthenticated) {

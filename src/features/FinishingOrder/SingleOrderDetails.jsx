@@ -4,12 +4,8 @@ import {
 import React from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
-// import ChangeAddressModal from './ChangeAddressModal';
-// import ChangePackagingModal from './ChangePackagingModal';
-// import getStatusAsString from '../../utils';
-
-import { ChangeAddressModalMemo } from './ChangeAddressModal';
 import { ChangePackagingModalMemo } from './ChangePackagingModal';
+import AddressInfo from '../../Components/order-details/address-info';
 
 export default function OrderDetails({
   customerDetails, setAddressList, setPackaging,
@@ -26,7 +22,7 @@ export default function OrderDetails({
       <Row style={{ fontSize: fontSizeDesc }}>
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>
           <h1>Delivery address</h1>
-          <ChangeAddressModalMemo setAddressList={setAddressList} customerDetails={customerDetails} />
+          <AddressInfo updatedOrderDetailsFunction={setAddressList} orderDetails={customerDetails} />
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>
           <h1>Packaging</h1>
