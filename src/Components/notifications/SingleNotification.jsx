@@ -42,7 +42,7 @@ export default function SingleNotification({ notification }) {
           <p>{notification.message}</p>
         </Col>
         <Col span={6}>
-          <p>{notification.status}</p>
+          <p data-cy="notificationStatus">{notification.status}</p>
         </Col>
         <Col span={6}>
           <p>{notification.order_id}</p>
