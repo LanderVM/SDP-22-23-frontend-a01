@@ -3,12 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { NotificationOutlined } from '@ant-design/icons';
 
 export default function NotificationsDropdownTwo({ notifications }) {
+  console.log(notifications);
   let items = [
     {
       label: (
         <div>
           {notifications.map((noti) => (
-            <NavLink key={noti.ORDER_order_id} to={`orders${noti.ORDER_order_id}`}>
+            <NavLink key={noti.ORDER_order_id} to={`orders/${noti.ORDER_order_id}`}>
               <p>
                 <b>
                   Order
