@@ -36,7 +36,7 @@ export default function FinishingOrder() {
 
   const [customer, setCustomer] = useState(null);
   const [deliveryCity, setDeliveryCity] = useState(null);
-  const [deliveryCounrty, setDeliveryCounrty] = useState(null);
+  const [deliveryCountry, setDeliveryCountry] = useState(null);
   const [deliveryPostalCode, setDeliveryPostalCode] = useState(null);
   const [deliveryStreet, setDeliveryStreet] = useState(null);
   const [deliveryBus, setDeliveryBus] = useState(null);
@@ -50,7 +50,7 @@ export default function FinishingOrder() {
 
   const callBack = async (data) => {
     setDeliveryCity(data.delivery_city);
-    setDeliveryCounrty(data.delivery_country);
+    setDeliveryCountry(data.delivery_country);
     setDeliveryPostalCode(data.delivery_postal_code);
     setDeliveryStreet(data.delivery_street);
     setDeliveryBus(data.delivery_box);
@@ -58,7 +58,7 @@ export default function FinishingOrder() {
   };
 
   const callBack2 = async (data) => {
-    setPackaging(data.packagingId);
+    setPackaging(data.packaging_id);
   };
 
   useEffect(() => {
@@ -108,13 +108,13 @@ export default function FinishingOrder() {
     e.preventDefault();
     try {
       await orderApi.placeOrder({
-        delivery_country: deliveryCounrty || customer.supplier_delivery_country,
-        delivery_city: deliveryCity || customer.supplier_delivery_city,
-        delivery_postal_code: deliveryPostalCode || customer.supplier_delivery_postal_code.toString(),
-        delivery_street: deliveryStreet || customer.supplier_delivery_street,
-        delivery_house_number: deliveryHouseNumber || customer.supplier_delivery_house_number.toString(),
-        delivery_box: deliveryBus || customer.supplier_delivery_box,
-        PACKAGING_packaging_id: packaging || 1,
+        delivery_country: deliveryCountry,
+        delivery_city: deliveryCity,
+        delivery_postal_code: deliveryPostalCode,
+        delivery_street: deliveryStreet,
+        delivery_house_number: deliveryHouseNumber,
+        delivery_box: deliveryBus,
+        PACKAGING_packaging_id: packaging,
         SUPPLIER_supplier_id: customer.supplier_id,
         order_lines: productsFromContext,
       });

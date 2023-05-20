@@ -8,10 +8,9 @@ import Loader from '../Loader';
 
 import usePackagingApi from '../../api/packagingService';
 
-// eslint-disable-next-line no-unused-vars
 export default function PackagingInfo({ orderDetails, updateFunction, updatedOrderDetailsFunction }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPackagingId, setSelectedPackagingId] = useState(orderDetails.packaging_id);
+  const [selectedPackaging, setSelectedPackaging] = useState({ packaging_id: orderDetails.packaging_id });
   const [currentPackagingName, setCurrentPackagingName] = useState(orderDetails.name);
   const [packaging, setPackaging] = useState([]);
   const [error, setError] = useState(null);
@@ -48,13 +47,13 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
         setError(null);
         setLoading(true);
         if (updateFunction) {
-          const updatedDetails = await updateFunction(orderDetails.order_id, selectedPackagingId);
+          const updatedDetails = await updateFunction(orderDetails.order_id, selectedPackaging.packaging_id);
           setCurrentPackagingName(updatedDetails.items.packaging_name);
-        // } else if (updatedOrderDetailsFunction) {
-        //   updatedOrderDetailsFunction(toUpdateValues);
-        //   setCurrentDetails(toUpdateValues);
-        // } else {
-        //   setCurrentDetails(toUpdateValues);
+        } else if (updatedOrderDetailsFunction) {
+          updatedOrderDetailsFunction(selectedPackaging);
+          setCurrentPackagingName(selectedPackaging.packaging_name);
+        } else {
+          setCurrentPackagingName(selectedPackaging.packaging_name);
         }
         setLoading(false);
         setIsModalOpen(false);
@@ -73,8 +72,8 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
   };
 
   const rowSelection = {
-    onChange: (selectedRowKeys) => {
-      setSelectedPackagingId(selectedRowKeys[0]);
+    onChange: (selectedRowKeys, selectedRows) => {
+      setSelectedPackaging(selectedRows[0]);
     },
   };
 
@@ -113,7 +112,6 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
           </Button>
         )
         : null}
-
       <Modal
         forceRender
         title="Change Packaging"
