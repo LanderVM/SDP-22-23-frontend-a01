@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   Menu, Badge, Layout, Space, Grid, theme, ConfigProvider,
 } from 'antd';
@@ -7,6 +8,7 @@ import { NotificationButton, ShoppingCartButton, AccountButton } from './NavbarB
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
 import './navibar.scss';
 import NavbarMobileDrawer from './NavbarMobileDrawer';
+import { NotificationsContext } from '../../Contexts/NotificationsContext';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
@@ -65,9 +67,21 @@ function Navbar() {
     productsFromContext,
   } = useContext(ProductsForShoppingCartContext);
 
+  const { amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications } = useContext(NotificationsContext);
+
+  const { isAuthenticated } = useAuth0();
+
   const onClick = (e) => {
     navigate(`/${e.key}`);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      refreshAmountNotReadNotifications();
+    } else {
+      setAmountNotReadNotifications(0);
+    }
+  }, [isAuthenticated]);
 
   const logo = '/images/Delaware-logo_white.png';
   const navMenuMF = lg ? 'center' : 'left';
@@ -99,7 +113,16 @@ function Navbar() {
           >
             <ShoppingCartButton />
           </Badge>
-          <NotificationButton />
+          <Badge
+            count={amountNotReadNotifications}
+            color="geekblue"
+            offset={[-5, 2]}
+            data-cy="amountNotReadNotifications"
+            overflowCount={99}
+            size="default"
+          >
+            <NotificationButton />
+          </Badge>
           <AccountButton />
         </Space>
         <ConfigProvider theme={{ algorithm: theme.darkAlgorithm, token: { colorPrimary: '#fff' } }}>

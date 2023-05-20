@@ -5,7 +5,8 @@ import ProductsList from './Components/products/ProductsList';
 import SingleProduct from './Components/products/SingleProduct';
 import TrackingInput from './Components/Tracking/TrackingInput';
 import ProfileOverview from './Components/profile/ProfileOverview';
-import FinishingOrder from './features/FinishingOrder/FinishingOrder';
+import FinishingOrder from './Feature/FinishingOrder/FinishingOrder';
+import NotificationsOverview from './Components/notifications/NotificationsOverview';
 
 export function NotFoundPage() {
   return (
@@ -54,5 +55,13 @@ export function ProductOverviewPage() {
     <main>
       <SingleProduct productId={productId} />
     </main>
+  );
+}
+
+export function Notifications() {
+  return (
+    <div>
+      <NotificationsOverview />
+    </div>
   );
 }
