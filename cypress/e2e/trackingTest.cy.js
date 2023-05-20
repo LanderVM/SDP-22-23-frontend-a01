@@ -11,6 +11,16 @@ const exampleTrackingInfo = [
 
 describe('track order', () => {
   beforeEach(() => {
+    cy.intercept(
+      "GET",
+      "http://localhost:9000/api/notifications/fiveMostRecent",
+      { fixture: 'fiveMostRecentNotifications.json' }
+    );
+    cy.intercept(
+      "GET",
+      "http://localhost:9000/api/notifications/amountNotRead",
+      { fixture: 'amountNotReadNotifications.json' }
+    );
     cy.login();
   });
 
