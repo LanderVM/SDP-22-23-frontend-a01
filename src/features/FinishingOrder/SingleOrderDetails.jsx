@@ -20,14 +20,11 @@ export default function OrderDetails({
         <h1 style={{ fontSize: fontSizeName }}>Order details</h1>
       </Row>
       <Row style={{ fontSize: fontSizeDesc }}>
-        <Col xs={{ span: 24 }} lg={{ span: 6 }}>
+        <Col xs={{ span: 24 }} lg={{ span: 8 }}>
           <AddressInfo updatedOrderDetailsFunction={setAddressList} orderDetails={customerDetails} />
         </Col>
-        <Col xs={{ span: 24 }} lg={{ span: 6 }}>
+        <Col xs={{ span: 24 }} lg={{ span: 8 }}>
           <PackagingInfo orderDetails={customerDetails} updatedOrderDetailsFunction={setPackaging} />
-        </Col>
-        <Col xs={{ span: 12 }} lg={{ span: 4 }}>
-          <h1>Estimated delivery</h1>
         </Col>
       </Row>
 

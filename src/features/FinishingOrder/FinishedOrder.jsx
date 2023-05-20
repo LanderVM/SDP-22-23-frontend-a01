@@ -9,7 +9,7 @@ export default function FinishedOrder() {
         <CheckCircleTwoTone twoToneColor="green" style={{ fontSize: '64px' }} />
       </div>
       <div style={{ padding: '50px 0' }}>
-        Succesfully completed order
+        Successfully completed order
       </div>
       <div>
         <NavLink to="/orders" style={{ color: 'blue' }}>
