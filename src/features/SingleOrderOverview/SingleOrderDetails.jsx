@@ -41,7 +41,6 @@ export default function SingleOrderDetails({ order }) {
       </Row>
       <Row style={{ fontSize: fontSizeDesc }}>
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>
-          <h1 style={{ fontSize: fontSizeDesc }}>Delivery address</h1>
           <div style={{ fontSize: fontSizeMini }}>
             <AddressInfo orderDetails={order.order_info} updateFunction={updateAddressFunction} />
           </div>

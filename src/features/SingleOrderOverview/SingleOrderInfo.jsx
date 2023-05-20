@@ -18,7 +18,6 @@ export default function SingleOrderInfo({ order }) {
             <span style={{ color: 'grey' }}>Ordered on: </span>
             <span style={{ fontWeight: 'bold' }}>
               {moment(order.order_info.order_date.split('T')[0]).format('LL')}
-
             </span>
             <p className="delaware-order-info-body-header-status">
               {getStatusAsString(order.order_info.order_status)}

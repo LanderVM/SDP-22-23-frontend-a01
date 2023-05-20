@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import Error from '../Error';
 import Loader from '../Loader';
+import './modal.scss';
 
 import usePackagingApi from '../../api/packagingService';
 

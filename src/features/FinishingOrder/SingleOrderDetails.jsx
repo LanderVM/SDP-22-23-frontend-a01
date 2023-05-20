@@ -21,7 +21,6 @@ export default function OrderDetails({
       </Row>
       <Row style={{ fontSize: fontSizeDesc }}>
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>
-          <h1>Delivery address</h1>
           <AddressInfo updatedOrderDetailsFunction={setAddressList} orderDetails={customerDetails} />
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 6 }}>

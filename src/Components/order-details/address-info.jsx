@@ -15,6 +15,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
   const [currentDetails, setCurrentDetails] = useState(orderDetails);
   const size0 = 0;
   const { lg } = useBreakpoint();
+  const fontSizeDesc = lg ? '24px' : '18px';
   const fontSizeMini = lg ? '18px' : '14px';
 
   const [form] = useForm();
@@ -87,18 +88,19 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
 
   return (
     <>
-      <div>
+      <h1 style={{ fontSize: fontSizeDesc }}>Delivery address</h1>
+      <div style={{ fontSize: fontSizeMini }}>
         {currentDetails.delivery_street}
           &nbsp;
         {currentDetails.delivery_house_number}
         {currentDetails.delivery_box === '' || currentDetails.delivery_box === null ? '' : `, Box ${currentDetails.delivery_box}`}
       </div>
-      <div>
+      <div style={{ fontSize: fontSizeMini }}>
         {currentDetails.delivery_postal_code}
           &nbsp;
         {currentDetails.delivery_city}
       </div>
-      <div>
+      <div style={{ fontSize: fontSizeMini }}>
         {currentDetails.delivery_country}
       </div>
       { (currentDetails.order_status === 0 || currentDetails.order_status === undefined)
