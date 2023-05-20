@@ -5,7 +5,7 @@ import ProductsList from './Components/products/ProductsList';
 import SingleProduct from './Components/products/SingleProduct';
 import TrackingInput from './Components/Tracking/TrackingInput';
 import ProfileOverview from './Components/profile/ProfileOverview';
-import FinishingOrder from './Feature/FinishingOrder/FinishingOrder';
+import FinishingOrder from './features/FinishingOrder/FinishingOrder';
 import NotificationsOverview from './Components/notifications/NotificationsOverview';
 
 export function NotFoundPage() {
