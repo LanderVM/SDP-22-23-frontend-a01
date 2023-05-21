@@ -143,6 +143,7 @@ export default function FinishingOrder() {
 function FinishingOrderOverview({
   customerDetails, myCart, handleOrder, handleView, setAddressList, setPackaging,
 }) {
+  const { lg } = useBreakpoint();
   if (customerDetails == null || myCart == null || handleView == null) {
     return null;
   }
@@ -151,7 +152,6 @@ function FinishingOrderOverview({
       <Empty description=" There are no products in your shoppingcart" />
     );
   }
-  const { lg } = useBreakpoint();
   const phoneFormatItemList = lg ? '18' : '24';
   const phoneFormatOverView = lg ? '6' : '24';
   const phoneFormatPaddingItemList = lg ? '40px 20px 40px 40px' : '20px';

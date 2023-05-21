@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Card, Divider, Button } from 'antd';
+import {
+  Card, Divider, Button, Row, Col,
+} from 'antd';
 import './ShoppingCart.css';
 import { NavLink } from 'react-router-dom';
 
@@ -28,7 +30,6 @@ export default function ShoppingCartOverview({
       title="Overview"
       bordered
       actions={[
-        // eslint-disable-next-line react/button-has-type
         <Button style={{ backgroundColor: '#ff4d4f' }}>
           <NavLink to="/FinishingOrder" style={{ color: 'white' }}>
             <b>Proceed to checkout</b>
@@ -36,46 +37,53 @@ export default function ShoppingCartOverview({
         </Button>,
       ]}
     >
-      <table style={{ width: '100%' }}>
-        <tbody>
-          <tr>
-            <td>
-              Articles (
-              {productsFromContext.map((e) => e.amount).reduce(
-                (accumulator, currentValue) => accumulator + currentValue,
-                0,
-              )}
-              ):
+      <Row>
+        <Col span={24}>
+          <span>
+            Articles (
+            {productsFromContext.map((e) => e.amount).reduce(
+              (accumulator, currentValue) => accumulator + currentValue,
+              0,
+            )}
+            ):
 
-            </td>
-            <td id="priceTd">
-              <strong>
-                €&nbsp;
-                {cost}
-              </strong>
-            </td>
-          </tr>
-          <Divider style={{ borderTop: '1px solid white' }} />
-          <tr>
-            <td>
-              Subtotal:
-            </td>
-            <td id="priceTd">
-              <strong>
-                €&nbsp;
-                {20 + cost}
-              </strong>
-            </td>
-          </tr>
-          <tr>
-            <td style={{ fontSize: '10px' }}>
-              (Excl. shipping costs)
-            </td>
+          </span>
+          <span id="priceTd">
+            <strong>
+              €&nbsp;
+              {cost}
+            </strong>
+          </span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}><Divider style={{ borderTop: '1px solid white' }} /></Col>
 
-          </tr>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <span>
+            Subtotal:
+          </span>
+          <span id="priceTd">
+            <strong>
+              €&nbsp;
+              {20 + cost}
+            </strong>
+          </span>
 
-        </tbody>
-      </table>
+        </Col>
+
+      </Row>
+      <Row>
+        <Col span={24}>
+          <span style={{ fontSize: '10px' }}>
+            (Excl. shipping costs)
+          </span>
+
+        </Col>
+
+      </Row>
     </Card>
   );
 }

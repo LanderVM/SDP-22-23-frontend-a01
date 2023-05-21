@@ -47,7 +47,7 @@ export default function OrderOverview({
             <td id="priceTd">
               <strong>
                 €&nbsp;
-                {cost - cost * 0.21}
+                {(cost - cost * 0.21).toFixed(2)}
               </strong>
             </td>
           </tr>
@@ -63,7 +63,7 @@ export default function OrderOverview({
             <td id="priceTd">
               <strong>
                 €&nbsp;
-                {cost * 0.21 }
+                {(cost * 0.21).toFixed(2)}
               </strong>
             </td>
           </tr>
@@ -75,7 +75,11 @@ export default function OrderOverview({
               </strong>
             </td>
           </tr>
-          &nbsp;
+          <tr>
+            <td>
+              <br />
+            </td>
+          </tr>
           <tr>
             <td>Total:</td>
             <td id="priceTd">
@@ -83,10 +87,8 @@ export default function OrderOverview({
                 €&nbsp;
                 {20 + cost}
               </strong>
-
             </td>
           </tr>
-
         </tbody>
       </table>
     </Card>

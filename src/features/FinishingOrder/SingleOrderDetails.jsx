@@ -16,9 +16,7 @@ export default function OrderDetails({
 
   return (
     <>
-      <Row>
-        <h1 style={{ fontSize: fontSizeName }}>Order details</h1>
-      </Row>
+      <h1 style={{ fontSize: fontSizeName }}>Order details</h1>
       <Row style={{ fontSize: fontSizeDesc }}>
         <Col xs={{ span: 24 }} lg={{ span: 8 }}>
           <AddressInfo updatedOrderDetailsFunction={setAddressList} orderDetails={customerDetails} />
