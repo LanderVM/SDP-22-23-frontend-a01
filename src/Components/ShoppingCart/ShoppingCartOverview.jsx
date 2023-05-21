@@ -68,7 +68,7 @@ export default function ShoppingCartOverview({
           <span id="priceTd">
             <strong>
               €&nbsp;
-              {20 + cost}
+              {cost}
             </strong>
           </span>
 

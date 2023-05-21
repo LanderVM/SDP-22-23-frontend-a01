@@ -1,24 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  useContext, useEffect, useMemo, useState,
+} from 'react';
 import { Button, Card } from 'antd';
 
 export default function OrderOverview({
   cart, context, onOrder, packagingCost,
 }) {
   const { productsFromContext } = useContext(context);
-
+  const [packagingPrice, setPackagingPrice] = useState(0);
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
+    setPackagingPrice();
     let total = [];
-
     total = cart.map((e) => productsFromContext.find((p) => p.productId === e.product_id).amount * e.price);
-
     const totalCost = total.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
       0,
     );
     setCost(totalCost);
   }, [cart]);
+
+  useMemo(() => {
+    const calculatePrice = () => {
+      const calculatedPrice = parseInt(packaging.price.substring(2), 10);
+      setPackagingPrice(calculatedPrice);
+    };
+    calculatePrice();
+  }, []);
 
   return (
     <Card
