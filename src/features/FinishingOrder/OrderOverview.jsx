@@ -64,17 +64,17 @@ export default function OrderOverview({
             </td>
           </tr>
           <tr>
-            <td>
-              <br />
-            </td>
-          </tr>
-          <tr>
             <td>Total excl. VAT:</td>
             <td id="priceTd">
               <strong>
                 €&nbsp;
                 {Number(packagingCost.substring(packagingCost.indexOf(' ') + 1, packagingCost.length)) + cost - (cost * 0.21).toFixed(2)}
               </strong>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <br />
             </td>
           </tr>
           <tr>
