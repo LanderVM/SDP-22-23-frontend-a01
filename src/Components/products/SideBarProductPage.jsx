@@ -107,7 +107,7 @@ export default function SideBarProductPage(props) {
       {error
         ? <Error error={error} />
         : null}
-      <Collapse bordered={false} defaultActiveKey={['1', '4']} className="sideBar">
+      <Collapse bordered={false} defaultActiveKey={['4', '5']} className="sideBar">
         <Panel header="Product Category" key="1">
           <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={category} onChange={onCategoriesChange} />
         </Panel>

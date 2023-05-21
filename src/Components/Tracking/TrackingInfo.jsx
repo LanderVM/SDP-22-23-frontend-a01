@@ -72,31 +72,26 @@ export default function TrackingInfo({ tracker }) {
       <Steps
         data-cy="status_steps"
         className="delaware-tracking-steps"
-        current={tracker.items.order_status}
+        current={2}
         items={[
           {
             title: 'Placed',
-            status: 'placed',
             icon: <IoMdCheckmark />,
           },
           {
             title: 'Processed',
-            status: 'processed',
             icon: <BsBoxSeam />,
           },
           {
             title: 'Shipped',
-            status: 'shipped',
             icon: <IoMdBoat />,
           },
           {
             title: 'Out for Delivery',
-            status: 'outfordelivery',
             icon: <MdDeliveryDining />,
           },
           {
             title: 'Delivered',
-            status: 'delivered',
             icon: <MdPlace />,
           },
         ]}

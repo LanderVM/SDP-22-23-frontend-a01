@@ -42,7 +42,7 @@
   color: black !important;
 }
 
-.ant-steps-item-active .ant-steps-icon {
+.ant-steps-item-active .ant-steps-icon-active {
   color: #EC4242 !important;
 }
 
