@@ -83,7 +83,7 @@ function Navbar() {
     }
   }, [isAuthenticated]);
 
-  const logo = '#EC4242';
+  const logo = '/images/Delaware-logo_white.png';
   const navMenuMF = lg ? 'center' : 'left';
   const navMenu2MF = lg ? 'flex' : 'none';
 

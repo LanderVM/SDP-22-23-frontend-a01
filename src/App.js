@@ -11,6 +11,7 @@ import OrdersOverview from './features/OrderOverview/index';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './features/SingleOrderOverview/SingleOrderOverview';
 import ProfileOverview from './Components/profile/ProfileOverview';
+import FooterElement from './Components/Footer';
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ConfigProvider>
+      <FooterElement />
       <ScrollToTop />
     </Layout>
   );
