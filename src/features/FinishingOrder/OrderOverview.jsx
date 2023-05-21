@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card } from 'antd';
-// import { NavLink } from 'react-router-dom';
 
 export default function OrderOverview({
-  cart, context, onOrder,
+  cart, context, onOrder, packagingCost,
 }) {
   const { productsFromContext } = useContext(context);
 
@@ -56,6 +55,28 @@ export default function OrderOverview({
               Excluding VAT
             </td>
           </tr>
+          <tr id="trShipping">
+            <td>Shipping Costs:</td>
+            <td id="priceTd">
+              <strong>
+                {packagingCost}
+              </strong>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td>Total excl. VAT:</td>
+            <td id="priceTd">
+              <strong>
+                €&nbsp;
+                {Number(packagingCost.substring(packagingCost.indexOf(' ') + 1, packagingCost.length)) + cost - (cost * 0.21).toFixed(2)}
+              </strong>
+            </td>
+          </tr>
           <tr>
             <td>
               VAT
@@ -67,25 +88,12 @@ export default function OrderOverview({
               </strong>
             </td>
           </tr>
-          <tr id="trShipping">
-            <td>Shipping Costs:</td>
-            <td id="priceTd">
-              <strong>
-                €&nbsp;20
-              </strong>
-            </td>
-          </tr>
           <tr>
-            <td>
-              <br />
-            </td>
-          </tr>
-          <tr>
-            <td>Total:</td>
+            <td>Total incl. VAT:</td>
             <td id="priceTd">
               <strong>
                 €&nbsp;
-                {20 + cost}
+                {Number(packagingCost.substring(packagingCost.indexOf(' ') + 1, packagingCost.length)) + cost}
               </strong>
             </td>
           </tr>

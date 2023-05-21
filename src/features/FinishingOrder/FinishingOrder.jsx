@@ -30,9 +30,22 @@ export default function FinishingOrder() {
     productsFromContext, resetShoppingCartContext,
   } = useContext(ProductsForShoppingCartContext);
 
+  const profileApi = useProfile();
+  const productsApi = useProducts();
+  const orderApi = useOrderApi();
+  const packagingApi = usePackagingApi();
+
+  const setDefaultPackaging = () => {
+    const fetchPackagingList = async () => {
+      const dbPackagingList = await packagingApi.getPackagingsList();
+      // eslint-disable-next-line no-use-before-define
+      setPackaging(dbPackagingList.items[0]);
+    };
+    fetchPackagingList();
+  };
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const [finished, setFinished] = useState(false);
 
   const [customer, setCustomer] = useState(null);
@@ -42,13 +55,8 @@ export default function FinishingOrder() {
   const [deliveryStreet, setDeliveryStreet] = useState(null);
   const [deliveryBus, setDeliveryBus] = useState(null);
   const [deliveryHouseNumber, setDeliveryHouseNumber] = useState(null);
-  const [packaging, setPackaging] = useState(null);
+  const [packaging, setPackaging] = useState(setDefaultPackaging);
   const [myCart, setCart] = useState(null);
-
-  const profileApi = useProfile();
-  const productsApi = useProducts();
-  const orderApi = useOrderApi();
-  const packagingApi = usePackagingApi();
 
   const callBack = async (data) => {
     setDeliveryCity(data.delivery_city);
@@ -60,7 +68,7 @@ export default function FinishingOrder() {
   };
 
   const callBack2 = async (data) => {
-    setPackaging(data);
+    if (data.packaging_id !== undefined) setPackaging(data);
   };
 
   useEffect(() => {
@@ -87,9 +95,6 @@ export default function FinishingOrder() {
         setLoading(true);
         setError(null);
         const dbCustomerInfo = await profileApi.getCompanyInfo();
-        setCustomer(dbCustomerInfo);
-        const dbPackagingList = await packagingApi.getPackagingsList();
-        setPackaging(dbPackagingList.items[0]);
         setCustomer(dbCustomerInfo);
       } catch (error2) {
         setError(error2);
@@ -135,13 +140,13 @@ export default function FinishingOrder() {
     <div>
       <Loader loading={loading} />
       <Error error={error} />
-      {!loading && !error ? !finished ? <FinishingOrderOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} /> : <FinishedOrder /> : null}
+      {!loading && !error ? !finished ? <FinishingOrderOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} packagingCost={packaging.price} /> : <FinishedOrder /> : null}
     </div>
   );
 }
 
 function FinishingOrderOverview({
-  customerDetails, myCart, handleOrder, handleView, setAddressList, setPackaging,
+  customerDetails, myCart, handleOrder, handleView, setAddressList, setPackaging, packagingCost,
 }) {
   const { lg } = useBreakpoint();
   if (customerDetails == null || myCart == null || handleView == null) {
@@ -180,7 +185,7 @@ function FinishingOrderOverview({
           </div>
         </Col>
         <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
-          <OrderOverview cart={myCart} context={ProductsForShoppingCartContext} onOrder={handleOrder} />
+          <OrderOverview cart={myCart} context={ProductsForShoppingCartContext} onOrder={handleOrder} packagingCost={packagingCost} />
         </Col>
       </Row>
       <Row>
