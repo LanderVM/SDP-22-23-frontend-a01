@@ -1,6 +1,6 @@
 .delaware-tracking-page {
   width: 50%;
-  height: 50%;
+  height: calc(100vh - 90px);
   padding-top: 5%;
   padding-bottom: 5%;
   margin: auto;
@@ -36,14 +36,6 @@
 
 .ant-form-item-label {
   min-height: 50px;
-}
-
-.ant-steps-item .ant-steps-icon {
-  color: black !important;
-}
-
-.ant-steps-item-active .ant-steps-icon-active {
-  color: #EC4242 !important;
 }
 
 /*# sourceMappingURL=trackingInput.css.map */

@@ -22,6 +22,7 @@ import Loader from '../../Components/Loader';
 import SingleOrderDetails from './SingleOrderDetails';
 import FinishedOrder from './FinishedOrder';
 import usePackagingApi from '../../api/packagingService';
+import RequireAuth from '../../Components/authentication/RequireAuth';
 
 const { useBreakpoint } = Grid;
 
@@ -133,11 +134,11 @@ export default function FinishingOrder() {
   };
 
   return (
-    <div>
+    <RequireAuth>
       <Loader loading={loading} />
       <Error error={error} />
       {!loading && !error ? !finished ? <FinishingOrderOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} packagingCost={packaging.price} /> : <FinishedOrder /> : null}
-    </div>
+    </RequireAuth>
   );
 }
 
