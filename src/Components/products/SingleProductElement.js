@@ -90,13 +90,7 @@ export default function SingleProductElement({
       <div data-cy="productDescription" style={{ fontSize: fontSizeSmall }}>
         {product.description}
       </div>
-      <div>
-        <p style={{ fontSize: fontSizeDetails, margin: marginDetails }} data-cy="productPrice">
-          Estimated delivery time:
-          {' '}
-          {product.delivery_time}
-        </p>
-      </div>
+
     </div>
   );
 }

@@ -72,7 +72,7 @@ export default function TrackingInfo({ tracker }) {
       <Steps
         data-cy="status_steps"
         className="delaware-tracking-steps"
-        current={2}
+        current={tracker.items.order_status}
         items={[
           {
             title: 'Placed',
