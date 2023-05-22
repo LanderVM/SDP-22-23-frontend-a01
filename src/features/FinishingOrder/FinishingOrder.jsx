@@ -35,15 +35,6 @@ export default function FinishingOrder() {
   const orderApi = useOrderApi();
   const packagingApi = usePackagingApi();
 
-  const setDefaultPackaging = () => {
-    const fetchPackagingList = async () => {
-      const dbPackagingList = await packagingApi.getPackagingsList();
-      // eslint-disable-next-line no-use-before-define
-      setPackaging(dbPackagingList.items[0]);
-    };
-    fetchPackagingList();
-  };
-
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [finished, setFinished] = useState(false);
@@ -55,7 +46,7 @@ export default function FinishingOrder() {
   const [deliveryStreet, setDeliveryStreet] = useState(null);
   const [deliveryBus, setDeliveryBus] = useState(null);
   const [deliveryHouseNumber, setDeliveryHouseNumber] = useState(null);
-  const [packaging, setPackaging] = useState(setDefaultPackaging);
+  const [packaging, setPackaging] = useState({ packaging_id: 0, price: '€ 0' });
   const [myCart, setCart] = useState(null);
 
   const callBack = async (data) => {
@@ -68,7 +59,7 @@ export default function FinishingOrder() {
   };
 
   const callBack2 = async (data) => {
-    if (data.packaging_id !== undefined) setPackaging(data);
+    if (data !== null && data.packaging_id !== undefined) setPackaging(data);
   };
 
   useEffect(() => {
@@ -102,7 +93,12 @@ export default function FinishingOrder() {
         setLoading(false);
       }
     };
+    const fetchPackagingList = async () => {
+      const dbPackagingList = await packagingApi.getPackagingsList();
+      setPackaging(dbPackagingList.items[0]);
+    };
     fetchCustomerInfo();
+    fetchPackagingList();
   }, []);
 
   const handleView = useCallback(async (nameToView) => {
