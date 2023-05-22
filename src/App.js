@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route index element={<ProductsPage />} />
           <Route path="/home" element={<ProductsPage />} />
-          <Route path="/track" element={<TrackingPage />} />
+          <Route path="/track/:tCode?/:vCode?" element={<TrackingPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:productId" element={<ProductOverviewPage />} />
           <Route path="/profile" element={<ProfileOverview />} />

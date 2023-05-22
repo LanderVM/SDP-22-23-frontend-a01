@@ -2,17 +2,20 @@ import {
   Col, Row,
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import AddressInfo from '../../Components/order-details/address-info';
 import useOrderApi from '../../api/orderService';
 import PackagingInfo from '../../Components/order-details/packaging-info';
+import useOrderTracker from '../../api/orderTrackingService';
 
 const size0 = 0;
 
 export default function SingleOrderDetails({ order }) {
   if (!order) return null;
   const [totalCost, setTotalCost] = useState(0);
+  const [trackingCode, setTrackingCode] = useState(null);
+  const [verificationCode, setVerificationCode] = useState(null);
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '36px' : '24px';
   const fontSizeDesc = lg ? '24px' : '18px';
@@ -20,8 +23,18 @@ export default function SingleOrderDetails({ order }) {
   const positionChangePackageMF = lg ? 'absolute' : 'relative';
 
   const orderApi = useOrderApi();
+  const orderTrackingApi = useOrderTracker();
   const updateAddressFunction = async (orderId, shippingDetails) => orderApi.updateShippingDetailsById(orderId, shippingDetails);
   const updatePackagingFunction = async (orderId, packagingId) => orderApi.updateShippingDetailsById(orderId, { PACKAGING_packaging_id: packagingId });
+
+  useEffect(() => {
+    const autoFillTrackingCodes = async () => {
+      const data = await orderTrackingApi.getTrackingCodesByOrder(order.order_info.order_id);
+      setTrackingCode(data.trackingCode);
+      setVerificationCode(data.verificationCode);
+    };
+    autoFillTrackingCodes();
+  }, [order]);
 
   useMemo(() => {
     const calculateTotalCost = () => {
@@ -51,7 +64,7 @@ export default function SingleOrderDetails({ order }) {
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Total amount: </h1>
           <NavLink
-            to="/track"
+            to={`/track/${trackingCode}/${verificationCode}`}
             style={{
               position: positionChangePackageMF, bottom: size0, height: '26px', fontSize: fontSizeMini, color: '#1677ff',
             }}

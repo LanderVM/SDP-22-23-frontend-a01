@@ -21,7 +21,20 @@ export default function useOrderTracker() {
     return data;
   }, [getAccessTokenSilently]);
 
+  const getTrackingCodesByOrder = useCallback(async (orderId) => {
+    const token = await getAccessTokenSilently();
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/codes/${orderId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  }, [getAccessTokenSilently]);
+
   return {
     getTrackingStatus,
+    getTrackingCodesByOrder,
   };
 }

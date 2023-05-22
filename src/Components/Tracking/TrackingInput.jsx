@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './trackingInput.scss';
 import {
   Input, Form, Col, Row, Button,
@@ -9,7 +9,7 @@ import TrackingInfo from './TrackingInfo';
 import Error from '../Error';
 import Loader from '../Loader';
 
-export default function TrackingInput() {
+export default function TrackingInput({ tCode, vCode }) {
   const [form] = useForm();
   const [trackingInfo, setTrackingInfo] = useState(null);
   const [error, setError] = useState(null);
@@ -21,6 +21,7 @@ export default function TrackingInput() {
       try {
         setLoading(true);
         setError(null);
+        console.log(values);
         const toTrackOrder = await orderTrackingApi.getTrackingStatus(values);
         setTrackingInfo(toTrackOrder);
       } catch (error2) {
@@ -42,6 +43,15 @@ export default function TrackingInput() {
     };
     fetchTrackingInfo();
   };
+
+  useEffect(() => {
+    const tInfo = async () => {
+      if (tCode && vCode) {
+        onFinish({ trackingCode: tCode, verificationCode: vCode });
+      }
+    };
+    tInfo();
+  }, [tCode, vCode]);
 
   const clearTracker = () => {
     try {

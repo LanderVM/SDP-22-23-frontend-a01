@@ -25,9 +25,10 @@ export function ProductsPage() {
 }
 
 export function TrackingPage() {
+  const { tCode, vCode } = useParams();
   return (
     <main>
-      <TrackingInput />
+      <TrackingInput tCode={tCode} vCode={vCode} />
     </main>
   );
 }
