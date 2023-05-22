@@ -34,22 +34,24 @@ export default function NotificationsDropdownTwo({ notifications }) {
   let items = [
     {
       label: (
-        <div>
+        <>
           {notifications.map((noti, index) => (
             <NavLink key={noti.ORDER_order_id} to={`orders/${noti.ORDER_order_id}`} onClick={arrayOfHandlers[index]} data-cy={`notificationInDropdown${index}`}>
-              <p>
-                <b>
-                  Order
+              <div>
+                <p>
+                  <b>
+                    Order
+                    {' '}
+                    {noti.ORDER_order_id}
+                    :
+                  </b>
                   {' '}
-                  {noti.ORDER_order_id}
-                  :
-                </b>
-                {' '}
-                {noti.message}
-              </p>
+                  {noti.message}
+                </p>
+              </div>
             </NavLink>
           ))}
-        </div>
+        </>
       ),
       key: 0,
     },
@@ -58,11 +60,11 @@ export default function NotificationsDropdownTwo({ notifications }) {
     },
     {
       label: (
-        <div>
-          <NavLink to="/notifications" data-cy="navibar_notificationsViewAllButton">
+        <NavLink to="/notifications" data-cy="navibar_notificationsViewAllButton">
+          <div>
             <b>View all</b>
-          </NavLink>
-        </div>
+          </div>
+        </NavLink>
       ),
       key: '5',
     },
