@@ -122,7 +122,8 @@ export default function FinishingOrder() {
         delivery_house_number: deliveryHouseNumber,
         delivery_box: deliveryBus,
         PACKAGING_packaging_id: packaging.packaging_id,
-        SUPPLIER_supplier_id: customer.supplier_id,
+        supplier_id: customer.supplier_id,
+        SUPPLIER_supplier_id: customer.SUPPLIER_supplier_id,
         order_lines: productsFromContext,
       });
       setFinished(true);
