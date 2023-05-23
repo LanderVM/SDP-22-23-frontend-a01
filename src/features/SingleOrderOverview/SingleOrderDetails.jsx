@@ -29,9 +29,11 @@ export default function SingleOrderDetails({ order }) {
 
   useEffect(() => {
     const autoFillTrackingCodes = async () => {
-      const data = await orderTrackingApi.getTrackingCodesByOrder(order.order_info.order_id);
-      setTrackingCode(data.trackingCode);
-      setVerificationCode(data.verificationCode);
+      if (order.order_info.tracking_code) {
+        const data = await orderTrackingApi.getTrackingCodesByOrder(order.order_info.order_id);
+        setTrackingCode(data.trackingCode);
+        setVerificationCode(data.verificationCode);
+      }
     };
     autoFillTrackingCodes();
   }, [order]);
@@ -63,14 +65,16 @@ export default function SingleOrderDetails({ order }) {
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>Total amount: </h1>
-          <NavLink
-            to={`/track/${trackingCode}/${verificationCode}`}
-            style={{
-              position: positionChangePackageMF, bottom: size0, height: '26px', fontSize: fontSizeMini, color: '#1677ff',
-            }}
-          >
-            &#62;&nbsp;Track order
-          </NavLink>
+          {order.order_info.tracking_code ? (
+            <NavLink
+              to={`/track/${trackingCode}/${verificationCode}`}
+              style={{
+                position: positionChangePackageMF, bottom: size0, height: '26px', fontSize: fontSizeMini, color: '#1677ff',
+              }}
+            >
+              &#62;&nbsp;Track order
+            </NavLink>
+          ) : null}
         </Col>
         <Col xs={{ span: 12 }} lg={{ span: 6 }}>
           <h1 style={{ fontSize: fontSizeDesc }}>
