@@ -21,7 +21,6 @@ export default function TrackingInput({ tCode, vCode }) {
       try {
         setLoading(true);
         setError(null);
-        console.log(values);
         const toTrackOrder = await orderTrackingApi.getTrackingStatus(values);
         setTrackingInfo(toTrackOrder);
       } catch (error2) {
