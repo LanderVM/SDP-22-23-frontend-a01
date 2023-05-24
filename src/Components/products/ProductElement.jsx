@@ -4,7 +4,7 @@ import { ShoppingCartOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Row, Col, Grid, Button, InputNumber, Space,
 } from 'antd';
-import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
+import { ShoppingCartProducts } from '../../contexts/shopping-cart-products';
 import './Sidebar.css';
 
 const { useBreakpoint } = Grid;
@@ -14,7 +14,7 @@ export default function ProductElement({
 }) {
   const {
     addProductToShoppingCartContext, productsFromContext,
-  } = useContext(ProductsForShoppingCartContext);
+  } = useContext(ShoppingCartProducts);
   const [productAmount, setProductAmount] = useState(1);
   const link = `/product/${product.product_id}`;
 

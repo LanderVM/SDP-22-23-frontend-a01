@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
+import { ShoppingCartProducts } from '../../contexts/shopping-cart-products';
 
 function GetAmount(productId) {
-  const { productsFromContext } = useContext(ProductsForShoppingCartContext);
+  const { productsFromContext } = useContext(ShoppingCartProducts);
 
   return productsFromContext.forEach((el) => {
     if (el.id === productId) {
@@ -17,7 +17,7 @@ function MapProducts(products) {
     removeProductFromShoppingCartContext,
     increaseProduct,
     decreaseProduct,
-  } = useContext(ProductsForShoppingCartContext);
+  } = useContext(ShoppingCartProducts);
 
   return products.map((el) => {
     const handleOnDelete = () => {

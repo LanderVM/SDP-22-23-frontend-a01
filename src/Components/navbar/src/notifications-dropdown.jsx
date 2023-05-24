@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { NotificationOutlined } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
 import useNotifications from '../../../api/notification';
-import { NotificationsContext } from '../../../Contexts/NotificationsContext';
+import { Notifications } from '../../../contexts/notifications';
 
 export default function NotificationsDropdown() {
   const [notifications, setFiveMostRecentNotifications] = useState([]);
@@ -24,7 +24,7 @@ export default function NotificationsDropdown() {
     }
   }, [isAuthenticated]);
 
-  const { refreshAmountNotReadNotifications } = useContext(NotificationsContext);
+  const { refreshAmountNotReadNotifications } = useContext(Notifications);
 
   const arrayOfHandlers = [0, 0, 0, 0, 0];
   arrayOfHandlers.forEach((el, index) => {

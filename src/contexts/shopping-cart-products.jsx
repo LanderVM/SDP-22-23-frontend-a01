@@ -3,7 +3,7 @@ import React, {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
 
-export const ProductsForShoppingCartContext = createContext();
+export const ShoppingCartProducts = createContext();
 
 export default function ProductsForShoppingCartProvider({ children }) {
   const [productsFromContext, setProducts] = useState(() => JSON.parse(localStorage.getItem('productsFromContext')) || []);
@@ -46,8 +46,8 @@ export default function ProductsForShoppingCartProvider({ children }) {
   );
 
   return (
-    <ProductsForShoppingCartContext.Provider value={value}>
+    <ShoppingCartProducts.Provider value={value}>
       {children}
-    </ProductsForShoppingCartContext.Provider>
+    </ShoppingCartProducts.Provider>
   );
 }

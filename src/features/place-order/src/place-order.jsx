@@ -6,7 +6,7 @@ import useProducts from '../../../api/productService';
 import useProfile from '../../../api/profile';
 import useOrderApi from '../../../api/orderService';
 
-import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
+import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
@@ -19,7 +19,7 @@ import PlaceOrderOverview from './place-order-overview';
 export default function PlaceOrder() {
   const {
     productsFromContext, resetShoppingCartContext,
-  } = useContext(ProductsForShoppingCartContext);
+  } = useContext(ShoppingCartProducts);
 
   const profileApi = useProfile();
   const productsApi = useProducts();

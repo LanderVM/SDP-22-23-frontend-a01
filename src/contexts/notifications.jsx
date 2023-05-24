@@ -3,7 +3,7 @@ import {
 } from 'react';
 import useNotifications from '../api/notification';
 
-export const NotificationsContext = createContext();
+export const Notifications = createContext();
 
 export default function NotificationsProvider({ children }) {
   const notificationApi = useNotifications();
@@ -29,8 +29,8 @@ export default function NotificationsProvider({ children }) {
   ), [amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications]);
 
   return (
-    <NotificationsContext.Provider value={value}>
+    <Notifications.Provider value={value}>
       {children}
-    </NotificationsContext.Provider>
+    </Notifications.Provider>
   );
 }

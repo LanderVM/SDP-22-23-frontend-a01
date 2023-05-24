@@ -14,8 +14,6 @@ function MyAuth0Provider({ children }) {
         redirect_uri: window.location.origin,
         audience,
       }}
-      // audience={audience}
-      // redirectUri={`${window.location.origin}/home`}
       cacheLocation="localstorage"
       useRefreshTokens
     >

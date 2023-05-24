@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { Row, Col } from 'antd';
 import { useNavigate } from 'react-router';
 import useNotifications from '../../../api/notification';
-import { NotificationsContext } from '../../../Contexts/NotificationsContext';
+import { Notifications } from '../../../contexts/notifications';
 
 export default function SingleNotification({ notification }) {
   const navigate = useNavigate();
   const notificationsApi = useNotifications();
 
-  const { refreshAmountNotReadNotifications } = useContext(NotificationsContext);
+  const { refreshAmountNotReadNotifications } = useContext(Notifications);
 
   const handleClickNotification = async (event) => {
     event.stopPropagation();

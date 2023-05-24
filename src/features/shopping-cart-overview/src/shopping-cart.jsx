@@ -6,7 +6,7 @@ import {
   List, Col, Row, Grid, Empty, Button,
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
+import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
 import Products from './products';
@@ -19,7 +19,7 @@ const { useBreakpoint } = Grid;
 export default function ShoppingCart() {
   const {
     productsFromContext,
-  } = useContext(ProductsForShoppingCartContext);
+  } = useContext(ShoppingCartProducts);
   const { lg } = useBreakpoint();
 
   const [error, setError] = useState(null);
@@ -90,7 +90,7 @@ export default function ShoppingCart() {
               renderItem={(item) => (
 
                 <List.Item key={item.productId} style={{ display: 'block' }}>
-                  {!loading && !error ? <Products cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
+                  {!loading && !error ? <Products cart={item} onView={handleView} context={ShoppingCartProducts} />
                     : null}
                 </List.Item>
               )}
@@ -98,7 +98,7 @@ export default function ShoppingCart() {
           </div>
         </Col>
         <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
-          <SideOverview cart={myCart} context={ProductsForShoppingCartContext} />
+          <SideOverview cart={myCart} context={ShoppingCartProducts} />
         </Col>
       </Row>
     </main>

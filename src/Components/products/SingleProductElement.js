@@ -4,7 +4,7 @@ import {
   Row, Col, Grid, Button,
 } from 'antd';
 import { CheckOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
+import { ShoppingCartProducts } from '../../contexts/shopping-cart-products';
 import './Sidebar.css';
 
 const { useBreakpoint } = Grid;
@@ -14,7 +14,7 @@ export default function SingleProductElement({
 }) {
   const {
     addProductToShoppingCartContext, productsFromContext,
-  } = useContext(ProductsForShoppingCartContext);
+  } = useContext(ShoppingCartProducts);
 
   const { md } = useBreakpoint();
   const imageMobileFormat = md ? 12 : 24;

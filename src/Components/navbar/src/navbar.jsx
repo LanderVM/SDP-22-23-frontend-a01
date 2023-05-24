@@ -5,9 +5,9 @@ import {
   Menu, Badge, Layout, Space, Grid, theme, ConfigProvider,
 } from 'antd';
 import { NotificationButton, ShoppingCartButton, AccountButton } from './buttons';
-import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
+import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import MobileDrawer from './mobile-drawer';
-import { NotificationsContext } from '../../../Contexts/NotificationsContext';
+import { Notifications } from '../../../contexts/notifications';
 import '../navbar.scss';
 
 const { Header } = Layout;
@@ -65,9 +65,9 @@ export default function Navbar() {
 
   const {
     productsFromContext,
-  } = useContext(ProductsForShoppingCartContext);
+  } = useContext(ShoppingCartProducts);
 
-  const { amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications } = useContext(NotificationsContext);
+  const { amountNotReadNotifications, refreshAmountNotReadNotifications, setAmountNotReadNotifications } = useContext(Notifications);
 
   const { isAuthenticated } = useAuth0();
 

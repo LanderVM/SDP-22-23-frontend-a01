@@ -4,7 +4,7 @@ import { ConfigProvider, Layout, theme } from 'antd';
 import {
   NotFoundPage, ProductOverviewPage, ProductsPage, Notifications,
 } from './pages';
-import ScrollToTop from './Contexts/ScrollToTop';
+import ScrollToTop from './contexts/scroll-to-top';
 import ShoppingCart from './features/shopping-cart-overview';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './features/single-order-overview';

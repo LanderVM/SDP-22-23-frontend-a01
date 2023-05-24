@@ -4,7 +4,7 @@ import {
 import React from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import Product from './product';
-import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
+import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import SideOverview from './side-overview';
 import SingleOrderDetails from './order-details';
 
@@ -41,14 +41,14 @@ export default function PlaceOrderOverview({
               }}
               renderItem={(item) => (
                 <List.Item key={item.productId} style={{ display: 'block' }}>
-                  <Product cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
+                  <Product cart={item} onView={handleView} context={ShoppingCartProducts} />
                 </List.Item>
               )}
             />
           </div>
         </Col>
         <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
-          <SideOverview cart={myCart} context={ProductsForShoppingCartContext} onOrder={handleOrder} packagingCost={packagingCost} />
+          <SideOverview cart={myCart} context={ShoppingCartProducts} onOrder={handleOrder} packagingCost={packagingCost} />
         </Col>
       </Row>
       <Row>

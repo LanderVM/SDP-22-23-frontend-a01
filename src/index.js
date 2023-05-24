@@ -5,9 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import MyAuth0Provider from './Contexts/MyAuth0Provider';
-import ProductsForShoppingCartProvider from './Contexts/ProductsForShoppingCartContext';
-import NotificationsProvider from './Contexts/NotificationsContext';
+import ProductsForShoppingCartProvider from './contexts/shopping-cart-products';
+import NotificationsProvider from './contexts/notifications';
+import MyAuth0Provider from './contexts/my-auth0-provider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
