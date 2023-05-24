@@ -10,7 +10,7 @@ import Loader from '../../../Components/loader';
 import Error from '../../../Components/error';
 import SideMenu from '../../../Components/side-menu';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
-import '../profile.scss';
+import '../profile.css';
 
 export default function Profile() {
   const profileApi = useProfile();

@@ -15,7 +15,7 @@ import SuccessfulOrder from './successful-order';
 import usePackagingApi from '../../../api/packaging-service';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
 import CheckoutOverview from './checkout-overview';
-import '../checkout.scss';
+import '../checkout.css';
 
 export default function Checkout() {
   const {

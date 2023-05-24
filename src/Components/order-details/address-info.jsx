@@ -3,7 +3,7 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import './modal.scss';
+import './modal.css';
 import { useForm } from 'antd/es/form/Form';
 import { countries } from 'countries-list';
 import Error from '../error';

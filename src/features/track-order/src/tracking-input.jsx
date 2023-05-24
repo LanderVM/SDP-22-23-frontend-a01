@@ -8,7 +8,7 @@ import useOrderTracker from '../../../api/tracking-service';
 import TrackingInfo from './tracking-info';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
-import '../tracking-input.scss';
+import '../tracking-input.css';
 
 export default function TrackingInput() {
   const { trackingCode, verificationCode } = useParams();

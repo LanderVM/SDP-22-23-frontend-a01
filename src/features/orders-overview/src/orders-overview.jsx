@@ -11,7 +11,7 @@ import Loader from '../../../Components/loader';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
 import OrderFilter from './order-filter';
 import OrderInfo from './order-info';
-import '../order-info.scss';
+import '../order-info.css';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);

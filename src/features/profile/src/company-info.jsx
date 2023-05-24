@@ -12,22 +12,26 @@ export default function CompanyInfo({ companyInformation }) {
   return (
     <Card title="Company information" data-cy="companyInfo">
       <Row>
-        <Col span={12}>
-          <p data-cy="companyInfoSupplierName">{companyInformation.supplier_name}</p>
-          <p data-cy="companyInfoSupplierEmail">{companyInformation.supplier_email}</p>
-          <p>{companyInformation.supplier_phone_number}</p>
+        <Col span={6}>
+          <p data-cy="companyInfoSupplierName">
+            {companyInformation.supplier_name}
+            <div data-cy="companyInfoSupplierEmail">{companyInformation.supplier_email}</div>
+            {companyInformation.supplier_phone_number}
+          </p>
+        </Col>
+        <Col span={6}>
           <p>
-            {companyInformation.supplier_delivery_street}
+            {companyInformation.delivery_street}
             &nbsp;
-            {companyInformation.supplier_delivery_house_number}
+            {companyInformation.delivery_house_number}
             &nbsp;
-            {companyInformation.supplier_delivery_box}
+            {companyInformation.delivery_box}
             <br />
-            {companyInformation.supplier_delivery_postal_code}
+            {companyInformation.delivery_postal_code}
             &nbsp;
-            {companyInformation.supplier_delivery_city}
+            {companyInformation.delivery_city}
             <br />
-            {companyInformation.supplier_delivery_country}
+            {companyInformation.delivery_country}
           </p>
         </Col>
         <Col span={12}>
