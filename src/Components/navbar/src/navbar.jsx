@@ -6,7 +6,6 @@ import {
 } from 'antd';
 import { NotificationButton, ShoppingCartButton, AccountButton } from './buttons';
 import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
-import '../navbar.scss';
 import MobileDrawer from './mobile-drawer';
 import { NotificationsContext } from '../../../Contexts/NotificationsContext';
 

@@ -1,4 +1,4 @@
 import OrdersOverview from './src/orders-overview';
-// import order info scss TODO
+import './order-info.scss';
 
 export default OrdersOverview;
