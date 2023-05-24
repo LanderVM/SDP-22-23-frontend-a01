@@ -1,3 +1,3 @@
-import NotificationsOverview from './notifications-overview';
+import NotificationsOverview from './src/notifications-overview';
 
 export default NotificationsOverview;

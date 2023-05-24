@@ -3,13 +3,13 @@ import { Breadcrumb, Layout } from 'antd';
 
 import { useParams } from 'react-router';
 import React, { useEffect, useState } from 'react';
-import SideMenu from '../../Components/Sider/SideMenu';
-import useOrderApi from '../../api/orderService';
-import Error from '../../Components/Error';
-import Loader from '../../Components/Loader';
-import OrderInfoHeader from './src/order-info-header';
-import RequireAuth from '../../Components/authentication/RequireAuth';
-import './single-product-info.scss';
+import SideMenu from '../../../Components/Sider/SideMenu';
+import useOrderApi from '../../../api/orderService';
+import Error from '../../../Components/Error';
+import Loader from '../../../Components/Loader';
+import OrderInfoHeader from './order-info-header';
+import RequireAuth from '../../../Components/authentication/RequireAuth';
+import '../single-product-info.scss';
 
 export default function SingleOrderOverview() {
   const { orderId } = useParams();

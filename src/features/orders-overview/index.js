@@ -1,3 +1,3 @@
-import OrdersOverview from './orders-overview';
+import OrdersOverview from './src/orders-overview';
 
 export default OrdersOverview;

@@ -4,14 +4,14 @@ import {
   Breadcrumb, Empty, Layout, List,
 } from 'antd';
 
-import useOrderApi from '../../api/orderService';
-import SideMenu from '../../Components/Sider/SideMenu';
-import Error from '../../Components/Error';
-import Loader from '../../Components/Loader';
-import RequireAuth from '../../Components/authentication/RequireAuth';
-import OrderFilter from './src/order-filter';
-import OrderInfo from './src/order-info';
-import './order-info.scss';
+import useOrderApi from '../../../api/orderService';
+import SideMenu from '../../../Components/Sider/SideMenu';
+import Error from '../../../Components/Error';
+import Loader from '../../../Components/Loader';
+import RequireAuth from '../../../Components/authentication/RequireAuth';
+import OrderFilter from './order-filter';
+import OrderInfo from './order-info';
+import '../order-info.scss';
 
 export default function OrdersOverview() {
   const [orderList, setOrderList] = useState(null);

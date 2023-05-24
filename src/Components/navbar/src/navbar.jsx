@@ -4,11 +4,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 import {
   Menu, Badge, Layout, Space, Grid, theme, ConfigProvider,
 } from 'antd';
-import { NotificationButton, ShoppingCartButton, AccountButton } from './src/buttons';
-import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
-import './navbar.scss';
-import MobileDrawer from './src/mobile-drawer';
-import { NotificationsContext } from '../../Contexts/NotificationsContext';
+import { NotificationButton, ShoppingCartButton, AccountButton } from './buttons';
+import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
+import '../navbar.scss';
+import MobileDrawer from './mobile-drawer';
+import { NotificationsContext } from '../../../Contexts/NotificationsContext';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;
