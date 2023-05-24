@@ -9,6 +9,7 @@ import Loader from '../../../Components/loader';
 import Product from './product-info';
 import SearchBar from './search-bar';
 import FilterSideMenu from './filter-side-menu';
+import '../products-overview.css';
 
 const { useBreakpoint } = Grid;
 
@@ -111,7 +112,7 @@ export default function ProductsOverview() {
   const phoneFormatPaddingItemList = lg ? '40px 40px 40px 20px' : '20px';
 
   return (
-    <main>
+    <main id="page">
       <Row>
         <Col span={phoneFormatSideBar} style={{ padding: phoneFormatPaddingSideBar }}>
           <FilterSideMenu handleCallback={callBack} />

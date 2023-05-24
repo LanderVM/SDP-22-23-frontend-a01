@@ -15,6 +15,7 @@ import SuccessfulOrder from './successful-order';
 import usePackagingApi from '../../../api/packaging-service';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
 import CheckoutOverview from './checkout-overview';
+import '../checkout.scss';
 
 export default function Checkout() {
   const {
@@ -126,7 +127,7 @@ export default function Checkout() {
 
   return (
     <RequireAuth>
-      <main style={{ height: '120vh' }}>
+      <main id="checkout-page">
         <Loader loading={loading} />
         <Error error={error} />
         {!loading && !error ? !finished ? <CheckoutOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} packagingCost={packaging.price} /> : <SuccessfulOrder /> : null}

@@ -9,7 +9,7 @@ import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
 import OrderInfoHeader from './order-info-header';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
-import '../single-product-info.scss';
+import '../single-order-overview.scss';
 
 export default function SingleOrderOverview() {
   const { orderId } = useParams();
@@ -36,26 +36,28 @@ export default function SingleOrderOverview() {
 
   return (
     <RequireAuth>
-      <Content style={{ padding: '0 32px' }}>
-        <Breadcrumb style={{ marginTop: '16px' }} items={[{ title: 'Account' }, { title: 'Orders' }]} />
-        <Layout>
-          <SideMenu selectedKey={['orders']} />
-          <Content style={{
-            margin: '0 14px', minHeight: 280,
-          }}
-          >
-            <h1 style={{ fontSize: '48px', margin: '0' }}>
-              Order
-              {order === null ? '' : ` #${order.order_info.order_id}`}
-            </h1>
-            <Error error={error} />
-            {!error
-              ? <Loader loading={loading} />
-              : null}
-            <OrderInfoHeader order={order} />
-          </Content>
-        </Layout>
-      </Content>
+      <main id="single-order-overview">
+        <Content style={{ padding: '0 32px' }}>
+          <Breadcrumb style={{ marginTop: '16px' }} items={[{ title: 'Account' }, { title: 'Orders' }]} />
+          <Layout>
+            <SideMenu selectedKey={['orders']} />
+            <Content style={{
+              margin: '0 14px', minHeight: 280,
+            }}
+            >
+              <h1 style={{ fontSize: '48px', margin: '0' }}>
+                Order
+                {order === null ? '' : ` #${order.order_info.order_id}`}
+              </h1>
+              <Error error={error} />
+              {!error
+                ? <Loader loading={loading} />
+                : null}
+              <OrderInfoHeader order={order} />
+            </Content>
+          </Layout>
+        </Content>
+      </main>
     </RequireAuth>
   );
 }

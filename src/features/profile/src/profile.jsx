@@ -10,6 +10,7 @@ import Loader from '../../../Components/loader';
 import Error from '../../../Components/error';
 import SideMenu from '../../../Components/side-menu';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
+import '../profile.scss';
 
 export default function Profile() {
   const profileApi = useProfile();
@@ -53,29 +54,31 @@ export default function Profile() {
 
   return (
     <RequireAuth>
-      <Content style={{ padding: '0 32px' }}>
-        <Breadcrumb style={{ marginTop: '16px' }} items={[{ title: 'Account' }, { title: 'Company Info' }]} />
-        <Layout>
-          <SideMenu selectedKey={['profile']} />
-          <Content style={{
-            margin: '0 14px',
-          }}
-          >
-            <Loader loading={loading} />
-            <Error error={error} />
-            {!loading && !error ? (
-              <Row>
-                <Col span={24}>
-                  <CompanyInfo companyInformation={companyInfo} />
-                </Col>
-                <Col span={24} style={{ marginTop: '2%' }}>
-                  <ColleaguesList colleagues={colleagues} />
-                </Col>
-              </Row>
-            ) : null}
-          </Content>
-        </Layout>
-      </Content>
+      <main id="profile-page">
+        <Content style={{ padding: '0 32px' }}>
+          <Breadcrumb style={{ marginTop: '16px' }} items={[{ title: 'Account' }, { title: 'Company Info' }]} />
+          <Layout>
+            <SideMenu selectedKey={['profile']} />
+            <Content style={{
+              margin: '0 14px',
+            }}
+            >
+              <Loader loading={loading} />
+              <Error error={error} />
+              {!loading && !error ? (
+                <Row>
+                  <Col span={24}>
+                    <CompanyInfo companyInformation={companyInfo} />
+                  </Col>
+                  <Col span={24} style={{ marginTop: '2%' }}>
+                    <ColleaguesList colleagues={colleagues} />
+                  </Col>
+                </Row>
+              ) : null}
+            </Content>
+          </Layout>
+        </Content>
+      </main>
     </RequireAuth>
   );
 }
