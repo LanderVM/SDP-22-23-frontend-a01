@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Dropdown } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { NotificationOutlined } from '@ant-design/icons';
 import useNotifications from '../../api/notification';
 import { NotificationsContext } from '../../Contexts/NotificationsContext';
+import './navibar.scss';
 
 export default function NotificationsDropdownTwo({ notifications }) {
   const notificationsApi = useNotifications();
@@ -28,16 +29,18 @@ export default function NotificationsDropdownTwo({ notifications }) {
         await save();
       }
       refreshAmountNotReadNotifications();
+      window.location.reload();
     };
     arrayOfHandlers[index] = handleNot;
   });
+
   let items = [
     {
       label: (
-        <>
+        <div>
           {notifications.map((noti, index) => (
             <NavLink key={noti.ORDER_order_id} to={`orders/${noti.ORDER_order_id}`} onClick={arrayOfHandlers[index]} data-cy={`notificationInDropdown${index}`}>
-              <div>
+              <div className="notification-menu-item">
                 <p>
                   <b>
                     Order
@@ -51,7 +54,7 @@ export default function NotificationsDropdownTwo({ notifications }) {
               </div>
             </NavLink>
           ))}
-        </>
+        </div>
       ),
       key: 0,
     },
