@@ -5,7 +5,6 @@ import {
   NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, FinishingOrderPage, Notifications,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
-import Navbar from './Components/navbar/navbar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import OrdersOverview from './features/OrderOverview';
 import AuthLanding from './Components/authentication/AuthLanding';
@@ -13,6 +12,7 @@ import SingleOrderOverview from './features/SingleOrderOverview/SingleOrderOverv
 import ProfileOverview from './Components/profile/ProfileOverview';
 import FooterElement from './Components/Footer';
 import './App.css';
+import Navbar from './Components/navbar';
 
 function App() {
   return (

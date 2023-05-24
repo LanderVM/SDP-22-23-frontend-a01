@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { Row, Col } from 'antd';
 import { useNavigate } from 'react-router';
-import useNotifications from '../../api/notification';
-import { NotificationsContext } from '../../Contexts/NotificationsContext';
-import './singleNotification.css';
+import useNotifications from '../../../api/notification';
+import { NotificationsContext } from '../../../Contexts/NotificationsContext';
 
 export default function SingleNotification({ notification }) {
   const navigate = useNavigate();
