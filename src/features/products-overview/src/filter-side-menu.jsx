@@ -5,15 +5,15 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 import React, { useState, useEffect } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import useProducts from '../../api/productService';
+import useProducts from '../../../api/productService';
 
-import './Sidebar.css';
-import Error from '../error';
+import '../products-overview.css';
+import Error from '../../../Components/error';
 
 const minPrice = 0;
 const maxPrice = 2000;
 
-export default function SideBarProductPage(props) {
+export default function FilterSideMenu(props) {
   const [error, setError] = useState(null);
   const [priceS, setPriceS] = useState(minPrice);
   const [priceE, setPriceE] = useState(maxPrice);

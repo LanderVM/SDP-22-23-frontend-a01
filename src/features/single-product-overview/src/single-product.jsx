@@ -1,38 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import useProducts from '../../api/productService';
-import SingleProductElement from './SingleProductElement';
-import Loader from '../loader';
-import Error from '../error';
+import { useParams } from 'react-router';
+import useProducts from '../../../api/productService';
+import SingleProductBody from './single-product-body';
+import Loader from '../../../Components/loader';
+import Error from '../../../Components/error';
+import PageNotFound from '../../../Components/page-not-found-alert';
 
 function SingleProductE({ product }) {
   if (!product) {
     return (
-      <div>
-        something went wrong
-      </div>
+      <PageNotFound />
     );
   }
 
   return (
-    <div style={{ margin: '50px 10%' }}>
-      <SingleProductElement product={product.items[0]} />
-    </div>
+    <main style={{ margin: '50px 10%' }}>
+      <SingleProductBody product={product.items[0]} />
+    </main>
   );
 }
 
-export default function SingleProduct({ productId }) {
+export default function SingleProduct() {
+  const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const productenApi = useProducts();
+  const productsApi = useProducts();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
         setErrorMsg(null);
-        const data = await productenApi.getById(productId);
+        const data = await productsApi.getById(productId);
         setProduct(data);
       } catch (error) {
         setErrorMsg(error);
@@ -44,10 +45,10 @@ export default function SingleProduct({ productId }) {
   }, [productId]);
 
   return (
-    <>
+    <main>
       <Loader loading={loading} />
       <Error error={errorMsg} />
       {!loading && !errorMsg ? <SingleProductE product={product} /> : null}
-    </>
+    </main>
   );
 }

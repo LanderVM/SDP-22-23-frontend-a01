@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import {
   List, Row, Col, Grid, Empty,
 } from 'antd';
-import useProducts from '../../api/productService';
-import Error from '../error';
-import Loader from '../loader';
-import Product from './ProductElement';
-import SearchBar from './SearchBar';
-import SideBarProductPage from './SideBarProductPage';
+import useProducts from '../../../api/productService';
+import Error from '../../../Components/error';
+import Loader from '../../../Components/loader';
+import Product from './product-info';
+import SearchBar from './search-bar';
+import FilterSideMenu from './filter-side-menu';
 
 const { useBreakpoint } = Grid;
 
@@ -46,8 +46,8 @@ function ProductsListElement({ products, handleView }) {
   );
 }
 
-export default function ProductsList() {
-  const [producten, setProducten] = useState([]);
+export default function ProductsOverview() {
+  const [product, setProduct] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -62,7 +62,7 @@ export default function ProductsList() {
 
   const navigate = useNavigate();
 
-  const productenApi = useProducts();
+  const productApi = useProducts();
 
   const callBack = (data) => {
     setPriceStart(data.priceS);
@@ -78,25 +78,25 @@ export default function ProductsList() {
   };
 
   useEffect(() => {
-    const fetchProducten = async () => {
+    const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await productenApi.getFiltered(priceStart, priceEnd, inStock, brand, category, sortBy, name);
-        setProducten(data);
+        const data = await productApi.getFiltered(priceStart, priceEnd, inStock, brand, category, sortBy, name);
+        setProduct(data);
       } catch (error2) {
         setError(error2);
       } finally {
         setLoading(false);
       }
     };
-    fetchProducten();
+    fetchProducts();
   }, [priceStart, priceEnd, inStock, brand, category, sortBy, name]);
 
   const handleView = useCallback(async (nameToView) => {
     try {
       setError(null);
-      await productenApi.getByName(nameToView);
+      await productApi.getByName(nameToView);
       navigate(`product/${nameToView}`);
     } catch (err) {
       setError(err);
@@ -111,18 +111,20 @@ export default function ProductsList() {
   const phoneFormatPaddingItemList = lg ? '40px 40px 40px 20px' : '20px';
 
   return (
-    <Row>
-      <Col span={phoneFormatSideBar} style={{ padding: phoneFormatPaddingSideBar }}>
-        <SideBarProductPage handleCallback={callBack} />
-      </Col>
-      <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
-        <Loader loading={loading} />
-        <Error error={error} />
-        <SearchBar handleSearch={callBackSearch} priceStart={priceStart} priceEnd={priceEnd} inStock={inStock} brand={brand} category={category} />
-        {!loading && !error
-          ? <ProductsListElement products={producten} handleView={handleView} />
-          : null}
-      </Col>
-    </Row>
+    <main>
+      <Row>
+        <Col span={phoneFormatSideBar} style={{ padding: phoneFormatPaddingSideBar }}>
+          <FilterSideMenu handleCallback={callBack} />
+        </Col>
+        <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
+          <Loader loading={loading} />
+          <Error error={error} />
+          <SearchBar handleSearch={callBackSearch} priceStart={priceStart} priceEnd={priceEnd} inStock={inStock} brand={brand} category={category} />
+          {!loading && !error
+            ? <ProductsListElement products={product} handleView={handleView} />
+            : null}
+        </Col>
+      </Row>
+    </main>
   );
 }

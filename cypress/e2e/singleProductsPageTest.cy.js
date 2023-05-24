@@ -41,12 +41,12 @@ describe('single product page', () => {
     ).as('slowResponse');
   });
 
-  it('should get a list of products', () => {
+  it('should get a list of products-overview', () => {
     cy.visit('http://localhost:3000/products');
-    cy.get('[data-cy=test-products-list]').should('exist');
+    cy.get('[data-cy=test-products-overview-list]').should('exist');
     cy.get('ul').find('li.ant-list-item').should('have.length', 10);
   });
-  it('go to single products page with product in stock', () => {
+  it('go to single products-overview page with product in stock', () => {
     cy.visit('http://localhost:3000/products');
     cy.get('[data-cy=productNameUrl]').eq(0).click();
 
@@ -57,7 +57,7 @@ describe('single product page', () => {
     cy.get('[data-cy=productDescription]').contains(exampleProducts[0].description);
   });
 
-  it('go to single products page without stock', () => {
+  it('go to single products-overview page without stock', () => {
     cy.visit('http://localhost:3000/products');
     cy.get('[data-cy=productNameUrl]').eq(1).click();
     cy.get('[data-cy=productName]').contains(exampleProducts[1].name);

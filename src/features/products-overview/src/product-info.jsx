@@ -4,12 +4,12 @@ import { ShoppingCartOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Row, Col, Grid, Button, InputNumber, Space,
 } from 'antd';
-import { ShoppingCartProducts } from '../../contexts/shopping-cart-products';
-import './Sidebar.css';
+import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
+import '../products-overview.css';
 
 const { useBreakpoint } = Grid;
 
-export default function ProductElement({
+export default function ProductInfo({
   product,
 }) {
   const {

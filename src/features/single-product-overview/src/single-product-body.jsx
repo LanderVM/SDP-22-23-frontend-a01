@@ -4,12 +4,12 @@ import {
   Row, Col, Grid, Button,
 } from 'antd';
 import { CheckOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { ShoppingCartProducts } from '../../contexts/shopping-cart-products';
-import './Sidebar.css';
+import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
+import '../single-product-overview.css';
 
 const { useBreakpoint } = Grid;
 
-export default function SingleProductElement({
+export default function SingleProductBody({
   product,
 }) {
   const {
@@ -18,9 +18,7 @@ export default function SingleProductElement({
 
   const { md } = useBreakpoint();
   const imageMobileFormat = md ? 12 : 24;
-  // const textMobileFormat = md ? '20% 100px' : '';
   const fontSizeIcon = md ? '170%' : '120%';
-  // const fontSizeIco2 = md ? '110%' : '60%';
   const buttonHeight = md ? '60px' : '40px';
   const paddingTextMF = md ? '3% 5%' : '0';
   const fontSizeTitle = md ? '40px' : '30px';

@@ -1,0 +1,27 @@
+.sideBar > * > * > * {
+    color: black;
+    font-size: 20px;
+}
+
+.sideBar > * > * > * > * {
+    color: black;
+    font-size: 15px;
+}
+
+.ant-checkbox-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.ant-checkbox-wrapper+.ant-checkbox-wrapper {
+    margin-inline-start: 0;
+}
+
+.linkTo {
+    color: black !important;
+}
+
+.linkTo:hover {
+    color: black !important;
+    text-decoration: underline;
+}

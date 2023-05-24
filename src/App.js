@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider, Layout, theme } from 'antd';
 import {
-  NotFoundPage, ProductOverviewPage, ProductsPage, Notifications,
+  NotFoundPage, Notifications,
 } from './pages';
 import ScrollToTop from './contexts/scroll-to-top';
 import ShoppingCart from './features/shopping-cart-overview';
@@ -15,6 +15,8 @@ import Navbar from './Components/navbar';
 import OrdersOverview from './features/orders-overview';
 import PlaceOrder from './features/place-order';
 import TrackingInput from './features/track-order';
+import ProductsOverview from './features/products-overview';
+import SingleProduct from './features/single-product-overview';
 
 function App() {
   return (
@@ -22,11 +24,11 @@ function App() {
       <Navbar />
       <ConfigProvider theme={{ algorithm: theme.defaultAlgorithm, token: { colorPrimary: '#EC4242' } }}>
         <Routes>
-          <Route index element={<ProductsPage />} />
-          <Route path="/home" element={<ProductsPage />} />
+          <Route index element={<ProductsOverview />} />
+          <Route path="/home" element={<ProductsOverview />} />
+          <Route path="/products" element={<ProductsOverview />} />
           <Route path="/track/:trackingCode?/:verificationCode?" element={<TrackingInput />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/product/:productId" element={<ProductOverviewPage />} />
+          <Route path="/product/:productId" element={<SingleProduct />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<PlaceOrder />} />
