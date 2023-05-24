@@ -2,9 +2,8 @@ import { Col, Row } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import './singleProductInfo.scss';
 
-export default function SingleProductInfo({ product }) {
+export default function ProductInfo({ product }) {
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '24px' : '16px';
   const fontSizeDesc = lg ? '18px' : '14px';

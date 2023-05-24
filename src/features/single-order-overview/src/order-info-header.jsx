@@ -3,11 +3,11 @@ import {
 } from 'antd';
 import moment from 'moment';
 import React from 'react';
-import getStatusAsString from '../../utils';
-import SingleProductInfo from './SingleProductInfo';
-import SingleOrderDetails from './SingleOrderDetails';
+import getStatusAsString from '../../../utils';
+import ProductInfo from './product-info';
+import OrderDetails from './order-details';
 
-export default function SingleOrderInfo({ order }) {
+export default function OrderInfoHeader({ order }) {
   if (!order) return null;
 
   return (
@@ -35,11 +35,11 @@ export default function SingleOrderInfo({ order }) {
           data-cy="SingleOrderProductsList"
           renderItem={(item) => (
             <List.Item key={item.product_id} style={{ display: 'block' }}>
-              <SingleProductInfo product={item} />
+              <ProductInfo product={item} />
             </List.Item>
           )}
         />
-        <SingleOrderDetails order={order} />
+        <OrderDetails order={order} />
       </Col>
     </Row>
   );

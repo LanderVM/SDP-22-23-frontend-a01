@@ -7,7 +7,7 @@ import {
 import ScrollToTop from './Contexts/ScrollToTop';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import AuthLanding from './Components/authentication/AuthLanding';
-import SingleOrderOverview from './features/SingleOrderOverview/SingleOrderOverview';
+import SingleOrderOverview from './features/single-order-overview';
 import ProfileOverview from './Components/profile/ProfileOverview';
 import FooterElement from './Components/Footer';
 import './App.css';

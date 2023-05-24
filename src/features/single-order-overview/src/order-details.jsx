@@ -4,14 +4,14 @@ import {
 import { NavLink } from 'react-router-dom';
 import React, { useEffect, useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import AddressInfo from '../../Components/order-details/address-info';
-import useOrderApi from '../../api/orderService';
-import PackagingInfo from '../../Components/order-details/packaging-info';
-import useOrderTracker from '../../api/orderTrackingService';
+import AddressInfo from '../../../Components/order-details/address-info';
+import useOrderApi from '../../../api/orderService';
+import PackagingInfo from '../../../Components/order-details/packaging-info';
+import useOrderTracker from '../../../api/orderTrackingService';
 
 const size0 = 0;
 
-export default function SingleOrderDetails({ order }) {
+export default function OrderDetails({ order }) {
   if (!order) return null;
   const [totalCost, setTotalCost] = useState(0);
   const [trackingCode, setTrackingCode] = useState(null);
