@@ -31,7 +31,7 @@ export default function ShoppingCartOverview({
       bordered
       actions={[
         <Button style={{ backgroundColor: '#ff4d4f' }} data-cy="proceedToCheckoutBtn">
-          <NavLink to="/FinishingOrder" style={{ color: 'white' }}>
+          <NavLink to="/checkout" style={{ color: 'white' }}>
             <b>Proceed to checkout</b>
           </NavLink>
         </Button>,

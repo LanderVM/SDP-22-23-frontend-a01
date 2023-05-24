@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { Button, Card } from 'antd';
 
-export default function OrderOverview({
+export default function SideOverview({
   cart, context, onOrder, packagingCost,
 }) {
   const { productsFromContext } = useContext(context);
@@ -25,7 +25,6 @@ export default function OrderOverview({
       title="Overview"
       bordered
       actions={[
-        // eslint-disable-next-line react/button-has-type
         <Button onClick={onOrder} style={{ backgroundColor: '#ff4d4f', color: 'white' }}>
           Place order
         </Button>,

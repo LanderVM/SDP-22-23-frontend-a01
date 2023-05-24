@@ -4,8 +4,6 @@ import PageNotFoundAlert from './Components/PageNotFoundAlert';
 import ProductsList from './Components/products/ProductsList';
 import SingleProduct from './Components/products/SingleProduct';
 import TrackingInput from './Components/Tracking/TrackingInput';
-import ProfileOverview from './Components/profile/ProfileOverview';
-import FinishingOrder from './features/FinishingOrder/FinishingOrder';
 import NotificationsOverview from './features/notifications';
 
 export function NotFoundPage() {
@@ -29,22 +27,6 @@ export function TrackingPage() {
   return (
     <main>
       <TrackingInput tCode={tCode} vCode={vCode} />
-    </main>
-  );
-}
-
-export function ProfilePage() {
-  return (
-    <main>
-      <ProfileOverview />
-    </main>
-  );
-}
-
-export function FinishingOrderPage() {
-  return (
-    <main>
-      <FinishingOrder />
     </main>
   );
 }

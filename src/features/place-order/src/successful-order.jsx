@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { CheckCircleTwoTone } from '@ant-design/icons';
 import React from 'react';
 
-export default function FinishedOrder() {
+export default function SuccessfulOrder() {
   return (
     <div style={{ textAlign: 'center', margin: '200px 0', fontSize: '36px' }}>
       <div>

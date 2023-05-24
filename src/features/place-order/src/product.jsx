@@ -4,7 +4,7 @@ import {
 } from 'antd';
 
 const { useBreakpoint } = Grid;
-export default function OrderContent({
+export default function Product({
   cart, context,
 }) {
   const { productsFromContext } = useContext(context);

@@ -4,8 +4,8 @@ import {
 import React from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
-import AddressInfo from '../../Components/order-details/address-info';
-import PackagingInfo from '../../Components/order-details/packaging-info';
+import AddressInfo from '../../../Components/order-details/address-info';
+import PackagingInfo from '../../../Components/order-details/packaging-info';
 
 export default function OrderDetails({
   customerDetails, setAddressList, setPackaging,

@@ -2,31 +2,21 @@ import React, {
   useState, useEffect, useContext, useCallback,
 } from 'react';
 
-import {
-  Row, Col, List, Grid, Empty,
-} from 'antd';
+import useProducts from '../../../api/productService';
+import useProfile from '../../../api/profile';
+import useOrderApi from '../../../api/orderService';
 
-import OrderOverview from './OrderOverview';
+import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
 
-import OrderContent from './OrderContent';
+import Error from '../../../Components/Error';
+import Loader from '../../../Components/Loader';
 
-import useProducts from '../../api/productService';
-import useProfile from '../../api/profile';
-import useOrderApi from '../../api/orderService';
+import SuccessfulOrder from './successful-order';
+import usePackagingApi from '../../../api/packagingService';
+import RequireAuth from '../../../Components/authentication/RequireAuth';
+import PlaceOrderOverview from './place-order-overview';
 
-import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
-
-import Error from '../../Components/Error';
-import Loader from '../../Components/Loader';
-
-import SingleOrderDetails from './SingleOrderDetails';
-import FinishedOrder from './FinishedOrder';
-import usePackagingApi from '../../api/packagingService';
-import RequireAuth from '../../Components/authentication/RequireAuth';
-
-const { useBreakpoint } = Grid;
-
-export default function FinishingOrder() {
+export default function PlaceOrder() {
   const {
     productsFromContext, resetShoppingCartContext,
   } = useContext(ProductsForShoppingCartContext);
@@ -138,59 +128,7 @@ export default function FinishingOrder() {
     <RequireAuth>
       <Loader loading={loading} />
       <Error error={error} />
-      {!loading && !error ? !finished ? <FinishingOrderOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} packagingCost={packaging.price} /> : <FinishedOrder /> : null}
+      {!loading && !error ? !finished ? <PlaceOrderOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} packagingCost={packaging.price} /> : <SuccessfulOrder /> : null}
     </RequireAuth>
-  );
-}
-
-function FinishingOrderOverview({
-  customerDetails, myCart, handleOrder, handleView, setAddressList, setPackaging, packagingCost,
-}) {
-  const { lg } = useBreakpoint();
-  if (customerDetails == null || myCart == null || handleView == null) {
-    return null;
-  }
-  if (myCart.length === 0) {
-    return (
-      <Empty description=" There are no products in your shoppingcart" />
-    );
-  }
-  const phoneFormatItemList = lg ? '18' : '24';
-  const phoneFormatOverView = lg ? '6' : '24';
-  const phoneFormatPaddingItemList = lg ? '40px 20px 40px 40px' : '20px';
-  const phoneFormatPaddingOverView = lg ? '40px 40px 40px 20px' : '20px';
-
-  return (
-    <>
-      <Row>
-        <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
-          <div>
-            <List
-              bordered
-              style={{ backgroundColor: 'white' }}
-              dataSource={myCart}
-              data-cy="order"
-              pagination={{
-                align: 'center',
-                pageSize: 10,
-              }}
-              renderItem={(item) => (
-                <List.Item key={item.productId} style={{ display: 'block' }}>
-                  <OrderContent cart={item} onView={handleView} context={ProductsForShoppingCartContext} />
-                </List.Item>
-              )}
-            />
-          </div>
-        </Col>
-        <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
-          <OrderOverview cart={myCart} context={ProductsForShoppingCartContext} onOrder={handleOrder} packagingCost={packagingCost} />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24} style={{ margin: '20px' }}>
-          <SingleOrderDetails customerDetails={customerDetails} setPackaging={setPackaging} setAddressList={setAddressList} />
-        </Col>
-      </Row>
-    </>
   );
 }

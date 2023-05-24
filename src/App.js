@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider, Layout, theme } from 'antd';
 import {
-  NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, FinishingOrderPage, Notifications,
+  NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, Notifications,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
@@ -13,6 +13,7 @@ import FooterElement from './Components/Footer';
 import './App.css';
 import Navbar from './Components/navbar';
 import OrdersOverview from './features/orders-overview';
+import PlaceOrder from './features/place-order';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/product/:productId" element={<ProductOverviewPage />} />
           <Route path="/profile" element={<ProfileOverview />} />
           <Route path="/shoppingCart" element={<ShoppingCart />} />
-          <Route path="/finishingOrder" element={<FinishingOrderPage />} />
+          <Route path="/checkout" element={<PlaceOrder />} />
           <Route path="/orders" element={<OrdersOverview />} />
           <Route path="/login" element={<AuthLanding />} />
           <Route path="/orders/:orderId" element={<SingleOrderOverview />} />
