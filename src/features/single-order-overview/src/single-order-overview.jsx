@@ -32,7 +32,7 @@ export default function SingleOrderOverview() {
       }
     };
     fetchOrder();
-  }, []);
+  }, [orderId]);
 
   return (
     <RequireAuth>
