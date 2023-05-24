@@ -3,7 +3,7 @@ import {
   AutoComplete,
   Button,
 } from 'antd';
-import useProducts from '../../../api/productService';
+import useProducts from '../../../api/product-service';
 
 function SearchBar({
   handleSearch, priceStart, priceEnd, inStock, brand, category,

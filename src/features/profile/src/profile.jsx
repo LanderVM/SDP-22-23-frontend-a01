@@ -3,7 +3,7 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Content } from 'antd/es/layout/layout';
-import useProfile from '../../../api/profile';
+import useProfile from '../../../api/profile-service';
 import CompanyInfo from './company-info';
 import ColleaguesList from './colleagues-list';
 import Loader from '../../../Components/loader';

@@ -3,7 +3,7 @@ import { Dropdown } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { NotificationOutlined } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
-import useNotifications from '../../../api/notification';
+import useNotifications from '../../../api/notification-service';
 import { Notifications } from '../../../contexts/notifications';
 
 export default function NotificationsDropdown() {

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Row, Col } from 'antd';
 import { useNavigate } from 'react-router';
-import useNotifications from '../../../api/notification';
+import useNotifications from '../../../api/notification-service';
 import { Notifications } from '../../../contexts/notifications';
 
 export default function SingleNotification({ notification }) {

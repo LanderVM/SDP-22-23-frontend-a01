@@ -8,7 +8,7 @@ import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import SideOverview from './side-overview';
 import SingleOrderDetails from './order-details';
 
-export default function PlaceOrderOverview({
+export default function CheckoutOverview({
   customerDetails, myCart, handleOrder, handleView, setAddressList, setPackaging, packagingCost,
 }) {
   const { lg } = useBreakpoint();

@@ -1,9 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider, Layout, theme } from 'antd';
-import {
-  NotFoundPage, Notifications,
-} from './pages';
 import ScrollToTop from './contexts/scroll-to-top';
 import ShoppingCart from './features/shopping-cart-overview';
 import AuthLanding from './Components/authentication/AuthLanding';
@@ -13,10 +10,12 @@ import FooterElement from './Components/footer';
 import './App.css';
 import Navbar from './Components/navbar';
 import OrdersOverview from './features/orders-overview';
-import PlaceOrder from './features/place-order';
+import PlaceOrder from './features/shopping-cart-checkout';
 import TrackingInput from './features/track-order';
 import ProductsOverview from './features/products-overview';
 import SingleProduct from './features/single-product-overview';
+import PageNotFound from './Components/page-not-found-alert';
+import NotificationsOverview from './features/notifications';
 
 function App() {
   return (
@@ -35,8 +34,8 @@ function App() {
           <Route path="/orders" element={<OrdersOverview />} />
           <Route path="/login" element={<AuthLanding />} />
           <Route path="/orders/:orderId" element={<SingleOrderOverview />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/notifications" element={<NotificationsOverview />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </ConfigProvider>
       <FooterElement />

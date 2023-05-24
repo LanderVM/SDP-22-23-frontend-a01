@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   List, Row, Col, Grid, Empty,
 } from 'antd';
-import useProducts from '../../../api/productService';
+import useProducts from '../../../api/product-service';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
 import Product from './product-info';

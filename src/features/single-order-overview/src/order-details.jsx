@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 import React, { useEffect, useMemo, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import AddressInfo from '../../../Components/order-details/address-info';
-import useOrderApi from '../../../api/orderService';
+import useOrderApi from '../../../api/order-service';
 import PackagingInfo from '../../../Components/order-details/packaging-info';
-import useOrderTracker from '../../../api/orderTrackingService';
+import useOrderTracker from '../../../api/tracking-service';
 
 const size0 = 0;
 

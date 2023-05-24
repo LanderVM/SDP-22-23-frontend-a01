@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { List, Row, Col } from 'antd';
-import useNotifications from '../../../api/notification';
+import useNotifications from '../../../api/notification-service';
 import SingleNotification from './single-notification';
 import Loader from '../../../Components/loader';
 import Error from '../../../Components/error';

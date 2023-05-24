@@ -2,9 +2,9 @@ import React, {
   useState, useEffect, useContext, useCallback,
 } from 'react';
 
-import useProducts from '../../../api/productService';
-import useProfile from '../../../api/profile';
-import useOrderApi from '../../../api/orderService';
+import useProducts from '../../../api/product-service';
+import useProfile from '../../../api/profile-service';
+import useOrderApi from '../../../api/order-service';
 
 import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 
@@ -12,11 +12,11 @@ import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
 
 import SuccessfulOrder from './successful-order';
-import usePackagingApi from '../../../api/packagingService';
+import usePackagingApi from '../../../api/packaging-service';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
-import PlaceOrderOverview from './place-order-overview';
+import CheckoutOverview from './checkout-overview';
 
-export default function PlaceOrder() {
+export default function Checkout() {
   const {
     productsFromContext, resetShoppingCartContext,
   } = useContext(ShoppingCartProducts);
@@ -126,9 +126,11 @@ export default function PlaceOrder() {
 
   return (
     <RequireAuth>
-      <Loader loading={loading} />
-      <Error error={error} />
-      {!loading && !error ? !finished ? <PlaceOrderOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} packagingCost={packaging.price} /> : <SuccessfulOrder /> : null}
+      <main style={{ height: '120vh' }}>
+        <Loader loading={loading} />
+        <Error error={error} />
+        {!loading && !error ? !finished ? <CheckoutOverview customerDetails={customer} myCart={myCart} ProductsForShoppingCartContext handleOrder={handleOrder} handleView={handleView} setAddressList={callBack} setPackaging={callBack2} packagingCost={packaging.price} /> : <SuccessfulOrder /> : null}
+      </main>
     </RequireAuth>
   );
 }

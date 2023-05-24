@@ -11,7 +11,7 @@ import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
 import Products from './products';
 import SideOverview from './side-overview';
-import useProducts from '../../../api/productService';
+import useProducts from '../../../api/product-service';
 import '../shopping-cart.css';
 
 const { useBreakpoint } = Grid;

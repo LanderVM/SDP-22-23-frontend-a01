@@ -4,7 +4,7 @@ import {
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { useParams } from 'react-router';
-import useOrderTracker from '../../../api/orderTrackingService';
+import useOrderTracker from '../../../api/tracking-service';
 import TrackingInfo from './tracking-info';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';

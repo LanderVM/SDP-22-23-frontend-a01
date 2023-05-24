@@ -7,7 +7,7 @@ import Error from '../error';
 import Loader from '../loader';
 import './modal.scss';
 
-import usePackagingApi from '../../api/packagingService';
+import usePackagingApi from '../../api/packaging-service';
 
 export default function PackagingInfo({ orderDetails, updateFunction, updatedOrderDetailsFunction }) {
   const [isModalOpen, setIsModalOpen] = useState(false);

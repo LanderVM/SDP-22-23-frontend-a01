@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import useProducts from '../../../api/productService';
+import useProducts from '../../../api/product-service';
 import SingleProductBody from './single-product-body';
 import Loader from '../../../Components/loader';
 import Error from '../../../Components/error';

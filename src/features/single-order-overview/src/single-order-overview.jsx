@@ -4,7 +4,7 @@ import { Breadcrumb, Layout } from 'antd';
 import { useParams } from 'react-router';
 import React, { useEffect, useState } from 'react';
 import SideMenu from '../../../Components/side-menu';
-import useOrderApi from '../../../api/orderService';
+import useOrderApi from '../../../api/order-service';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
 import OrderInfoHeader from './order-info-header';

@@ -5,7 +5,7 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
 import React, { useState, useEffect } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import useProducts from '../../../api/productService';
+import useProducts from '../../../api/product-service';
 
 import '../products-overview.css';
 import Error from '../../../Components/error';

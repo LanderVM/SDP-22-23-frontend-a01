@@ -1,7 +1,7 @@
 import {
   createContext, useMemo, useState,
 } from 'react';
-import useNotifications from '../api/notification';
+import useNotifications from '../api/notification-service';
 
 export const Notifications = createContext();
 

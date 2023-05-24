@@ -34,7 +34,7 @@ export default function Products({
         <div style={{ fontSize: fontSizeName }} data-cy="cartName"><b>{cart.name}</b></div>
         <div style={{ fontSize: fontSizeDesc }} data-cy="cartDescription">{cart.description}</div>
         <div>
-          <InputNumber min={1} max={1000} inputmode="numeric" defaultValue={productAmount} onChange={handleChange} />
+          <InputNumber min={1} max={1000} inputMode="numeric" defaultValue={productAmount} onChange={handleChange} />
         </div>
       </Col>
       <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>
