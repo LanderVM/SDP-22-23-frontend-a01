@@ -5,7 +5,7 @@ import {
 } from 'antd';
 
 import useOrderApi from '../../../api/orderService';
-import SideMenu from '../../../Components/Sider/SideMenu';
+import SideMenu from '../../../Components/SideMenu';
 import Error from '../../../Components/Error';
 import Loader from '../../../Components/Loader';
 import RequireAuth from '../../../Components/authentication/RequireAuth';

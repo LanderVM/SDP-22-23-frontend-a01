@@ -9,7 +9,7 @@ import NotificationsDropdown from './notifications-dropdown';
 
 export function ShoppingCartButton() {
   return (
-    <NavLink role="button" to="/shoppingCart" data-cy="navibar_shoppingCartButton">
+    <NavLink role="button" to="/cart" data-cy="navibar_shoppingCartButton">
       <ShoppingCartOutlined
         style={{
           fontSize: '250%',

@@ -3,7 +3,7 @@ import { Breadcrumb, Layout } from 'antd';
 
 import { useParams } from 'react-router';
 import React, { useEffect, useState } from 'react';
-import SideMenu from '../../../Components/Sider/SideMenu';
+import SideMenu from '../../../Components/SideMenu';
 import useOrderApi from '../../../api/orderService';
 import Error from '../../../Components/Error';
 import Loader from '../../../Components/Loader';

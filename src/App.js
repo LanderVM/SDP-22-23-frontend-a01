@@ -5,7 +5,7 @@ import {
   NotFoundPage, ProductOverviewPage, ProductsPage, Notifications,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
-import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
+import ShoppingCart from './features/shopping-cart-overview';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './features/single-order-overview';
 import ProfileOverview from './Components/profile/ProfileOverview';
@@ -14,7 +14,7 @@ import './App.css';
 import Navbar from './Components/navbar';
 import OrdersOverview from './features/orders-overview';
 import PlaceOrder from './features/place-order';
-import TrackingInput from './features/Tracking';
+import TrackingInput from './features/track-order';
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:productId" element={<ProductOverviewPage />} />
           <Route path="/profile" element={<ProfileOverview />} />
-          <Route path="/shoppingCart" element={<ShoppingCart />} />
+          <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<PlaceOrder />} />
           <Route path="/orders" element={<OrdersOverview />} />
           <Route path="/login" element={<AuthLanding />} />

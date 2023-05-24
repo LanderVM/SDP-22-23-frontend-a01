@@ -36,7 +36,7 @@ const columns = [
     showOnDesktop: true,
   },
   {
-    title: 'Tracking Code',
+    title: 'track-order Code',
     dataIndex: 'tracking_code',
     key: 'tracking_code',
     showOnResponse: true,

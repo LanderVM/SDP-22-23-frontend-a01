@@ -8,7 +8,7 @@ import CompanyInfo from './CompanyInfo';
 import Colleagues from './Colleagues';
 import Loader from '../Loader';
 import Error from '../Error';
-import SideMenu from '../Sider/SideMenu';
+import SideMenu from '../SideMenu';
 import RequireAuth from '../authentication/RequireAuth';
 
 export default function ProfileOverview() {

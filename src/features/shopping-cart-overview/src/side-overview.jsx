@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import {
   Card, Divider, Button, Row, Col,
 } from 'antd';
-import './ShoppingCart.css';
 import { NavLink } from 'react-router-dom';
 
-export default function ShoppingCartOverview({
+export default function SideOverview({
   cart, context,
 }) {
   const { productsFromContext } = useContext(context);
@@ -25,7 +24,6 @@ export default function ShoppingCartOverview({
   }, [cart]);
 
   return (
-
     <Card
       title="Overview"
       bordered

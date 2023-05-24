@@ -5,7 +5,7 @@ import {
 import { DeleteOutlined } from '@ant-design/icons';
 
 const { useBreakpoint } = Grid;
-export default function ShoppingCartContent({
+export default function Products({
   cart, context,
 }) {
   const { removeProductFromShoppingCartContext, productsFromContext, addProductToShoppingCartContext } = useContext(context);

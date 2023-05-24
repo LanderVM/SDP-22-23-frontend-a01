@@ -6,3 +6,6 @@ tbody > *{
     margin: 2%;
 }
 
+main {
+    height: calc(100vh - 90px);
+}
