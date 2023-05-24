@@ -6,13 +6,13 @@ import {
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
-import OrdersOverview from './features/OrderOverview';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './features/SingleOrderOverview/SingleOrderOverview';
 import ProfileOverview from './Components/profile/ProfileOverview';
 import FooterElement from './Components/Footer';
 import './App.css';
 import Navbar from './Components/navbar';
+import OrdersOverview from './features/orders-overview';
 
 function App() {
   return (

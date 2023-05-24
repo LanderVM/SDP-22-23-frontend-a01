@@ -1,11 +1,10 @@
 import { Button, Col, Row } from 'antd';
 import moment from 'moment/moment';
 import React from 'react';
-import './orderInfo.scss';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineRight } from 'react-icons/ai';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import getStatusAsString from '../../utils';
+import getStatusAsString from '../../../utils';
 
 export default function OrderInfo({ order }) {
   const { lg } = useBreakpoint();
