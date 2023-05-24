@@ -44,7 +44,6 @@ export default function NotificationsDropdown() {
         await save();
       }
       refreshAmountNotReadNotifications();
-      window.location.reload();
     };
     arrayOfHandlers[index] = handleNot;
   });
