@@ -4,8 +4,8 @@ import {
   List, Row, Col, Grid, Empty,
 } from 'antd';
 import useProducts from '../../api/productService';
-import Error from '../Error';
-import Loader from '../Loader';
+import Error from '../error';
+import Loader from '../loader';
 import Product from './ProductElement';
 import SearchBar from './SearchBar';
 import SideBarProductPage from './SideBarProductPage';

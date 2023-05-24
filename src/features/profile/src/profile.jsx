@@ -3,15 +3,15 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Content } from 'antd/es/layout/layout';
-import useProfile from '../../api/profile';
-import CompanyInfo from './CompanyInfo';
-import Colleagues from './Colleagues';
-import Loader from '../Loader';
-import Error from '../Error';
-import SideMenu from '../SideMenu';
-import RequireAuth from '../authentication/RequireAuth';
+import useProfile from '../../../api/profile';
+import CompanyInfo from './company-info';
+import ColleaguesList from './colleagues-list';
+import Loader from '../../../Components/loader';
+import Error from '../../../Components/error';
+import SideMenu from '../../../Components/side-menu';
+import RequireAuth from '../../../Components/authentication/RequireAuth';
 
-export default function ProfileOverview() {
+export default function Profile() {
   const profileApi = useProfile();
 
   const [companyInfo, setCompanyInfo] = useState({});
@@ -69,7 +69,7 @@ export default function ProfileOverview() {
                   <CompanyInfo companyInformation={companyInfo} />
                 </Col>
                 <Col span={24} style={{ marginTop: '2%' }}>
-                  <Colleagues colleagues={colleagues} />
+                  <ColleaguesList colleagues={colleagues} />
                 </Col>
               </Row>
             ) : null}

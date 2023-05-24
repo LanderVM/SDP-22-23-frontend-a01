@@ -8,8 +8,8 @@ import useOrderApi from '../../../api/orderService';
 
 import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
 
-import Error from '../../../Components/Error';
-import Loader from '../../../Components/Loader';
+import Error from '../../../Components/error';
+import Loader from '../../../Components/loader';
 
 import SuccessfulOrder from './successful-order';
 import usePackagingApi from '../../../api/packagingService';

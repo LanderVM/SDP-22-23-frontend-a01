@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { List, Row, Col } from 'antd';
 import useNotifications from '../../../api/notification';
 import SingleNotification from './single-notification';
-import Loader from '../../../Components/Loader';
-import Error from '../../../Components/Error';
+import Loader from '../../../Components/loader';
+import Error from '../../../Components/error';
 import '../notifications-overview.css';
 
 export default function NotificationsOverview() {

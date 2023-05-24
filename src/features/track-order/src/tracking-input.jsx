@@ -6,8 +6,8 @@ import { useForm } from 'antd/es/form/Form';
 import { useParams } from 'react-router';
 import useOrderTracker from '../../../api/orderTrackingService';
 import TrackingInfo from './tracking-info';
-import Error from '../../../Components/Error';
-import Loader from '../../../Components/Loader';
+import Error from '../../../Components/error';
+import Loader from '../../../Components/loader';
 import '../tracking-input.scss';
 
 export default function TrackingInput() {

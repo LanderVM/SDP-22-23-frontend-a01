@@ -7,8 +7,8 @@ import {
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
-import Error from '../../../Components/Error';
-import Loader from '../../../Components/Loader';
+import Error from '../../../Components/error';
+import Loader from '../../../Components/loader';
 import Products from './products';
 import SideOverview from './side-overview';
 import useProducts from '../../../api/productService';

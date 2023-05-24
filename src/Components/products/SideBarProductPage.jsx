@@ -8,7 +8,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import useProducts from '../../api/productService';
 
 import './Sidebar.css';
-import Error from '../Error';
+import Error from '../error';
 
 const minPrice = 0;
 const maxPrice = 2000;

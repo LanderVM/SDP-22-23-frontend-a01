@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
 import React from 'react';
-import PageNotFoundAlert from './Components/PageNotFoundAlert';
+import PageNotFoundAlert from './Components/page-not-found-alert';
 import ProductsList from './Components/products/ProductsList';
 import SingleProduct from './Components/products/SingleProduct';
 import NotificationsOverview from './features/notifications';

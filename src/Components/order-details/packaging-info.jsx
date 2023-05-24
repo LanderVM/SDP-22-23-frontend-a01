@@ -3,8 +3,8 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
-import Error from '../Error';
-import Loader from '../Loader';
+import Error from '../error';
+import Loader from '../loader';
 import './modal.scss';
 
 import usePackagingApi from '../../api/packagingService';

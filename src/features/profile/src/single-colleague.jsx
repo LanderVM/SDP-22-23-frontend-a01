@@ -2,7 +2,7 @@ import { Col, Grid, Row } from 'antd';
 
 const { useBreakpoint } = Grid;
 
-export default function ColleagueInfo({ colleague }) {
+export default function SingleColleague({ colleague }) {
   const { lg } = useBreakpoint();
 
   const phoneFormatColleagueInfoImg = lg ? '6' : '24';

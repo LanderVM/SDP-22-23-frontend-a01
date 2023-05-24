@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useProducts from '../../api/productService';
 import SingleProductElement from './SingleProductElement';
-import Loader from '../Loader';
-import Error from '../Error';
+import Loader from '../loader';
+import Error from '../error';
 
 function SingleProductE({ product }) {
   if (!product) {

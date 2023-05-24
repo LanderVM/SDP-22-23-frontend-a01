@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from 'react-router-dom';
 import { Content } from 'antd/es/layout/layout';
 import { Col, Row } from 'antd';
-import Error from '../Error';
+import Error from '../error';
 import LoginButton from './LoginButton';
 
 export default function AuthLanding() {

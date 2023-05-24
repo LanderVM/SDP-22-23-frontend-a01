@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from 'react-router';
-import Loader from '../Loader';
+import Loader from '../loader';
 
 export default function RequireAuth({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();

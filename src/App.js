@@ -8,8 +8,8 @@ import ScrollToTop from './Contexts/ScrollToTop';
 import ShoppingCart from './features/shopping-cart-overview';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './features/single-order-overview';
-import ProfileOverview from './Components/profile/ProfileOverview';
-import FooterElement from './Components/Footer';
+import Profile from './features/profile';
+import FooterElement from './Components/footer';
 import './App.css';
 import Navbar from './Components/navbar';
 import OrdersOverview from './features/orders-overview';
@@ -27,7 +27,7 @@ function App() {
           <Route path="/track/:trackingCode?/:verificationCode?" element={<TrackingInput />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:productId" element={<ProductOverviewPage />} />
-          <Route path="/profile" element={<ProfileOverview />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<PlaceOrder />} />
           <Route path="/orders" element={<OrdersOverview />} />

@@ -6,7 +6,7 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import './modal.scss';
 import { useForm } from 'antd/es/form/Form';
 import { countries } from 'countries-list';
-import Error from '../Error';
+import Error from '../error';
 
 export default function AddressInfo({ orderDetails, updateFunction, updatedOrderDetailsFunction }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
