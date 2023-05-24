@@ -8,6 +8,7 @@ import { NotificationButton, ShoppingCartButton, AccountButton } from './buttons
 import { ProductsForShoppingCartContext } from '../../../Contexts/ProductsForShoppingCartContext';
 import MobileDrawer from './mobile-drawer';
 import { NotificationsContext } from '../../../Contexts/NotificationsContext';
+import '../navbar.scss';
 
 const { Header } = Layout;
 const { useBreakpoint } = Grid;

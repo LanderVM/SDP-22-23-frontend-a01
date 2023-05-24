@@ -11,7 +11,7 @@ import {
   BsBoxSeam,
 } from 'react-icons/bs';
 import moment from 'moment/moment';
-import getStatusAsString from '../../utils';
+import getStatusAsString from '../../../utils';
 
 const columns = [
   {

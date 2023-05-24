@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import './trackingInput.scss';
 import {
   Input, Form, Col, Row, Button,
 } from 'antd';
 import { useForm } from 'antd/es/form/Form';
-import useOrderTracker from '../../api/orderTrackingService';
-import TrackingInfo from './TrackingInfo';
-import Error from '../Error';
-import Loader from '../Loader';
+import { useParams } from 'react-router';
+import useOrderTracker from '../../../api/orderTrackingService';
+import TrackingInfo from './tracking-info';
+import Error from '../../../Components/Error';
+import Loader from '../../../Components/Loader';
+import '../tracking-input.scss';
 
-export default function TrackingInput({ tCode, vCode }) {
+export default function TrackingInput() {
+  const { trackingCode, verificationCode } = useParams();
   const [form] = useForm();
   const [trackingInfo, setTrackingInfo] = useState(null);
   const [error, setError] = useState(null);
@@ -45,12 +47,12 @@ export default function TrackingInput({ tCode, vCode }) {
 
   useEffect(() => {
     const tInfo = async () => {
-      if (tCode && vCode) {
-        onFinish({ trackingCode: tCode, verificationCode: vCode });
+      if (trackingCode && verificationCode) {
+        onFinish({ trackingCode, verificationCode });
       }
     };
     tInfo();
-  }, [tCode, vCode]);
+  }, [trackingCode, verificationCode]);
 
   const clearTracker = () => {
     try {
@@ -62,7 +64,7 @@ export default function TrackingInput({ tCode, vCode }) {
   };
 
   return (
-    <div className="delaware-tracking-page">
+    <main className="delaware-tracking-page">
       <div className="delaware-tracking-head">
         <h1>Order&nbsp;Tracking&nbsp;Page</h1>
         <p>
@@ -101,6 +103,6 @@ export default function TrackingInput({ tCode, vCode }) {
       {!error
         ? <Loader loading={loading} />
         : null}
-    </div>
+    </main>
   );
 }

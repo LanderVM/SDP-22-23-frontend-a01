@@ -4,6 +4,7 @@ import useNotifications from '../../../api/notification';
 import SingleNotification from './single-notification';
 import Loader from '../../../Components/Loader';
 import Error from '../../../Components/Error';
+import '../notifications-overview.css';
 
 export default function NotificationsOverview() {
   const [notifications, setNotifications] = useState([]);

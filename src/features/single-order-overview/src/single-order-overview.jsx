@@ -9,6 +9,7 @@ import Error from '../../../Components/Error';
 import Loader from '../../../Components/Loader';
 import OrderInfoHeader from './order-info-header';
 import RequireAuth from '../../../Components/authentication/RequireAuth';
+import '../single-product-info.scss';
 
 export default function SingleOrderOverview() {
   const { orderId } = useParams();

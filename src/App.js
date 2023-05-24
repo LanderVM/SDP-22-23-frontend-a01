@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ConfigProvider, Layout, theme } from 'antd';
 import {
-  NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, Notifications,
+  NotFoundPage, ProductOverviewPage, ProductsPage, Notifications,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
@@ -14,6 +14,7 @@ import './App.css';
 import Navbar from './Components/navbar';
 import OrdersOverview from './features/orders-overview';
 import PlaceOrder from './features/place-order';
+import TrackingInput from './features/Tracking';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Routes>
           <Route index element={<ProductsPage />} />
           <Route path="/home" element={<ProductsPage />} />
-          <Route path="/track/:tCode?/:vCode?" element={<TrackingPage />} />
+          <Route path="/track/:trackingCode?/:verificationCode?" element={<TrackingInput />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:productId" element={<ProductOverviewPage />} />
           <Route path="/profile" element={<ProfileOverview />} />
