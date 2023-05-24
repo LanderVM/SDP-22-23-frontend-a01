@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import { ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Dropdown } from 'antd';
-import LogoutButtonDropDown from '../authentication/LogoutButton';
-import LoginButtonDropDown from '../authentication/LoginButton';
-import NotificationsDropdown from './NotificationsDropdown';
+import LogoutButtonDropDown from '../../authentication/LogoutButton';
+import LoginButtonDropDown from '../../authentication/LoginButton';
+import NotificationsDropdown from './notifications-dropdown';
 
 export function ShoppingCartButton() {
   return (

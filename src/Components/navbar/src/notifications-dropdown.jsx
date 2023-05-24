@@ -1,13 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Dropdown } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { NotificationOutlined } from '@ant-design/icons';
-import useNotifications from '../../api/notification';
-import { NotificationsContext } from '../../Contexts/NotificationsContext';
-import './navibar.scss';
+import { useAuth0 } from '@auth0/auth0-react';
+import useNotifications from '../../../api/notification';
+import { NotificationsContext } from '../../../Contexts/NotificationsContext';
 
-export default function NotificationsDropdownTwo({ notifications }) {
+export default function NotificationsDropdown() {
+  const [notifications, setFiveMostRecentNotifications] = useState([]);
+
+  const { isAuthenticated } = useAuth0();
+
   const notificationsApi = useNotifications();
+
+  useEffect(() => {
+    const fetchFiveMostRecent = async () => {
+      const data = await notificationsApi.getFiveMostRecent();
+
+      setFiveMostRecentNotifications(data);
+    };
+    if (isAuthenticated) {
+      fetchFiveMostRecent();
+    }
+  }, [isAuthenticated]);
 
   const { refreshAmountNotReadNotifications } = useContext(NotificationsContext);
 

@@ -1,0 +1,28 @@
+.user-item {
+  color: black;
+  text-decoration: none !important;
+}
+
+.user-item:hover {
+  color: black;
+  text-decoration: none !important;
+}
+
+.delaware-dropdown-button {
+  display: flex;
+  align-items: center;
+}
+
+.notification-menu-item {
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  color: black;
+}
+
+.notification-menu-item:hover {
+  color: gray;
+}
+
+/*# sourceMappingURL=navbar.css.map */

@@ -5,9 +5,9 @@ import {
   NotFoundPage, ProductOverviewPage, ProductsPage, TrackingPage, FinishingOrderPage, Notifications,
 } from './pages';
 import ScrollToTop from './Contexts/ScrollToTop';
-import Navbar from './Components/Navibar/Navbar';
+import Navbar from './Components/navbar/navbar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
-import OrdersOverview from './features/OrderOverview/index';
+import OrdersOverview from './features/OrderOverview';
 import AuthLanding from './Components/authentication/AuthLanding';
 import SingleOrderOverview from './features/SingleOrderOverview/SingleOrderOverview';
 import ProfileOverview from './Components/profile/ProfileOverview';

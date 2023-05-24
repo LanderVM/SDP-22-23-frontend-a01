@@ -4,10 +4,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 import {
   Menu, Badge, Layout, Space, Grid, theme, ConfigProvider,
 } from 'antd';
-import { NotificationButton, ShoppingCartButton, AccountButton } from './NavbarButtons';
+import { NotificationButton, ShoppingCartButton, AccountButton } from './src/buttons';
 import { ProductsForShoppingCartContext } from '../../Contexts/ProductsForShoppingCartContext';
-import './navibar.scss';
-import NavbarMobileDrawer from './NavbarMobileDrawer';
+import './navbar.scss';
+import MobileDrawer from './src/mobile-drawer';
 import { NotificationsContext } from '../../Contexts/NotificationsContext';
 
 const { Header } = Layout;
@@ -59,7 +59,7 @@ const items = [
     },
   },
 ];
-function Navbar() {
+export default function Navbar() {
   const navigate = useNavigate();
   const { lg } = useBreakpoint();
 
@@ -94,7 +94,7 @@ function Navbar() {
           float: 'left', display: 'flex',
         }}
         >
-          <NavbarMobileDrawer />
+          <MobileDrawer />
           <NavLink data-cy="navibar_logo" to="/home" style={{ paddingTop: '5px' }} replace>
             <img src={logo} height="60px" alt="Delaware logo" />
           </NavLink>
@@ -139,4 +139,3 @@ function Navbar() {
     </Header>
   );
 }
-export default Navbar;

@@ -32,7 +32,7 @@ const items = [
   },
 ];
 
-export default function NavbarMobileDrawer() {
+export default function MobileDrawer() {
   const [isToggled, setToggled] = useState(false);
   const toggleTrueFalse = () => setToggled(!isToggled);
   const onClose = () => {
