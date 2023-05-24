@@ -93,7 +93,7 @@ export default function SideBarProductPage(props) {
       name: 'Name',
     },
     {
-      value: null,
+      value: '',
       name: 'None',
     },
   ];

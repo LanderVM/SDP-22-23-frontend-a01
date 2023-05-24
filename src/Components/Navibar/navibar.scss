@@ -13,4 +13,15 @@
   align-items: center;
 }
 
+.notification-menu-item {
+  -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+  color: black;
+}
+
+.notification-menu-item:hover {
+  color: gray;
+}
 
