@@ -35,7 +35,7 @@ function ProductsListElement({ products, handleView }) {
         dataSource={products}
         pagination={{
           align: 'center',
-          pageSize: 10,
+          pageSizeOptions: [10, 20, 30],
         }}
         renderItem={(item) => (
           <List.Item key={item.product_id} style={{ display: 'block' }}>
