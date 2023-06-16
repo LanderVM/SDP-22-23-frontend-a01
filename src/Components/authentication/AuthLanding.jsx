@@ -4,6 +4,7 @@ import { Content } from 'antd/es/layout/layout';
 import { Col, Row } from 'antd';
 import Error from '../error';
 import LoginButton from './LoginButton';
+import './authLanding.css';
 
 export default function AuthLanding() {
   const { error, isAuthenticated, isLoading } = useAuth0();
@@ -29,7 +30,7 @@ export default function AuthLanding() {
 
   if (!isLoading && !isAuthenticated) {
     return (
-      <Content style={{ minHeight: 'calc(100vh - 290px)' }}>
+      <Content className="min-height">
         <Row align="middle" justify="center">
           <Col type="flex" align="middle">
             <h1>Login required</h1>
