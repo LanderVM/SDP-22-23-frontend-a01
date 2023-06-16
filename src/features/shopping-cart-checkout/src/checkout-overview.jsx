@@ -52,7 +52,7 @@ export default function CheckoutOverview({
         </Col>
       </Row>
       <Row>
-        <Col span={24} style={{ margin: '20px' }}>
+        <Col span={24} style={{ padding: '40px' }}>
           <SingleOrderDetails customerDetails={customerDetails} setPackaging={setPackaging} setAddressList={setAddressList} />
         </Col>
       </Row>

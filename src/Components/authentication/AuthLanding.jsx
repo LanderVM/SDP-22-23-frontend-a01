@@ -29,7 +29,7 @@ export default function AuthLanding() {
 
   if (!isLoading && !isAuthenticated) {
     return (
-      <Content>
+      <Content style={{ minHeight: 'calc(100vh - 290px)' }}>
         <Row align="middle" justify="center">
           <Col type="flex" align="middle">
             <h1>Login required</h1>
