@@ -1,12 +1,5 @@
-@media only screen and (max-width: 767px) {
-  #checkout-page {
-    height: 140vh;
-  }
-}
-@media only screen and (min-width: 768px) {
-  #checkout-page {
-    min-height: calc(100vh - 290px);
-  }
+#checkout-page {
+    min-height: calc(100vh - 263px);
 }
 
 /*# sourceMappingURL=checkout.css.map */

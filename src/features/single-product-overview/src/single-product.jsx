@@ -14,7 +14,7 @@ function SingleProductE({ product }) {
   }
 
   return (
-    <main style={{ margin: '50px 10%' }}>
+    <main style={{ padding: '50px 10%' }}>
       <SingleProductBody product={product.items[0]} />
     </main>
   );
