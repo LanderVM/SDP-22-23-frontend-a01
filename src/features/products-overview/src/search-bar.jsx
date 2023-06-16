@@ -38,7 +38,7 @@ function SearchBar({
   };
 
   return (
-    <div style={{ margin: '25px 0' }}>
+    <div style={{ marginBottom: '25px' }}>
       {!loading && !error ? (
         <div style={{ display: 'flex', fontSize: '30px' }}>
           <AutoComplete

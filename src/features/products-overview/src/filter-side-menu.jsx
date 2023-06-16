@@ -101,15 +101,17 @@ export default function FilterSideMenu(props) {
   return (
     <div
       style={{
-        padding: '15px 30px', borderRadius: '10px',
+        borderRadius: '10px',
       }}
     >
       {error
         ? <Error error={error} />
         : null}
-      <Collapse bordered={false} defaultActiveKey={['4', '5']} className="sideBar">
+      <Collapse defaultActiveKey={['4', '5']} className="sideBar" size="medium">
         <Panel header="Product Category" key="1">
-          <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={category} onChange={onCategoriesChange} />
+          <div style={{ maxHeight: '300px', overflowY: 'scroll' }}>
+            <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={category} onChange={onCategoriesChange} />
+          </div>
         </Panel>
         <Panel header="Price" key="2" data-cy="test-products-filter-priceTab">
           <Row>
@@ -141,9 +143,10 @@ export default function FilterSideMenu(props) {
           </Row>
         </Panel>
         <Panel header="Brand" key="3">
-          <Checkbox.Group options={brands.map((e) => e.brand)} defaultValue={brand} onChange={onBrandChange} />
+          <div style={{ maxHeight: '300px', overflowY: 'scroll' }}>
+            <Checkbox.Group options={brands.map((e) => e.brand)} defaultValue={brand} onChange={onBrandChange} />
+          </div>
         </Panel>
-
         <Panel header="Availability" key="4" data-cy="test-products-filter-inStockTab">
           <Space>
             <Switch
