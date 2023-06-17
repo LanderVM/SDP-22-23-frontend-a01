@@ -2,7 +2,7 @@ import { notification } from 'antd';
 import { useEffect } from 'react';
 
 export default function ToastNotification({
-  title, message, icon,
+  title, message, icon, show,
 }) {
   const [api, contextHolder] = notification.useNotification();
   const openNotification = () => {
@@ -13,11 +13,12 @@ export default function ToastNotification({
     });
   };
 
-  useEffect(() => openNotification);
+  useEffect(() => {
+    if (show === true) openNotification();
+  });
   return (
-    <>
+    <div>
       { contextHolder }
-      <p>aa</p>
-    </>
+    </div>
   );
 }

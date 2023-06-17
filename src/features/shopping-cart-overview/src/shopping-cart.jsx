@@ -6,7 +6,7 @@ import {
   List, Col, Row, Grid, Empty, Button,
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { SmileOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
@@ -17,7 +17,6 @@ import '../shopping-cart.css';
 import ToastNotification from '../../../Components/notification';
 
 const { useBreakpoint } = Grid;
-
 export default function ShoppingCart() {
   const {
     productsFromContext, removeProductFromShoppingCartContext,
@@ -25,7 +24,6 @@ export default function ShoppingCart() {
   const { lg } = useBreakpoint();
 
   const [error, setError] = useState(null);
-  // eslint-disable-next-line no-unused-vars
   const [deletedId, setDeletedId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notificationVisible, setNotificationVisible] = useState(false);
@@ -33,20 +31,29 @@ export default function ShoppingCart() {
   const [myCart, setCart] = useState([]);
   const productApi = useProducts();
 
-  const fetchCartItems = (id) => {
+  const fetchCartItems = async (id) => {
+    console.log(`FETCHING FROM ${id}`);
+    const doIt = async () => {
+      if (id !== undefined) {
+        console.log('DELETING...');
+        removeProductFromShoppingCartContext(id);
+        setCart(myCart.filter((product) => product.product_id !== id));
+        setDeletedId(id);
+        console.log('DELETION COMPLETE');
+      }
+    };
+    doIt();
+  };
+
+  useEffect(() => {
     const doIt = async () => {
       try {
         setLoading(true);
         setError(null);
-        if (id !== undefined) {
-          removeProductFromShoppingCartContext(id);
-          setDeletedId(id);
-        }
         if (productsFromContext.length === 0) {
           setCart([]);
         } else {
           const data = await productApi.getByIds(productsFromContext);
-          console.log(data);
           setCart(data);
         }
       } catch (error2) {
@@ -56,18 +63,32 @@ export default function ShoppingCart() {
       }
     };
     doIt();
-  };
-
-  useEffect(() => {
-    fetchCartItems();
   }, []);
 
   useEffect(() => {
+    console.log(`GETTING NOTIF STATUS FOR ${deletedId}`);
     if (deletedId !== null) {
+      console.log(`SETTING TRUE FOR ${deletedId}`);
       setNotificationVisible(true);
       setTimeout(() => setNotificationVisible(false), 5000);
+      console.log(`SETTING FALSE FOR ${deletedId}`);
     }
   }, [deletedId]);
+
+  const notif = (
+    <ToastNotification
+      title="Product Removed"
+      message=""
+      icon={(
+        <DeleteOutlined
+          style={{
+            color: '#ff4d4f',
+          }}
+        />
+          )}
+      show={notificationVisible}
+    />
+  );
 
   const handleView = useCallback(async (nameToView) => {
     try {
@@ -77,22 +98,11 @@ export default function ShoppingCart() {
       setError(err);
     }
   }, []);
+
   if (!myCart || myCart.length === 0) {
     return (
       <main>
-        {notificationVisible ? (
-          <ToastNotification
-            title="Product Removed"
-            message=""
-            icon={(
-              <SmileOutlined
-                style={{
-                  color: '#108ee9',
-                }}
-              />
-            )}
-          />
-        ) : null}
+        {notif}
         <Empty style={{ marginTop: '20vh' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="There are no items in your shopping cart">
           <NavLink to="/products"><Button type="primary">Continue shopping</Button></NavLink>
         </Empty>
@@ -107,42 +117,34 @@ export default function ShoppingCart() {
 
   return (
     <main>
-      {notificationVisible ? (
-        <ToastNotification
-          title="Product Removed"
-          message=""
-          icon={(
-            <SmileOutlined
-              style={{
-                color: '#108ee9',
-              }}
-            />
-              )}
-        />
-      ) : null}
+      {notif}
       <Row>
-        <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
-          <Loader loading={loading} />
-          <Error error={error} />
-          <div>
-            <List
-              bordered
-              style={{ backgroundColor: 'white' }}
-              dataSource={myCart}
-              data-cy="shoppingCart"
-              pagination={{
-                align: 'center',
-                pageSize: 10,
-              }}
-              renderItem={(item) => (
-                <List.Item key={item.productId} style={{ display: 'block' }}>
-                  {!loading && !error ? <Products cart={item} onView={handleView} handleDelete={fetchCartItems} context={ShoppingCartProducts} />
-                    : null}
-                </List.Item>
-              )}
-            />
-          </div>
-        </Col>
+        {myCart.length === productsFromContext.length
+          ? (
+            <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
+              <Loader loading={loading} />
+              <Error error={error} />
+              <div>
+                <List
+                  bordered
+                  style={{ backgroundColor: 'white' }}
+                  dataSource={myCart}
+                  data-cy="shoppingCart"
+                  pagination={{
+                    align: 'center',
+                    pageSize: 10,
+                  }}
+                  renderItem={(item) => (
+                    <List.Item key={item.productId} style={{ display: 'block' }}>
+                      {!loading && !error ? <Products cart={item} onView={handleView} handleDelete={fetchCartItems} context={ShoppingCartProducts} />
+                        : null}
+                    </List.Item>
+                  )}
+                />
+              </div>
+            </Col>
+          )
+          : <p>aaaaaa</p>}
         <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
           {!loading && !error && myCart.length === productsFromContext.length
             ? <SideOverview cart={myCart} context={ShoppingCartProducts} />

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Button, Col, Grid, InputNumber, Row,
 } from 'antd';
@@ -15,12 +15,19 @@ export default function Products({
   const fontSizeIcon = lg ? '120%' : '70%';
   const buttonHeight = lg ? '40px' : '35px';
 
-  const product = productsFromContext.filter((e) => e.productId === cart.product_id);
-  if (product[0] === undefined) {
-    console.log(cart.product_id);
-    useEffect(() => handleDelete(cart.product_id), []);
+  const [product] = useState(productsFromContext.filter((e) => e.productId === cart.product_id));
+
+  useEffect(() => {
+    if (product.length === 0) {
+      console.log('PING');
+      handleDelete(cart.product_id);
+    }
+  });
+
+  if (product.length === 0) {
     return null;
   }
+
   const productAmount = product[0].amount;
 
   const handleChange = (value) => {
@@ -52,7 +59,9 @@ export default function Products({
           type="primary"
           danger
           data-cy="removeCartItem"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
+            console.log('CLICK');
             handleDelete(cart.product_id);
           }}
           style={{
@@ -60,7 +69,6 @@ export default function Products({
           }}
         >
           <DeleteOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
-
         </Button>
       </Col>
     </Row>
