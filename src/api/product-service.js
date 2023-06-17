@@ -72,6 +72,13 @@ const useProducts = () => {
     return data.items;
   }, []);
 
+  const getPopular = useCallback(async () => {
+    const {
+      data,
+    } = await axios.get(`${baseUrl}/popular`);
+    return data.items;
+  }, []);
+
   return {
     getAll,
     getById,
@@ -79,6 +86,7 @@ const useProducts = () => {
     getBrands,
     getCategories,
     getFiltered,
+    getPopular,
   };
 };
 
