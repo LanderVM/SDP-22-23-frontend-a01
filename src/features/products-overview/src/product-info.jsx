@@ -63,14 +63,21 @@ export default function ProductInfo({
           {product.price}
         </div>
         <Space direction="horizontal">
-          <InputNumber min={1} max={100} defaultValue={productAmount} onChange={onChangeAmount} style={{ width: '70px' }} />
+          <InputNumber
+            min={1}
+            max={100}
+            formatter={(value) => value.replace(/^$/, '0')}
+            parser={(value) => value.replace(/^$/, '0')}
+            defaultValue={productAmount}
+            onChange={onChangeAmount}
+            style={{ width: '70px' }}
+          />
           <Button
             type="primary"
             danger
             data-cy="btnAddToCart"
             onClick={(e) => {
               e.preventDefault();
-              // addProductToShoppingCartContext(product, parseInt(productAmountExisting, 10) + productAmount);
               handleAdd(product, parseInt(productAmountExisting, 10) + productAmount);
             }}
             style={{

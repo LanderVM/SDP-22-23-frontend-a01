@@ -27,7 +27,7 @@ export default function Products({
     return null;
   }
 
-  const productAmount = product[0].amount;
+  const [productAmount, setProductAmount] = useState(product[0].amount);
 
   return (
     <Row gutter={{
@@ -48,6 +48,7 @@ export default function Products({
             defaultValue={productAmount}
             onChange={(value) => {
               handleChange(cart, value);
+              setProductAmount(value);
             }}
           />
         </div>
@@ -55,7 +56,7 @@ export default function Products({
       <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>
         <div data-cy="cartPrice" style={{ fontSize: fontSizeName }}>
           €&nbsp;
-          {cart.price * productAmount }
+          {cart.price * productAmount}
         </div>
 
         <Button

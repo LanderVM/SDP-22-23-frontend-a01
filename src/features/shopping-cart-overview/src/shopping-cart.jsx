@@ -26,14 +26,13 @@ export default function ShoppingCart() {
   const [error, setError] = useState(null);
   const [modifiedProduct, setModifiedProduct] = useState({ item: {}, amount: -99 });
   const [loading, setLoading] = useState(true);
-  const [notificationVisible, setNotificationVisible] = useState({ status: false, isRemove: false });
+  const [notificationVisible, setNotificationVisible] = useState({ status: false, isRemove: false, updatable: false });
 
   const [myCart, setCart] = useState([]);
   const productApi = useProducts();
 
   const fetchCartItems = async (id) => {
     const doIt = async () => {
-      console.log(id);
       if (id !== undefined) {
         removeProductFromShoppingCartContext(id);
         const removedProduct = myCart.find((product) => product.product_id === id);
@@ -74,9 +73,9 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     if (modifiedProduct.amount === -99) return;
-    console.log(modifiedProduct);
-    setNotificationVisible({ status: true, isRemove: modifiedProduct.amount === -1 });
-    setTimeout(() => setNotificationVisible({ status: false, isRemove: true }), 100);
+    const isRemoved = modifiedProduct.amount === -1;
+    setNotificationVisible({ status: true, isRemove: isRemoved, updatable: !isRemoved });
+    setTimeout(() => setNotificationVisible({ status: false, isRemove: true, updatable: false }), 100);
   }, [modifiedProduct]);
 
   const toastNotification = (
@@ -107,6 +106,7 @@ export default function ShoppingCart() {
         />
           )}
       show={notificationVisible.status}
+      updatable={notificationVisible.updatable}
     />
   );
 
