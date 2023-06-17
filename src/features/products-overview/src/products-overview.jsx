@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   List, Row, Col, Grid, Empty,
 } from 'antd';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import useProducts from '../../../api/product-service';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
@@ -10,6 +11,7 @@ import Product from './product-info';
 import SearchBar from './search-bar';
 import FilterSideMenu from './filter-side-menu';
 import '../products-overview.css';
+import ToastNotification from '../../../Components/notification';
 
 const { useBreakpoint } = Grid;
 
@@ -28,22 +30,53 @@ function ProductsListElement({ products, handleView }) {
     );
   }
 
+  const [notificationVisible, setNotificationVisible] = useState({ status: false, item: {}, amount: 0 });
+
+  const toastNotification = (
+    <ToastNotification
+      title="Product Added"
+      message={
+            (
+              <>
+                <span style={{ fontWeight: 'bold' }}>{notificationVisible.item.name}</span>
+                  &nbsp;has been added to your cart.
+                <br />
+                New total:
+                {' '}
+                {notificationVisible.amount}
+              </>
+            )
+          }
+      icon={(
+        <ShoppingCartOutlined
+          style={{
+            color: '#ff4d4f',
+          }}
+        />
+          )}
+      show={notificationVisible.status}
+    />
+  );
+
   return (
-    <div data-cy="test-products-list">
-      <List
-        bordered
-        dataSource={products}
-        pagination={{
-          align: 'center',
-          pageSizeOptions: [10, 20, 30],
-        }}
-        renderItem={(item) => (
-          <List.Item key={item.product_id} style={{ display: 'block' }}>
-            <Product data-cy="" product={item} onView={handleView} />
-          </List.Item>
-        )}
-      />
-    </div>
+    <>
+      {toastNotification}
+      <div data-cy="test-products-list">
+        <List
+          bordered
+          dataSource={products}
+          pagination={{
+            align: 'center',
+            pageSizeOptions: [10, 20, 30],
+          }}
+          renderItem={(item) => (
+            <List.Item key={item.product_id} style={{ display: 'block' }}>
+              <Product data-cy="" product={item} onView={handleView} wantsNotificationShown={setNotificationVisible} />
+            </List.Item>
+          )}
+        />
+      </div>
+    </>
   );
 }
 

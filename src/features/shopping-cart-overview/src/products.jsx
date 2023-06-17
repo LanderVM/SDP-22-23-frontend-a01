@@ -6,9 +6,9 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 const { useBreakpoint } = Grid;
 export default function Products({
-  cart, context, handleDelete,
+  cart, context, handleDelete, handleChange,
 }) {
-  const { productsFromContext, addProductToShoppingCartContext } = useContext(context);
+  const { productsFromContext } = useContext(context);
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '24px' : '12px';
   const fontSizeDesc = lg ? '18px' : '8px';
@@ -29,10 +29,6 @@ export default function Products({
 
   const productAmount = product[0].amount;
 
-  const handleChange = (value) => {
-    addProductToShoppingCartContext(cart, parseInt(value, 10));
-  };
-
   return (
     <Row gutter={{
       xs: 8, sm: 16, md: 24, lg: 32,
@@ -45,7 +41,15 @@ export default function Products({
         <div style={{ fontSize: fontSizeName }} data-cy="cartName"><b>{cart.name}</b></div>
         <div style={{ fontSize: fontSizeDesc }} data-cy="cartDescription">{cart.description}</div>
         <div>
-          <InputNumber min={1} max={1000} inputMode="numeric" defaultValue={productAmount} onChange={handleChange} />
+          <InputNumber
+            min={1}
+            max={1000}
+            inputMode="numeric"
+            defaultValue={productAmount}
+            onChange={(value) => {
+              handleChange(cart, value);
+            }}
+          />
         </div>
       </Col>
       <Col style={{ textAlign: 'right', justifyContent: 'right', flex: '1 0 25%' }}>

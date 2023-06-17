@@ -10,7 +10,7 @@ import '../products-overview.css';
 const { useBreakpoint } = Grid;
 
 export default function ProductInfo({
-  product,
+  product, wantsNotificationShown,
 }) {
   const {
     addProductToShoppingCartContext, productsFromContext,
@@ -35,6 +35,15 @@ export default function ProductInfo({
     setProductAmount(value);
   };
 
+  const handleAdd = (toAddProduct, amount) => {
+    const doIt = () => {
+      addProductToShoppingCartContext(toAddProduct, amount);
+      wantsNotificationShown({ status: true, item: toAddProduct, amount });
+      setTimeout(() => wantsNotificationShown({ status: false, item: {}, amount: 0 }), 100);
+    };
+    doIt();
+  };
+
   return (
     <Row gutter={{
       xs: 8, sm: 16, md: 24, lg: 32,
@@ -54,12 +63,16 @@ export default function ProductInfo({
           {product.price}
         </div>
         <Space direction="horizontal">
-          <InputNumber min={1} max={100} defaultValue={1} onChange={onChangeAmount} style={{ width: '70px' }} />
+          <InputNumber min={1} max={100} defaultValue={productAmount} onChange={onChangeAmount} style={{ width: '70px' }} />
           <Button
             type="primary"
             danger
             data-cy="btnAddToCart"
-            onClick={() => addProductToShoppingCartContext(product, parseInt(productAmountExisting, 10) + productAmount)}
+            onClick={(e) => {
+              e.preventDefault();
+              // addProductToShoppingCartContext(product, parseInt(productAmountExisting, 10) + productAmount);
+              handleAdd(product, parseInt(productAmountExisting, 10) + productAmount);
+            }}
             style={{
               fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
             }}

@@ -19,26 +19,35 @@ import ToastNotification from '../../../Components/notification';
 const { useBreakpoint } = Grid;
 export default function ShoppingCart() {
   const {
-    productsFromContext, removeProductFromShoppingCartContext,
+    productsFromContext, removeProductFromShoppingCartContext, addProductToShoppingCartContext,
   } = useContext(ShoppingCartProducts);
   const { lg } = useBreakpoint();
 
   const [error, setError] = useState(null);
-  const [deletedProduct, setDeletedProduct] = useState({});
+  const [modifiedProduct, setModifiedProduct] = useState({ item: {}, amount: -99 });
   const [loading, setLoading] = useState(true);
-  const [notificationVisible, setNotificationVisible] = useState(false);
+  const [notificationVisible, setNotificationVisible] = useState({ status: false, isRemove: false });
 
   const [myCart, setCart] = useState([]);
   const productApi = useProducts();
 
   const fetchCartItems = async (id) => {
     const doIt = async () => {
+      console.log(id);
       if (id !== undefined) {
         removeProductFromShoppingCartContext(id);
         const removedProduct = myCart.find((product) => product.product_id === id);
-        setDeletedProduct(removedProduct);
+        setModifiedProduct({ item: removedProduct, amount: -1 });
         setCart(myCart.filter((product) => product.product_id !== id));
       }
+    };
+    doIt();
+  };
+
+  const handleChange = (cart, value) => {
+    const doIt = () => {
+      addProductToShoppingCartContext(cart, parseInt(value, 10));
+      setModifiedProduct({ item: cart, amount: value });
     };
     doIt();
   };
@@ -64,21 +73,30 @@ export default function ShoppingCart() {
   }, []);
 
   useEffect(() => {
-    if (deletedProduct.product_id !== undefined) {
-      setNotificationVisible(true);
-      setTimeout(() => setNotificationVisible(false), 5000);
-    }
-  }, [deletedProduct]);
+    if (modifiedProduct.amount === -99) return;
+    console.log(modifiedProduct);
+    setNotificationVisible({ status: true, isRemove: modifiedProduct.amount === -1 });
+    setTimeout(() => setNotificationVisible({ status: false, isRemove: true }), 100);
+  }, [modifiedProduct]);
 
   const toastNotification = (
     <ToastNotification
-      title="Product Removed"
+      title={notificationVisible.isRemove ? 'Product Removed' : 'Product Updated'}
       message={
-        (
-          <>
-            <span style={{ fontWeight: 'bold' }}>{deletedProduct.name}</span>
-            &nbsp;has been removed from your cart.
-          </>
+        (notificationVisible.isRemove
+          ? (
+            <>
+              <span style={{ fontWeight: 'bold' }}>{modifiedProduct.item.name}</span>
+                  &nbsp;has been removed from your cart.
+            </>
+          )
+          : (
+            <>
+              <span style={{ fontWeight: 'bold' }}>{modifiedProduct.item.name}</span>
+            &nbsp;total amount has been updated to&nbsp;
+              <span style={{ fontWeight: 'bold' }}>{modifiedProduct.amount}</span>
+            </>
+          )
         )
 }
       icon={(
@@ -88,7 +106,7 @@ export default function ShoppingCart() {
           }}
         />
           )}
-      show={notificationVisible}
+      show={notificationVisible.status}
     />
   );
 
@@ -136,7 +154,7 @@ export default function ShoppingCart() {
               }}
               renderItem={(item) => (
                 <List.Item key={item.productId} style={{ display: 'block' }}>
-                  {!loading && !error ? <Products cart={item} onView={handleView} handleDelete={fetchCartItems} context={ShoppingCartProducts} />
+                  {!loading && !error ? <Products cart={item} onView={handleView} handleDelete={fetchCartItems} handleChange={handleChange} context={ShoppingCartProducts} />
                     : null}
                 </List.Item>
               )}
