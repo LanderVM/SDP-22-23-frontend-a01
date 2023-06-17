@@ -6,19 +6,45 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import './modal.css';
 import { useForm } from 'antd/es/form/Form';
 import { countries } from 'countries-list';
+import { CheckCircleOutlined } from '@ant-design/icons';
 import Error from '../error';
+import ToastNotification from '../notification';
 
 export default function AddressInfo({ orderDetails, updateFunction, updatedOrderDetailsFunction }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [currentDetails, setCurrentDetails] = useState(orderDetails);
+  const [notificationVisible, setNotificationVisible] = useState(false);
   const size0 = 0;
   const { lg } = useBreakpoint();
   const fontSizeDesc = lg ? '24px' : '18px';
   const fontSizeMini = lg ? '18px' : '14px';
 
   const [form] = useForm();
+
+  const toastNotification = (
+    <ToastNotification
+      title="Address Updated"
+      message={
+            (
+              <>
+                Your&nbsp;
+                <span style={{ fontWeight: 'bold' }}>delivery address</span>
+                  &nbsp;has been updated.
+              </>
+            )
+          }
+      icon={(
+        <CheckCircleOutlined
+          style={{
+            color: '#ff4d4f',
+          }}
+        />
+          )}
+      show={notificationVisible}
+    />
+  );
 
   useEffect(() => {
     if (updatedOrderDetailsFunction) updatedOrderDetailsFunction(orderDetails);
@@ -78,6 +104,8 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
       }
     };
     updateOrder();
+    setNotificationVisible(true);
+    setTimeout(() => setNotificationVisible(false));
   };
 
   const handleCancel = () => {
@@ -88,6 +116,7 @@ export default function AddressInfo({ orderDetails, updateFunction, updatedOrder
 
   return (
     <>
+      {toastNotification}
       <h1 style={{ fontSize: fontSizeDesc }}>Delivery address</h1>
       <div style={{ fontSize: fontSizeMini }}>
         {currentDetails.delivery_street}

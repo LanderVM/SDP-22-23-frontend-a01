@@ -70,7 +70,7 @@ export default function ShoppingCart() {
     }
   }, [deletedProduct]);
 
-  const notif = (
+  const toastNotification = (
     <ToastNotification
       title="Product Removed"
       message={
@@ -104,7 +104,7 @@ export default function ShoppingCart() {
   if (!myCart || myCart.length === 0) {
     return (
       <main>
-        {notif}
+        {toastNotification}
         <Empty style={{ marginTop: '20vh' }} image={Empty.PRESENTED_IMAGE_SIMPLE} description="There are no items in your shopping cart">
           <NavLink to="/products"><Button type="primary">Continue shopping</Button></NavLink>
         </Empty>
@@ -119,7 +119,7 @@ export default function ShoppingCart() {
 
   return (
     <main>
-      {notif}
+      {toastNotification}
       <Row>
         <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
           <Loader loading={loading} />

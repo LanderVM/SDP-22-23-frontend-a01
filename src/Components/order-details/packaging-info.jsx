@@ -3,16 +3,19 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
+import { CheckCircleOutlined } from '@ant-design/icons';
 import Error from '../error';
 import Loader from '../loader';
 import './modal.css';
 
 import usePackagingApi from '../../api/packaging-service';
+import ToastNotification from '../notification';
 
 export default function PackagingInfo({ orderDetails, updateFunction, updatedOrderDetailsFunction }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackaging, setSelectedPackaging] = useState({ packaging_id: orderDetails.packaging_id });
   const [currentPackagingName, setCurrentPackagingName] = useState(undefined);
+  const [notificationVisible, setNotificationVisible] = useState(false);
   const [packaging, setPackaging] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -22,6 +25,29 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
   const positionChangePackageMF = lg ? 'absolute' : 'relative';
   const fontSizeDesc = lg ? '24px' : '18px';
   const packagingApi = usePackagingApi();
+
+  const toastNotification = (
+    <ToastNotification
+      title="Packaging Updated"
+      message={
+            (
+              <>
+                Your&nbsp;
+                <span style={{ fontWeight: 'bold' }}>packaging</span>
+                  &nbsp;has been updated.
+              </>
+            )
+          }
+      icon={(
+        <CheckCircleOutlined
+          style={{
+            color: '#ff4d4f',
+          }}
+        />
+          )}
+      show={notificationVisible}
+    />
+  );
 
   useEffect(() => {
     const fetchPackaging = async () => {
@@ -76,6 +102,8 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
       }
     };
     updateOrder();
+    setNotificationVisible(true);
+    setTimeout(() => setNotificationVisible(false));
   };
 
   const handleCancel = () => {
@@ -108,6 +136,7 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
 
   return (
     <>
+      {toastNotification}
       <h1 style={{ fontSize: fontSizeDesc }}>Packaging</h1>
       <div style={{ fontSize: fontSizeMini }}>{currentPackagingName}</div>
       { (orderDetails.order_status === 0 || orderDetails.order_status === undefined)
