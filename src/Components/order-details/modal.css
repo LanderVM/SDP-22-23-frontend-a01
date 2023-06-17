@@ -3,4 +3,9 @@
   height: 30px;
 }
 
+.ant-table-thead > tr > .ant-table-selection-column {
+  background-color: #e8e8e8 !important; /* set the background color to light gray */
+  padding: 2% !important;
+}
+
 /*# sourceMappingURL=modal.css.map */
