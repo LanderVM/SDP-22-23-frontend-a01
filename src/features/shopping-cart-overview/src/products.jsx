@@ -17,7 +17,8 @@ export default function Products({
 
   const product = productsFromContext.filter((e) => e.productId === cart.product_id);
   if (product[0] === undefined) {
-    useEffect(() => handleDelete, []);
+    console.log(cart.product_id);
+    useEffect(() => handleDelete(cart.product_id), []);
     return null;
   }
   const productAmount = product[0].amount;
