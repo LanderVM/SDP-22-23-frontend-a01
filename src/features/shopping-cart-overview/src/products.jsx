@@ -19,7 +19,6 @@ export default function Products({
 
   useEffect(() => {
     if (product.length === 0) {
-      console.log('PING');
       handleDelete(cart.product_id);
     }
   });
@@ -61,7 +60,6 @@ export default function Products({
           data-cy="removeCartItem"
           onClick={(e) => {
             e.preventDefault();
-            console.log('CLICK');
             handleDelete(cart.product_id);
           }}
           style={{

@@ -24,7 +24,7 @@ export default function ShoppingCart() {
   const { lg } = useBreakpoint();
 
   const [error, setError] = useState(null);
-  const [deletedId, setDeletedId] = useState(null);
+  const [deletedProduct, setDeletedProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [notificationVisible, setNotificationVisible] = useState(false);
 
@@ -32,14 +32,12 @@ export default function ShoppingCart() {
   const productApi = useProducts();
 
   const fetchCartItems = async (id) => {
-    console.log(`FETCHING FROM ${id}`);
     const doIt = async () => {
       if (id !== undefined) {
-        console.log('DELETING...');
         removeProductFromShoppingCartContext(id);
+        const removedProduct = myCart.find((product) => product.product_id === id);
+        setDeletedProduct(removedProduct);
         setCart(myCart.filter((product) => product.product_id !== id));
-        setDeletedId(id);
-        console.log('DELETION COMPLETE');
       }
     };
     doIt();
@@ -66,19 +64,23 @@ export default function ShoppingCart() {
   }, []);
 
   useEffect(() => {
-    console.log(`GETTING NOTIF STATUS FOR ${deletedId}`);
-    if (deletedId !== null) {
-      console.log(`SETTING TRUE FOR ${deletedId}`);
+    if (deletedProduct.product_id !== undefined) {
       setNotificationVisible(true);
       setTimeout(() => setNotificationVisible(false), 5000);
-      console.log(`SETTING FALSE FOR ${deletedId}`);
     }
-  }, [deletedId]);
+  }, [deletedProduct]);
 
   const notif = (
     <ToastNotification
       title="Product Removed"
-      message=""
+      message={
+        (
+          <>
+            <span style={{ fontWeight: 'bold' }}>{deletedProduct.name}</span>
+            &nbsp;has been removed from your cart.
+          </>
+        )
+}
       icon={(
         <DeleteOutlined
           style={{
@@ -119,32 +121,28 @@ export default function ShoppingCart() {
     <main>
       {notif}
       <Row>
-        {myCart.length === productsFromContext.length
-          ? (
-            <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
-              <Loader loading={loading} />
-              <Error error={error} />
-              <div>
-                <List
-                  bordered
-                  style={{ backgroundColor: 'white' }}
-                  dataSource={myCart}
-                  data-cy="shoppingCart"
-                  pagination={{
-                    align: 'center',
-                    pageSize: 10,
-                  }}
-                  renderItem={(item) => (
-                    <List.Item key={item.productId} style={{ display: 'block' }}>
-                      {!loading && !error ? <Products cart={item} onView={handleView} handleDelete={fetchCartItems} context={ShoppingCartProducts} />
-                        : null}
-                    </List.Item>
-                  )}
-                />
-              </div>
-            </Col>
-          )
-          : <p>aaaaaa</p>}
+        <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
+          <Loader loading={loading} />
+          <Error error={error} />
+          <div>
+            <List
+              bordered
+              style={{ backgroundColor: 'white' }}
+              dataSource={myCart}
+              data-cy="shoppingCart"
+              pagination={{
+                align: 'center',
+                pageSize: 10,
+              }}
+              renderItem={(item) => (
+                <List.Item key={item.productId} style={{ display: 'block' }}>
+                  {!loading && !error ? <Products cart={item} onView={handleView} handleDelete={fetchCartItems} context={ShoppingCartProducts} />
+                    : null}
+                </List.Item>
+              )}
+            />
+          </div>
+        </Col>
         <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
           {!loading && !error && myCart.length === productsFromContext.length
             ? <SideOverview cart={myCart} context={ShoppingCartProducts} />
