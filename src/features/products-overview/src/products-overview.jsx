@@ -55,6 +55,7 @@ function ProductsListElement({ products, handleView }) {
         />
           )}
       show={notificationVisible.status}
+      updatable
     />
   );
 
