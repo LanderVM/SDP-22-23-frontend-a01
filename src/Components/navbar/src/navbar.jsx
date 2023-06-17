@@ -20,6 +20,12 @@ const headerStyle = {
   height: heightNB,
   padding: '0 3%',
   backgroundColor: color,
+  position: 'sticky',
+  width: '100%',
+  left: 0,
+  top: 0,
+  right: 0,
+  zIndex: '1000',
 };
 
 const items = [
