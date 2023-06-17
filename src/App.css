@@ -3,6 +3,10 @@ body {
   height: 100vh;
 }
 
+.ant-notification {
+  margin-top: 7vh;
+}
+
 .hideOnMobile {
   display: none;
 }
