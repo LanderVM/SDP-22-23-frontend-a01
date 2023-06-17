@@ -12,16 +12,13 @@ export default function SideOverview({
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
-    let total = [];
-
-    total = cart.map((e) => productsFromContext.find((p) => p.productId === e.product_id).amount * e.price);
-
+    const total = cart.map((e) => productsFromContext.find((p) => p.productId === e.product_id).amount * e.price);
     const totalCost = total.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
       0,
     );
     setCost(totalCost);
-  }, [cart]);
+  });
 
   return (
     <Card

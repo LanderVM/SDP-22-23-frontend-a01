@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Button, Col, Grid, InputNumber, Row,
 } from 'antd';
@@ -6,9 +6,9 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 const { useBreakpoint } = Grid;
 export default function Products({
-  cart, context,
+  cart, context, handleDelete,
 }) {
-  const { removeProductFromShoppingCartContext, productsFromContext, addProductToShoppingCartContext } = useContext(context);
+  const { productsFromContext, addProductToShoppingCartContext } = useContext(context);
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '24px' : '12px';
   const fontSizeDesc = lg ? '18px' : '8px';
@@ -16,7 +16,11 @@ export default function Products({
   const buttonHeight = lg ? '40px' : '35px';
 
   const product = productsFromContext.filter((e) => e.productId === cart.product_id);
-  const productAmount = product.map((el) => el.amount);
+  if (product[0] === undefined) {
+    useEffect(() => handleDelete, []);
+    return null;
+  }
+  const productAmount = product[0].amount;
 
   const handleChange = (value) => {
     addProductToShoppingCartContext(cart, parseInt(value, 10));
@@ -47,7 +51,9 @@ export default function Products({
           type="primary"
           danger
           data-cy="removeCartItem"
-          onClick={() => removeProductFromShoppingCartContext(cart.product_id)}
+          onClick={() => {
+            handleDelete(cart.product_id);
+          }}
           style={{
             fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
           }}

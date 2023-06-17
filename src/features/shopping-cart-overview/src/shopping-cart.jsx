@@ -18,35 +18,39 @@ const { useBreakpoint } = Grid;
 
 export default function ShoppingCart() {
   const {
-    productsFromContext,
+    productsFromContext, removeProductFromShoppingCartContext,
   } = useContext(ShoppingCartProducts);
   const { lg } = useBreakpoint();
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [myCart, setCart] = useState(null);
+  const [myCart, setCart] = useState([]);
   const productApi = useProducts();
 
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        if (productsFromContext.length === 0) {
-          setCart([]);
-        } else {
-          const data = await productApi.getByIds(productsFromContext);
-          setCart(data);
-        }
-      } catch (error2) {
-        setError(error2);
-      } finally {
-        setLoading(false);
+  const fetchCartItems = async (id) => {
+    try {
+      setLoading(true);
+      setError(null);
+      if (id !== undefined) {
+        removeProductFromShoppingCartContext(id);
       }
-    };
+      if (productsFromContext.length === 0) {
+        setCart([]);
+      } else {
+        const data = await productApi.getByIds(productsFromContext);
+        setCart(data);
+      }
+    } catch (error2) {
+      setError(error2);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchCartItems();
-  }, [productsFromContext]);
+  }, []);
 
   const handleView = useCallback(async (nameToView) => {
     try {
@@ -90,7 +94,7 @@ export default function ShoppingCart() {
               renderItem={(item) => (
 
                 <List.Item key={item.productId} style={{ display: 'block' }}>
-                  {!loading && !error ? <Products cart={item} onView={handleView} context={ShoppingCartProducts} />
+                  {!loading && !error ? <Products cart={item} onView={handleView} handleDelete={fetchCartItems} context={ShoppingCartProducts} />
                     : null}
                 </List.Item>
               )}
@@ -98,7 +102,9 @@ export default function ShoppingCart() {
           </div>
         </Col>
         <Col span={phoneFormatOverView} style={{ padding: phoneFormatPaddingOverView }}>
-          <SideOverview cart={myCart} context={ShoppingCartProducts} />
+          {!loading && !error && myCart.length === productsFromContext.length
+            ? <SideOverview cart={myCart} context={ShoppingCartProducts} />
+            : null}
         </Col>
       </Row>
     </main>

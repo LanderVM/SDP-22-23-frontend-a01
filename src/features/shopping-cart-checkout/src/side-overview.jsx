@@ -11,8 +11,7 @@ export default function SideOverview({
   const [cost, setCost] = useState(0);
 
   useEffect(() => {
-    let total = [];
-    total = cart.map((e) => productsFromContext.find((p) => p.productId === e.product_id).amount * e.price);
+    const total = cart.map((e) => productsFromContext.find((p) => p.productId === e.product_id).amount * e.price);
     const totalCost = total.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
       0,
@@ -67,7 +66,7 @@ export default function SideOverview({
             <td id="priceTd">
               <strong>
                 €&nbsp;
-                {Number(packagingCost.substring(packagingCost.indexOf(' ') + 1, packagingCost.length)) + cost - (cost * 0.21).toFixed(2)}
+                {(Number(packagingCost.substring(packagingCost.indexOf(' ') + 1, packagingCost.length)) + cost - (cost * 0.21)).toFixed(2)}
               </strong>
             </td>
           </tr>

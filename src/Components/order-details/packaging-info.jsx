@@ -32,7 +32,6 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
         setPackaging(data.items);
         if (selectedPackaging.packaging_id === undefined) {
           setSelectedPackaging(data.items[0]);
-          setSelectedPackaging(data.items[0]);
           setCurrentPackagingName(data.items[0].packaging_name);
         } else {
           setCurrentPackagingName(orderDetails.name);
@@ -124,27 +123,32 @@ export default function PackagingInfo({ orderDetails, updateFunction, updatedOrd
           </Button>
         )
         : null}
-      <Modal
-        forceRender
-        title="Change Packaging"
-        style={{ whiteSpace: 'pre' }}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <Loader loading={loading} />
-        <Error error={error} />
-        <Table
-          rowSelection={{
-            type: 'radio',
-            defaultSelectedRowKeys: [orderDetails.packaging_id],
-            ...rowSelection,
-          }}
-          columns={columns}
-          dataSource={packaging}
-          rowKey="packaging_id"
-        />
-      </Modal>
+      {
+        selectedPackaging.packaging_id === undefined ? null
+          : (
+            <Modal
+              forceRender
+              title="Change Packaging"
+              style={{ whiteSpace: 'pre' }}
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <Loader loading={loading} />
+              <Error error={error} />
+              <Table
+                rowSelection={{
+                  type: 'radio',
+                  defaultSelectedRowKeys: [selectedPackaging.packaging_id],
+                  ...rowSelection,
+                }}
+                columns={columns}
+                dataSource={packaging}
+                rowKey="packaging_id"
+              />
+            </Modal>
+          )
+      }
     </>
   );
 }
