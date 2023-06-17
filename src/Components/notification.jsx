@@ -1,11 +1,11 @@
 import { notification } from 'antd';
 import { useEffect } from 'react';
 
-const key = 'updatable';
 export default function ToastNotification({
-  title, message, icon, show, updatable,
+  title, message, icon, show, updatable, updatableKey,
 }) {
   let args;
+  const key = updatableKey ?? 'updatable';
   if (updatable) {
     args = {
       key,

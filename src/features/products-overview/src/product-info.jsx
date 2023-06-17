@@ -38,8 +38,12 @@ export default function ProductInfo({
   const handleAdd = (toAddProduct, amount) => {
     const doIt = () => {
       addProductToShoppingCartContext(toAddProduct, amount);
-      wantsNotificationShown({ status: true, item: toAddProduct, amount });
-      setTimeout(() => wantsNotificationShown({ status: false, item: {}, amount: 0 }), 100);
+      wantsNotificationShown({
+        status: true, item: toAddProduct, amount, updatableKey: toAddProduct.product_id,
+      });
+      setTimeout(() => wantsNotificationShown({
+        status: false, item: {}, amount: 0, key: '',
+      }), 100);
     };
     doIt();
   };

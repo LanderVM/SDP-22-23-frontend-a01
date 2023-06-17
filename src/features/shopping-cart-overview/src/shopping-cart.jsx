@@ -6,7 +6,7 @@ import {
   List, Col, Row, Grid, Empty, Button,
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { DeleteOutlined } from '@ant-design/icons';
+import { AppstoreAddOutlined, DeleteOutlined } from '@ant-design/icons';
 import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
@@ -74,7 +74,9 @@ export default function ShoppingCart() {
   useEffect(() => {
     if (modifiedProduct.amount === -99) return;
     const isRemoved = modifiedProduct.amount === -1;
-    setNotificationVisible({ status: true, isRemove: isRemoved, updatable: !isRemoved });
+    setNotificationVisible({
+      status: true, isRemove: isRemoved, updatable: !isRemoved, updatableKey: modifiedProduct.item.product_id,
+    });
     setTimeout(() => setNotificationVisible({ status: false, isRemove: true, updatable: false }), 100);
   }, [modifiedProduct]);
 
@@ -98,15 +100,23 @@ export default function ShoppingCart() {
           )
         )
 }
-      icon={(
+      icon={notificationVisible.isRemove ? (
         <DeleteOutlined
           style={{
             color: '#ff4d4f',
           }}
         />
-          )}
+      )
+        : (
+          <AppstoreAddOutlined
+            style={{
+              color: '#ff4d4f',
+            }}
+          />
+        )}
       show={notificationVisible.status}
       updatable={notificationVisible.updatable}
+      updatableKey={notificationVisible.updatableKey}
     />
   );
 

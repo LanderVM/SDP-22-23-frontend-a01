@@ -30,7 +30,9 @@ function ProductsListElement({ products, handleView }) {
     );
   }
 
-  const [notificationVisible, setNotificationVisible] = useState({ status: false, item: {}, amount: 0 });
+  const [notificationVisible, setNotificationVisible] = useState({
+    status: false, item: {}, amount: 0, updatableKey: '',
+  });
 
   const toastNotification = (
     <ToastNotification
@@ -56,6 +58,7 @@ function ProductsListElement({ products, handleView }) {
           )}
       show={notificationVisible.status}
       updatable
+      updatableKey={notificationVisible.updatableKey}
     />
   );
 
