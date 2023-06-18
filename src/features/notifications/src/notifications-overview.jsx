@@ -5,6 +5,7 @@ import SingleNotification from './single-notification';
 import Loader from '../../../Components/loader';
 import Error from '../../../Components/error';
 import '../notifications-overview.css';
+import RequireAuth from '../../../Components/authentication/RequireAuth';
 
 export default function NotificationsOverview() {
   const [notifications, setNotifications] = useState([]);
@@ -45,15 +46,16 @@ export default function NotificationsOverview() {
   }, []);
 
   return (
-    <div style={{ margin: '5% 15%' }}>
-      <Loader loading={loading} />
-      <Error error={error} />
-      {!loading && !error
-        ? (
-          <>
-            <h1 style={{ textAlign: 'center', fontSize: '2.3em' }}>All your notifications</h1>
-            <List
-              header={
+    <RequireAuth>
+      <div style={{ margin: '5% 15%' }}>
+        <Loader loading={loading} />
+        <Error error={error} />
+        {!loading && !error
+          ? (
+            <>
+              <h1 style={{ textAlign: 'center', fontSize: '2.3em' }}>All your notifications</h1>
+              <List
+                header={
           (
             <div style={{ fontWeight: '500', fontSize: '1.2em', textAlign: 'center' }}>
               <Row>
@@ -73,18 +75,19 @@ export default function NotificationsOverview() {
             </div>
           )
         }
-              bordered
-              itemLayout="horizontal"
-              pagination={{ pageSize: 10, align: 'center' }}
-              dataSource={notifications}
-              renderItem={(item) => (
-                <List.Item key={item.notification_id} style={{ display: 'block', backgroundColor: item.status === 'new' || item.status === 'unread' ? 'white' : '#f5f5f5' }}>
-                  <SingleNotification notification={item} />
-                </List.Item>
-              )}
-            />
-          </>
-        ) : null}
-    </div>
+                bordered
+                itemLayout="horizontal"
+                pagination={{ pageSize: 10, align: 'center' }}
+                dataSource={notifications}
+                renderItem={(item) => (
+                  <List.Item key={item.notification_id} style={{ display: 'block', backgroundColor: item.status === 'new' || item.status === 'unread' ? 'white' : '#f5f5f5' }}>
+                    <SingleNotification notification={item} />
+                  </List.Item>
+                )}
+              />
+            </>
+          ) : null}
+      </div>
+    </RequireAuth>
   );
 }
