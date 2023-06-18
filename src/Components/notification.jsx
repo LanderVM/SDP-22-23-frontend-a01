@@ -12,6 +12,7 @@ export default function ToastNotification({
       message: title,
       description: message,
       icon,
+      duration: 3.5,
     };
   } else {
     args = {
