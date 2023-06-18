@@ -1,6 +1,7 @@
 body {
   background-color: #f5f5f5 !important;
   height: 100vh;
+  padding-top: 70px;
 }
 
 .ant-notification {
