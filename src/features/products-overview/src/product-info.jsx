@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ShoppingCartOutlined, PlusOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, PlusOutlined, MailOutlined } from '@ant-design/icons';
 import {
   Row, Col, Grid, Button, InputNumber, Space,
 } from 'antd';
@@ -39,10 +39,22 @@ export default function ProductInfo({
     const doIt = () => {
       addProductToShoppingCartContext(toAddProduct, amount);
       wantsNotificationShown({
-        status: true, item: toAddProduct, amount, updatableKey: toAddProduct.product_id,
+        status: true, item: toAddProduct, amount, updatableKey: toAddProduct.product_id, isAdd: true,
       });
       setTimeout(() => wantsNotificationShown({
         status: false, item: {}, amount: 0, key: '',
+      }), 100);
+    };
+    doIt();
+  };
+
+  const handleNotify = () => {
+    const doIt = () => {
+      wantsNotificationShown({
+        status: true, item: product, amount: 0, updatableKey: product.product_id, isAdd: false,
+      });
+      setTimeout(() => wantsNotificationShown({
+        status: false, item: {}, amount: 0, key: '', isAdd: false,
       }), 100);
     };
     doIt();
@@ -67,30 +79,50 @@ export default function ProductInfo({
           {product.price}
         </div>
         <Space direction="horizontal">
-          <InputNumber
-            min={1}
-            max={100}
-            formatter={(value) => value.replace(/^$/, '0')}
-            parser={(value) => value.replace(/^$/, '0')}
-            defaultValue={productAmount}
-            onChange={onChangeAmount}
-            style={{ width: '70px' }}
-          />
-          <Button
-            type="primary"
-            danger
-            data-cy="btnAddToCart"
-            onClick={(e) => {
-              e.preventDefault();
-              handleAdd(product, parseInt(productAmountExisting, 10) + productAmount);
-            }}
-            style={{
-              fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
-            }}
-          >
-            <PlusOutlined style={{ fontSize: fontSizeIco2, verticalAlign: '3px' }} />
-            <ShoppingCartOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
-          </Button>
+          {product.stock > 0 ? (
+            <InputNumber
+              min={1}
+              max={100}
+              formatter={(value) => value.replace(/^$/, '0')}
+              parser={(value) => value.replace(/^$/, '0')}
+              defaultValue={productAmount}
+              onChange={onChangeAmount}
+              style={{ width: '70px' }}
+            />
+          )
+            : null}
+          {product.stock > 0 ? (
+            <Button
+              type="primary"
+              danger
+              data-cy="btnAddToCart"
+              onClick={(e) => {
+                e.preventDefault();
+                handleAdd(product, parseInt(productAmountExisting, 10) + productAmount);
+              }}
+              style={{
+                fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
+              }}
+            >
+              <PlusOutlined style={{ fontSize: fontSizeIco2, verticalAlign: '3px' }} />
+              <ShoppingCartOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              danger
+              data-cy="btnAddToCart"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNotify();
+              }}
+              style={{
+                fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
+              }}
+            >
+              <MailOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
+            </Button>
+          )}
         </Space>
       </Col>
     </Row>

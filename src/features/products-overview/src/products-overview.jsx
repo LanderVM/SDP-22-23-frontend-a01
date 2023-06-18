@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   List, Row, Col, Grid, Empty,
 } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { MailOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import useProducts from '../../../api/product-service';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
@@ -31,31 +31,43 @@ function ProductsListElement({ products, handleView }) {
   }
 
   const [notificationVisible, setNotificationVisible] = useState({
-    status: false, item: {}, amount: 0, updatableKey: '',
+    status: false, item: {}, amount: 0, updatableKey: '', isAdd: true,
   });
 
   const toastNotification = (
     <ToastNotification
-      title="Product Added"
-      message={
-            (
-              <>
-                <span style={{ fontWeight: 'bold' }}>{notificationVisible.item.name}</span>
+      title={notificationVisible.isAdd ? 'Product Added' : 'Notify Enabled'}
+      message={notificationVisible.isAdd
+        ? (
+          <>
+            <span style={{ fontWeight: 'bold' }}>{notificationVisible.item.name}</span>
                   &nbsp;has been added to your cart.
-                <br />
-                New total:
-                {' '}
-                {notificationVisible.amount}
-              </>
-            )
-          }
-      icon={(
+            <br />
+            New total:
+            {' '}
+            {notificationVisible.amount}
+          </>
+        )
+        : (
+          <>
+            You will be notified when&nbsp;
+            <span style={{ fontWeight: 'bold' }}>{notificationVisible.item.name}</span>
+                &nbsp;will be in stock again.
+          </>
+        )}
+      icon={notificationVisible.isAdd ? (
         <ShoppingCartOutlined
           style={{
             color: '#ff4d4f',
           }}
         />
-          )}
+      ) : (
+        <MailOutlined
+          style={{
+            color: '#ff4d4f',
+          }}
+        />
+      )}
       show={notificationVisible.status}
       updatable
       updatableKey={notificationVisible.updatableKey}

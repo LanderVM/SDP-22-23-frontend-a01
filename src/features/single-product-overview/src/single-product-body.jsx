@@ -202,9 +202,15 @@ export default function SingleProductBody({
               <br />
               {product.stock > 0 ? null : (
                 <>
+                  <ClockCircleOutlined style={{
+                    color: '#ff4d4f',
+                  }}
+                  />
+                  <>
 &nbsp; Estimated restock time:
-                  {' '}
-                  {product.delivery_time}
+                    {' '}
+                    {product.delivery_time}
+                  </>
                   <br />
                 </>
               )}
