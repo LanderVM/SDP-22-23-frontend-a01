@@ -35,7 +35,7 @@ export default function CompanyInfo({ companyInformation }) {
           </p>
         </Col>
         <Col span={12}>
-          <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: imgFormat, maxHeight: imgFormat }} />
+          <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: imgFormat, maxHeight: imgFormat, marginLeft: lg ? '78%' : '' }} />
         </Col>
       </Row>
     </Card>

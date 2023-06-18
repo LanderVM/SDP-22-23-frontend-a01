@@ -29,3 +29,8 @@
 #page {
     min-height: calc(100vh - 290px);
 }
+
+.ant-select-selector {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}

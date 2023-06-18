@@ -79,6 +79,7 @@ function ProductsListElement({ products, handleView }) {
       {toastNotification}
       <div data-cy="test-products-list">
         <List
+          style={{ backgroundColor: 'white' }}
           bordered
           dataSource={products}
           pagination={{

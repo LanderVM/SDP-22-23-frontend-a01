@@ -38,12 +38,17 @@ function SearchBar({
   };
 
   return (
-    <div style={{ marginBottom: '25px' }}>
+    <div style={{ marginBottom: '25px', borderTopRightRadius: '0', borderBottomRightRadius: '0' }}>
       {!loading && !error ? (
-        <div style={{ display: 'flex', fontSize: '30px' }}>
+        <div style={{
+          display: 'flex', fontSize: '30px', borderTopRightRadius: '0', borderBottomRightRadius: '0',
+        }}
+        >
           <AutoComplete
+            id="autoco"
             data-cy="products_searchBar"
-            style={{ width: '100%' }}
+            style={{ width: '100%', borderTopRightRadius: '0', borderBottomRightRadius: '0' }}
+            size="large"
             options={products.map((e) => ({ value: e.name }))}
             filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
             onSearch={setSelectedProduct}
@@ -52,7 +57,10 @@ function SearchBar({
           <Button
             data-cy="products_searchButton"
             onClick={onSearchName}
-            style={{ float: 'right', backgroundColor: '#ff4d4f', color: 'white' }}
+            style={{
+              float: 'right', backgroundColor: '#ff4d4f', color: 'white', borderTopLeftRadius: '0', borderBottomLeftRadius: '0',
+            }}
+            size="large"
           >
             <b>Search for Product</b>
           </Button>
