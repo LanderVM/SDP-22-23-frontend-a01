@@ -103,7 +103,7 @@ export default function ProductsOverview() {
 
   const [priceStart, setPriceStart] = useState(0);
   const [priceEnd, setPriceEnd] = useState(2000);
-  const [inStock, setInStock] = useState(true);
+  const [inStock, setInStock] = useState(false);
   const [brand, setBrand] = useState(null);
   const [category, setCategory] = useState(null);
   const [sortBy, setSortBy] = useState(null);
