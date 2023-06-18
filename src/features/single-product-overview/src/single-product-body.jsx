@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Row, Col, Grid, Button,
 } from 'antd';
 import {
   CheckOutlined, ClockCircleOutlined, MailOutlined, ShopOutlined, ShoppingCartOutlined, WarningOutlined,
 } from '@ant-design/icons';
+import { useAuth0 } from '@auth0/auth0-react';
 import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import '../single-product-overview.css';
 import ToastNotification from '../../../Components/notification';
@@ -18,6 +19,9 @@ export default function SingleProductBody({
   const {
     addProductToShoppingCartContext, productsFromContext,
   } = useContext(ShoppingCartProducts);
+
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
 
   const { md } = useBreakpoint();
   const [notificationVisible, setNotificationVisible] = useState({ status: false, isAdd: false });
@@ -48,6 +52,10 @@ export default function SingleProductBody({
 
   const handleNotify = () => {
     const doIt = () => {
+      if (!isAuthenticated) {
+        navigate('/login');
+        return;
+      }
       setNotificationVisible({ status: true, isAdd: false });
       setTimeout(() => setNotificationVisible({ status: false, isAdd: false }), 200);
     };

@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ShoppingCartOutlined, PlusOutlined, MailOutlined } from '@ant-design/icons';
 import {
   Row, Col, Grid, Button, InputNumber, Space,
 } from 'antd';
+import { useAuth0 } from '@auth0/auth0-react';
 import { ShoppingCartProducts } from '../../../contexts/shopping-cart-products';
 import '../products-overview.css';
 
@@ -16,7 +17,10 @@ export default function ProductInfo({
     addProductToShoppingCartContext, productsFromContext,
   } = useContext(ShoppingCartProducts);
   const [productAmount, setProductAmount] = useState(1);
+  const navigate = useNavigate();
   const link = `/product/${product.product_id}`;
+
+  const { isAuthenticated } = useAuth0();
 
   const { lg } = useBreakpoint();
   const fontSizeName = lg ? '24px' : '16px';
@@ -50,6 +54,10 @@ export default function ProductInfo({
 
   const handleNotify = () => {
     const doIt = () => {
+      if (!isAuthenticated) {
+        navigate('/login');
+        return;
+      }
       wantsNotificationShown({
         status: true, item: product, amount: 0, updatableKey: product.product_id, isAdd: false,
       });

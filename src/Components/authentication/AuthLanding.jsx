@@ -1,7 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Navigate } from 'react-router-dom';
 import { Content } from 'antd/es/layout/layout';
-import { Col, Row } from 'antd';
+import {
+  Result,
+} from 'antd';
+import React from 'react';
 import Error from '../error';
 import LoginButton from './LoginButton';
 import './authLanding.css';
@@ -11,17 +14,19 @@ export default function AuthLanding() {
 
   if (error) {
     return (
-      <Content>
-        <Row align="middle" justify="center">
-          <Col type="flex" align="middle">
-            <h1>Login failed</h1>
-            <p>
-              Sorry, we were unable to sign you in, the error below might be useful.
-            </p>
-            <Error error={error} />
-            <LoginButton iconColor="black" />
-          </Col>
-        </Row>
+      <Content className="min-height">
+        <Result
+          status="500"
+          title="Authentication Failure"
+          subTitle="Sorry, we were unable to sign you in, the error below might be useful."
+          extra={(
+            <>
+              {' '}
+              <Error error={error} />
+              <LoginButton iconColor="black" />
+            </>
+            )}
+        />
       </Content>
     );
   }
@@ -31,27 +36,25 @@ export default function AuthLanding() {
   if (!isLoading && !isAuthenticated) {
     return (
       <Content className="min-height">
-        <Row align="middle" justify="center">
-          <Col type="flex" align="middle">
-            <h1>Login required</h1>
-            <p>You need to login to access this page.</p>
+        <Result
+          status="403"
+          title="Login Required"
+          subTitle="You need to log in to access this feature."
+          extra={(
             <LoginButton iconColor="black" />
-          </Col>
-        </Row>
+)}
+        />
       </Content>
     );
   }
 
   return (
-    <Content>
-      <Row align="middle" justify="center">
-        <Col type="flex" align="middle">
-          <h1>Signing in</h1>
-          <p>
-            Please wait while we sign you in!
-          </p>
-        </Col>
-      </Row>
+    <Content className="min-height">
+      <Result
+        status="success"
+        title="Signing in.."
+        subTitle="Please wait while we sign you in!"
+      />
     </Content>
   );
 }
