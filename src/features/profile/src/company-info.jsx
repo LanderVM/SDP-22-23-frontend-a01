@@ -12,14 +12,14 @@ export default function CompanyInfo({ companyInformation }) {
   return (
     <Card title="Company information" data-cy="companyInfo">
       <Row>
-        <Col span={6}>
+        <Col span={6} xs={15} lg={6}>
           <p data-cy="companyInfoSupplierName">
             {companyInformation.supplier_name}
             <div data-cy="companyInfoSupplierEmail">{companyInformation.supplier_email}</div>
             {companyInformation.supplier_phone_number}
           </p>
         </Col>
-        <Col span={6}>
+        <Col span={6} xs={15} lg={6}>
           <p>
             {companyInformation.delivery_street}
             &nbsp;
@@ -34,7 +34,7 @@ export default function CompanyInfo({ companyInformation }) {
             {companyInformation.delivery_country}
           </p>
         </Col>
-        <Col span={12}>
+        <Col span={12} xs={15} lg={6}>
           <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: imgFormat, maxHeight: imgFormat, marginLeft: lg ? '78%' : '' }} />
         </Col>
       </Row>

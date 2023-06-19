@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Input, Form, Col, Row, Button,
 } from 'antd';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { useForm } from 'antd/es/form/Form';
 import { useParams } from 'react-router';
 import useOrderTracker from '../../../api/tracking-service';
@@ -62,12 +63,15 @@ export default function TrackingInput() {
       setLoading(false);
     }
   };
+  const { lg } = useBreakpoint();
+  const fontSizeTitle = lg ? '35px' : '20px';
+  const fontSizeInfo = lg ? '18px' : '13px';
 
   return (
     <main className="delaware-tracking-page">
       <div className="delaware-tracking-head">
-        <h1>Order&nbsp;Tracking&nbsp;Page</h1>
-        <p>
+        <h1 style={{ fontSize: fontSizeTitle }}>Order&nbsp;Tracking&nbsp;Page</h1>
+        <p style={{ fontSize: fontSizeInfo }}>
           To track your order please enter your Tracking code in the first box
           and the extra verification code you received after ordering in the second box
         </p>
