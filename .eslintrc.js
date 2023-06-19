@@ -24,5 +24,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
     'no-nested-ternary': 'off',
+    'no-return-assign': 'off',
   },
 };

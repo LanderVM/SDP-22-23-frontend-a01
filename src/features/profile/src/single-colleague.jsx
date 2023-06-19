@@ -45,6 +45,7 @@ export default function SingleColleague({ colleague }) {
         }}
       >
         <Button
+          onClick={() => window.location.href = `mailto:${colleague.email}`}
           style={{
             fontSize: fontSizeAddToCartIcon,
             height: buttonHeight,
