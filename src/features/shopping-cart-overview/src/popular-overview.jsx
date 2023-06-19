@@ -74,7 +74,16 @@ export default function PopularOverview() {
                   <img src={item.image_URL} alt="product" width="120px" height="70px" />
                 </Row>
                 <Row style={{ flex: '1 0 50%' }}>
-                  <NavLink to={`/product/${item.product_id}`} style={{ fontSize: fontSizeName, textOverflow: 'ellipsis' }} className="linkTo" data-cy="productNameUrl"><b>{item.name}</b></NavLink>
+                  <NavLink
+                    to={`/product/${item.product_id}`}
+                    style={{
+                      fontSize: fontSizeName, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
+                    }}
+                    className="linkTo"
+                    data-cy="productNameUrl"
+                  >
+                    <b>{item.name}</b>
+                  </NavLink>
                 </Row>
 
                 <Row style={{ textAlign: 'left', justifyContent: 'left', flex: '1 0 25%' }}>
