@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { ShoppingCartOutlined, PlusOutlined, MailOutlined } from '@ant-design/icons';
+import {
+  ShoppingCartOutlined, PlusOutlined, MailOutlined, WarningOutlined,
+} from '@ant-design/icons';
 import {
   Row, Col, Grid, Button, InputNumber, Space,
 } from 'antd';
@@ -98,7 +100,15 @@ export default function ProductInfo({
               style={{ width: '70px' }}
             />
           )
-            : null}
+            : (
+              <>
+                <WarningOutlined style={{
+                  color: '#ff4d4f',
+                }}
+                />
+                <span style={{ color: 'red' }}>Out of Stock</span>
+              </>
+            )}
           {product.stock > 0 ? (
             <Button
               type="primary"
@@ -128,6 +138,7 @@ export default function ProductInfo({
                 fontSize: '20px', height: buttonHeight, verticalAlign: '3px',
               }}
             >
+              <PlusOutlined style={{ fontSize: fontSizeIco2, verticalAlign: '3px' }} />
               <MailOutlined style={{ fontSize: fontSizeIcon, verticalAlign: '3px' }} />
             </Button>
           )}
