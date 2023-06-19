@@ -161,7 +161,7 @@ export default function ShoppingCart() {
               data-cy="shoppingCart"
               pagination={{
                 align: 'center',
-                pageSize: 4,
+                pageSize: 6,
               }}
               renderItem={(item) => (
                 <List.Item key={item.productId} style={{ display: 'block' }}>

@@ -9,3 +9,20 @@ tbody > *{
 main {
     min-height: calc(100vh - 90px);
 }
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+    font-size: inherit;
+    color: #ec4242 !important;
+}
+
+.slick-slide {
+    padding-right: 0.5vw;
+}
+
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover,
+.ant-carousel .slick-next:focus,
+.ant-carousel .slick-prev:focus{
+    color: #f06868 !important
+}

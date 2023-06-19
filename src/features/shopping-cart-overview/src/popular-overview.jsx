@@ -1,15 +1,17 @@
 import {
 
-  Card, Col, List, Row,
+  Card, Carousel, Col, Row,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import useProducts from '../../../api/product-service';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
+import '../shopping-cart.css';
 
 export default function PopularOverview() {
   const [popularProduct, setPopularProduct] = useState([]);
@@ -34,10 +36,13 @@ export default function PopularOverview() {
     fetchPopularProducts();
   }, []);
 
+  const navigate = useNavigate();
+
   const { lg, md } = useBreakpoint();
   const fontSizeName = lg ? '20px' : '15px';
   const fontSizePrice = lg ? '16px' : '13px';
-  const pageItems = lg ? 5 : md ? 4 : 2;
+  const pageItems = lg ? 4 : md ? 3 : 2;
+  const carouselMargin = lg ? '1vw' : md ? '2vw' : '3vw';
 
   return (
     <>
@@ -48,58 +53,36 @@ export default function PopularOverview() {
         }}
       />
       <Error error={error} />
-      <List
-        grid={{
-          gutter: 16,
-          xs: 2,
-          sm: 2,
-          md: 4,
-          lg: 4,
-          xl: 5,
-          xxl: 5,
-        }}
-        dataSource={popularProduct}
-        pagination={{
-          align: 'center',
-          pageSize: pageItems,
-        }}
-        renderItem={(item) => (
-          <List.Item style={{ display: 'block' }}>
-            <Card>
-              <Col gutter={{
-                xs: 8, sm: 16, md: 24, lg: 32,
-              }}
-              >
-                <Row>
-                  <img src={item.image_URL} alt="product" width="120px" height="70px" />
-                </Row>
-                <Row style={{ flex: '1 0 50%' }}>
-                  <NavLink
-                    to={`/product/${item.product_id}`}
-                    style={{
-                      fontSize: fontSizeName, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
-                    }}
-                    className="linkTo"
-                    data-cy="productNameUrl"
-                  >
-                    <b>{item.name}</b>
-                  </NavLink>
-                </Row>
-
-                <Row style={{ textAlign: 'left', justifyContent: 'left', flex: '1 0 25%' }}>
-                  <div data-cy="cartPrice" style={{ fontSize: fontSizePrice, color: '#ff4d4f' }}>
-                    €&nbsp;
-                    {item.price}
-                  </div>
-
-                </Row>
-
-              </Col>
-
-            </Card>
-          </List.Item>
-        )}
-      />
+      <Carousel style={{ marginLeft: carouselMargin, marginRight: carouselMargin }} arrows dots={false} nextArrow={<RightOutlined />} prevArrow={<LeftOutlined />} infinite slidesToShow={pageItems} slidesToScroll={1} autoplay>
+        {popularProduct.map((item) => (
+          <Card onClick={() => navigate(`/product/${item.product_id}`)}>
+            <Col gutter={{
+              xs: 8, sm: 16, md: 24, lg: 32,
+            }}
+            >
+              <Row>
+                <img src={item.image_URL} alt="product" width="120px" height="70px" />
+              </Row>
+              <Row style={{ flex: '1 0 50%' }}>
+                <p
+                  style={{
+                    fontSize: fontSizeName, textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
+                  }}
+                  data-cy="productNameUrl"
+                >
+                  <b>{item.name}</b>
+                </p>
+              </Row>
+              <Row style={{ textAlign: 'left', justifyContent: 'left', flex: '1 0 25%' }}>
+                <div data-cy="cartPrice" style={{ fontSize: fontSizePrice, color: '#ff4d4f' }}>
+                  €&nbsp;
+                  {item.price}
+                </div>
+              </Row>
+            </Col>
+          </Card>
+        ))}
+      </Carousel>
     </>
   );
 }
