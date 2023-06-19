@@ -15,6 +15,7 @@ import SideOverview from './side-overview';
 import useProducts from '../../../api/product-service';
 import '../shopping-cart.css';
 import ToastNotification from '../../../Components/notification';
+import PopularOverview from './popular-overview';
 
 const { useBreakpoint } = Grid;
 export default function ShoppingCart() {
@@ -160,7 +161,7 @@ export default function ShoppingCart() {
               data-cy="shoppingCart"
               pagination={{
                 align: 'center',
-                pageSize: 10,
+                pageSize: 4,
               }}
               renderItem={(item) => (
                 <List.Item key={item.productId} style={{ display: 'block' }}>
@@ -175,6 +176,12 @@ export default function ShoppingCart() {
           {!loading && !error && myCart.length === productsFromContext.length
             ? <SideOverview cart={myCart} context={ShoppingCartProducts} />
             : null}
+        </Col>
+      </Row>
+      <Row>
+        <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
+          <h1>Most popular products</h1>
+          <PopularOverview />
         </Col>
       </Row>
     </main>

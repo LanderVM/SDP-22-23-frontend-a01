@@ -3,6 +3,7 @@ import {
   Button, Col, Grid, InputNumber, Row,
 } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 
 const { useBreakpoint } = Grid;
 export default function Products({
@@ -10,8 +11,8 @@ export default function Products({
 }) {
   const { productsFromContext } = useContext(context);
   const { lg } = useBreakpoint();
-  const fontSizeName = lg ? '24px' : '12px';
-  const fontSizeDesc = lg ? '18px' : '8px';
+  const fontSizeName = lg ? '24px' : '16px';
+  const fontSizeDesc = lg ? '18px' : '14px';
   const fontSizeIcon = lg ? '120%' : '70%';
   const buttonHeight = lg ? '40px' : '35px';
 
@@ -35,10 +36,10 @@ export default function Products({
     }}
     >
       <Col>
-        <img src={cart.image_URL} alt="product" width="100px" />
+        <img src={cart.image_URL} alt="product" width="150px" />
       </Col>
       <Col style={{ flex: '1 0 50%' }}>
-        <div style={{ fontSize: fontSizeName }} data-cy="cartName"><b>{cart.name}</b></div>
+        <NavLink to={`/product/${cart.product_id}`} style={{ fontSize: fontSizeName }} className="linkTo" data-cy="productNameUrl"><b>{cart.name}</b></NavLink>
         <div style={{ fontSize: fontSizeDesc }} data-cy="cartDescription">{cart.description}</div>
         <div>
           <InputNumber
