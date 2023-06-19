@@ -1,5 +1,4 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Navigate } from 'react-router-dom';
 import { Content } from 'antd/es/layout/layout';
 import {
   Result,
@@ -30,8 +29,6 @@ export default function AuthLanding() {
       </Content>
     );
   }
-
-  if (!isLoading && isAuthenticated) return <Navigate to="/" />;
 
   if (!isLoading && !isAuthenticated) {
     return (

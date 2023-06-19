@@ -10,7 +10,7 @@ export default function LogoutButtonDropDown() {
     localStorage.clear();
   };
   return (
-    <NavLink to="/home" onClick={handleLogout} className="delaware-dropdown-button" data-cy="test-navBar-LogOut">
+    <NavLink onClick={handleLogout} className="delaware-dropdown-button" data-cy="test-navBar-LogOut">
       <ExportOutlined onClick={handleLogout} style={{ fontSize: '250%' }} />
       &nbsp;Log&nbsp;out
     </NavLink>

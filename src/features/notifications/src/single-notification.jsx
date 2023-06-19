@@ -13,22 +13,39 @@ export default function SingleNotification({ notification }) {
   const handleClickNotification = async (event) => {
     event.stopPropagation();
     event.preventDefault();
-    if (notification.status === 'new' || notification.status === 'unread') {
-      const theNotification = {
-        notification_id: notification.notification_id,
-        notification_date: notification.notification_date,
-        CUSTOMER_supplier_id: notification.CUSTOMER_supplier_id,
-        ORDER_order_id: notification.ORDER_order_id,
-        status: 'read',
-        message: notification.message,
-      };
-      const save = async () => {
-        await notificationsApi.saveNotification(theNotification);
-      };
-      await save();
+    if (notification.ORDER_order_id != null) {
+      if (notification.status === 'new' || notification.status === 'unread') {
+        const theNotification = {
+          notification_id: notification.notification_id,
+          notification_date: notification.notification_date,
+          CUSTOMER_supplier_id: notification.CUSTOMER_supplier_id,
+          ORDER_order_id: notification.ORDER_order_id,
+          status: 'read',
+          message: notification.message,
+        };
+        const save = async () => {
+          await notificationsApi.saveNotification(theNotification);
+        };
+        await save();
+      }
+      refreshAmountNotReadNotifications();
+      navigate(`/orders/${notification.ORDER_order_id}`);
+    } else {
+      if (notification.status === 'new' || notification.status === 'unread') {
+        const theNotification = {
+          notification_id: notification.notification_id,
+          notification_date: notification.notification_date,
+          status: 'read',
+          message: notification.message,
+        };
+        const save = async () => {
+          await notificationsApi.saveNotification(theNotification);
+        };
+        await save();
+      }
+      refreshAmountNotReadNotifications();
+      navigate('/notifications');
     }
-    refreshAmountNotReadNotifications();
-    navigate(`/orders/${notification.ORDER_order_id}`);
   };
 
   return (
