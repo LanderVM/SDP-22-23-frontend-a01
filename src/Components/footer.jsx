@@ -32,7 +32,7 @@ export default function FooterElement() {
         </div>
       </div>
       <div style={{ padding: pad, color: colorRed, backgroundColor: '#fdecec' }}>
-        &copy; Delaware 2023
+        &copy; delaware 2023
       </div>
     </Footer>
   );

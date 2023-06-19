@@ -7,6 +7,7 @@ import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
 import '../products-overview.css';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 const minPrice = 0;
 const maxPrice = 2000;
@@ -42,10 +43,15 @@ export default function FilterSideMenu({
     },
   ];
 
+  const { lg } = useBreakpoint();
+
+  const style = lg ? { position: 'fixed', width: '20%' } : null;
+
   return (
     <div
       style={{
         borderRadius: '10px',
+        ...style,
       }}
     >
       <Collapse defaultActiveKey={['4', '5']} className="sideBar" size="medium">
@@ -104,7 +110,6 @@ export default function FilterSideMenu({
           <Radio.Group defaultValue={currentFilter.sortByOption} options={sortValues} onChange={(value) => handleCallback({ sortByOption: value.target.value })} optionType="button" buttonStyle="solid" />
         </Panel>
       </Collapse>
-
     </div>
   );
 }

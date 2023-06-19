@@ -2,6 +2,7 @@ import React, {
   useContext, useEffect, useState,
 } from 'react';
 import { Button, Card } from 'antd';
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 
 export default function SideOverview({
   cart, context, onOrder, packagingCost,
@@ -19,8 +20,12 @@ export default function SideOverview({
     setCost(totalCost);
   }, [cart]);
 
+  const { lg } = useBreakpoint();
+  const style = lg ? { position: 'fixed', width: '20%' } : null;
+
   return (
     <Card
+      style={style}
       title="Overview"
       bordered
       actions={[
