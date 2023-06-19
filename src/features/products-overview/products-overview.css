@@ -26,8 +26,8 @@
     text-decoration: underline;
 }
 
-#page {
-    min-height: calc(100vh - 290px);
+.page {
+    min-height: calc(100vh - 90px);
 }
 
 .ant-select-selector {

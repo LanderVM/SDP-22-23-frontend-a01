@@ -3,98 +3,42 @@ import {
 } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDebouncedCallback } from 'use-debounce';
-import useProducts from '../../../api/product-service';
 
 import '../products-overview.css';
-import Error from '../../../Components/error';
 
 const minPrice = 0;
 const maxPrice = 2000;
 
-export default function FilterSideMenu(props) {
-  const [error, setError] = useState(null);
-  const [priceS, setPriceS] = useState(minPrice);
-  const [priceE, setPriceE] = useState(maxPrice);
-  const [priceStart, setPriceStart] = useState(minPrice);
-  const [priceEnd, setPriceEnd] = useState(maxPrice);
-  const [inStock, setInStock] = useState(false);
-  const [brand, setBrand] = useState([]);
-  const [category, setCategory] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [sortBy, setSortBy] = useState(null);
-
-  const { handleCallback } = props;
+export default function FilterSideMenu({
+  handleCallback, currentFilter, categories, brands,
+}) {
   const { Panel } = Collapse;
 
-  const productsApi = useProducts();
-
   const debouncedSetPriceStart = useDebouncedCallback((newPrice) => {
-    setPriceStart(newPrice);
-    setPriceS(newPrice);
+    handleCallback({ minPrice: newPrice });
   }, 400);
 
   const debouncedSetPriceEnd = useDebouncedCallback((newPrice) => {
-    setPriceEnd(newPrice);
-    setPriceE(priceEnd);
+    handleCallback({ maxPrice: newPrice });
   }, 400);
-
-  const onBrandChange = (checkedValues) => {
-    setBrand(checkedValues);
-  };
-
-  const onCategoriesChange = (checkedValues) => {
-    setCategory(checkedValues);
-  };
-
-  const onSortByChange = (value) => {
-    setSortBy(value.target.value);
-  };
-
-  useEffect(() => {
-    handleCallback({
-      priceS, priceE, inStock, brand, category, sortBy,
-    });
-  }, [priceS, priceE, inStock, brand, category, sortBy]);
-
-  useEffect(() => {
-    const fetchBrands = async () => {
-      try {
-        const data = await productsApi.getBrands();
-        setBrands(data);
-      } catch (error2) {
-        setError(error2);
-      }
-    };
-    fetchBrands();
-  }, []);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await productsApi.getCategories();
-        setCategories(data);
-      } catch (error2) {
-        setError(error2);
-      }
-    };
-    fetchCategories();
-  }, []);
 
   const sortValues = [
     {
       value: 'price',
-      name: 'Price',
+      label: 'Price',
+      key: 'price',
     },
     {
       value: 'name',
-      name: 'Name',
+      label: 'Name',
+      key: 'name',
     },
     {
       value: '',
-      name: 'None',
+      label: 'None',
+      key: 'none',
     },
   ];
 
@@ -104,22 +48,19 @@ export default function FilterSideMenu(props) {
         borderRadius: '10px',
       }}
     >
-      {error
-        ? <Error error={error} />
-        : null}
       <Collapse defaultActiveKey={['4', '5']} className="sideBar" size="medium">
         <Panel header="Product Category" key="1">
           <div style={{ maxHeight: '300px', overflowY: 'scroll' }}>
-            <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={category} onChange={onCategoriesChange} />
+            <Checkbox.Group options={categories.map((e) => e.category)} defaultValue={currentFilter.categories} onChange={(checkedValues) => handleCallback({ categories: checkedValues })} />
           </div>
         </Panel>
         <Panel header="Price" key="2" data-cy="test-products-filter-priceTab">
           <Row>
             <Col>
               <InputNumber
-                value={priceStart}
+                value={currentFilter.minPrice}
                 formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                defaultValue={priceStart}
+                defaultValue={0}
                 min={minPrice}
                 max={maxPrice}
                 onChange={(input) => debouncedSetPriceStart(input)}
@@ -131,9 +72,9 @@ export default function FilterSideMenu(props) {
             </Col>
             <Col>
               <InputNumber
-                value={priceEnd}
+                value={currentFilter.maxPrice}
                 formatter={(value) => `€ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                defaultValue={priceEnd}
+                defaultValue={2000}
                 min={minPrice}
                 max={maxPrice}
                 onChange={(input) => debouncedSetPriceEnd(input)}
@@ -144,7 +85,7 @@ export default function FilterSideMenu(props) {
         </Panel>
         <Panel header="Brand" key="3">
           <div style={{ maxHeight: '300px', overflowY: 'scroll' }}>
-            <Checkbox.Group options={brands.map((e) => e.brand)} defaultValue={brand} onChange={onBrandChange} />
+            <Checkbox.Group options={brands.map((e) => e.brand)} defaultValue={currentFilter.brands} onChange={(checkedValues) => handleCallback({ brands: checkedValues })} />
           </div>
         </Panel>
         <Panel header="Availability" key="4" data-cy="test-products-filter-inStockTab">
@@ -152,19 +93,15 @@ export default function FilterSideMenu(props) {
             <Switch
               checkedChildren={<CheckOutlined />}
               unCheckedChildren={<CloseOutlined />}
-              onClick={() => setInStock(!inStock)}
+              onClick={(value) => handleCallback({ inStock: value })}
               data-cy="test-products-filter-inStock"
-              style={{ backgroundColor: '#1677ff' }}
+              style={{ backgroundColor: '#ec4242' }}
             />
             <span>Only show in stock</span>
           </Space>
         </Panel>
         <Panel header="Sort" key="5" data-cy="test-products-filter-sortTab">
-          <Radio.Group defaultValue={sortBy} onChange={onSortByChange}>
-            <Space direction="vertical">
-              {sortValues.map((e) => <Radio data-cy={`test-products-filter-sortOn${e.name}Option`} value={e.value} key={e.value}>{e.name}</Radio>)}
-            </Space>
-          </Radio.Group>
+          <Radio.Group defaultValue={currentFilter.sortByOption} options={sortValues} onChange={(value) => handleCallback({ sortByOption: value.target.value })} optionType="button" buttonStyle="solid" />
         </Panel>
       </Collapse>
 

@@ -8,25 +8,44 @@ import useProducts from '../../../api/product-service';
 import Error from '../../../Components/error';
 import Loader from '../../../Components/loader';
 import Product from './product-info';
-import SearchBar from './search-bar';
 import FilterSideMenu from './filter-side-menu';
 import '../products-overview.css';
 import ToastNotification from '../../../Components/notification';
+import SearchBar from './search-bar';
 
 const { useBreakpoint } = Grid;
 
-function ProductsListElement({ products, handleView }) {
+function ProductsListElement({ products, handleView, canShow }) {
+  // if (!canShow) return false;
   if (!products || products.length === 0) {
     return (
-      <Empty
-        data-cy="products_empty"
-        image={Empty.PRESENTED_IMAGE_SIMPLE}
-        description={(
-          <span>
-            No products available
-          </span>
-      )}
-      />
+      <div data-cy="test-products-list">
+        <List
+          style={{ backgroundColor: 'white' }}
+          bordered
+          dataSource={[1]}
+          pagination={{
+            align: 'center',
+            pageSizeOptions: [10, 20, 30],
+          }}
+          renderItem={(item) => (
+            canShow ? (
+              <List.Item key={item.product_id} style={{ display: 'block' }}>
+                <Empty
+                  data-cy="products_empty"
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                          // style={{ marginTop: '20vh' }}
+                  description={(
+                    <span>
+                      No products available
+                    </span>
+                          )}
+                />
+              </List.Item>
+            ) : null
+          )}
+        />
+      </div>
     );
   }
 
@@ -101,39 +120,45 @@ export default function ProductsOverview() {
   const [product, setProduct] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const productApi = useProducts();
+  const [dbCategories, setDbCategories] = useState([]);
+  const [dbBrands, setDbBrands] = useState([]);
 
-  const [priceStart, setPriceStart] = useState(0);
-  const [priceEnd, setPriceEnd] = useState(2000);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(2000);
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [sortByOption, setSortByOption] = useState('');
   const [inStock, setInStock] = useState(false);
-  const [brand, setBrand] = useState(null);
-  const [category, setCategory] = useState(null);
-  const [sortBy, setSortBy] = useState(null);
-
   const [name, setName] = useState(null);
-
   const navigate = useNavigate();
 
-  const productApi = useProducts();
-
-  const callBack = (data) => {
-    setPriceStart(data.priceS);
-    setPriceEnd(data.priceE);
-    setInStock(data.inStock);
-    setBrand(data.brand);
-    setCategory(data.category);
-    setSortBy(data.sortBy);
+  const updateValues = (props) => {
+    if (props.name !== undefined) setName(props.name);
+    if (props.minPrice !== undefined) setMinPrice(props.minPrice ?? 0);
+    if (props.maxPrice !== undefined) setMaxPrice(props.maxPrice ?? 2000);
+    if (props.brands !== undefined) setBrands(props.brands);
+    if (props.categories !== undefined) setCategories(props.categories);
+    if (props.sortByOption !== undefined) setSortByOption(props.sortByOption);
+    if (props.inStock !== undefined) setInStock(props.inStock);
   };
 
-  const callBackSearch = (data) => {
-    setName(data.name);
-  };
+  useEffect(() => {
+    const fetchFilterOptions = async () => {
+      const categoryData = await productApi.getCategories();
+      setDbCategories(categoryData);
+      const brandData = await productApi.getBrands();
+      setDbBrands(brandData);
+    };
+    fetchFilterOptions();
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await productApi.getFiltered(priceStart, priceEnd, inStock, brand, category, sortBy, name);
+        const data = await productApi.getFiltered(minPrice, maxPrice, inStock, brands, categories, sortByOption, name);
         setProduct(data);
       } catch (error2) {
         setError(error2);
@@ -142,7 +167,7 @@ export default function ProductsOverview() {
       }
     };
     fetchProducts();
-  }, [priceStart, priceEnd, inStock, brand, category, sortBy, name]);
+  }, [minPrice, maxPrice, brands, categories, sortByOption, inStock, name]);
 
   const handleView = useCallback(async (nameToView) => {
     try {
@@ -165,15 +190,27 @@ export default function ProductsOverview() {
     <main id="page">
       <Row>
         <Col span={phoneFormatSideBar} style={{ padding: phoneFormatPaddingSideBar }}>
-          <FilterSideMenu handleCallback={callBack} />
+          <FilterSideMenu
+            handleCallback={updateValues}
+            categories={dbCategories}
+            brands={dbBrands}
+            currentFilter={{
+              minPrice, maxPrice, brands, categories, sortByOption, inStock,
+            }}
+          />
         </Col>
         <Col span={phoneFormatItemList} style={{ padding: phoneFormatPaddingItemList }}>
-          <Loader loading={loading} />
-          <Error error={error} />
-          <SearchBar handleSearch={callBackSearch} priceStart={priceStart} priceEnd={priceEnd} inStock={inStock} brand={brand} category={category} />
-          {!loading && !error
-            ? <ProductsListElement products={product} handleView={handleView} />
-            : null}
+          <>
+            <SearchBar handleSearch={updateValues} productNames={product} />
+            <Loader
+              loading={loading}
+              extraStyle={{
+                position: 'absolute', top: '30vh', left: '50%', zIndex: '9999',
+              }}
+            />
+            <Error error={error} />
+            <ProductsListElement products={product} handleView={handleView} canShow={!loading && !error} />
+          </>
         </Col>
       </Row>
     </main>

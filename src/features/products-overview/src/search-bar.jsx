@@ -1,36 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   AutoComplete,
   Button,
 } from 'antd';
-import useProducts from '../../../api/product-service';
 
 function SearchBar({
-  handleSearch, priceStart, priceEnd, inStock, brand, category,
+  handleSearch, productNames,
 }) {
-  const productsApi = useProducts();
-
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await productsApi.getFiltered(priceStart, priceEnd, inStock, brand, category);
-        setProducts(data);
-      } catch (error2) {
-        setError(error2);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, [priceStart, priceEnd, inStock, brand, category]);
-
   const onSearchName = () => {
     if (selectedProduct || selectedProduct === '') {
       handleSearch({ name: selectedProduct });
@@ -39,33 +16,31 @@ function SearchBar({
 
   return (
     <div style={{ marginBottom: '25px', borderTopRightRadius: '0', borderBottomRightRadius: '0' }}>
-      {!loading && !error ? (
-        <div style={{
-          display: 'flex', fontSize: '30px', borderTopRightRadius: '0', borderBottomRightRadius: '0',
-        }}
+      <div style={{
+        display: 'flex', fontSize: '30px', borderTopRightRadius: '0', borderBottomRightRadius: '0',
+      }}
+      >
+        <AutoComplete
+          id="autoco"
+          data-cy="products_searchBar"
+          style={{ width: '100%', borderTopRightRadius: '0', borderBottomRightRadius: '0' }}
+          size="large"
+          options={productNames.map((e) => ({ value: e.name }))}
+          filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+          onSearch={setSelectedProduct}
+          onSelect={setSelectedProduct}
+        />
+        <Button
+          data-cy="products_searchButton"
+          onClick={onSearchName}
+          style={{
+            float: 'right', backgroundColor: '#ff4d4f', color: 'white', borderTopLeftRadius: '0', borderBottomLeftRadius: '0',
+          }}
+          size="large"
         >
-          <AutoComplete
-            id="autoco"
-            data-cy="products_searchBar"
-            style={{ width: '100%', borderTopRightRadius: '0', borderBottomRightRadius: '0' }}
-            size="large"
-            options={products.map((e) => ({ value: e.name }))}
-            filterOption={(inputValue, option) => option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
-            onSearch={setSelectedProduct}
-            onSelect={setSelectedProduct}
-          />
-          <Button
-            data-cy="products_searchButton"
-            onClick={onSearchName}
-            style={{
-              float: 'right', backgroundColor: '#ff4d4f', color: 'white', borderTopLeftRadius: '0', borderBottomLeftRadius: '0',
-            }}
-            size="large"
-          >
-            <b>Search for Product</b>
-          </Button>
-        </div>
-      ) : null}
+          <b>Search for Product</b>
+        </Button>
+      </div>
     </div>
   );
 }
