@@ -34,8 +34,17 @@ export default function CompanyInfo({ companyInformation }) {
             {companyInformation.delivery_country}
           </p>
         </Col>
-        <Col span={12} xs={15} lg={6}>
-          <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: imgFormat, maxHeight: imgFormat, marginLeft: lg ? '78%' : '' }} />
+        <Col style={{
+          display: 'flex',
+          alignItems: 'center',
+          marginTop: '15px',
+          marginBottom: '15px',
+          textAlign: 'right',
+          justifyContent: 'right',
+          flex: '1 0 25%',
+        }}
+        >
+          <img src={companyInformation.logo_URL} alt="" style={{ maxWidth: imgFormat, maxHeight: imgFormat, paddingRight: lg ? '50px' : '' }} />
         </Col>
       </Row>
     </Card>

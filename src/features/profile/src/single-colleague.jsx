@@ -16,32 +16,28 @@ export default function SingleColleague({ colleague }) {
 
   return (
     <Row data-cy="colleagueInfo">
-      <Col span={6} xs={15} lg={6}>
-        <img src={colleague.image_URL} alt="" style={{ maxWidth: '40%' }} />
+      <Col>
+        <img src={colleague.image_URL} alt="" width="100px" />
       </Col>
       <Col
-        span={7}
-        xs={10}
-        lg={7}
-        style={{ marginBottom: '15px', marginTop: '15px' }}
+        style={{ marginLeft: '30px' }}
       >
         <p data-cy="colleagueUsername">
-          {colleague.username}
+          <b>{colleague.username}</b>
         </p>
         <p data-cy="colleagueEmail">
           {colleague.email}
         </p>
       </Col>
       <Col
-        span={10}
-        xs={15}
-        lg={10}
         style={{
           display: 'flex',
-          justifyContent: 'center',
           alignItems: 'center',
           marginTop: '15px',
           marginBottom: '15px',
+          textAlign: 'right',
+          justifyContent: 'right',
+          flex: '1 0 25%',
         }}
       >
         <Button
