@@ -7,30 +7,46 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import getStatusAsString from '../../../utils';
 
 export default function OrderInfo({ order }) {
-  const { lg } = useBreakpoint();
+  const { lg, xs } = useBreakpoint();
 
   return (
     <Row>
       <Col span={24}>
-        <Row className="delaware-order-info-body-header">
-          <Col span={13} style={{ marginRight: '1px', marginBottom: '5px' }}>
-            <h3>
+        <Row className="delaware-order-info-body-header" style={{ marginLeft: xs ? '' : '14px', marginTop: xs ? '' : '14px' }}>
+          <Col
+            span={13}
+            lg={13}
+            xs={24}
+            style={{ marginRight: '1px', marginBottom: '5px' }}
+          >
+            <h3 style={{ marginLeft: xs ? '17%' : '', marginRight: xs ? '17%' : '' }}>
               Order&nbsp;#
               {order.order_id}
+              { xs ? (
+                <span className="delaware-order-info-body-header-status" style={{ fontWeight: 'bold' }}>
+                &nbsp;
+                  {getStatusAsString(order.order_status)}
+                </span>
+              ) : null }
             </h3>
-            <span style={{ color: 'grey' }}>Ordered&nbsp;on: </span>
-            <span style={{ fontWeight: 'bold' }}>
-              {moment(order.order_date.split('T')[0]).format('LL')}
+            <span style={{ marginLeft: xs ? '12%' : '', marginRight: xs ? '17%' : '' }}>
+              <span style={{ color: 'grey' }}>Ordered&nbsp;on: </span>
+              <span style={{ fontWeight: 'bold' }}>
+                {moment(order.order_date.split('T')[0]).format('LL')}
+              </span>
+              { xs ? null
+                : (
+                  <p className="delaware-order-info-body-header-status">
+                    {getStatusAsString(order.order_status)}
+                  </p>
+                )}
             </span>
-            <p className="delaware-order-info-body-header-status">
-              {getStatusAsString(order.order_status)}
-            </p>
           </Col>
           <Col
             className="delaware-order-info-body"
             span={10}
-            xs={12}
             lg={10}
+            xs={24}
             style={{
               display: 'flex',
               justifyContent: 'center',
