@@ -19,7 +19,7 @@ export default function OrderInfo({ order }) {
             xs={24}
             style={{ marginRight: '1px', marginBottom: '5px' }}
           >
-            <h3 style={{ marginLeft: xs ? '17%' : '', marginRight: xs ? '17%' : '' }}>
+            <h3 style={{ marginLeft: xs ? '19%' : '', marginRight: xs ? '17%' : '' }}>
               Order&nbsp;#
               {order.order_id}
               { xs ? (
