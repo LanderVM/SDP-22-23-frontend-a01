@@ -2,7 +2,7 @@ import { notification } from 'antd';
 import { useEffect } from 'react';
 
 export default function ToastNotification({
-  title, message, icon, show, updatable, updatableKey,
+  title, message, icon, show, updatable, updatableKey, duration,
 }) {
   let args;
   const key = updatableKey ?? 'updatable';
@@ -12,7 +12,7 @@ export default function ToastNotification({
       message: title,
       description: message,
       icon,
-      duration: 3.5,
+      duration: duration ?? 3.5,
     };
   } else {
     args = {

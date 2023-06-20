@@ -97,6 +97,7 @@ export default function ShoppingCart() {
               <span style={{ fontWeight: 'bold' }}>{modifiedProduct.item.name}</span>
             &nbsp;total amount has been updated to&nbsp;
               <span style={{ fontWeight: 'bold' }}>{modifiedProduct.amount}</span>
+              .
             </>
           )
         )
