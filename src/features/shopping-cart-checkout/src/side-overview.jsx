@@ -21,7 +21,7 @@ export default function SideOverview({
   }, [cart]);
 
   const { lg } = useBreakpoint();
-  const style = lg ? { position: 'fixed', width: '20%' } : null;
+  const style = lg ? { position: 'fixed', width: '20%', zIndex: +1 } : null;
 
   return (
     <Card
